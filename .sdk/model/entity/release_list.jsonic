@@ -1,0 +1,92 @@
+# Entity: release_list
+
+main: kit: entity: release_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "offset"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "release"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "release_list"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "discid"
+                orig: "discid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/discid/{discid}"
+          parts: [
+            "discid"
+            "{discid}"
+          ]
+          select: {
+            exist: [
+              "discid"
+              "fmt"
+              "inc"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "discid"
+      ]
+    ]
+  }
+
+
+
+}

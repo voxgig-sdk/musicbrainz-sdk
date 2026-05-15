@@ -1,0 +1,36 @@
+# BasicRatingFlow
+
+main: kit: flow: BasicRatingFlow:
+{
+  entity: "rating",
+  kind: "basic",
+  name: "BasicRatingFlow",
+  step: [
+    {
+      input: {
+        ref: "rating_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "rating_ref01",
+        srcdatavar: "rating_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-rating_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRatingFlow"
+}

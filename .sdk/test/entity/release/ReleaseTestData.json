@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "release": {
+      "RELEASE00": {
+        "barcode": "s50",
+        "country": "s51",
+        "date": "s52",
+        "disambiguation": "s53",
+        "id": "RELEASE00",
+        "packaging": "s55",
+        "status": "s56",
+        "title": "s57"
+      },
+      "RELEASE01": {
+        "barcode": "sa0",
+        "country": "sa1",
+        "date": "sa2",
+        "disambiguation": "sa3",
+        "id": "RELEASE01",
+        "packaging": "sa5",
+        "status": "sa6",
+        "title": "sa7"
+      },
+      "RELEASE02": {
+        "barcode": "sf0",
+        "country": "sf1",
+        "date": "sf2",
+        "disambiguation": "sf3",
+        "id": "RELEASE02",
+        "packaging": "sf5",
+        "status": "sf6",
+        "title": "sf7"
+      }
+    }
+  },
+  "new": {
+    "release": {
+      "release_ref01": {
+        "barcode": "s140",
+        "country": "s141",
+        "date": "s142",
+        "disambiguation": "s143",
+        "packaging": "s145",
+        "status": "s146",
+        "title": "s147"
+      }
+    }
+  }
+}

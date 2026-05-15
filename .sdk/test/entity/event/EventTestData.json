@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "event": {
+      "EVENT00": {
+        "cancelled": true,
+        "disambiguation": "s47",
+        "id": "EVENT00",
+        "life_span": {},
+        "name": "s4a",
+        "time": "s4b",
+        "type": "s4c"
+      },
+      "EVENT01": {
+        "cancelled": true,
+        "disambiguation": "s8d",
+        "id": "EVENT01",
+        "life_span": {},
+        "name": "s90",
+        "time": "s91",
+        "type": "s92"
+      },
+      "EVENT02": {
+        "cancelled": true,
+        "disambiguation": "sd3",
+        "id": "EVENT02",
+        "life_span": {},
+        "name": "sd6",
+        "time": "sd7",
+        "type": "sd8"
+      }
+    }
+  },
+  "new": {
+    "event": {
+      "event_ref01": {
+        "cancelled": true,
+        "disambiguation": "s119",
+        "life_span": {},
+        "name": "s11c",
+        "time": "s11d",
+        "type": "s11e"
+      }
+    }
+  }
+}

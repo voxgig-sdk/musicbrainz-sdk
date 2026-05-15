@@ -1,0 +1,92 @@
+# Entity: recording_list
+
+main: kit: entity: recording_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "offset"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "recording"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "recording_list"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "isrc"
+                orig: "isrc"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/isrc/{isrc}"
+          parts: [
+            "isrc"
+            "{isrc}"
+          ]
+          select: {
+            exist: [
+              "fmt"
+              "inc"
+              "isrc"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "isrc"
+      ]
+    ]
+  }
+
+
+
+}

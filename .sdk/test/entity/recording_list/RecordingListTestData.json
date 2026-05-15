@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "recording_list": {
+      "RECORDING_LIST00": {
+        "count": "s1e",
+        "offset": "s1f",
+        "recording": [],
+        "isrc": "ISRC01"
+      },
+      "RECORDING_LIST01": {
+        "count": "s3c",
+        "offset": "s3d",
+        "recording": [],
+        "isrc": "ISRC01"
+      },
+      "RECORDING_LIST02": {
+        "count": "s5a",
+        "offset": "s5b",
+        "recording": [],
+        "isrc": "ISRC01"
+      }
+    }
+  },
+  "new": {
+    "recording_list": {
+      "recording_list_ref01": {
+        "count": "s78",
+        "offset": "s79",
+        "recording": []
+      }
+    }
+  }
+}

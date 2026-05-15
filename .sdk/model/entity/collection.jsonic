@@ -1,0 +1,101 @@
+# Entity: collection
+
+main: kit: entity: collection: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "editor"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "entity_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "collection"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/collection"
+          parts: [
+            "collection"
+          ]
+          select: {
+            exist: [
+              "fmt"
+              "inc"
+              "limit"
+              "offset"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

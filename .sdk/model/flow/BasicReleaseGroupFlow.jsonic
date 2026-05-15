@@ -1,0 +1,44 @@
+# BasicReleaseGroupFlow
+
+main: kit: flow: BasicReleaseGroupFlow:
+{
+  entity: "release_group",
+  kind: "basic",
+  name: "BasicReleaseGroupFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "release_group_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "release_group_ref01",
+        srcdatavar: "release_group_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "release_group01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-release_group_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicReleaseGroupFlow"
+}

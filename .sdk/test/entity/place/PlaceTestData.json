@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "place": {
+      "PLACE00": {
+        "address": "s46",
+        "coordinate": {},
+        "disambiguation": "s48",
+        "id": "PLACE00",
+        "life_span": {},
+        "name": "s4b",
+        "type": "s4c"
+      },
+      "PLACE01": {
+        "address": "s8c",
+        "coordinate": {},
+        "disambiguation": "s8e",
+        "id": "PLACE01",
+        "life_span": {},
+        "name": "s91",
+        "type": "s92"
+      },
+      "PLACE02": {
+        "address": "sd2",
+        "coordinate": {},
+        "disambiguation": "sd4",
+        "id": "PLACE02",
+        "life_span": {},
+        "name": "sd7",
+        "type": "sd8"
+      }
+    }
+  },
+  "new": {
+    "place": {
+      "place_ref01": {
+        "address": "s118",
+        "coordinate": {},
+        "disambiguation": "s11a",
+        "life_span": {},
+        "name": "s11d",
+        "type": "s11e"
+      }
+    }
+  }
+}

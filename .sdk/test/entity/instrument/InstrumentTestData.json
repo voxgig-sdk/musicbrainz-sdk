@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "instrument": {
+      "INSTRUMENT00": {
+        "description": "s32",
+        "disambiguation": "s33",
+        "id": "INSTRUMENT00",
+        "name": "s35",
+        "type": "s36"
+      },
+      "INSTRUMENT01": {
+        "description": "s64",
+        "disambiguation": "s65",
+        "id": "INSTRUMENT01",
+        "name": "s67",
+        "type": "s68"
+      },
+      "INSTRUMENT02": {
+        "description": "s96",
+        "disambiguation": "s97",
+        "id": "INSTRUMENT02",
+        "name": "s99",
+        "type": "s9a"
+      }
+    }
+  },
+  "new": {
+    "instrument": {
+      "instrument_ref01": {
+        "description": "sc8",
+        "disambiguation": "sc9",
+        "name": "scb",
+        "type": "scc"
+      }
+    }
+  }
+}

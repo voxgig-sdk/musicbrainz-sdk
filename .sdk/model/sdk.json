@@ -1,0 +1,4476 @@
+{
+  "name": "musicbrainz",
+  "origin": "voxgig-sdk",
+  "def": "musicbrainz_0.1.0.json",
+  "main": {
+    "kit": {
+      "info": {
+        "contact": {
+          "name": "MusicBrainz",
+          "url": "https://musicbrainz.org/doc/MusicBrainz_API"
+        },
+        "description": "The MusicBrainz API provides developers with access to the MusicBrainz Database, an extensive collection of music metadata. Designed for media applications like players and taggers, it utilizes REST principles and supports content in XML and JSON formats for easy integration.",
+        "license": {
+          "name": "Various - See Data Licenses",
+          "url": "https://musicbrainz.org/doc/About/Data_License"
+        },
+        "servers": [
+          {
+            "description": "MusicBrainz API v2 Production Server",
+            "url": "https://musicbrainz.org/ws/2"
+          }
+        ],
+        "title": "MusicBrainz API",
+        "version": "2.0.0"
+      },
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "area": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "life_span",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "sort_name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "area",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/area",
+                  "parts": [
+                    "area"
+                  ],
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/area/{mbid}",
+                  "parts": [
+                    "area",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "artist": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "gender",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "life_span",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "sort_name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "artist",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "area",
+                        "orig": "area",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "collection",
+                        "orig": "collection",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "recording",
+                        "orig": "recording",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "release",
+                        "orig": "release",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "release_group",
+                        "orig": "release_group",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "work",
+                        "orig": "work",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/artist",
+                  "parts": [
+                    "artist"
+                  ],
+                  "select": {
+                    "exist": [
+                      "area",
+                      "collection",
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query",
+                      "recording",
+                      "release",
+                      "release_group",
+                      "work"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "status",
+                        "orig": "status",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "type",
+                        "orig": "type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/artist/{mbid}",
+                  "parts": [
+                    "artist",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc",
+                      "status",
+                      "type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "collection": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "editor",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "entity_type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "collection",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/collection",
+                  "parts": [
+                    "collection"
+                  ],
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "event": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "cancelled",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "life_span",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "time",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "event",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "area",
+                        "orig": "area",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "artist",
+                        "orig": "artist",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "place",
+                        "orig": "place",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/event",
+                  "parts": [
+                    "event"
+                  ],
+                  "select": {
+                    "exist": [
+                      "area",
+                      "artist",
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "place",
+                      "query"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/event/{mbid}",
+                  "parts": [
+                    "event",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "genre": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "genre",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/genre/all",
+                  "parts": [
+                    "genre",
+                    "all"
+                  ],
+                  "select": {
+                    "$action": "all",
+                    "exist": [
+                      "fmt",
+                      "limit",
+                      "offset"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/genre/{mbid}",
+                  "parts": [
+                    "genre",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "instrument": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "description",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "instrument",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "collection",
+                        "orig": "collection",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/instrument",
+                  "parts": [
+                    "instrument"
+                  ],
+                  "select": {
+                    "exist": [
+                      "collection",
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/instrument/{mbid}",
+                  "parts": [
+                    "instrument",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "label": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "label_code",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "life_span",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "sort_name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "label",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "area",
+                        "orig": "area",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "collection",
+                        "orig": "collection",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "release",
+                        "orig": "release",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/label",
+                  "parts": [
+                    "label"
+                  ],
+                  "select": {
+                    "exist": [
+                      "area",
+                      "collection",
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query",
+                      "release"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "status",
+                        "orig": "status",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "type",
+                        "orig": "type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/label/{mbid}",
+                  "parts": [
+                    "label",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc",
+                      "status",
+                      "type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "place": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "address",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "coordinate",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "life_span",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "place",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "area",
+                        "orig": "area",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "collection",
+                        "orig": "collection",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/place",
+                  "parts": [
+                    "place"
+                  ],
+                  "select": {
+                    "exist": [
+                      "area",
+                      "collection",
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/place/{mbid}",
+                  "parts": [
+                    "place",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "rating": {
+          "alias": {
+            "field": {}
+          },
+          "name": "rating",
+          "op": {
+            "create": {
+              "name": "create",
+              "points": [
+                {
+                  "method": "POST",
+                  "orig": "/rating",
+                  "parts": [
+                    "rating"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/rating",
+                  "parts": [
+                    "rating"
+                  ],
+                  "select": {
+                    "exist": [
+                      "fmt"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "fields": [],
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "recording": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "length",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "title",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "video",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "recording",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "artist",
+                        "orig": "artist",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "collection",
+                        "orig": "collection",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "release",
+                        "orig": "release",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "work",
+                        "orig": "work",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/recording",
+                  "parts": [
+                    "recording"
+                  ],
+                  "select": {
+                    "exist": [
+                      "artist",
+                      "collection",
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query",
+                      "release",
+                      "work"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "status",
+                        "orig": "status",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "type",
+                        "orig": "type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/recording/{mbid}",
+                  "parts": [
+                    "recording",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc",
+                      "status",
+                      "type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "recording_list": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "count",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "offset",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "recording",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            }
+          ],
+          "name": "recording_list",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "isrc",
+                        "orig": "isrc",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/isrc/{isrc}",
+                  "parts": [
+                    "isrc",
+                    "{isrc}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "inc",
+                      "isrc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "isrc"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "release": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "barcode",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "date",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "packaging",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "status",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "title",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "release",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "area",
+                        "orig": "area",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "artist",
+                        "orig": "artist",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "collection",
+                        "orig": "collection",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "label",
+                        "orig": "label",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "recording",
+                        "orig": "recording",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "release_group",
+                        "orig": "release_group",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "status",
+                        "orig": "status",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "track",
+                        "orig": "track",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "track_artist",
+                        "orig": "track_artist",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "type",
+                        "orig": "type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/release",
+                  "parts": [
+                    "release"
+                  ],
+                  "select": {
+                    "exist": [
+                      "area",
+                      "artist",
+                      "collection",
+                      "fmt",
+                      "inc",
+                      "label",
+                      "limit",
+                      "offset",
+                      "query",
+                      "recording",
+                      "release_group",
+                      "status",
+                      "track",
+                      "track_artist",
+                      "type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/release/{mbid}",
+                  "parts": [
+                    "release",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "release_group": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "first_release_date",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "primary_type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "secondary_type",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "title",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "release_group",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "artist",
+                        "orig": "artist",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "collection",
+                        "orig": "collection",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "release",
+                        "orig": "release",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "type",
+                        "orig": "type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/release-group",
+                  "parts": [
+                    "release-group"
+                  ],
+                  "select": {
+                    "exist": [
+                      "artist",
+                      "collection",
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query",
+                      "release",
+                      "type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "status",
+                        "orig": "status",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "type",
+                        "orig": "type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/release-group/{mbid}",
+                  "parts": [
+                    "release-group",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc",
+                      "status",
+                      "type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "release_list": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "count",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "offset",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "release",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            }
+          ],
+          "name": "release_list",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "discid",
+                        "orig": "discid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/discid/{discid}",
+                  "parts": [
+                    "discid",
+                    "{discid}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "discid",
+                      "fmt",
+                      "inc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "discid"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "series": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "series",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "collection",
+                        "orig": "collection",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/series",
+                  "parts": [
+                    "series"
+                  ],
+                  "select": {
+                    "exist": [
+                      "collection",
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/series/{mbid}",
+                  "parts": [
+                    "series",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "tag": {
+          "alias": {
+            "field": {}
+          },
+          "name": "tag",
+          "op": {
+            "create": {
+              "name": "create",
+              "points": [
+                {
+                  "method": "POST",
+                  "orig": "/tag",
+                  "parts": [
+                    "tag"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/tag",
+                  "parts": [
+                    "tag"
+                  ],
+                  "select": {
+                    "exist": [
+                      "fmt"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "fields": [],
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "url": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "resource",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "url",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "resource",
+                        "orig": "resource",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/url",
+                  "parts": [
+                    "url"
+                  ],
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query",
+                      "resource"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/url/{mbid}",
+                  "parts": [
+                    "url",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "work": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "disambiguation",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "language",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "title",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "work",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "artist",
+                        "orig": "artist",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "collection",
+                        "orig": "collection",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 25,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "query",
+                        "orig": "query",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/work",
+                  "parts": [
+                    "work"
+                  ],
+                  "select": {
+                    "exist": [
+                      "artist",
+                      "collection",
+                      "fmt",
+                      "inc",
+                      "limit",
+                      "offset",
+                      "query"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "mbid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/work/{mbid}",
+                  "parts": [
+                    "work",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "mbid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "id",
+                      "inc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "work_list": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "count",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "offset",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "work",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            }
+          ],
+          "name": "work_list",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "iswc",
+                        "orig": "iswc",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": "xml",
+                        "kind": "query",
+                        "name": "fmt",
+                        "orig": "fmt",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "artist-credits+genres",
+                        "kind": "query",
+                        "name": "inc",
+                        "orig": "inc",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/iswc/{iswc}",
+                  "parts": [
+                    "iswc",
+                    "{iswc}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "fmt",
+                      "inc",
+                      "iswc"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "iswc"
+              ]
+            ]
+          },
+          "active": true
+        }
+      },
+      "feature": {
+        "test": {
+          "name": "test",
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1",
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            }
+          },
+          "target": {
+            "ts": {
+              "deps": {}
+            },
+            "go": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            }
+          }
+        }
+      },
+      "flow": {
+        "BasicAreaFlow": {
+          "entity": "area",
+          "kind": "basic",
+          "name": "BasicAreaFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "area_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "area_ref01",
+                "srcdatavar": "area_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "area01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-area_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicAreaFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicArtistFlow": {
+          "entity": "artist",
+          "kind": "basic",
+          "name": "BasicArtistFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "artist_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "artist_ref01",
+                "srcdatavar": "artist_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "artist01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-artist_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicArtistFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicCollectionFlow": {
+          "entity": "collection",
+          "kind": "basic",
+          "name": "BasicCollectionFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "collection_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicCollectionFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicEventFlow": {
+          "entity": "event",
+          "kind": "basic",
+          "name": "BasicEventFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "event_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "event_ref01",
+                "srcdatavar": "event_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "event01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-event_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicEventFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicGenreFlow": {
+          "entity": "genre",
+          "kind": "basic",
+          "name": "BasicGenreFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "genre_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "genre_ref01",
+                "srcdatavar": "genre_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "genre01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-genre_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicGenreFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicInstrumentFlow": {
+          "entity": "instrument",
+          "kind": "basic",
+          "name": "BasicInstrumentFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "instrument_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "instrument_ref01",
+                "srcdatavar": "instrument_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "instrument01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-instrument_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicInstrumentFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicLabelFlow": {
+          "entity": "label",
+          "kind": "basic",
+          "name": "BasicLabelFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "label_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "label_ref01",
+                "srcdatavar": "label_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "label01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-label_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicLabelFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicPlaceFlow": {
+          "entity": "place",
+          "kind": "basic",
+          "name": "BasicPlaceFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "place_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "place_ref01",
+                "srcdatavar": "place_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "place01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-place_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicPlaceFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicRatingFlow": {
+          "entity": "rating",
+          "kind": "basic",
+          "name": "BasicRatingFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "rating_ref01"
+              },
+              "op": "create",
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": [],
+              "valid": []
+            },
+            {
+              "input": {
+                "ref": "rating_ref01",
+                "srcdatavar": "rating_ref01_data",
+                "suffix": "_dt0"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-rating_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicRatingFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicRecordingFlow": {
+          "entity": "recording",
+          "kind": "basic",
+          "name": "BasicRecordingFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "recording_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "recording_ref01",
+                "srcdatavar": "recording_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "recording01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-recording_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicRecordingFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicRecordingListFlow": {
+          "entity": "recording_list",
+          "kind": "basic",
+          "name": "BasicRecordingListFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "recording_list_ref01",
+                "srcdatavar": "recording_list_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "recording_list01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-recording_list_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicRecordingListFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicReleaseFlow": {
+          "entity": "release",
+          "kind": "basic",
+          "name": "BasicReleaseFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "release_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "release_ref01",
+                "srcdatavar": "release_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "release01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-release_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicReleaseFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicReleaseGroupFlow": {
+          "entity": "release_group",
+          "kind": "basic",
+          "name": "BasicReleaseGroupFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "release_group_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "release_group_ref01",
+                "srcdatavar": "release_group_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "release_group01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-release_group_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicReleaseGroupFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicReleaseListFlow": {
+          "entity": "release_list",
+          "kind": "basic",
+          "name": "BasicReleaseListFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "release_list_ref01",
+                "srcdatavar": "release_list_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "release_list01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-release_list_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicReleaseListFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicSeriesFlow": {
+          "entity": "series",
+          "kind": "basic",
+          "name": "BasicSeriesFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "series_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "series_ref01",
+                "srcdatavar": "series_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "series01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-series_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicSeriesFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicTagFlow": {
+          "entity": "tag",
+          "kind": "basic",
+          "name": "BasicTagFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "tag_ref01"
+              },
+              "op": "create",
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": [],
+              "valid": []
+            },
+            {
+              "input": {
+                "ref": "tag_ref01",
+                "srcdatavar": "tag_ref01_data",
+                "suffix": "_dt0"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-tag_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicTagFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicUrlFlow": {
+          "entity": "url",
+          "kind": "basic",
+          "name": "BasicUrlFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "url_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "url_ref01",
+                "srcdatavar": "url_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "url01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-url_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicUrlFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWorkFlow": {
+          "entity": "work",
+          "kind": "basic",
+          "name": "BasicWorkFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "work_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "work_ref01",
+                "srcdatavar": "work_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "work01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-work_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWorkFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWorkListFlow": {
+          "entity": "work_list",
+          "kind": "basic",
+          "name": "BasicWorkListFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "work_list_ref01",
+                "srcdatavar": "work_list_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "work_list01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-work_list_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWorkListFlow",
+          "active": true,
+          "param": {}
+        }
+      },
+      "target": {
+        "ts": {
+          "title": "TypeScript",
+          "ext": "ts",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "musicbrainz"
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "version": "^17.4.2",
+              "kind": "dev"
+            },
+            "typescript": {
+              "active": true,
+              "version": "^5.9.3",
+              "kind": "dev"
+            },
+            "@types/node": {
+              "active": true,
+              "version": "^25.6.0",
+              "kind": "dev"
+            }
+          },
+          "name": "ts",
+          "active": true
+        },
+        "go": {
+          "title": "Golang",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "musicbrainz"
+          },
+          "srcfeature": false,
+          "deps": {
+            "github.com/voxgig/struct": {
+              "active": true,
+              "version": "v0.0.0",
+              "replace": "./utility/struct",
+              "kind": "prod"
+            }
+          },
+          "name": "go",
+          "active": true
+        },
+        "lua": {
+          "title": "Lua",
+          "ext": "lua",
+          "comment": {
+            "line": "--"
+          },
+          "module": {
+            "name": "musicbrainz"
+          },
+          "srcfeature": false,
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "version": "2.5",
+              "kind": "prod"
+            }
+          },
+          "name": "lua",
+          "active": true
+        },
+        "php": {
+          "title": "PHP",
+          "ext": "php",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "musicbrainz"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "php",
+          "active": true
+        },
+        "py": {
+          "title": "Python",
+          "ext": "py",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "musicbrainz"
+          },
+          "srcfeature": false,
+          "deps": {
+            "requests": {
+              "active": true,
+              "version": "2.33",
+              "kind": "prod"
+            }
+          },
+          "name": "py",
+          "active": true
+        },
+        "rb": {
+          "title": "Ruby",
+          "ext": "rb",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "musicbrainz"
+          },
+          "srcfeature": false,
+          "deps": {
+            "voxgig-struct": {
+              "active": true,
+              "version": "0.0.10",
+              "kind": "prod"
+            },
+            "json": {
+              "active": true,
+              "version": "0",
+              "kind": "prod"
+            }
+          },
+          "name": "rb",
+          "active": true
+        }
+      },
+      "option": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "api": {
+      "guide": {},
+      "entity": {}
+    }
+  },
+  "name__orig": "musicbrainz",
+  "Name": "Musicbrainz",
+  "name_": "musicbrainz",
+  "name-": "musicbrainz",
+  "NAME": "MUSICBRAINZ"
+}

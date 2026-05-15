@@ -1,0 +1,62 @@
+# Entity: tag
+
+main: kit: entity: tag: {
+
+  alias: field: {}
+
+  name: "tag"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/tag"
+          parts: [
+            "tag"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/tag"
+          parts: [
+            "tag"
+          ]
+          select: {
+            exist: [
+              "fmt"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

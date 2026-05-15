@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "genre": {
+      "GENRE00": {
+        "disambiguation": "s1e",
+        "id": "GENRE00",
+        "name": "s20"
+      },
+      "GENRE01": {
+        "disambiguation": "s3c",
+        "id": "GENRE01",
+        "name": "s3e"
+      },
+      "GENRE02": {
+        "disambiguation": "s5a",
+        "id": "GENRE02",
+        "name": "s5c"
+      }
+    }
+  },
+  "new": {
+    "genre": {
+      "genre_ref01": {
+        "disambiguation": "s78",
+        "name": "s7a"
+      }
+    }
+  }
+}

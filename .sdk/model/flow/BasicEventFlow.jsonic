@@ -1,0 +1,44 @@
+# BasicEventFlow
+
+main: kit: flow: BasicEventFlow:
+{
+  entity: "event",
+  kind: "basic",
+  name: "BasicEventFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "event_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "event_ref01",
+        srcdatavar: "event_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "event01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-event_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEventFlow"
+}

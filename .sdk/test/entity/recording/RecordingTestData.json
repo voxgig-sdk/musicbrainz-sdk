@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "recording": {
+      "RECORDING00": {
+        "disambiguation": "s32",
+        "id": "RECORDING00",
+        "length": "s34",
+        "title": "s35",
+        "video": true
+      },
+      "RECORDING01": {
+        "disambiguation": "s64",
+        "id": "RECORDING01",
+        "length": "s66",
+        "title": "s67",
+        "video": true
+      },
+      "RECORDING02": {
+        "disambiguation": "s96",
+        "id": "RECORDING02",
+        "length": "s98",
+        "title": "s99",
+        "video": true
+      }
+    }
+  },
+  "new": {
+    "recording": {
+      "recording_ref01": {
+        "disambiguation": "sc8",
+        "length": "sca",
+        "title": "scb",
+        "video": true
+      }
+    }
+  }
+}

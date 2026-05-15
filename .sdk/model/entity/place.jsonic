@@ -1,0 +1,198 @@
+# Entity: place
+
+main: kit: entity: place: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "address"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "coordinate"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "disambiguation"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "life_span"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "place"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "area"
+                orig: "area"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "collection"
+                orig: "collection"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/place"
+          parts: [
+            "place"
+          ]
+          select: {
+            exist: [
+              "area"
+              "collection"
+              "fmt"
+              "inc"
+              "limit"
+              "offset"
+              "query"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "mbid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/place/{mbid}"
+          parts: [
+            "place"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              mbid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "fmt"
+              "id"
+              "inc"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

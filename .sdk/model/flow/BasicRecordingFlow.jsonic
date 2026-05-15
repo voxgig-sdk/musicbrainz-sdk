@@ -1,0 +1,44 @@
+# BasicRecordingFlow
+
+main: kit: flow: BasicRecordingFlow:
+{
+  entity: "recording",
+  kind: "basic",
+  name: "BasicRecordingFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "recording_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "recording_ref01",
+        srcdatavar: "recording_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "recording01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-recording_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRecordingFlow"
+}

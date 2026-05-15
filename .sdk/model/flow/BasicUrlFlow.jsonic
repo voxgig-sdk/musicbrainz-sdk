@@ -1,0 +1,44 @@
+# BasicUrlFlow
+
+main: kit: flow: BasicUrlFlow:
+{
+  entity: "url",
+  kind: "basic",
+  name: "BasicUrlFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "url_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "url_ref01",
+        srcdatavar: "url_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "url01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-url_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUrlFlow"
+}

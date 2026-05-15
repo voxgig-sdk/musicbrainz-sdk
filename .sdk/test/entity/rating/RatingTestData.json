@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "rating": {
+      "RATING00": {},
+      "RATING01": {},
+      "RATING02": {}
+    }
+  },
+  "new": {
+    "rating": {
+      "rating_ref01": {}
+    }
+  }
+}

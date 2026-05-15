@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "series": {
+      "SERIES00": {
+        "disambiguation": "s28",
+        "id": "SERIES00",
+        "name": "s2a",
+        "type": "s2b"
+      },
+      "SERIES01": {
+        "disambiguation": "s50",
+        "id": "SERIES01",
+        "name": "s52",
+        "type": "s53"
+      },
+      "SERIES02": {
+        "disambiguation": "s78",
+        "id": "SERIES02",
+        "name": "s7a",
+        "type": "s7b"
+      }
+    }
+  },
+  "new": {
+    "series": {
+      "series_ref01": {
+        "disambiguation": "sa0",
+        "name": "sa2",
+        "type": "sa3"
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "label": {
+      "LABEL00": {
+        "country": "s50",
+        "disambiguation": "s51",
+        "id": "LABEL00",
+        "label_code": "s53",
+        "life_span": {},
+        "name": "s55",
+        "sort_name": "s56",
+        "type": "s57"
+      },
+      "LABEL01": {
+        "country": "sa0",
+        "disambiguation": "sa1",
+        "id": "LABEL01",
+        "label_code": "sa3",
+        "life_span": {},
+        "name": "sa5",
+        "sort_name": "sa6",
+        "type": "sa7"
+      },
+      "LABEL02": {
+        "country": "sf0",
+        "disambiguation": "sf1",
+        "id": "LABEL02",
+        "label_code": "sf3",
+        "life_span": {},
+        "name": "sf5",
+        "sort_name": "sf6",
+        "type": "sf7"
+      }
+    }
+  },
+  "new": {
+    "label": {
+      "label_ref01": {
+        "country": "s140",
+        "disambiguation": "s141",
+        "label_code": "s143",
+        "life_span": {},
+        "name": "s145",
+        "sort_name": "s146",
+        "type": "s147"
+      }
+    }
+  }
+}

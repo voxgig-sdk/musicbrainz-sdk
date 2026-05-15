@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "work": {
+      "WORK00": {
+        "disambiguation": "s32",
+        "id": "WORK00",
+        "language": "s34",
+        "title": "s35",
+        "type": "s36"
+      },
+      "WORK01": {
+        "disambiguation": "s64",
+        "id": "WORK01",
+        "language": "s66",
+        "title": "s67",
+        "type": "s68"
+      },
+      "WORK02": {
+        "disambiguation": "s96",
+        "id": "WORK02",
+        "language": "s98",
+        "title": "s99",
+        "type": "s9a"
+      }
+    }
+  },
+  "new": {
+    "work": {
+      "work_ref01": {
+        "disambiguation": "sc8",
+        "language": "sca",
+        "title": "scb",
+        "type": "scc"
+      }
+    }
+  }
+}

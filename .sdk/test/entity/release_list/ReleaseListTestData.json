@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "release_list": {
+      "RELEASE_LIST00": {
+        "count": "s1e",
+        "offset": "s1f",
+        "release": [],
+        "discid": "DISCID01"
+      },
+      "RELEASE_LIST01": {
+        "count": "s3c",
+        "offset": "s3d",
+        "release": [],
+        "discid": "DISCID01"
+      },
+      "RELEASE_LIST02": {
+        "count": "s5a",
+        "offset": "s5b",
+        "release": [],
+        "discid": "DISCID01"
+      }
+    }
+  },
+  "new": {
+    "release_list": {
+      "release_list_ref01": {
+        "count": "s78",
+        "offset": "s79",
+        "release": []
+      }
+    }
+  }
+}

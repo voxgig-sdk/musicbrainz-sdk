@@ -1,0 +1,44 @@
+# BasicArtistFlow
+
+main: kit: flow: BasicArtistFlow:
+{
+  entity: "artist",
+  kind: "basic",
+  name: "BasicArtistFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "artist_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "artist_ref01",
+        srcdatavar: "artist_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "artist01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-artist_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArtistFlow"
+}

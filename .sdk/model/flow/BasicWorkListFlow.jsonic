@@ -1,0 +1,32 @@
+# BasicWorkListFlow
+
+main: kit: flow: BasicWorkListFlow:
+{
+  entity: "work_list",
+  kind: "basic",
+  name: "BasicWorkListFlow",
+  step: [
+    {
+      input: {
+        ref: "work_list_ref01",
+        srcdatavar: "work_list_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "work_list01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-work_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWorkListFlow"
+}

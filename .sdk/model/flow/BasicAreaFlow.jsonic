@@ -1,0 +1,44 @@
+# BasicAreaFlow
+
+main: kit: flow: BasicAreaFlow:
+{
+  entity: "area",
+  kind: "basic",
+  name: "BasicAreaFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "area_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "area_ref01",
+        srcdatavar: "area_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "area01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-area_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAreaFlow"
+}

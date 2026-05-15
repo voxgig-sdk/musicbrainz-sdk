@@ -1,0 +1,23 @@
+{
+  "name": "voxgig-sdk/musicbrainz",
+  "description": "Musicbrainz SDK for PHP",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Musicbrainz\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Musicbrainz\\Tests\\": "test/"
+    }
+  }
+}

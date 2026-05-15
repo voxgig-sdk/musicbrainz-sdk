@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "url": {
+      "URL00": {
+        "id": "URL00",
+        "resource": "s15"
+      },
+      "URL01": {
+        "id": "URL01",
+        "resource": "s29"
+      },
+      "URL02": {
+        "id": "URL02",
+        "resource": "s3d"
+      }
+    }
+  },
+  "new": {
+    "url": {
+      "url_ref01": {
+        "resource": "s51"
+      }
+    }
+  }
+}

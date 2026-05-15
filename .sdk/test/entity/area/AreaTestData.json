@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "area": {
+      "AREA00": {
+        "disambiguation": "s3c",
+        "id": "AREA00",
+        "life_span": {},
+        "name": "s3f",
+        "sort_name": "s40",
+        "type": "s41"
+      },
+      "AREA01": {
+        "disambiguation": "s78",
+        "id": "AREA01",
+        "life_span": {},
+        "name": "s7b",
+        "sort_name": "s7c",
+        "type": "s7d"
+      },
+      "AREA02": {
+        "disambiguation": "sb4",
+        "id": "AREA02",
+        "life_span": {},
+        "name": "sb7",
+        "sort_name": "sb8",
+        "type": "sb9"
+      }
+    }
+  },
+  "new": {
+    "area": {
+      "area_ref01": {
+        "disambiguation": "sf0",
+        "life_span": {},
+        "name": "sf3",
+        "sort_name": "sf4",
+        "type": "sf5"
+      }
+    }
+  }
+}

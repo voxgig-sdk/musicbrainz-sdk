@@ -1,0 +1,44 @@
+# BasicInstrumentFlow
+
+main: kit: flow: BasicInstrumentFlow:
+{
+  entity: "instrument",
+  kind: "basic",
+  name: "BasicInstrumentFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "instrument_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "instrument_ref01",
+        srcdatavar: "instrument_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "instrument01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-instrument_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicInstrumentFlow"
+}

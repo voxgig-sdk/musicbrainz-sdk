@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "MusicBrainz"
+        url: "https://musicbrainz.org/doc/MusicBrainz_API"
+      }
+      description: "The MusicBrainz API provides developers with access to the MusicBrainz Database, an extensive collection of music metadata. Designed for media applications like players and taggers, it utilizes REST principles and supports content in XML and JSON formats for easy integration."
+      license: {
+        name: "Various - See Data Licenses"
+        url: "https://musicbrainz.org/doc/About/Data_License"
+      }
+      servers: [
+        {
+          description: "MusicBrainz API v2 Production Server"
+          url: "https://musicbrainz.org/ws/2"
+        }
+      ]
+      title: "MusicBrainz API"
+      version: "2.0.0"
+    }
+  }
+}
+
+}

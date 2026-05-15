@@ -1,0 +1,178 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 19
+  metrics: count: path: 32
+  metrics: count: method: 34
+
+  entity: area: {
+    path: "/area": {
+      op: list: method: *GET
+    }
+    path: "/area/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: artist: {
+    path: "/artist": {
+      op: list: method: *GET
+    }
+    path: "/artist/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: collection: {
+    path: "/collection": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: event: {
+    path: "/event": {
+      op: list: method: *GET
+    }
+    path: "/event/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: genre: {
+    path: "/genre/all": {
+      action: "all": {}
+      op: list: method: *GET
+    }
+    path: "/genre/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: instrument: {
+    path: "/instrument": {
+      op: list: method: *GET
+    }
+    path: "/instrument/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: label: {
+    path: "/label": {
+      op: list: method: *GET
+    }
+    path: "/label/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: place: {
+    path: "/place": {
+      op: list: method: *GET
+    }
+    path: "/place/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: rating: {
+    path: "/rating": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+  entity: recording: {
+    path: "/recording": {
+      op: list: method: *GET
+    }
+    path: "/recording/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: recording_list: {
+    path: "/isrc/{isrc}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: release: {
+    path: "/release": {
+      op: list: method: *GET
+    }
+    path: "/release/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: release_group: {
+    path: "/release-group": {
+      op: list: method: *GET
+    }
+    path: "/release-group/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: release_list: {
+    path: "/discid/{discid}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: series: {
+    path: "/series": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.series`")|top
+    }
+    path: "/series/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: tag: {
+    path: "/tag": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+  entity: url: {
+    path: "/url": {
+      op: list: method: *GET
+    }
+    path: "/url/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: work: {
+    path: "/work": {
+      op: list: method: *GET
+    }
+    path: "/work/{mbid}": {
+      rename: param: "mbid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: work_list: {
+    path: "/iswc/{iswc}": {
+      op: load: method: *GET
+    }
+  }
+
+}

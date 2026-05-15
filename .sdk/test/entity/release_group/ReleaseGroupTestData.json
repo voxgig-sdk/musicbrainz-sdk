@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "release_group": {
+      "RELEASE_GROUP00": {
+        "disambiguation": "s3c",
+        "first_release_date": "s3d",
+        "id": "RELEASE_GROUP00",
+        "primary_type": "s3f",
+        "secondary_type": [],
+        "title": "s41"
+      },
+      "RELEASE_GROUP01": {
+        "disambiguation": "s78",
+        "first_release_date": "s79",
+        "id": "RELEASE_GROUP01",
+        "primary_type": "s7b",
+        "secondary_type": [],
+        "title": "s7d"
+      },
+      "RELEASE_GROUP02": {
+        "disambiguation": "sb4",
+        "first_release_date": "sb5",
+        "id": "RELEASE_GROUP02",
+        "primary_type": "sb7",
+        "secondary_type": [],
+        "title": "sb9"
+      }
+    }
+  },
+  "new": {
+    "release_group": {
+      "release_group_ref01": {
+        "disambiguation": "sf0",
+        "first_release_date": "sf1",
+        "primary_type": "sf3",
+        "secondary_type": [],
+        "title": "sf5"
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+# Entity: work_list
+
+main: kit: entity: work_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "offset"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "work"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "work_list"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "iswc"
+                orig: "iswc"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/iswc/{iswc}"
+          parts: [
+            "iswc"
+            "{iswc}"
+          ]
+          select: {
+            exist: [
+              "fmt"
+              "inc"
+              "iswc"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "iswc"
+      ]
+    ]
+  }
+
+
+
+}

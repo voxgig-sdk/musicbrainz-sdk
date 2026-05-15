@@ -1,0 +1,32 @@
+# BasicReleaseListFlow
+
+main: kit: flow: BasicReleaseListFlow:
+{
+  entity: "release_list",
+  kind: "basic",
+  name: "BasicReleaseListFlow",
+  step: [
+    {
+      input: {
+        ref: "release_list_ref01",
+        srcdatavar: "release_list_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "release_list01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-release_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicReleaseListFlow"
+}
