@@ -12,9 +12,9 @@ import (
 	"sync"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/musicbrainz-sdk"
+	sdk "github.com/voxgig-sdk/musicbrainz-sdk/go"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/musicbrainz-sdk/go/utility/struct"
 )
 
 var envLocalOnce sync.Once

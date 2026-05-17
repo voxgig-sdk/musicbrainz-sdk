@@ -1,9 +1,15 @@
 {
   "existing": {
     "tag": {
-      "TAG00": {},
-      "TAG01": {},
-      "TAG02": {}
+      "TAG00": {
+        "id": "TAG00"
+      },
+      "TAG01": {
+        "id": "TAG01"
+      },
+      "TAG02": {
+        "id": "TAG02"
+      }
     }
   },
   "new": {

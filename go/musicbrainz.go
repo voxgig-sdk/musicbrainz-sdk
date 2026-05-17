@@ -1,10 +1,10 @@
 package voxgigmusicbrainzsdk
 
 import (
-	"github.com/voxgig-sdk/musicbrainz-sdk/core"
-	"github.com/voxgig-sdk/musicbrainz-sdk/entity"
-	"github.com/voxgig-sdk/musicbrainz-sdk/feature"
-	_ "github.com/voxgig-sdk/musicbrainz-sdk/utility"
+	"github.com/voxgig-sdk/musicbrainz-sdk/go/core"
+	"github.com/voxgig-sdk/musicbrainz-sdk/go/entity"
+	"github.com/voxgig-sdk/musicbrainz-sdk/go/feature"
+	_ "github.com/voxgig-sdk/musicbrainz-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

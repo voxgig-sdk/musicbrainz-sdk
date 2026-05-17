@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/musicbrainz-sdk"
-	"github.com/voxgig-sdk/musicbrainz-sdk/core"
+	sdk "github.com/voxgig-sdk/musicbrainz-sdk/go"
+	"github.com/voxgig-sdk/musicbrainz-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/musicbrainz-sdk/go/utility/struct"
 )
 
 func TestAreaEntity(t *testing.T) {

@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/musicbrainz-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/musicbrainz-sdk/core"
+	"github.com/voxgig-sdk/musicbrainz-sdk/go/core"
 )
 
 const headerAuth = "authorization"

@@ -1,9 +1,15 @@
 {
   "existing": {
     "rating": {
-      "RATING00": {},
-      "RATING01": {},
-      "RATING02": {}
+      "RATING00": {
+        "id": "RATING00"
+      },
+      "RATING01": {
+        "id": "RATING01"
+      },
+      "RATING02": {
+        "id": "RATING02"
+      }
     }
   },
   "new": {

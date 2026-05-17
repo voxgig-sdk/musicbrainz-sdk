@@ -29,7 +29,7 @@ class Config {
 
 
   options = {
-    base: 'https://musicbrainz.org/ws/2',
+    base: '$$main.kit.info.servers.0.url$$',
 
     'AUTHBLOCK'headers: 'HEADERS',
 

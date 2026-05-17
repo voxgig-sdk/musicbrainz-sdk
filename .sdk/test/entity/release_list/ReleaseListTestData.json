@@ -5,19 +5,22 @@
         "count": "s1e",
         "offset": "s1f",
         "release": [],
-        "discid": "DISCID01"
+        "discid": "DISCID01",
+        "id": "RELEASE_LIST00"
       },
       "RELEASE_LIST01": {
         "count": "s3c",
         "offset": "s3d",
         "release": [],
-        "discid": "DISCID01"
+        "discid": "DISCID01",
+        "id": "RELEASE_LIST01"
       },
       "RELEASE_LIST02": {
         "count": "s5a",
         "offset": "s5b",
         "release": [],
-        "discid": "DISCID01"
+        "discid": "DISCID01",
+        "id": "RELEASE_LIST02"
       }
     }
   },

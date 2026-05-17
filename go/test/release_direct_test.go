@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/musicbrainz-sdk"
-	"github.com/voxgig-sdk/musicbrainz-sdk/core"
+	sdk "github.com/voxgig-sdk/musicbrainz-sdk/go"
+	"github.com/voxgig-sdk/musicbrainz-sdk/go/core"
 )
 
 func TestReleaseDirect(t *testing.T) {

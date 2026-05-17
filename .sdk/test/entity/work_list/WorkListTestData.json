@@ -5,19 +5,22 @@
         "count": "s1e",
         "offset": "s1f",
         "work": [],
-        "iswc": "ISWC01"
+        "iswc": "ISWC01",
+        "id": "WORK_LIST00"
       },
       "WORK_LIST01": {
         "count": "s3c",
         "offset": "s3d",
         "work": [],
-        "iswc": "ISWC01"
+        "iswc": "ISWC01",
+        "id": "WORK_LIST01"
       },
       "WORK_LIST02": {
         "count": "s5a",
         "offset": "s5b",
         "work": [],
-        "iswc": "ISWC01"
+        "iswc": "ISWC01",
+        "id": "WORK_LIST02"
       }
     }
   },
