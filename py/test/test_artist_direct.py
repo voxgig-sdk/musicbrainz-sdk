@@ -109,14 +109,12 @@ def _artist_direct_setup(mockres):
     env = runner.env_override({
         "MUSICBRAINZ_TEST_ARTIST_ENTID": {},
         "MUSICBRAINZ_TEST_LIVE": "FALSE",
-        "MUSICBRAINZ_APIKEY": "NONE",
     })
 
     live = env.get("MUSICBRAINZ_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("MUSICBRAINZ_APIKEY"),
         }
         client = MusicbrainzSDK(merged_opts)
         return {

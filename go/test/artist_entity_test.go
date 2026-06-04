@@ -135,7 +135,6 @@ func artistBasicSetup(extra map[string]any) *entityTestSetup {
 		"MUSICBRAINZ_TEST_ARTIST_ENTID": idmap,
 		"MUSICBRAINZ_TEST_LIVE":      "FALSE",
 		"MUSICBRAINZ_TEST_EXPLAIN":   "FALSE",
-		"MUSICBRAINZ_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["MUSICBRAINZ_TEST_ARTIST_ENTID"])
@@ -146,7 +145,6 @@ func artistBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["MUSICBRAINZ_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["MUSICBRAINZ_APIKEY"],
 			},
 			extra,
 		})

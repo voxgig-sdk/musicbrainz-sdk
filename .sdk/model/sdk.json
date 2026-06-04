@@ -21,7 +21,35 @@
           }
         ],
         "title": "MusicBrainz API",
-        "version": "2.0.0"
+        "version": "2.0.0",
+        "tagline": "Query the open MusicBrainz music metadata database for artists, releases, recordings and related entities",
+        "homepage": "https://musicbrainz.org/",
+        "docs_url": "https://musicbrainz.org/doc/MusicBrainz_API",
+        "license_short": "Database is community-maintained and openly licensed; data licences vary (see MusicBrainz data licences). Commercial use requires contacting MetaBrainz.",
+        "license_md": "- Operated by the [MetaBrainz Foundation](https://metabrainz.org/), a non-profit.\n- Core database released under open licences (CC0 for core data; CC BY-NC-SA for some supplementary data) — see [Data Licenses](https://musicbrainz.org/doc/About/Data_License).\n- Non-commercial use is free; commercial users should arrange a licence with MetaBrainz.\n- Attribution to MusicBrainz is expected when redistributing data.",
+        "about_md": "[MusicBrainz](https://musicbrainz.org/) is an open, community-maintained encyclopedia of music metadata operated by the [MetaBrainz Foundation](https://metabrainz.org/). The web service at `https://musicbrainz.org/ws/2/` exposes the database as a REST API returning XML or JSON, designed for media players, taggers, CD rippers and similar applications.\n\nWhat you get from the API:\n\n- **Lookup** a single entity by its MusicBrainz Identifier (MBID).\n- **Browse** entities linked to another entity (e.g. releases by an artist).\n- **Search** with Lucene-style queries across the catalogue.\n- **Non-MBID lookups** by `discid`, `ISRC` or `ISWC`.\n- **Submission** of tags, ratings, barcodes and ISRCs via authenticated POST.\n\nOperational notes:\n\n- Strict rate limit: at most **one request per second** per client/IP — exceeding this can lead to blocking.\n- Set a descriptive `User-Agent` identifying your application and contact info.\n- Authentication uses **OAuth2** or HTTP digest over HTTPS for user-specific reads and submissions; anonymous access is fine for most lookups.",
+        "entity_desc": {
+          "area": "A geographic area (country, city, subdivision) used to place artists, labels and events — `/area/{mbid}`.",
+          "artist": "A musician, group, orchestra or other performing entity — `/artist/{mbid}`.",
+          "collection": "A user-curated set of entities (non-core resource) — `/collection/{mbid}`.",
+          "event": "A concert, festival or other music event — `/event/{mbid}`.",
+          "genre": "A musical genre vocabulary term — `/genre/{mbid}`.",
+          "instrument": "A musical instrument used in recordings or by artists — `/instrument/{mbid}`.",
+          "label": "A record label or imprint that issues releases — `/label/{mbid}`.",
+          "place": "A specific venue, studio or other physical place — `/place/{mbid}`.",
+          "rating": "User ratings attached to core entities (non-core resource), submittable via authenticated POST.",
+          "recording": "A distinct audio recording (a track as performed/captured) — `/recording/{mbid}`.",
+          "recording_list": "A list result of recordings, e.g. from browse or search queries on recordings.",
+          "release": "A specific issuance of an album, single or other product (with format, country, date) — `/release/{mbid}`.",
+          "release_group": "An abstract grouping of related releases (e.g. all editions of an album) — `/release-group/{mbid}`.",
+          "release_list": "A list result of releases, e.g. from browse or search queries on releases.",
+          "series": "An ordered series of releases, recordings, works or events — `/series/{mbid}`.",
+          "tag": "Free-form folksonomy tags applied to entities (non-core resource), submittable via authenticated POST.",
+          "url": "A URL resource linking entities to external web pages — `/url/{mbid}`.",
+          "work": "A distinct musical work or composition, separate from any one recording — `/work/{mbid}`.",
+          "work_list": "A list result of works, e.g. from browse or search queries on works."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -29,7 +57,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "area": {

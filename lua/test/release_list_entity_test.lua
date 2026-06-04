@@ -91,7 +91,6 @@ function release_list_basic_setup(extra)
     ["MUSICBRAINZ_TEST_RELEASE_LIST_ENTID"] = idmap,
     ["MUSICBRAINZ_TEST_LIVE"] = "FALSE",
     ["MUSICBRAINZ_TEST_EXPLAIN"] = "FALSE",
-    ["MUSICBRAINZ_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ function release_list_basic_setup(extra)
   if env["MUSICBRAINZ_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["MUSICBRAINZ_APIKEY"],
       },
       extra or {},
     })

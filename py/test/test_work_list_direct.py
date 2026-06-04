@@ -69,14 +69,12 @@ def _work_list_direct_setup(mockres):
     env = runner.env_override({
         "MUSICBRAINZ_TEST_WORK_LIST_ENTID": {},
         "MUSICBRAINZ_TEST_LIVE": "FALSE",
-        "MUSICBRAINZ_APIKEY": "NONE",
     })
 
     live = env.get("MUSICBRAINZ_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("MUSICBRAINZ_APIKEY"),
         }
         client = MusicbrainzSDK(merged_opts)
         return {

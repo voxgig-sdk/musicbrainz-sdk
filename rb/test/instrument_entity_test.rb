@@ -93,7 +93,6 @@ def instrument_basic_setup(extra)
     "MUSICBRAINZ_TEST_INSTRUMENT_ENTID" => idmap,
     "MUSICBRAINZ_TEST_LIVE" => "FALSE",
     "MUSICBRAINZ_TEST_EXPLAIN" => "FALSE",
-    "MUSICBRAINZ_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +104,6 @@ def instrument_basic_setup(extra)
   if env["MUSICBRAINZ_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["MUSICBRAINZ_APIKEY"],
       },
       extra || {},
     ])

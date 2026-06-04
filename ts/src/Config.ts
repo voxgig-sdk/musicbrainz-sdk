@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://musicbrainz.org/ws/2',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

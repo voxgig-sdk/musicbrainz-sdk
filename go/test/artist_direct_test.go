@@ -194,14 +194,12 @@ func artistDirectSetup(mockres any) *artistDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MUSICBRAINZ_TEST_ARTIST_ENTID": map[string]any{},
 		"MUSICBRAINZ_TEST_LIVE":    "FALSE",
-		"MUSICBRAINZ_APIKEY":       "NONE",
 	})
 
 	live := env["MUSICBRAINZ_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["MUSICBRAINZ_APIKEY"],
 		}
 		client := sdk.NewMusicbrainzSDK(mergedOpts)
 

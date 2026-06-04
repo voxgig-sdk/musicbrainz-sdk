@@ -71,14 +71,12 @@ def release_list_direct_setup(mockres)
   env = Runner.env_override({
     "MUSICBRAINZ_TEST_RELEASE_LIST_ENTID" => {},
     "MUSICBRAINZ_TEST_LIVE" => "FALSE",
-    "MUSICBRAINZ_APIKEY" => "NONE",
   })
 
   live = env["MUSICBRAINZ_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["MUSICBRAINZ_APIKEY"],
     }
     client = MusicbrainzSDK.new(merged_opts)
     return {
