@@ -10,7 +10,7 @@ The Python SDK for the Musicbrainz API — an entity-oriented client following P
 
 ## Install
 ```bash
-pip install musicbrainz-sdk
+pip install voxgig-sdk-musicbrainz
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The Lua SDK for the Musicbrainz API — an entity-oriented client using Lua conv
 
 ## Install
 ```bash
-luarocks install musicbrainz-sdk
+luarocks install voxgig-sdk-musicbrainz
 ```
 
 If the module is not yet published, add the source directory to

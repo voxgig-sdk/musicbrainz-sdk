@@ -10,7 +10,7 @@ The TypeScript SDK for the Musicbrainz API — a type-safe, entity-oriented clie
 
 ## Install
 ```bash
-npm install musicbrainz
+npm install @voxgig-sdk/musicbrainz
 ```
 ## Tutorial: your first API call
 

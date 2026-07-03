@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/musicbrainz",
-  "description": "Musicbrainz SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the MusicBrainz public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "musicbrainz"],
+  "homepage": "https://github.com/voxgig-sdk/musicbrainz-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/musicbrainz-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/musicbrainz-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

@@ -10,7 +10,7 @@ The PHP SDK for the Musicbrainz API — an entity-oriented client using PHP conv
 
 ## Install
 ```bash
-composer require voxgig/musicbrainz-sdk
+composer require voxgig-sdk/musicbrainz
 ```
 
 
