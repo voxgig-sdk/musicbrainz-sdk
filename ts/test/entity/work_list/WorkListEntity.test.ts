@@ -111,6 +111,7 @@ function basicSetup(extra?: any) {
     'MUSICBRAINZ_TEST_WORK_LIST_ENTID': idmap,
     'MUSICBRAINZ_TEST_LIVE': 'FALSE',
     'MUSICBRAINZ_TEST_EXPLAIN': 'FALSE',
+    'MUSICBRAINZ_APIKEY': 'NONE',
   })
 
   idmap = env['MUSICBRAINZ_TEST_WORK_LIST_ENTID']
@@ -120,6 +121,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new MusicbrainzSDK(merge([
       {
+        apikey: env.MUSICBRAINZ_APIKEY,
       },
       extra
     ]))

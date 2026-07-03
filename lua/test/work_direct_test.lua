@@ -117,12 +117,14 @@ function work_direct_setup(mockres)
   local env = runner.env_override({
     ["MUSICBRAINZ_TEST_WORK_ENTID"] = {},
     ["MUSICBRAINZ_TEST_LIVE"] = "FALSE",
+    ["MUSICBRAINZ_APIKEY"] = "NONE",
   })
 
   local live = env["MUSICBRAINZ_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["MUSICBRAINZ_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

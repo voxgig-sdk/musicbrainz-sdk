@@ -91,6 +91,7 @@ def _work_list_basic_setup(extra):
         "MUSICBRAINZ_TEST_WORK_LIST_ENTID": idmap,
         "MUSICBRAINZ_TEST_LIVE": "FALSE",
         "MUSICBRAINZ_TEST_EXPLAIN": "FALSE",
+        "MUSICBRAINZ_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _work_list_basic_setup(extra):
     if env.get("MUSICBRAINZ_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("MUSICBRAINZ_APIKEY"),
             },
             extra or {},
         ])

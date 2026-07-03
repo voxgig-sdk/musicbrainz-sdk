@@ -1,26 +1,8 @@
 # Musicbrainz SDK
 
-Query the open MusicBrainz music metadata database for artists, releases, recordings and related entities
+MusicBrainz API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About MusicBrainz API
-
-[MusicBrainz](https://musicbrainz.org/) is an open, community-maintained encyclopedia of music metadata operated by the [MetaBrainz Foundation](https://metabrainz.org/). The web service at `https://musicbrainz.org/ws/2/` exposes the database as a REST API returning XML or JSON, designed for media players, taggers, CD rippers and similar applications.
-
-What you get from the API:
-
-- **Lookup** a single entity by its MusicBrainz Identifier (MBID).
-- **Browse** entities linked to another entity (e.g. releases by an artist).
-- **Search** with Lucene-style queries across the catalogue.
-- **Non-MBID lookups** by `discid`, `ISRC` or `ISWC`.
-- **Submission** of tags, ratings, barcodes and ISRCs via authenticated POST.
-
-Operational notes:
-
-- Strict rate limit: at most **one request per second** per client/IP — exceeding this can lead to blocking.
-- Set a descriptive `User-Agent` identifying your application and contact info.
-- Authentication uses **OAuth2** or HTTP digest over HTTPS for user-specific reads and submissions; anonymous access is fine for most lookups.
 
 ## Try it
 
@@ -54,29 +36,31 @@ gem install musicbrainz-sdk
 luarocks install musicbrainz-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { MusicbrainzSDK } from 'musicbrainz'
 
-const client = new MusicbrainzSDK({})
+const client = new MusicbrainzSDK({
+  apikey: process.env.MUSICBRAINZ_APIKEY,
+})
 
 // List all areas
 const areas = await client.Area().list()
+console.log(areas.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -106,25 +90,25 @@ The API exposes 19 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Area** | A geographic area (country, city, subdivision) used to place artists, labels and events — `/area/{mbid}`. | `/area` |
-| **Artist** | A musician, group, orchestra or other performing entity — `/artist/{mbid}`. | `/artist` |
-| **Collection** | A user-curated set of entities (non-core resource) — `/collection/{mbid}`. | `/collection` |
-| **Event** | A concert, festival or other music event — `/event/{mbid}`. | `/event` |
-| **Genre** | A musical genre vocabulary term — `/genre/{mbid}`. | `/genre/all` |
-| **Instrument** | A musical instrument used in recordings or by artists — `/instrument/{mbid}`. | `/instrument` |
-| **Label** | A record label or imprint that issues releases — `/label/{mbid}`. | `/label` |
-| **Place** | A specific venue, studio or other physical place — `/place/{mbid}`. | `/place` |
-| **Rating** | User ratings attached to core entities (non-core resource), submittable via authenticated POST. | `/rating` |
-| **Recording** | A distinct audio recording (a track as performed/captured) — `/recording/{mbid}`. | `/recording` |
-| **RecordingList** | A list result of recordings, e.g. from browse or search queries on recordings. | `/isrc/{isrc}` |
-| **Release** | A specific issuance of an album, single or other product (with format, country, date) — `/release/{mbid}`. | `/release` |
-| **ReleaseGroup** | An abstract grouping of related releases (e.g. all editions of an album) — `/release-group/{mbid}`. | `/release-group` |
-| **ReleaseList** | A list result of releases, e.g. from browse or search queries on releases. | `/discid/{discid}` |
-| **Series** | An ordered series of releases, recordings, works or events — `/series/{mbid}`. | `/series` |
-| **Tag** | Free-form folksonomy tags applied to entities (non-core resource), submittable via authenticated POST. | `/tag` |
-| **Url** | A URL resource linking entities to external web pages — `/url/{mbid}`. | `/url` |
-| **Work** | A distinct musical work or composition, separate from any one recording — `/work/{mbid}`. | `/work` |
-| **WorkList** | A list result of works, e.g. from browse or search queries on works. | `/iswc/{iswc}` |
+| **Area** |  | `/area` |
+| **Artist** |  | `/artist` |
+| **Collection** |  | `/collection` |
+| **Event** |  | `/event` |
+| **Genre** |  | `/genre/all` |
+| **Instrument** |  | `/instrument` |
+| **Label** |  | `/label` |
+| **Place** |  | `/place` |
+| **Rating** |  | `/rating` |
+| **Recording** |  | `/recording` |
+| **RecordingList** |  | `/isrc/{isrc}` |
+| **Release** |  | `/release` |
+| **ReleaseGroup** |  | `/release-group` |
+| **ReleaseList** |  | `/discid/{discid}` |
+| **Series** |  | `/series` |
+| **Tag** |  | `/tag` |
+| **Url** |  | `/url` |
+| **Work** |  | `/work` |
+| **WorkList** |  | `/iswc/{iswc}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -134,17 +118,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from musicbrainz_sdk import MusicbrainzSDK
 
-client = MusicbrainzSDK({})
+client = MusicbrainzSDK({
+    "apikey": os.environ.get("MUSICBRAINZ_APIKEY"),
+})
 
 # List all areas
-areas, err = client.Area(None).list(None, None)
+areas, err = client.Area().list()
+print(areas)
 
 # Load a specific area
-area, err = client.Area(None).load(
-    {"id": "example_id"}, None
-)
+area, err = client.Area().load({"id": "example_id"})
+print(area)
 ```
 
 ### PHP
@@ -153,15 +140,17 @@ area, err = client.Area(None).load(
 <?php
 require_once 'musicbrainz_sdk.php';
 
-$client = new MusicbrainzSDK([]);
+$client = new MusicbrainzSDK([
+    "apikey" => getenv("MUSICBRAINZ_APIKEY"),
+]);
 
 // List all areas
-[$areas, $err] = $client->Area(null)->list(null, null);
+[$areas, $err] = $client->Area()->list();
+print_r($areas);
 
 // Load a specific area
-[$area, $err] = $client->Area(null)->load(
-    ["id" => "example_id"], null
-);
+[$area, $err] = $client->Area()->load(["id" => "example_id"]);
+print_r($area);
 ```
 
 ### Golang
@@ -169,10 +158,13 @@ $client = new MusicbrainzSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/musicbrainz-sdk/go"
 
-client := sdk.NewMusicbrainzSDK(map[string]any{})
+client := sdk.NewMusicbrainzSDK(map[string]any{
+    "apikey": os.Getenv("MUSICBRAINZ_APIKEY"),
+})
 
 // List all areas
 areas, err := client.Area(nil).List(nil, nil)
+fmt.Println(areas)
 ```
 
 ### Ruby
@@ -180,15 +172,17 @@ areas, err := client.Area(nil).List(nil, nil)
 ```ruby
 require_relative "Musicbrainz_sdk"
 
-client = MusicbrainzSDK.new({})
+client = MusicbrainzSDK.new({
+  "apikey" => ENV["MUSICBRAINZ_APIKEY"],
+})
 
 # List all areas
-areas, err = client.Area(nil).list(nil, nil)
+areas, err = client.Area().list
+puts areas
 
 # Load a specific area
-area, err = client.Area(nil).load(
-  { "id" => "example_id" }, nil
-)
+area, err = client.Area().load({ "id" => "example_id" })
+puts area
 ```
 
 ### Lua
@@ -196,15 +190,17 @@ area, err = client.Area(nil).load(
 ```lua
 local sdk = require("musicbrainz_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("MUSICBRAINZ_APIKEY"),
+})
 
 -- List all areas
-local areas, err = client:Area(nil):list(nil, nil)
+local areas, err = client:Area():list()
+print(areas)
 
 -- Load a specific area
-local area, err = client:Area(nil):load(
-  { id = "example_id" }, nil
-)
+local area, err = client:Area():load({ id = "example_id" })
+print(area)
 ```
 
 ## Unit testing in offline mode
@@ -223,25 +219,21 @@ const result = await client.Area().load({ id: 'test01' })
 ### Python
 
 ```python
-client = MusicbrainzSDK.test(None, None)
-result, err = client.Area(None).load(
-    {"id": "test01"}, None
-)
+client = MusicbrainzSDK.test()
+result, err = client.Area().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = MusicbrainzSDK::test(null, null);
-[$result, $err] = $client->Area(null)->load(
-    ["id" => "test01"], null
-);
+$client = MusicbrainzSDK::test();
+[$result, $err] = $client->Area()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Area(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -250,19 +242,15 @@ result, err := client.Area(nil).Load(
 ### Ruby
 
 ```ruby
-client = MusicbrainzSDK.test(nil, nil)
-result, err = client.Area(nil).load(
-  { "id" => "test01" }, nil
-)
+client = MusicbrainzSDK.test
+result, err = client.Area().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Area(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Area():load({ id = "test01" })
 ```
 
 ## How it works
@@ -366,16 +354,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the MusicBrainz API
-
-- Upstream: [https://musicbrainz.org/](https://musicbrainz.org/)
-- API docs: [https://musicbrainz.org/doc/MusicBrainz_API](https://musicbrainz.org/doc/MusicBrainz_API)
-
-- Operated by the [MetaBrainz Foundation](https://metabrainz.org/), a non-profit.
-- Core database released under open licences (CC0 for core data; CC BY-NC-SA for some supplementary data) — see [Data Licenses](https://musicbrainz.org/doc/About/Data_License).
-- Non-commercial use is free; commercial users should arrange a licence with MetaBrainz.
-- Attribution to MusicBrainz is expected when redistributing data.
 
 ---
 

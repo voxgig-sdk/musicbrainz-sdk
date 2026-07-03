@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'MUSICBRAINZ_TEST_COLLECTION_ENTID': {},
     'MUSICBRAINZ_TEST_LIVE': 'FALSE',
+    'MUSICBRAINZ_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.MUSICBRAINZ_TEST_LIVE
 
   if (live) {
     const client = new MusicbrainzSDK({
+      apikey: env.MUSICBRAINZ_APIKEY,
     })
 
     let idmap: any = env['MUSICBRAINZ_TEST_COLLECTION_ENTID']
