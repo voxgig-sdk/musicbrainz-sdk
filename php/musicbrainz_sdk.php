@@ -233,10 +233,10 @@ class MusicbrainzSDK
 
     private $_area = null;
 
-    // Idiomatic facade: $client->area()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Area() (PHP method
-    // names are case-insensitive).
-    public function area($data = null)
+    // Canonical facade: $client->Area()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->area()
+    // resolves here too.
+    public function Area($data = null)
     {
         require_once __DIR__ . '/entity/area_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class MusicbrainzSDK
 
     private $_artist = null;
 
-    // Idiomatic facade: $client->artist()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Artist() (PHP method
-    // names are case-insensitive).
-    public function artist($data = null)
+    // Canonical facade: $client->Artist()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->artist()
+    // resolves here too.
+    public function Artist($data = null)
     {
         require_once __DIR__ . '/entity/artist_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class MusicbrainzSDK
 
     private $_collection = null;
 
-    // Idiomatic facade: $client->collection()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Collection() (PHP method
-    // names are case-insensitive).
-    public function collection($data = null)
+    // Canonical facade: $client->Collection()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->collection()
+    // resolves here too.
+    public function Collection($data = null)
     {
         require_once __DIR__ . '/entity/collection_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class MusicbrainzSDK
 
     private $_event = null;
 
-    // Idiomatic facade: $client->event()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Event() (PHP method
-    // names are case-insensitive).
-    public function event($data = null)
+    // Canonical facade: $client->Event()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->event()
+    // resolves here too.
+    public function Event($data = null)
     {
         require_once __DIR__ . '/entity/event_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class MusicbrainzSDK
 
     private $_genre = null;
 
-    // Idiomatic facade: $client->genre()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Genre() (PHP method
-    // names are case-insensitive).
-    public function genre($data = null)
+    // Canonical facade: $client->Genre()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->genre()
+    // resolves here too.
+    public function Genre($data = null)
     {
         require_once __DIR__ . '/entity/genre_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class MusicbrainzSDK
 
     private $_instrument = null;
 
-    // Idiomatic facade: $client->instrument()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Instrument() (PHP method
-    // names are case-insensitive).
-    public function instrument($data = null)
+    // Canonical facade: $client->Instrument()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->instrument()
+    // resolves here too.
+    public function Instrument($data = null)
     {
         require_once __DIR__ . '/entity/instrument_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class MusicbrainzSDK
 
     private $_label = null;
 
-    // Idiomatic facade: $client->label()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Label() (PHP method
-    // names are case-insensitive).
-    public function label($data = null)
+    // Canonical facade: $client->Label()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->label()
+    // resolves here too.
+    public function Label($data = null)
     {
         require_once __DIR__ . '/entity/label_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class MusicbrainzSDK
 
     private $_place = null;
 
-    // Idiomatic facade: $client->place()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Place() (PHP method
-    // names are case-insensitive).
-    public function place($data = null)
+    // Canonical facade: $client->Place()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->place()
+    // resolves here too.
+    public function Place($data = null)
     {
         require_once __DIR__ . '/entity/place_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class MusicbrainzSDK
 
     private $_rating = null;
 
-    // Idiomatic facade: $client->rating()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Rating() (PHP method
-    // names are case-insensitive).
-    public function rating($data = null)
+    // Canonical facade: $client->Rating()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->rating()
+    // resolves here too.
+    public function Rating($data = null)
     {
         require_once __DIR__ . '/entity/rating_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class MusicbrainzSDK
 
     private $_recording = null;
 
-    // Idiomatic facade: $client->recording()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Recording() (PHP method
-    // names are case-insensitive).
-    public function recording($data = null)
+    // Canonical facade: $client->Recording()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->recording()
+    // resolves here too.
+    public function Recording($data = null)
     {
         require_once __DIR__ . '/entity/recording_entity.php';
         if ($data === null) {
@@ -413,10 +413,10 @@ class MusicbrainzSDK
 
     private $_recording_list = null;
 
-    // Idiomatic facade: $client->recording_list()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias RecordingList() (PHP method
-    // names are case-insensitive).
-    public function recording_list($data = null)
+    // Canonical facade: $client->RecordingList()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->recording_list()
+    // resolves here too.
+    public function RecordingList($data = null)
     {
         require_once __DIR__ . '/entity/recording_list_entity.php';
         if ($data === null) {
@@ -431,10 +431,10 @@ class MusicbrainzSDK
 
     private $_release = null;
 
-    // Idiomatic facade: $client->release()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Release() (PHP method
-    // names are case-insensitive).
-    public function release($data = null)
+    // Canonical facade: $client->Release()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->release()
+    // resolves here too.
+    public function Release($data = null)
     {
         require_once __DIR__ . '/entity/release_entity.php';
         if ($data === null) {
@@ -449,10 +449,10 @@ class MusicbrainzSDK
 
     private $_release_group = null;
 
-    // Idiomatic facade: $client->release_group()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ReleaseGroup() (PHP method
-    // names are case-insensitive).
-    public function release_group($data = null)
+    // Canonical facade: $client->ReleaseGroup()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->release_group()
+    // resolves here too.
+    public function ReleaseGroup($data = null)
     {
         require_once __DIR__ . '/entity/release_group_entity.php';
         if ($data === null) {
@@ -467,10 +467,10 @@ class MusicbrainzSDK
 
     private $_release_list = null;
 
-    // Idiomatic facade: $client->release_list()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ReleaseList() (PHP method
-    // names are case-insensitive).
-    public function release_list($data = null)
+    // Canonical facade: $client->ReleaseList()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->release_list()
+    // resolves here too.
+    public function ReleaseList($data = null)
     {
         require_once __DIR__ . '/entity/release_list_entity.php';
         if ($data === null) {
@@ -485,10 +485,10 @@ class MusicbrainzSDK
 
     private $_series = null;
 
-    // Idiomatic facade: $client->series()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Series() (PHP method
-    // names are case-insensitive).
-    public function series($data = null)
+    // Canonical facade: $client->Series()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->series()
+    // resolves here too.
+    public function Series($data = null)
     {
         require_once __DIR__ . '/entity/series_entity.php';
         if ($data === null) {
@@ -503,10 +503,10 @@ class MusicbrainzSDK
 
     private $_tag = null;
 
-    // Idiomatic facade: $client->tag()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Tag() (PHP method
-    // names are case-insensitive).
-    public function tag($data = null)
+    // Canonical facade: $client->Tag()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->tag()
+    // resolves here too.
+    public function Tag($data = null)
     {
         require_once __DIR__ . '/entity/tag_entity.php';
         if ($data === null) {
@@ -521,10 +521,10 @@ class MusicbrainzSDK
 
     private $_url = null;
 
-    // Idiomatic facade: $client->url()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Url() (PHP method
-    // names are case-insensitive).
-    public function url($data = null)
+    // Canonical facade: $client->Url()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->url()
+    // resolves here too.
+    public function Url($data = null)
     {
         require_once __DIR__ . '/entity/url_entity.php';
         if ($data === null) {
@@ -539,10 +539,10 @@ class MusicbrainzSDK
 
     private $_work = null;
 
-    // Idiomatic facade: $client->work()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Work() (PHP method
-    // names are case-insensitive).
-    public function work($data = null)
+    // Canonical facade: $client->Work()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->work()
+    // resolves here too.
+    public function Work($data = null)
     {
         require_once __DIR__ . '/entity/work_entity.php';
         if ($data === null) {
@@ -557,10 +557,10 @@ class MusicbrainzSDK
 
     private $_work_list = null;
 
-    // Idiomatic facade: $client->work_list()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WorkList() (PHP method
-    // names are case-insensitive).
-    public function work_list($data = null)
+    // Canonical facade: $client->WorkList()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->work_list()
+    // resolves here too.
+    public function WorkList($data = null)
     {
         require_once __DIR__ . '/entity/work_list_entity.php';
         if ($data === null) {

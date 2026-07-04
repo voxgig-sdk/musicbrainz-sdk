@@ -30,25 +30,28 @@ const client = new MusicbrainzSDK({
 })
 ```
 
-### 2. List areas
+### 2. List area records
+
+`list()` resolves to an array of Area objects — iterate it directly:
 
 ```ts
-const result = await client.area.list()
+const areas = await client.Area().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const area of areas) {
+  console.log(area)
 }
 ```
 
 ### 3. Load an area
 
-```ts
-const result = await client.area.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const area = await client.Area().load({ id: 'example_id' })
+  console.log(area)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -66,6 +69,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -94,9 +100,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MusicbrainzSDK.test()
 
-const result = await client.area.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const area = await client.Area().load({ id: 'test01' })
+// area is a bare entity populated with mock response data
+console.log(area)
 ```
 
 You can also use the instance method:
@@ -111,7 +117,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.area
+const entity = client.Area()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -193,12 +199,12 @@ new MusicbrainzSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Area(data?)` | `AreaEntity` | Create a Area entity instance. |
-| `Artist(data?)` | `ArtistEntity` | Create a Artist entity instance. |
+| `Area(data?)` | `AreaEntity` | Create an Area entity instance. |
+| `Artist(data?)` | `ArtistEntity` | Create an Artist entity instance. |
 | `Collection(data?)` | `CollectionEntity` | Create a Collection entity instance. |
-| `Event(data?)` | `EventEntity` | Create a Event entity instance. |
+| `Event(data?)` | `EventEntity` | Create an Event entity instance. |
 | `Genre(data?)` | `GenreEntity` | Create a Genre entity instance. |
-| `Instrument(data?)` | `InstrumentEntity` | Create a Instrument entity instance. |
+| `Instrument(data?)` | `InstrumentEntity` | Create an Instrument entity instance. |
 | `Label(data?)` | `LabelEntity` | Create a Label entity instance. |
 | `Place(data?)` | `PlaceEntity` | Create a Place entity instance. |
 | `Rating(data?)` | `RatingEntity` | Create a Rating entity instance. |
@@ -209,7 +215,7 @@ new MusicbrainzSDK(options?: {
 | `ReleaseList(data?)` | `ReleaseListEntity` | Create a ReleaseList entity instance. |
 | `Series(data?)` | `SeriesEntity` | Create a Series entity instance. |
 | `Tag(data?)` | `TagEntity` | Create a Tag entity instance. |
-| `Url(data?)` | `UrlEntity` | Create a Url entity instance. |
+| `Url(data?)` | `UrlEntity` | Create an Url entity instance. |
 | `Work(data?)` | `WorkEntity` | Create a Work entity instance. |
 | `WorkList(data?)` | `WorkListEntity` | Create a WorkList entity instance. |
 | `tester(testopts?, sdkopts?)` | `MusicbrainzSDK` | Create a test-mode client instance. |
@@ -228,29 +234,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): MusicbrainzSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -547,7 +554,7 @@ API path: `/iswc/{iswc}`
 
 ### Area
 
-Create an instance: `const area = client.area`
+Create an instance: `const area = client.Area()`
 
 #### Operations
 
@@ -570,19 +577,19 @@ Create an instance: `const area = client.area`
 #### Example: Load
 
 ```ts
-const area = await client.area.load({ id: 'area_id' })
+const area = await client.Area().load({ id: 'area_id' })
 ```
 
 #### Example: List
 
 ```ts
-const areas = await client.area.list()
+const areas = await client.Area().list()
 ```
 
 
 ### Artist
 
-Create an instance: `const artist = client.artist`
+Create an instance: `const artist = client.Artist()`
 
 #### Operations
 
@@ -607,19 +614,19 @@ Create an instance: `const artist = client.artist`
 #### Example: Load
 
 ```ts
-const artist = await client.artist.load({ id: 'artist_id' })
+const artist = await client.Artist().load({ id: 'artist_id' })
 ```
 
 #### Example: List
 
 ```ts
-const artists = await client.artist.list()
+const artists = await client.Artist().list()
 ```
 
 
 ### Collection
 
-Create an instance: `const collection = client.collection`
+Create an instance: `const collection = client.Collection()`
 
 #### Operations
 
@@ -639,13 +646,13 @@ Create an instance: `const collection = client.collection`
 #### Example: List
 
 ```ts
-const collections = await client.collection.list()
+const collections = await client.Collection().list()
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `const event = client.Event()`
 
 #### Operations
 
@@ -669,19 +676,19 @@ Create an instance: `const event = client.event`
 #### Example: Load
 
 ```ts
-const event = await client.event.load({ id: 'event_id' })
+const event = await client.Event().load({ id: 'event_id' })
 ```
 
 #### Example: List
 
 ```ts
-const events = await client.event.list()
+const events = await client.Event().list()
 ```
 
 
 ### Genre
 
-Create an instance: `const genre = client.genre`
+Create an instance: `const genre = client.Genre()`
 
 #### Operations
 
@@ -701,19 +708,19 @@ Create an instance: `const genre = client.genre`
 #### Example: Load
 
 ```ts
-const genre = await client.genre.load({ id: 'genre_id' })
+const genre = await client.Genre().load({ id: 'genre_id' })
 ```
 
 #### Example: List
 
 ```ts
-const genres = await client.genre.list()
+const genres = await client.Genre().list()
 ```
 
 
 ### Instrument
 
-Create an instance: `const instrument = client.instrument`
+Create an instance: `const instrument = client.Instrument()`
 
 #### Operations
 
@@ -735,19 +742,19 @@ Create an instance: `const instrument = client.instrument`
 #### Example: Load
 
 ```ts
-const instrument = await client.instrument.load({ id: 'instrument_id' })
+const instrument = await client.Instrument().load({ id: 'instrument_id' })
 ```
 
 #### Example: List
 
 ```ts
-const instruments = await client.instrument.list()
+const instruments = await client.Instrument().list()
 ```
 
 
 ### Label
 
-Create an instance: `const label = client.label`
+Create an instance: `const label = client.Label()`
 
 #### Operations
 
@@ -772,19 +779,19 @@ Create an instance: `const label = client.label`
 #### Example: Load
 
 ```ts
-const label = await client.label.load({ id: 'label_id' })
+const label = await client.Label().load({ id: 'label_id' })
 ```
 
 #### Example: List
 
 ```ts
-const labels = await client.label.list()
+const labels = await client.Label().list()
 ```
 
 
 ### Place
 
-Create an instance: `const place = client.place`
+Create an instance: `const place = client.Place()`
 
 #### Operations
 
@@ -808,19 +815,19 @@ Create an instance: `const place = client.place`
 #### Example: Load
 
 ```ts
-const place = await client.place.load({ id: 'place_id' })
+const place = await client.Place().load({ id: 'place_id' })
 ```
 
 #### Example: List
 
 ```ts
-const places = await client.place.list()
+const places = await client.Place().list()
 ```
 
 
 ### Rating
 
-Create an instance: `const rating = client.rating`
+Create an instance: `const rating = client.Rating()`
 
 #### Operations
 
@@ -832,20 +839,20 @@ Create an instance: `const rating = client.rating`
 #### Example: Load
 
 ```ts
-const rating = await client.rating.load({ id: 'rating_id' })
+const rating = await client.Rating().load({ id: 'rating_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const rating = await client.rating.create({
+const rating = await client.Rating().create({
 })
 ```
 
 
 ### Recording
 
-Create an instance: `const recording = client.recording`
+Create an instance: `const recording = client.Recording()`
 
 #### Operations
 
@@ -867,19 +874,19 @@ Create an instance: `const recording = client.recording`
 #### Example: Load
 
 ```ts
-const recording = await client.recording.load({ id: 'recording_id' })
+const recording = await client.Recording().load({ id: 'recording_id' })
 ```
 
 #### Example: List
 
 ```ts
-const recordings = await client.recording.list()
+const recordings = await client.Recording().list()
 ```
 
 
 ### RecordingList
 
-Create an instance: `const recording_list = client.recording_list`
+Create an instance: `const recording_list = client.RecordingList()`
 
 #### Operations
 
@@ -898,13 +905,13 @@ Create an instance: `const recording_list = client.recording_list`
 #### Example: Load
 
 ```ts
-const recording_list = await client.recording_list.load({ id: 'recording_list_id' })
+const recording_list = await client.RecordingList().load({ id: 'recording_list_id' })
 ```
 
 
 ### Release
 
-Create an instance: `const release = client.release`
+Create an instance: `const release = client.Release()`
 
 #### Operations
 
@@ -929,19 +936,19 @@ Create an instance: `const release = client.release`
 #### Example: Load
 
 ```ts
-const release = await client.release.load({ id: 'release_id' })
+const release = await client.Release().load({ id: 'release_id' })
 ```
 
 #### Example: List
 
 ```ts
-const releases = await client.release.list()
+const releases = await client.Release().list()
 ```
 
 
 ### ReleaseGroup
 
-Create an instance: `const release_group = client.release_group`
+Create an instance: `const release_group = client.ReleaseGroup()`
 
 #### Operations
 
@@ -964,19 +971,19 @@ Create an instance: `const release_group = client.release_group`
 #### Example: Load
 
 ```ts
-const release_group = await client.release_group.load({ id: 'release_group_id' })
+const release_group = await client.ReleaseGroup().load({ id: 'release_group_id' })
 ```
 
 #### Example: List
 
 ```ts
-const release_groups = await client.release_group.list()
+const release_groups = await client.ReleaseGroup().list()
 ```
 
 
 ### ReleaseList
 
-Create an instance: `const release_list = client.release_list`
+Create an instance: `const release_list = client.ReleaseList()`
 
 #### Operations
 
@@ -995,13 +1002,13 @@ Create an instance: `const release_list = client.release_list`
 #### Example: Load
 
 ```ts
-const release_list = await client.release_list.load({ id: 'release_list_id' })
+const release_list = await client.ReleaseList().load({ id: 'release_list_id' })
 ```
 
 
 ### Series
 
-Create an instance: `const series = client.series`
+Create an instance: `const series = client.Series()`
 
 #### Operations
 
@@ -1022,19 +1029,19 @@ Create an instance: `const series = client.series`
 #### Example: Load
 
 ```ts
-const series = await client.series.load({ id: 'series_id' })
+const series = await client.Series().load({ id: 'series_id' })
 ```
 
 #### Example: List
 
 ```ts
-const seriess = await client.series.list()
+const seriess = await client.Series().list()
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.tag`
+Create an instance: `const tag = client.Tag()`
 
 #### Operations
 
@@ -1046,20 +1053,20 @@ Create an instance: `const tag = client.tag`
 #### Example: Load
 
 ```ts
-const tag = await client.tag.load({ id: 'tag_id' })
+const tag = await client.Tag().load({ id: 'tag_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const tag = await client.tag.create({
+const tag = await client.Tag().create({
 })
 ```
 
 
 ### Url
 
-Create an instance: `const url = client.url`
+Create an instance: `const url = client.Url()`
 
 #### Operations
 
@@ -1078,19 +1085,19 @@ Create an instance: `const url = client.url`
 #### Example: Load
 
 ```ts
-const url = await client.url.load({ id: 'url_id' })
+const url = await client.Url().load({ id: 'url_id' })
 ```
 
 #### Example: List
 
 ```ts
-const urls = await client.url.list()
+const urls = await client.Url().list()
 ```
 
 
 ### Work
 
-Create an instance: `const work = client.work`
+Create an instance: `const work = client.Work()`
 
 #### Operations
 
@@ -1112,19 +1119,19 @@ Create an instance: `const work = client.work`
 #### Example: Load
 
 ```ts
-const work = await client.work.load({ id: 'work_id' })
+const work = await client.Work().load({ id: 'work_id' })
 ```
 
 #### Example: List
 
 ```ts
-const works = await client.work.list()
+const works = await client.Work().list()
 ```
 
 
 ### WorkList
 
-Create an instance: `const work_list = client.work_list`
+Create an instance: `const work_list = client.WorkList()`
 
 #### Operations
 
@@ -1143,7 +1150,7 @@ Create an instance: `const work_list = client.work_list`
 #### Example: Load
 
 ```ts
-const work_list = await client.work_list.load({ id: 'work_list_id' })
+const work_list = await client.WorkList().load({ id: 'work_list_id' })
 ```
 
 
@@ -1214,7 +1221,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const area = client.area
+const area = client.Area()
 await area.load({ id: "example_id" })
 
 // area.data() now returns the loaded area data

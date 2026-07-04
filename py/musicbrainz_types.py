@@ -4,408 +4,359 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Area:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    sort_name: Optional[str] = None
-    type: Optional[str] = None
+class Area(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    life_span: dict
+    name: str
+    sort_name: str
+    type: str
 
 
-@dataclass
-class AreaLoadMatch:
+class AreaLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class AreaListMatch:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    sort_name: Optional[str] = None
-    type: Optional[str] = None
+class AreaListMatch(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    life_span: dict
+    name: str
+    sort_name: str
+    type: str
 
 
-@dataclass
-class Artist:
-    country: Optional[str] = None
-    disambiguation: Optional[str] = None
-    gender: Optional[str] = None
-    id: Optional[str] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    sort_name: Optional[str] = None
-    type: Optional[str] = None
+class Artist(TypedDict, total=False):
+    country: str
+    disambiguation: str
+    gender: str
+    id: str
+    life_span: dict
+    name: str
+    sort_name: str
+    type: str
 
 
-@dataclass
-class ArtistLoadMatch:
+class ArtistLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ArtistListMatch:
-    country: Optional[str] = None
-    disambiguation: Optional[str] = None
-    gender: Optional[str] = None
-    id: Optional[str] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    sort_name: Optional[str] = None
-    type: Optional[str] = None
+class ArtistListMatch(TypedDict, total=False):
+    country: str
+    disambiguation: str
+    gender: str
+    id: str
+    life_span: dict
+    name: str
+    sort_name: str
+    type: str
 
 
-@dataclass
-class Collection:
-    editor: Optional[str] = None
-    entity_type: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
+class Collection(TypedDict, total=False):
+    editor: str
+    entity_type: str
+    id: str
+    name: str
 
 
-@dataclass
-class CollectionListMatch:
-    editor: Optional[str] = None
-    entity_type: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
+class CollectionListMatch(TypedDict, total=False):
+    editor: str
+    entity_type: str
+    id: str
+    name: str
 
 
-@dataclass
-class Event:
-    cancelled: Optional[bool] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    time: Optional[str] = None
-    type: Optional[str] = None
+class Event(TypedDict, total=False):
+    cancelled: bool
+    disambiguation: str
+    id: str
+    life_span: dict
+    name: str
+    time: str
+    type: str
 
 
-@dataclass
-class EventLoadMatch:
+class EventLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class EventListMatch:
-    cancelled: Optional[bool] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    time: Optional[str] = None
-    type: Optional[str] = None
+class EventListMatch(TypedDict, total=False):
+    cancelled: bool
+    disambiguation: str
+    id: str
+    life_span: dict
+    name: str
+    time: str
+    type: str
 
 
-@dataclass
-class Genre:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
+class Genre(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    name: str
 
 
-@dataclass
-class GenreLoadMatch:
+class GenreLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class GenreListMatch:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
+class GenreListMatch(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    name: str
 
 
-@dataclass
-class Instrument:
-    description: Optional[str] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+class Instrument(TypedDict, total=False):
+    description: str
+    disambiguation: str
+    id: str
+    name: str
+    type: str
 
 
-@dataclass
-class InstrumentLoadMatch:
+class InstrumentLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class InstrumentListMatch:
-    description: Optional[str] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+class InstrumentListMatch(TypedDict, total=False):
+    description: str
+    disambiguation: str
+    id: str
+    name: str
+    type: str
 
 
-@dataclass
-class Label:
-    country: Optional[str] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    label_code: Optional[int] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    sort_name: Optional[str] = None
-    type: Optional[str] = None
+class Label(TypedDict, total=False):
+    country: str
+    disambiguation: str
+    id: str
+    label_code: int
+    life_span: dict
+    name: str
+    sort_name: str
+    type: str
 
 
-@dataclass
-class LabelLoadMatch:
+class LabelLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class LabelListMatch:
-    country: Optional[str] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    label_code: Optional[int] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    sort_name: Optional[str] = None
-    type: Optional[str] = None
+class LabelListMatch(TypedDict, total=False):
+    country: str
+    disambiguation: str
+    id: str
+    label_code: int
+    life_span: dict
+    name: str
+    sort_name: str
+    type: str
 
 
-@dataclass
-class Place:
-    address: Optional[str] = None
-    coordinate: Optional[dict] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+class Place(TypedDict, total=False):
+    address: str
+    coordinate: dict
+    disambiguation: str
+    id: str
+    life_span: dict
+    name: str
+    type: str
 
 
-@dataclass
-class PlaceLoadMatch:
+class PlaceLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class PlaceListMatch:
-    address: Optional[str] = None
-    coordinate: Optional[dict] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    life_span: Optional[dict] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+class PlaceListMatch(TypedDict, total=False):
+    address: str
+    coordinate: dict
+    disambiguation: str
+    id: str
+    life_span: dict
+    name: str
+    type: str
 
 
-@dataclass
-class Rating:
+class Rating(TypedDict):
     pass
 
 
-@dataclass
-class RatingLoadMatch:
+class RatingLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class RatingCreateData:
+class RatingCreateData(TypedDict):
     pass
 
 
-@dataclass
-class Recording:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    length: Optional[int] = None
-    title: Optional[str] = None
-    video: Optional[bool] = None
+class Recording(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    length: int
+    title: str
+    video: bool
 
 
-@dataclass
-class RecordingLoadMatch:
+class RecordingLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class RecordingListMatch:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    length: Optional[int] = None
-    title: Optional[str] = None
-    video: Optional[bool] = None
+class RecordingListMatch(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    length: int
+    title: str
+    video: bool
 
 
-@dataclass
-class RecordingList:
-    count: Optional[int] = None
-    offset: Optional[int] = None
-    recording: Optional[list] = None
+class RecordingList(TypedDict, total=False):
+    count: int
+    offset: int
+    recording: list
 
 
-@dataclass
-class RecordingListLoadMatch:
+class RecordingListLoadMatch(TypedDict):
     isrc: str
 
 
-@dataclass
-class Release:
-    barcode: Optional[str] = None
-    country: Optional[str] = None
-    date: Optional[str] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    packaging: Optional[str] = None
-    status: Optional[str] = None
-    title: Optional[str] = None
+class Release(TypedDict, total=False):
+    barcode: str
+    country: str
+    date: str
+    disambiguation: str
+    id: str
+    packaging: str
+    status: str
+    title: str
 
 
-@dataclass
-class ReleaseLoadMatch:
+class ReleaseLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ReleaseListMatch:
-    barcode: Optional[str] = None
-    country: Optional[str] = None
-    date: Optional[str] = None
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    packaging: Optional[str] = None
-    status: Optional[str] = None
-    title: Optional[str] = None
+class ReleaseListMatch(TypedDict, total=False):
+    barcode: str
+    country: str
+    date: str
+    disambiguation: str
+    id: str
+    packaging: str
+    status: str
+    title: str
 
 
-@dataclass
-class ReleaseGroup:
-    disambiguation: Optional[str] = None
-    first_release_date: Optional[str] = None
-    id: Optional[str] = None
-    primary_type: Optional[str] = None
-    secondary_type: Optional[list] = None
-    title: Optional[str] = None
+class ReleaseGroup(TypedDict, total=False):
+    disambiguation: str
+    first_release_date: str
+    id: str
+    primary_type: str
+    secondary_type: list
+    title: str
 
 
-@dataclass
-class ReleaseGroupLoadMatch:
+class ReleaseGroupLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ReleaseGroupListMatch:
-    disambiguation: Optional[str] = None
-    first_release_date: Optional[str] = None
-    id: Optional[str] = None
-    primary_type: Optional[str] = None
-    secondary_type: Optional[list] = None
-    title: Optional[str] = None
+class ReleaseGroupListMatch(TypedDict, total=False):
+    disambiguation: str
+    first_release_date: str
+    id: str
+    primary_type: str
+    secondary_type: list
+    title: str
 
 
-@dataclass
-class ReleaseList:
-    count: Optional[int] = None
-    offset: Optional[int] = None
-    release: Optional[list] = None
+class ReleaseList(TypedDict, total=False):
+    count: int
+    offset: int
+    release: list
 
 
-@dataclass
-class ReleaseListLoadMatch:
+class ReleaseListLoadMatch(TypedDict):
     discid: str
 
 
-@dataclass
-class Series:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+class Series(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    name: str
+    type: str
 
 
-@dataclass
-class SeriesLoadMatch:
+class SeriesLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class SeriesListMatch:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+class SeriesListMatch(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    name: str
+    type: str
 
 
-@dataclass
-class Tag:
+class Tag(TypedDict):
     pass
 
 
-@dataclass
-class TagLoadMatch:
+class TagLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class TagCreateData:
+class TagCreateData(TypedDict):
     pass
 
 
-@dataclass
-class Url:
-    id: Optional[str] = None
-    resource: Optional[str] = None
+class Url(TypedDict, total=False):
+    id: str
+    resource: str
 
 
-@dataclass
-class UrlLoadMatch:
+class UrlLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class UrlListMatch:
-    id: Optional[str] = None
-    resource: Optional[str] = None
+class UrlListMatch(TypedDict, total=False):
+    id: str
+    resource: str
 
 
-@dataclass
-class Work:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    language: Optional[str] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
+class Work(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    language: str
+    title: str
+    type: str
 
 
-@dataclass
-class WorkLoadMatch:
+class WorkLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class WorkListMatch:
-    disambiguation: Optional[str] = None
-    id: Optional[str] = None
-    language: Optional[str] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
+class WorkListMatch(TypedDict, total=False):
+    disambiguation: str
+    id: str
+    language: str
+    title: str
+    type: str
 
 
-@dataclass
-class WorkList:
-    count: Optional[int] = None
-    offset: Optional[int] = None
-    work: Optional[list] = None
+class WorkList(TypedDict, total=False):
+    count: int
+    offset: int
+    work: list
 
 
-@dataclass
-class WorkListLoadMatch:
+class WorkListLoadMatch(TypedDict):
     iswc: str
-

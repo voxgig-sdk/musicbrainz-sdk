@@ -30,16 +30,14 @@ client = MusicbrainzSDK.new({
 })
 ```
 
-### 2. List areas
+### 2. List area records
 
 ```ruby
 begin
-  result = client.area.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Area records — iterate directly.
+  areas = client.Area.list
+  areas.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -50,8 +48,9 @@ end
 
 ```ruby
 begin
-  result = client.area.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Area record (raises on error).
+  area = client.Area.load({ "id" => "example_id" })
+  puts area
 rescue => err
   warn "load failed: #{err}"
 end
@@ -98,13 +97,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = MusicbrainzSDK.test
+client = MusicbrainzSDK.test({
+  "entity" => { "area" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.area.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+area = client.Area.load({ "id" => "test01" })
+puts area
 ```
 
 ### Use a custom fetch function
@@ -182,12 +185,12 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Area` | `(data) -> AreaEntity` | Create a Area entity instance. |
-| `Artist` | `(data) -> ArtistEntity` | Create a Artist entity instance. |
+| `Area` | `(data) -> AreaEntity` | Create an Area entity instance. |
+| `Artist` | `(data) -> ArtistEntity` | Create an Artist entity instance. |
 | `Collection` | `(data) -> CollectionEntity` | Create a Collection entity instance. |
-| `Event` | `(data) -> EventEntity` | Create a Event entity instance. |
+| `Event` | `(data) -> EventEntity` | Create an Event entity instance. |
 | `Genre` | `(data) -> GenreEntity` | Create a Genre entity instance. |
-| `Instrument` | `(data) -> InstrumentEntity` | Create a Instrument entity instance. |
+| `Instrument` | `(data) -> InstrumentEntity` | Create an Instrument entity instance. |
 | `Label` | `(data) -> LabelEntity` | Create a Label entity instance. |
 | `Place` | `(data) -> PlaceEntity` | Create a Place entity instance. |
 | `Rating` | `(data) -> RatingEntity` | Create a Rating entity instance. |
@@ -198,7 +201,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `ReleaseList` | `(data) -> ReleaseListEntity` | Create a ReleaseList entity instance. |
 | `Series` | `(data) -> SeriesEntity` | Create a Series entity instance. |
 | `Tag` | `(data) -> TagEntity` | Create a Tag entity instance. |
-| `Url` | `(data) -> UrlEntity` | Create a Url entity instance. |
+| `Url` | `(data) -> UrlEntity` | Create an Url entity instance. |
 | `Work` | `(data) -> WorkEntity` | Create a Work entity instance. |
 | `WorkList` | `(data) -> WorkListEntity` | Create a WorkList entity instance. |
 
@@ -504,7 +507,7 @@ API path: `/iswc/{iswc}`
 
 ### Area
 
-Create an instance: `const area = client.area`
+Create an instance: `area = client.Area`
 
 #### Operations
 
@@ -526,20 +529,22 @@ Create an instance: `const area = client.area`
 
 #### Example: Load
 
-```ts
-const area = await client.area.load({ id: 'area_id' })
+```ruby
+# load returns the bare Area record (raises on error).
+area = client.Area.load({ "id" => "area_id" })
 ```
 
 #### Example: List
 
-```ts
-const areas = await client.area.list()
+```ruby
+# list returns an Array of Area records (raises on error).
+areas = client.Area.list
 ```
 
 
 ### Artist
 
-Create an instance: `const artist = client.artist`
+Create an instance: `artist = client.Artist`
 
 #### Operations
 
@@ -563,20 +568,22 @@ Create an instance: `const artist = client.artist`
 
 #### Example: Load
 
-```ts
-const artist = await client.artist.load({ id: 'artist_id' })
+```ruby
+# load returns the bare Artist record (raises on error).
+artist = client.Artist.load({ "id" => "artist_id" })
 ```
 
 #### Example: List
 
-```ts
-const artists = await client.artist.list()
+```ruby
+# list returns an Array of Artist records (raises on error).
+artists = client.Artist.list
 ```
 
 
 ### Collection
 
-Create an instance: `const collection = client.collection`
+Create an instance: `collection = client.Collection`
 
 #### Operations
 
@@ -595,14 +602,15 @@ Create an instance: `const collection = client.collection`
 
 #### Example: List
 
-```ts
-const collections = await client.collection.list()
+```ruby
+# list returns an Array of Collection records (raises on error).
+collections = client.Collection.list
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `event = client.Event`
 
 #### Operations
 
@@ -625,20 +633,22 @@ Create an instance: `const event = client.event`
 
 #### Example: Load
 
-```ts
-const event = await client.event.load({ id: 'event_id' })
+```ruby
+# load returns the bare Event record (raises on error).
+event = client.Event.load({ "id" => "event_id" })
 ```
 
 #### Example: List
 
-```ts
-const events = await client.event.list()
+```ruby
+# list returns an Array of Event records (raises on error).
+events = client.Event.list
 ```
 
 
 ### Genre
 
-Create an instance: `const genre = client.genre`
+Create an instance: `genre = client.Genre`
 
 #### Operations
 
@@ -657,20 +667,22 @@ Create an instance: `const genre = client.genre`
 
 #### Example: Load
 
-```ts
-const genre = await client.genre.load({ id: 'genre_id' })
+```ruby
+# load returns the bare Genre record (raises on error).
+genre = client.Genre.load({ "id" => "genre_id" })
 ```
 
 #### Example: List
 
-```ts
-const genres = await client.genre.list()
+```ruby
+# list returns an Array of Genre records (raises on error).
+genres = client.Genre.list
 ```
 
 
 ### Instrument
 
-Create an instance: `const instrument = client.instrument`
+Create an instance: `instrument = client.Instrument`
 
 #### Operations
 
@@ -691,20 +703,22 @@ Create an instance: `const instrument = client.instrument`
 
 #### Example: Load
 
-```ts
-const instrument = await client.instrument.load({ id: 'instrument_id' })
+```ruby
+# load returns the bare Instrument record (raises on error).
+instrument = client.Instrument.load({ "id" => "instrument_id" })
 ```
 
 #### Example: List
 
-```ts
-const instruments = await client.instrument.list()
+```ruby
+# list returns an Array of Instrument records (raises on error).
+instruments = client.Instrument.list
 ```
 
 
 ### Label
 
-Create an instance: `const label = client.label`
+Create an instance: `label = client.Label`
 
 #### Operations
 
@@ -728,20 +742,22 @@ Create an instance: `const label = client.label`
 
 #### Example: Load
 
-```ts
-const label = await client.label.load({ id: 'label_id' })
+```ruby
+# load returns the bare Label record (raises on error).
+label = client.Label.load({ "id" => "label_id" })
 ```
 
 #### Example: List
 
-```ts
-const labels = await client.label.list()
+```ruby
+# list returns an Array of Label records (raises on error).
+labels = client.Label.list
 ```
 
 
 ### Place
 
-Create an instance: `const place = client.place`
+Create an instance: `place = client.Place`
 
 #### Operations
 
@@ -764,20 +780,22 @@ Create an instance: `const place = client.place`
 
 #### Example: Load
 
-```ts
-const place = await client.place.load({ id: 'place_id' })
+```ruby
+# load returns the bare Place record (raises on error).
+place = client.Place.load({ "id" => "place_id" })
 ```
 
 #### Example: List
 
-```ts
-const places = await client.place.list()
+```ruby
+# list returns an Array of Place records (raises on error).
+places = client.Place.list
 ```
 
 
 ### Rating
 
-Create an instance: `const rating = client.rating`
+Create an instance: `rating = client.Rating`
 
 #### Operations
 
@@ -788,21 +806,22 @@ Create an instance: `const rating = client.rating`
 
 #### Example: Load
 
-```ts
-const rating = await client.rating.load({ id: 'rating_id' })
+```ruby
+# load returns the bare Rating record (raises on error).
+rating = client.Rating.load({ "id" => "rating_id" })
 ```
 
 #### Example: Create
 
-```ts
-const rating = await client.rating.create({
+```ruby
+rating = client.Rating.create({
 })
 ```
 
 
 ### Recording
 
-Create an instance: `const recording = client.recording`
+Create an instance: `recording = client.Recording`
 
 #### Operations
 
@@ -823,20 +842,22 @@ Create an instance: `const recording = client.recording`
 
 #### Example: Load
 
-```ts
-const recording = await client.recording.load({ id: 'recording_id' })
+```ruby
+# load returns the bare Recording record (raises on error).
+recording = client.Recording.load({ "id" => "recording_id" })
 ```
 
 #### Example: List
 
-```ts
-const recordings = await client.recording.list()
+```ruby
+# list returns an Array of Recording records (raises on error).
+recordings = client.Recording.list
 ```
 
 
 ### RecordingList
 
-Create an instance: `const recording_list = client.recording_list`
+Create an instance: `recording_list = client.RecordingList`
 
 #### Operations
 
@@ -854,14 +875,15 @@ Create an instance: `const recording_list = client.recording_list`
 
 #### Example: Load
 
-```ts
-const recording_list = await client.recording_list.load({ id: 'recording_list_id' })
+```ruby
+# load returns the bare RecordingList record (raises on error).
+recording_list = client.RecordingList.load({ "id" => "recording_list_id" })
 ```
 
 
 ### Release
 
-Create an instance: `const release = client.release`
+Create an instance: `release = client.Release`
 
 #### Operations
 
@@ -885,20 +907,22 @@ Create an instance: `const release = client.release`
 
 #### Example: Load
 
-```ts
-const release = await client.release.load({ id: 'release_id' })
+```ruby
+# load returns the bare Release record (raises on error).
+release = client.Release.load({ "id" => "release_id" })
 ```
 
 #### Example: List
 
-```ts
-const releases = await client.release.list()
+```ruby
+# list returns an Array of Release records (raises on error).
+releases = client.Release.list
 ```
 
 
 ### ReleaseGroup
 
-Create an instance: `const release_group = client.release_group`
+Create an instance: `release_group = client.ReleaseGroup`
 
 #### Operations
 
@@ -920,20 +944,22 @@ Create an instance: `const release_group = client.release_group`
 
 #### Example: Load
 
-```ts
-const release_group = await client.release_group.load({ id: 'release_group_id' })
+```ruby
+# load returns the bare ReleaseGroup record (raises on error).
+release_group = client.ReleaseGroup.load({ "id" => "release_group_id" })
 ```
 
 #### Example: List
 
-```ts
-const release_groups = await client.release_group.list()
+```ruby
+# list returns an Array of ReleaseGroup records (raises on error).
+release_groups = client.ReleaseGroup.list
 ```
 
 
 ### ReleaseList
 
-Create an instance: `const release_list = client.release_list`
+Create an instance: `release_list = client.ReleaseList`
 
 #### Operations
 
@@ -951,14 +977,15 @@ Create an instance: `const release_list = client.release_list`
 
 #### Example: Load
 
-```ts
-const release_list = await client.release_list.load({ id: 'release_list_id' })
+```ruby
+# load returns the bare ReleaseList record (raises on error).
+release_list = client.ReleaseList.load({ "id" => "release_list_id" })
 ```
 
 
 ### Series
 
-Create an instance: `const series = client.series`
+Create an instance: `series = client.Series`
 
 #### Operations
 
@@ -978,20 +1005,22 @@ Create an instance: `const series = client.series`
 
 #### Example: Load
 
-```ts
-const series = await client.series.load({ id: 'series_id' })
+```ruby
+# load returns the bare Series record (raises on error).
+series = client.Series.load({ "id" => "series_id" })
 ```
 
 #### Example: List
 
-```ts
-const seriess = await client.series.list()
+```ruby
+# list returns an Array of Series records (raises on error).
+seriess = client.Series.list
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.tag`
+Create an instance: `tag = client.Tag`
 
 #### Operations
 
@@ -1002,21 +1031,22 @@ Create an instance: `const tag = client.tag`
 
 #### Example: Load
 
-```ts
-const tag = await client.tag.load({ id: 'tag_id' })
+```ruby
+# load returns the bare Tag record (raises on error).
+tag = client.Tag.load({ "id" => "tag_id" })
 ```
 
 #### Example: Create
 
-```ts
-const tag = await client.tag.create({
+```ruby
+tag = client.Tag.create({
 })
 ```
 
 
 ### Url
 
-Create an instance: `const url = client.url`
+Create an instance: `url = client.Url`
 
 #### Operations
 
@@ -1034,20 +1064,22 @@ Create an instance: `const url = client.url`
 
 #### Example: Load
 
-```ts
-const url = await client.url.load({ id: 'url_id' })
+```ruby
+# load returns the bare Url record (raises on error).
+url = client.Url.load({ "id" => "url_id" })
 ```
 
 #### Example: List
 
-```ts
-const urls = await client.url.list()
+```ruby
+# list returns an Array of Url records (raises on error).
+urls = client.Url.list
 ```
 
 
 ### Work
 
-Create an instance: `const work = client.work`
+Create an instance: `work = client.Work`
 
 #### Operations
 
@@ -1068,20 +1100,22 @@ Create an instance: `const work = client.work`
 
 #### Example: Load
 
-```ts
-const work = await client.work.load({ id: 'work_id' })
+```ruby
+# load returns the bare Work record (raises on error).
+work = client.Work.load({ "id" => "work_id" })
 ```
 
 #### Example: List
 
-```ts
-const works = await client.work.list()
+```ruby
+# list returns an Array of Work records (raises on error).
+works = client.Work.list
 ```
 
 
 ### WorkList
 
-Create an instance: `const work_list = client.work_list`
+Create an instance: `work_list = client.WorkList`
 
 #### Operations
 
@@ -1099,8 +1133,9 @@ Create an instance: `const work_list = client.work_list`
 
 #### Example: Load
 
-```ts
-const work_list = await client.work_list.load({ id: 'work_list_id' })
+```ruby
+# load returns the bare WorkList record (raises on error).
+work_list = client.WorkList.load({ "id" => "work_list_id" })
 ```
 
 
@@ -1175,7 +1210,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-area = client.area
+area = client.Area
 area.load({ "id" => "example_id" })
 
 # area.data_get now returns the loaded area data

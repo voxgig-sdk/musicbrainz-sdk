@@ -28,9 +28,11 @@ const client = new MusicbrainzSDK({
   apikey: process.env.MUSICBRAINZ_APIKEY,
 })
 
-// List all areas
-const areas = await client.area.list()
-console.log(areas.data)
+// List all areas (returns Area[])
+const areas = await client.Area().list()
+for (const area of areas) {
+  console.log(area)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -106,12 +108,13 @@ client = MusicbrainzSDK({
     "apikey": os.environ.get("MUSICBRAINZ_APIKEY"),
 })
 
-# List all areas
-areas = client.area.list()
-print(areas)
+# List all areas (returns a list, raises on error)
+areas = client.Area().list({})
+for area in areas:
+    print(area)
 
-# Load a specific area
-area = client.area.load({"id": "example_id"})
+# Load a specific area (returns the record, raises on error)
+area = client.Area().load({"id": "example_id"})
 print(area)
 ```
 
@@ -125,12 +128,12 @@ $client = new MusicbrainzSDK([
     "apikey" => getenv("MUSICBRAINZ_APIKEY"),
 ]);
 
-// List all areas (throws on error)
-$areas = $client->area()->list();
+// List all areas (returns an array; throws on error)
+$areas = $client->Area()->list();
 print_r($areas);
 
-// Load a specific area
-$area = $client->area()->load(["id" => "example_id"]);
+// Load a specific area (returns the bare record; throws on error)
+$area = $client->Area()->load(["id" => "example_id"]);
 print_r($area);
 ```
 
@@ -157,12 +160,12 @@ client = MusicbrainzSDK.new({
   "apikey" => ENV["MUSICBRAINZ_APIKEY"],
 })
 
-# List all areas
-areas = client.area.list
+# List all areas (returns an Array; raises on error)
+areas = client.Area.list
 puts areas
 
-# Load a specific area
-area = client.area.load({ "id" => "example_id" })
+# Load a specific area (returns the bare record; raises on error)
+area = client.Area.load({ "id" => "example_id" })
 puts area
 ```
 
@@ -176,11 +179,11 @@ local client = sdk.new({
 })
 
 -- List all areas
-local areas, err = client:area():list()
+local areas, err = client:Area():list()
 print(areas)
 
 -- Load a specific area
-local area, err = client:area():load({ id = "example_id" })
+local area, err = client:Area():load({ id = "example_id" })
 print(area)
 ```
 
@@ -193,22 +196,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = MusicbrainzSDK.test()
-const result = await client.area.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const area = await client.Area().load({ id: 'test01' })
+// area is a bare Area populated with mock data
+console.log(area)
 ```
 
 ### Python
 
 ```python
 client = MusicbrainzSDK.test()
-result = client.area.load({"id": "test01"})
+area = client.Area().load({"id": "test01"})
+print(area)
 ```
 
 ### PHP
 
 ```php
-$client = MusicbrainzSDK::test();
-$result = $client->area()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = MusicbrainzSDK::test([
+    "entity" => ["area" => ["test01" => ["id" => "test01"]]],
+]);
+$area = $client->Area()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -223,15 +231,18 @@ result, err := client.Area(nil).Load(
 ### Ruby
 
 ```ruby
-client = MusicbrainzSDK.test
-result = client.area.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = MusicbrainzSDK.test({
+  "entity" => { "area" => { "test01" => { "id" => "test01" } } },
+})
+area = client.Area.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:area():load({ id = "test01" })
+local result, err = client:Area():load({ id = "test01" })
 ```
 
 ## How it works
@@ -279,6 +290,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
