@@ -45,6 +45,7 @@ class RecordingListEntity
     end
   end
 
+  # @return [RecordingList, Hash] the current RecordingList data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class RecordingListEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of RecordingList fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single RecordingList.
+  #
+  # @param reqmatch [RecordingListLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [RecordingList, Hash] the loaded RecordingList; raises MusicbrainzError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

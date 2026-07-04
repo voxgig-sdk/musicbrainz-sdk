@@ -49,8 +49,7 @@ class TestReleaseListEntity:
         # LOAD
         release_list_ref01_ent = client.ReleaseList(None)
         release_list_ref01_match_dt0 = {}
-        release_list_ref01_data_dt0_loaded, err = release_list_ref01_ent.load(release_list_ref01_match_dt0, None)
-        assert err is None
+        release_list_ref01_data_dt0_loaded = release_list_ref01_ent.load(release_list_ref01_match_dt0, None)
         assert release_list_ref01_data_dt0_loaded is not None
 
 

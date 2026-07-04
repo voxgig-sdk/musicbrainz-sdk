@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ArtistLoadMatch
+---@param ctrl? table
+---@return Artist
+---@return string? err
 function ArtistEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ArtistListMatch
+---@param ctrl? table
+---@return Artist[]
+---@return string? err
 function ArtistEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch LabelLoadMatch
+---@param ctrl? table
+---@return Label
+---@return string? err
 function LabelEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch LabelListMatch
+---@param ctrl? table
+---@return Label[]
+---@return string? err
 function LabelEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

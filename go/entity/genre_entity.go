@@ -85,6 +85,27 @@ func (e *GenreEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Genre; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *GenreEntity) DataTyped(data ...Genre) Genre {
+	if len(data) > 0 {
+		return typedFrom[Genre](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Genre](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Genre (all fields
+// optional at the wire level).
+func (e *GenreEntity) MatchTyped(match ...Genre) Genre {
+	if len(match) > 0 {
+		return typedFrom[Genre](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Genre](e.Match())
+}
+
 
 func (e *GenreEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *GenreEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, e
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// GenreLoadMatch and returns an Genre. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *GenreEntity) LoadTyped(reqmatch GenreLoadMatch, ctrl map[string]any) (Genre, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Genre{}, err
+	}
+	return typedFrom[Genre](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *GenreEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, e
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// GenreListMatch and returns []Genre. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *GenreEntity) ListTyped(reqmatch GenreListMatch, ctrl map[string]any) ([]Genre, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Genre](res), nil
 }
 
 

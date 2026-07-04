@@ -20,13 +20,10 @@
     "phpunit/phpunit": "^11.0"
   },
   "autoload": {
-    "psr-4": {
-      "Musicbrainz\\": "src/"
-    }
+    "files": ["musicbrainz_sdk.php"],
+    "classmap": ["core/", "entity/", "feature/", "types/", "utility/", "config.php", "features.php"]
   },
   "autoload-dev": {
-    "psr-4": {
-      "Musicbrainz\\Tests\\": "test/"
-    }
+    "classmap": ["test/"]
   }
 }

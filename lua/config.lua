@@ -182,6 +182,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -444,6 +445,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -796,6 +798,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -952,6 +955,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -1138,6 +1142,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -1373,6 +1378,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -1610,6 +1616,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -1902,6 +1909,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -2016,6 +2024,7 @@ local function make_config()
                       ["orig"] = "isrc",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -2313,6 +2322,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -2543,6 +2553,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -2657,6 +2668,7 @@ local function make_config()
                       ["orig"] = "discid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -2845,6 +2857,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -3089,6 +3102,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -3294,6 +3308,7 @@ local function make_config()
                       ["orig"] = "mbid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -3390,6 +3405,7 @@ local function make_config()
                       ["orig"] = "iswc",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {

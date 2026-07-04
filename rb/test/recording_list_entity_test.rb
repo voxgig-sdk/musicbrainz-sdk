@@ -42,8 +42,7 @@ class RecordingListEntityTest < Minitest::Test
     # LOAD
     recording_list_ref01_ent = client.RecordingList(nil)
     recording_list_ref01_match_dt0 = {}
-    recording_list_ref01_data_dt0_loaded, err = recording_list_ref01_ent.load(recording_list_ref01_match_dt0, nil)
-    assert_nil err
+    recording_list_ref01_data_dt0_loaded = recording_list_ref01_ent.load(recording_list_ref01_match_dt0, nil)
     assert !recording_list_ref01_data_dt0_loaded.nil?
 
   end

@@ -55,6 +55,9 @@ class ReleaseEntity
         return new ReleaseEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Release|array $args Release data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class ReleaseEntity
         }
     }
 
+    /**
+     * @return Release|array The current Release data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Release fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class ReleaseEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Release fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class ReleaseEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Release.
+     *
+     * @param ReleaseLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed ReleaseLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Release|array The loaded Release as an assoc-array at the
+     *   SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class ReleaseEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Release items matching the given filter.
+     *
+     * @param ReleaseListMatch|array|null $reqmatch Match filter (any subset
+     *   of Release fields) as an assoc-array; ReleaseListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Release[]|array A list of Release items as assoc-arrays at
+     *   the SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class ReleaseEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

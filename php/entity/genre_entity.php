@@ -55,6 +55,9 @@ class GenreEntity
         return new GenreEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Genre|array $args Genre data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class GenreEntity
         }
     }
 
+    /**
+     * @return Genre|array The current Genre data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Genre fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class GenreEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Genre fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class GenreEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Genre.
+     *
+     * @param GenreLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed GenreLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Genre|array The loaded Genre as an assoc-array at the
+     *   SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class GenreEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Genre items matching the given filter.
+     *
+     * @param GenreListMatch|array|null $reqmatch Match filter (any subset
+     *   of Genre fields) as an assoc-array; GenreListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Genre[]|array A list of Genre items as assoc-arrays at
+     *   the SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class GenreEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

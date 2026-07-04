@@ -50,16 +50,14 @@ class TestRecordingEntity:
         recording_ref01_ent = client.Recording(None)
         recording_ref01_match = {}
 
-        recording_ref01_list_result, err = recording_ref01_ent.list(recording_ref01_match, None)
-        assert err is None
+        recording_ref01_list_result = recording_ref01_ent.list(recording_ref01_match, None)
         assert isinstance(recording_ref01_list_result, list)
 
         # LOAD
         recording_ref01_match_dt0 = {
             "id": recording_ref01_data["id"],
         }
-        recording_ref01_data_dt0_loaded, err = recording_ref01_ent.load(recording_ref01_match_dt0, None)
-        assert err is None
+        recording_ref01_data_dt0_loaded = recording_ref01_ent.load(recording_ref01_match_dt0, None)
         recording_ref01_data_dt0_load_result = helpers.to_map(recording_ref01_data_dt0_loaded)
         assert recording_ref01_data_dt0_load_result is not None
         assert recording_ref01_data_dt0_load_result["id"] == recording_ref01_data["id"]

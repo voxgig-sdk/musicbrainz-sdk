@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch InstrumentLoadMatch
+---@param ctrl? table
+---@return Instrument
+---@return string? err
 function InstrumentEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch InstrumentListMatch
+---@param ctrl? table
+---@return Instrument[]
+---@return string? err
 function InstrumentEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

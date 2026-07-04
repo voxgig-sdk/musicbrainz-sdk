@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Recording,
+  RecordingLoadMatch,
+  RecordingListMatch,
+} from '../MusicbrainzTypes'
 
 // TODO: needs Entity superclass
-class RecordingEntity extends MusicbrainzEntityBase {
+class RecordingEntity extends MusicbrainzEntityBase<Recording> {
 
   constructor(client: MusicbrainzSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class RecordingEntity extends MusicbrainzEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: RecordingLoadMatch, ctrl?: Control): Promise<Recording> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class RecordingEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Recording> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: RecordingListMatch, ctrl?: Control): Promise<Recording[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class RecordingEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Recording[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -55,6 +55,9 @@ class UrlEntity
         return new UrlEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Url|array $args Url data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class UrlEntity
         }
     }
 
+    /**
+     * @return Url|array The current Url data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Url fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class UrlEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Url fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class UrlEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Url.
+     *
+     * @param UrlLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed UrlLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Url|array The loaded Url as an assoc-array at the
+     *   SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class UrlEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Url items matching the given filter.
+     *
+     * @param UrlListMatch|array|null $reqmatch Match filter (any subset
+     *   of Url fields) as an assoc-array; UrlListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Url[]|array A list of Url items as assoc-arrays at
+     *   the SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class UrlEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

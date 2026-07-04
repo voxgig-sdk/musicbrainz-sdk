@@ -50,16 +50,14 @@ class WorkEntityTest extends TestCase
         $work_ref01_ent = $client->Work(null);
         $work_ref01_match = [];
 
-        [$work_ref01_list_result, $err] = $work_ref01_ent->list($work_ref01_match, null);
-        $this->assertNull($err);
+        $work_ref01_list_result = $work_ref01_ent->list($work_ref01_match, null);
         $this->assertIsArray($work_ref01_list_result);
 
         // LOAD
         $work_ref01_match_dt0 = [
             "id" => $work_ref01_data["id"],
         ];
-        [$work_ref01_data_dt0_loaded, $err] = $work_ref01_ent->load($work_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $work_ref01_data_dt0_loaded = $work_ref01_ent->load($work_ref01_match_dt0, null);
         $work_ref01_data_dt0_load_result = Helpers::to_map($work_ref01_data_dt0_loaded);
         $this->assertNotNull($work_ref01_data_dt0_load_result);
         $this->assertEquals($work_ref01_data_dt0_load_result["id"], $work_ref01_data["id"]);

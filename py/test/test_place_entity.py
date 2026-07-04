@@ -50,16 +50,14 @@ class TestPlaceEntity:
         place_ref01_ent = client.Place(None)
         place_ref01_match = {}
 
-        place_ref01_list_result, err = place_ref01_ent.list(place_ref01_match, None)
-        assert err is None
+        place_ref01_list_result = place_ref01_ent.list(place_ref01_match, None)
         assert isinstance(place_ref01_list_result, list)
 
         # LOAD
         place_ref01_match_dt0 = {
             "id": place_ref01_data["id"],
         }
-        place_ref01_data_dt0_loaded, err = place_ref01_ent.load(place_ref01_match_dt0, None)
-        assert err is None
+        place_ref01_data_dt0_loaded = place_ref01_ent.load(place_ref01_match_dt0, None)
         place_ref01_data_dt0_load_result = helpers.to_map(place_ref01_data_dt0_loaded)
         assert place_ref01_data_dt0_load_result is not None
         assert place_ref01_data_dt0_load_result["id"] == place_ref01_data["id"]

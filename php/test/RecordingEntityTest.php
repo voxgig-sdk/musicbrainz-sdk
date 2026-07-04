@@ -50,16 +50,14 @@ class RecordingEntityTest extends TestCase
         $recording_ref01_ent = $client->Recording(null);
         $recording_ref01_match = [];
 
-        [$recording_ref01_list_result, $err] = $recording_ref01_ent->list($recording_ref01_match, null);
-        $this->assertNull($err);
+        $recording_ref01_list_result = $recording_ref01_ent->list($recording_ref01_match, null);
         $this->assertIsArray($recording_ref01_list_result);
 
         // LOAD
         $recording_ref01_match_dt0 = [
             "id" => $recording_ref01_data["id"],
         ];
-        [$recording_ref01_data_dt0_loaded, $err] = $recording_ref01_ent->load($recording_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $recording_ref01_data_dt0_loaded = $recording_ref01_ent->load($recording_ref01_match_dt0, null);
         $recording_ref01_data_dt0_load_result = Helpers::to_map($recording_ref01_data_dt0_loaded);
         $this->assertNotNull($recording_ref01_data_dt0_load_result);
         $this->assertEquals($recording_ref01_data_dt0_load_result["id"], $recording_ref01_data["id"]);

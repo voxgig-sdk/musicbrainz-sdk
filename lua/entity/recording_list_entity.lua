@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch RecordingListLoadMatch
+---@param ctrl? table
+---@return RecordingList
+---@return string? err
 function RecordingListEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

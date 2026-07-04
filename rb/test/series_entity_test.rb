@@ -43,16 +43,14 @@ class SeriesEntityTest < Minitest::Test
     series_ref01_ent = client.Series(nil)
     series_ref01_match = {}
 
-    series_ref01_list_result, err = series_ref01_ent.list(series_ref01_match, nil)
-    assert_nil err
+    series_ref01_list_result = series_ref01_ent.list(series_ref01_match, nil)
     assert series_ref01_list_result.is_a?(Array)
 
     # LOAD
     series_ref01_match_dt0 = {
       "id" => series_ref01_data["id"],
     }
-    series_ref01_data_dt0_loaded, err = series_ref01_ent.load(series_ref01_match_dt0, nil)
-    assert_nil err
+    series_ref01_data_dt0_loaded = series_ref01_ent.load(series_ref01_match_dt0, nil)
     series_ref01_data_dt0_load_result = Helpers.to_map(series_ref01_data_dt0_loaded)
     assert !series_ref01_data_dt0_load_result.nil?
     assert_equal series_ref01_data_dt0_load_result["id"], series_ref01_data["id"]

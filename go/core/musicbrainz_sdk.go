@@ -245,96 +245,153 @@ func (sdk *MusicbrainzSDK) Direct(fetchargs map[string]any) (map[string]any, err
 }
 
 
+// Area returns a Area entity bound to this client.
+// Idiomatic usage: client.Area(nil).List(nil, nil) or
+// client.Area(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Area(data map[string]any) MusicbrainzEntity {
 	return NewAreaEntityFunc(sdk, data)
 }
 
 
+// Artist returns a Artist entity bound to this client.
+// Idiomatic usage: client.Artist(nil).List(nil, nil) or
+// client.Artist(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Artist(data map[string]any) MusicbrainzEntity {
 	return NewArtistEntityFunc(sdk, data)
 }
 
 
+// Collection returns a Collection entity bound to this client.
+// Idiomatic usage: client.Collection(nil).List(nil, nil) or
+// client.Collection(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Collection(data map[string]any) MusicbrainzEntity {
 	return NewCollectionEntityFunc(sdk, data)
 }
 
 
+// Event returns a Event entity bound to this client.
+// Idiomatic usage: client.Event(nil).List(nil, nil) or
+// client.Event(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Event(data map[string]any) MusicbrainzEntity {
 	return NewEventEntityFunc(sdk, data)
 }
 
 
+// Genre returns a Genre entity bound to this client.
+// Idiomatic usage: client.Genre(nil).List(nil, nil) or
+// client.Genre(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Genre(data map[string]any) MusicbrainzEntity {
 	return NewGenreEntityFunc(sdk, data)
 }
 
 
+// Instrument returns a Instrument entity bound to this client.
+// Idiomatic usage: client.Instrument(nil).List(nil, nil) or
+// client.Instrument(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Instrument(data map[string]any) MusicbrainzEntity {
 	return NewInstrumentEntityFunc(sdk, data)
 }
 
 
+// Label returns a Label entity bound to this client.
+// Idiomatic usage: client.Label(nil).List(nil, nil) or
+// client.Label(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Label(data map[string]any) MusicbrainzEntity {
 	return NewLabelEntityFunc(sdk, data)
 }
 
 
+// Place returns a Place entity bound to this client.
+// Idiomatic usage: client.Place(nil).List(nil, nil) or
+// client.Place(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Place(data map[string]any) MusicbrainzEntity {
 	return NewPlaceEntityFunc(sdk, data)
 }
 
 
+// Rating returns a Rating entity bound to this client.
+// Idiomatic usage: client.Rating(nil).List(nil, nil) or
+// client.Rating(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Rating(data map[string]any) MusicbrainzEntity {
 	return NewRatingEntityFunc(sdk, data)
 }
 
 
+// Recording returns a Recording entity bound to this client.
+// Idiomatic usage: client.Recording(nil).List(nil, nil) or
+// client.Recording(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Recording(data map[string]any) MusicbrainzEntity {
 	return NewRecordingEntityFunc(sdk, data)
 }
 
 
+// RecordingList returns a RecordingList entity bound to this client.
+// Idiomatic usage: client.RecordingList(nil).List(nil, nil) or
+// client.RecordingList(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) RecordingList(data map[string]any) MusicbrainzEntity {
 	return NewRecordingListEntityFunc(sdk, data)
 }
 
 
+// Release returns a Release entity bound to this client.
+// Idiomatic usage: client.Release(nil).List(nil, nil) or
+// client.Release(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Release(data map[string]any) MusicbrainzEntity {
 	return NewReleaseEntityFunc(sdk, data)
 }
 
 
+// ReleaseGroup returns a ReleaseGroup entity bound to this client.
+// Idiomatic usage: client.ReleaseGroup(nil).List(nil, nil) or
+// client.ReleaseGroup(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) ReleaseGroup(data map[string]any) MusicbrainzEntity {
 	return NewReleaseGroupEntityFunc(sdk, data)
 }
 
 
+// ReleaseList returns a ReleaseList entity bound to this client.
+// Idiomatic usage: client.ReleaseList(nil).List(nil, nil) or
+// client.ReleaseList(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) ReleaseList(data map[string]any) MusicbrainzEntity {
 	return NewReleaseListEntityFunc(sdk, data)
 }
 
 
+// Series returns a Series entity bound to this client.
+// Idiomatic usage: client.Series(nil).List(nil, nil) or
+// client.Series(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Series(data map[string]any) MusicbrainzEntity {
 	return NewSeriesEntityFunc(sdk, data)
 }
 
 
+// Tag returns a Tag entity bound to this client.
+// Idiomatic usage: client.Tag(nil).List(nil, nil) or
+// client.Tag(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Tag(data map[string]any) MusicbrainzEntity {
 	return NewTagEntityFunc(sdk, data)
 }
 
 
+// Url returns a Url entity bound to this client.
+// Idiomatic usage: client.Url(nil).List(nil, nil) or
+// client.Url(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Url(data map[string]any) MusicbrainzEntity {
 	return NewUrlEntityFunc(sdk, data)
 }
 
 
+// Work returns a Work entity bound to this client.
+// Idiomatic usage: client.Work(nil).List(nil, nil) or
+// client.Work(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) Work(data map[string]any) MusicbrainzEntity {
 	return NewWorkEntityFunc(sdk, data)
 }
 
 
+// WorkList returns a WorkList entity bound to this client.
+// Idiomatic usage: client.WorkList(nil).List(nil, nil) or
+// client.WorkList(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MusicbrainzSDK) WorkList(data map[string]any) MusicbrainzEntity {
 	return NewWorkListEntityFunc(sdk, data)
 }

@@ -43,16 +43,14 @@ class InstrumentEntityTest < Minitest::Test
     instrument_ref01_ent = client.Instrument(nil)
     instrument_ref01_match = {}
 
-    instrument_ref01_list_result, err = instrument_ref01_ent.list(instrument_ref01_match, nil)
-    assert_nil err
+    instrument_ref01_list_result = instrument_ref01_ent.list(instrument_ref01_match, nil)
     assert instrument_ref01_list_result.is_a?(Array)
 
     # LOAD
     instrument_ref01_match_dt0 = {
       "id" => instrument_ref01_data["id"],
     }
-    instrument_ref01_data_dt0_loaded, err = instrument_ref01_ent.load(instrument_ref01_match_dt0, nil)
-    assert_nil err
+    instrument_ref01_data_dt0_loaded = instrument_ref01_ent.load(instrument_ref01_match_dt0, nil)
     instrument_ref01_data_dt0_load_result = Helpers.to_map(instrument_ref01_data_dt0_loaded)
     assert !instrument_ref01_data_dt0_load_result.nil?
     assert_equal instrument_ref01_data_dt0_load_result["id"], instrument_ref01_data["id"]

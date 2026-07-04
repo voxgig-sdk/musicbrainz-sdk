@@ -43,16 +43,14 @@ class ReleaseGroupEntityTest < Minitest::Test
     release_group_ref01_ent = client.ReleaseGroup(nil)
     release_group_ref01_match = {}
 
-    release_group_ref01_list_result, err = release_group_ref01_ent.list(release_group_ref01_match, nil)
-    assert_nil err
+    release_group_ref01_list_result = release_group_ref01_ent.list(release_group_ref01_match, nil)
     assert release_group_ref01_list_result.is_a?(Array)
 
     # LOAD
     release_group_ref01_match_dt0 = {
       "id" => release_group_ref01_data["id"],
     }
-    release_group_ref01_data_dt0_loaded, err = release_group_ref01_ent.load(release_group_ref01_match_dt0, nil)
-    assert_nil err
+    release_group_ref01_data_dt0_loaded = release_group_ref01_ent.load(release_group_ref01_match_dt0, nil)
     release_group_ref01_data_dt0_load_result = Helpers.to_map(release_group_ref01_data_dt0_loaded)
     assert !release_group_ref01_data_dt0_load_result.nil?
     assert_equal release_group_ref01_data_dt0_load_result["id"], release_group_ref01_data["id"]

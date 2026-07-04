@@ -43,16 +43,14 @@ class GenreEntityTest < Minitest::Test
     genre_ref01_ent = client.Genre(nil)
     genre_ref01_match = {}
 
-    genre_ref01_list_result, err = genre_ref01_ent.list(genre_ref01_match, nil)
-    assert_nil err
+    genre_ref01_list_result = genre_ref01_ent.list(genre_ref01_match, nil)
     assert genre_ref01_list_result.is_a?(Array)
 
     # LOAD
     genre_ref01_match_dt0 = {
       "id" => genre_ref01_data["id"],
     }
-    genre_ref01_data_dt0_loaded, err = genre_ref01_ent.load(genre_ref01_match_dt0, nil)
-    assert_nil err
+    genre_ref01_data_dt0_loaded = genre_ref01_ent.load(genre_ref01_match_dt0, nil)
     genre_ref01_data_dt0_load_result = Helpers.to_map(genre_ref01_data_dt0_loaded)
     assert !genre_ref01_data_dt0_load_result.nil?
     assert_equal genre_ref01_data_dt0_load_result["id"], genre_ref01_data["id"]

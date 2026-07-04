@@ -50,16 +50,14 @@ class InstrumentEntityTest extends TestCase
         $instrument_ref01_ent = $client->Instrument(null);
         $instrument_ref01_match = [];
 
-        [$instrument_ref01_list_result, $err] = $instrument_ref01_ent->list($instrument_ref01_match, null);
-        $this->assertNull($err);
+        $instrument_ref01_list_result = $instrument_ref01_ent->list($instrument_ref01_match, null);
         $this->assertIsArray($instrument_ref01_list_result);
 
         // LOAD
         $instrument_ref01_match_dt0 = [
             "id" => $instrument_ref01_data["id"],
         ];
-        [$instrument_ref01_data_dt0_loaded, $err] = $instrument_ref01_ent->load($instrument_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $instrument_ref01_data_dt0_loaded = $instrument_ref01_ent->load($instrument_ref01_match_dt0, null);
         $instrument_ref01_data_dt0_load_result = Helpers::to_map($instrument_ref01_data_dt0_loaded);
         $this->assertNotNull($instrument_ref01_data_dt0_load_result);
         $this->assertEquals($instrument_ref01_data_dt0_load_result["id"], $instrument_ref01_data["id"]);

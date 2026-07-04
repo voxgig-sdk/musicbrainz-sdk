@@ -103,7 +103,7 @@ class MusicbrainzSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class MusicbrainzSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class MusicbrainzSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,150 +216,359 @@ class MusicbrainzSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Area($data = null)
+    private $_area = null;
+
+    // Idiomatic facade: $client->area()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Area() (PHP method
+    // names are case-insensitive).
+    public function area($data = null)
     {
         require_once __DIR__ . '/entity/area_entity.php';
+        if ($data === null) {
+            if ($this->_area === null) {
+                $this->_area = new AreaEntity($this, null);
+            }
+            return $this->_area;
+        }
         return new AreaEntity($this, $data);
     }
 
 
-    public function Artist($data = null)
+    private $_artist = null;
+
+    // Idiomatic facade: $client->artist()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Artist() (PHP method
+    // names are case-insensitive).
+    public function artist($data = null)
     {
         require_once __DIR__ . '/entity/artist_entity.php';
+        if ($data === null) {
+            if ($this->_artist === null) {
+                $this->_artist = new ArtistEntity($this, null);
+            }
+            return $this->_artist;
+        }
         return new ArtistEntity($this, $data);
     }
 
 
-    public function Collection($data = null)
+    private $_collection = null;
+
+    // Idiomatic facade: $client->collection()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Collection() (PHP method
+    // names are case-insensitive).
+    public function collection($data = null)
     {
         require_once __DIR__ . '/entity/collection_entity.php';
+        if ($data === null) {
+            if ($this->_collection === null) {
+                $this->_collection = new CollectionEntity($this, null);
+            }
+            return $this->_collection;
+        }
         return new CollectionEntity($this, $data);
     }
 
 
-    public function Event($data = null)
+    private $_event = null;
+
+    // Idiomatic facade: $client->event()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Event() (PHP method
+    // names are case-insensitive).
+    public function event($data = null)
     {
         require_once __DIR__ . '/entity/event_entity.php';
+        if ($data === null) {
+            if ($this->_event === null) {
+                $this->_event = new EventEntity($this, null);
+            }
+            return $this->_event;
+        }
         return new EventEntity($this, $data);
     }
 
 
-    public function Genre($data = null)
+    private $_genre = null;
+
+    // Idiomatic facade: $client->genre()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Genre() (PHP method
+    // names are case-insensitive).
+    public function genre($data = null)
     {
         require_once __DIR__ . '/entity/genre_entity.php';
+        if ($data === null) {
+            if ($this->_genre === null) {
+                $this->_genre = new GenreEntity($this, null);
+            }
+            return $this->_genre;
+        }
         return new GenreEntity($this, $data);
     }
 
 
-    public function Instrument($data = null)
+    private $_instrument = null;
+
+    // Idiomatic facade: $client->instrument()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Instrument() (PHP method
+    // names are case-insensitive).
+    public function instrument($data = null)
     {
         require_once __DIR__ . '/entity/instrument_entity.php';
+        if ($data === null) {
+            if ($this->_instrument === null) {
+                $this->_instrument = new InstrumentEntity($this, null);
+            }
+            return $this->_instrument;
+        }
         return new InstrumentEntity($this, $data);
     }
 
 
-    public function Label($data = null)
+    private $_label = null;
+
+    // Idiomatic facade: $client->label()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Label() (PHP method
+    // names are case-insensitive).
+    public function label($data = null)
     {
         require_once __DIR__ . '/entity/label_entity.php';
+        if ($data === null) {
+            if ($this->_label === null) {
+                $this->_label = new LabelEntity($this, null);
+            }
+            return $this->_label;
+        }
         return new LabelEntity($this, $data);
     }
 
 
-    public function Place($data = null)
+    private $_place = null;
+
+    // Idiomatic facade: $client->place()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Place() (PHP method
+    // names are case-insensitive).
+    public function place($data = null)
     {
         require_once __DIR__ . '/entity/place_entity.php';
+        if ($data === null) {
+            if ($this->_place === null) {
+                $this->_place = new PlaceEntity($this, null);
+            }
+            return $this->_place;
+        }
         return new PlaceEntity($this, $data);
     }
 
 
-    public function Rating($data = null)
+    private $_rating = null;
+
+    // Idiomatic facade: $client->rating()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Rating() (PHP method
+    // names are case-insensitive).
+    public function rating($data = null)
     {
         require_once __DIR__ . '/entity/rating_entity.php';
+        if ($data === null) {
+            if ($this->_rating === null) {
+                $this->_rating = new RatingEntity($this, null);
+            }
+            return $this->_rating;
+        }
         return new RatingEntity($this, $data);
     }
 
 
-    public function Recording($data = null)
+    private $_recording = null;
+
+    // Idiomatic facade: $client->recording()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Recording() (PHP method
+    // names are case-insensitive).
+    public function recording($data = null)
     {
         require_once __DIR__ . '/entity/recording_entity.php';
+        if ($data === null) {
+            if ($this->_recording === null) {
+                $this->_recording = new RecordingEntity($this, null);
+            }
+            return $this->_recording;
+        }
         return new RecordingEntity($this, $data);
     }
 
 
-    public function RecordingList($data = null)
+    private $_recording_list = null;
+
+    // Idiomatic facade: $client->recording_list()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias RecordingList() (PHP method
+    // names are case-insensitive).
+    public function recording_list($data = null)
     {
         require_once __DIR__ . '/entity/recording_list_entity.php';
+        if ($data === null) {
+            if ($this->_recording_list === null) {
+                $this->_recording_list = new RecordingListEntity($this, null);
+            }
+            return $this->_recording_list;
+        }
         return new RecordingListEntity($this, $data);
     }
 
 
-    public function Release($data = null)
+    private $_release = null;
+
+    // Idiomatic facade: $client->release()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Release() (PHP method
+    // names are case-insensitive).
+    public function release($data = null)
     {
         require_once __DIR__ . '/entity/release_entity.php';
+        if ($data === null) {
+            if ($this->_release === null) {
+                $this->_release = new ReleaseEntity($this, null);
+            }
+            return $this->_release;
+        }
         return new ReleaseEntity($this, $data);
     }
 
 
-    public function ReleaseGroup($data = null)
+    private $_release_group = null;
+
+    // Idiomatic facade: $client->release_group()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias ReleaseGroup() (PHP method
+    // names are case-insensitive).
+    public function release_group($data = null)
     {
         require_once __DIR__ . '/entity/release_group_entity.php';
+        if ($data === null) {
+            if ($this->_release_group === null) {
+                $this->_release_group = new ReleaseGroupEntity($this, null);
+            }
+            return $this->_release_group;
+        }
         return new ReleaseGroupEntity($this, $data);
     }
 
 
-    public function ReleaseList($data = null)
+    private $_release_list = null;
+
+    // Idiomatic facade: $client->release_list()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias ReleaseList() (PHP method
+    // names are case-insensitive).
+    public function release_list($data = null)
     {
         require_once __DIR__ . '/entity/release_list_entity.php';
+        if ($data === null) {
+            if ($this->_release_list === null) {
+                $this->_release_list = new ReleaseListEntity($this, null);
+            }
+            return $this->_release_list;
+        }
         return new ReleaseListEntity($this, $data);
     }
 
 
-    public function Series($data = null)
+    private $_series = null;
+
+    // Idiomatic facade: $client->series()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Series() (PHP method
+    // names are case-insensitive).
+    public function series($data = null)
     {
         require_once __DIR__ . '/entity/series_entity.php';
+        if ($data === null) {
+            if ($this->_series === null) {
+                $this->_series = new SeriesEntity($this, null);
+            }
+            return $this->_series;
+        }
         return new SeriesEntity($this, $data);
     }
 
 
-    public function Tag($data = null)
+    private $_tag = null;
+
+    // Idiomatic facade: $client->tag()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Tag() (PHP method
+    // names are case-insensitive).
+    public function tag($data = null)
     {
         require_once __DIR__ . '/entity/tag_entity.php';
+        if ($data === null) {
+            if ($this->_tag === null) {
+                $this->_tag = new TagEntity($this, null);
+            }
+            return $this->_tag;
+        }
         return new TagEntity($this, $data);
     }
 
 
-    public function Url($data = null)
+    private $_url = null;
+
+    // Idiomatic facade: $client->url()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Url() (PHP method
+    // names are case-insensitive).
+    public function url($data = null)
     {
         require_once __DIR__ . '/entity/url_entity.php';
+        if ($data === null) {
+            if ($this->_url === null) {
+                $this->_url = new UrlEntity($this, null);
+            }
+            return $this->_url;
+        }
         return new UrlEntity($this, $data);
     }
 
 
-    public function Work($data = null)
+    private $_work = null;
+
+    // Idiomatic facade: $client->work()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Work() (PHP method
+    // names are case-insensitive).
+    public function work($data = null)
     {
         require_once __DIR__ . '/entity/work_entity.php';
+        if ($data === null) {
+            if ($this->_work === null) {
+                $this->_work = new WorkEntity($this, null);
+            }
+            return $this->_work;
+        }
         return new WorkEntity($this, $data);
     }
 
 
-    public function WorkList($data = null)
+    private $_work_list = null;
+
+    // Idiomatic facade: $client->work_list()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias WorkList() (PHP method
+    // names are case-insensitive).
+    public function work_list($data = null)
     {
         require_once __DIR__ . '/entity/work_list_entity.php';
+        if ($data === null) {
+            if ($this->_work_list === null) {
+                $this->_work_list = new WorkListEntity($this, null);
+            }
+            return $this->_work_list;
+        }
         return new WorkListEntity($this, $data);
     }
 

@@ -49,8 +49,7 @@ class RecordingListEntityTest extends TestCase
         // LOAD
         $recording_list_ref01_ent = $client->RecordingList(null);
         $recording_list_ref01_match_dt0 = [];
-        [$recording_list_ref01_data_dt0_loaded, $err] = $recording_list_ref01_ent->load($recording_list_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $recording_list_ref01_data_dt0_loaded = $recording_list_ref01_ent->load($recording_list_ref01_match_dt0, null);
         $this->assertNotNull($recording_list_ref01_data_dt0_loaded);
 
     }

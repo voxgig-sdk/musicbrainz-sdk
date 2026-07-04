@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch WorkListLoadMatch
+---@param ctrl? table
+---@return WorkList
+---@return string? err
 function WorkListEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

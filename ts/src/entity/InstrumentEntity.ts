@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Instrument,
+  InstrumentLoadMatch,
+  InstrumentListMatch,
+} from '../MusicbrainzTypes'
 
 // TODO: needs Entity superclass
-class InstrumentEntity extends MusicbrainzEntityBase {
+class InstrumentEntity extends MusicbrainzEntityBase<Instrument> {
 
   constructor(client: MusicbrainzSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class InstrumentEntity extends MusicbrainzEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: InstrumentLoadMatch, ctrl?: Control): Promise<Instrument> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class InstrumentEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Instrument> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: InstrumentListMatch, ctrl?: Control): Promise<Instrument[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class InstrumentEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Instrument[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

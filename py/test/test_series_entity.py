@@ -50,16 +50,14 @@ class TestSeriesEntity:
         series_ref01_ent = client.Series(None)
         series_ref01_match = {}
 
-        series_ref01_list_result, err = series_ref01_ent.list(series_ref01_match, None)
-        assert err is None
+        series_ref01_list_result = series_ref01_ent.list(series_ref01_match, None)
         assert isinstance(series_ref01_list_result, list)
 
         # LOAD
         series_ref01_match_dt0 = {
             "id": series_ref01_data["id"],
         }
-        series_ref01_data_dt0_loaded, err = series_ref01_ent.load(series_ref01_match_dt0, None)
-        assert err is None
+        series_ref01_data_dt0_loaded = series_ref01_ent.load(series_ref01_match_dt0, None)
         series_ref01_data_dt0_load_result = helpers.to_map(series_ref01_data_dt0_loaded)
         assert series_ref01_data_dt0_load_result is not None
         assert series_ref01_data_dt0_load_result["id"] == series_ref01_data["id"]

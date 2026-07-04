@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Area,
+  AreaLoadMatch,
+  AreaListMatch,
+} from '../MusicbrainzTypes'
 
 // TODO: needs Entity superclass
-class AreaEntity extends MusicbrainzEntityBase {
+class AreaEntity extends MusicbrainzEntityBase<Area> {
 
   constructor(client: MusicbrainzSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class AreaEntity extends MusicbrainzEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: AreaLoadMatch, ctrl?: Control): Promise<Area> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class AreaEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Area> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: AreaListMatch, ctrl?: Control): Promise<Area[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class AreaEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Area[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -43,16 +43,14 @@ class UrlEntityTest < Minitest::Test
     url_ref01_ent = client.Url(nil)
     url_ref01_match = {}
 
-    url_ref01_list_result, err = url_ref01_ent.list(url_ref01_match, nil)
-    assert_nil err
+    url_ref01_list_result = url_ref01_ent.list(url_ref01_match, nil)
     assert url_ref01_list_result.is_a?(Array)
 
     # LOAD
     url_ref01_match_dt0 = {
       "id" => url_ref01_data["id"],
     }
-    url_ref01_data_dt0_loaded, err = url_ref01_ent.load(url_ref01_match_dt0, nil)
-    assert_nil err
+    url_ref01_data_dt0_loaded = url_ref01_ent.load(url_ref01_match_dt0, nil)
     url_ref01_data_dt0_load_result = Helpers.to_map(url_ref01_data_dt0_loaded)
     assert !url_ref01_data_dt0_load_result.nil?
     assert_equal url_ref01_data_dt0_load_result["id"], url_ref01_data["id"]

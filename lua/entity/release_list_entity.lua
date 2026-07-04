@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ReleaseListLoadMatch
+---@param ctrl? table
+---@return ReleaseList
+---@return string? err
 function ReleaseListEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

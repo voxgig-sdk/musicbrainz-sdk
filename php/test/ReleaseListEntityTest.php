@@ -49,8 +49,7 @@ class ReleaseListEntityTest extends TestCase
         // LOAD
         $release_list_ref01_ent = $client->ReleaseList(null);
         $release_list_ref01_match_dt0 = [];
-        [$release_list_ref01_data_dt0_loaded, $err] = $release_list_ref01_ent->load($release_list_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $release_list_ref01_data_dt0_loaded = $release_list_ref01_ent->load($release_list_ref01_match_dt0, null);
         $this->assertNotNull($release_list_ref01_data_dt0_loaded);
 
     }

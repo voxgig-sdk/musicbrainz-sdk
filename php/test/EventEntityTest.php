@@ -50,16 +50,14 @@ class EventEntityTest extends TestCase
         $event_ref01_ent = $client->Event(null);
         $event_ref01_match = [];
 
-        [$event_ref01_list_result, $err] = $event_ref01_ent->list($event_ref01_match, null);
-        $this->assertNull($err);
+        $event_ref01_list_result = $event_ref01_ent->list($event_ref01_match, null);
         $this->assertIsArray($event_ref01_list_result);
 
         // LOAD
         $event_ref01_match_dt0 = [
             "id" => $event_ref01_data["id"],
         ];
-        [$event_ref01_data_dt0_loaded, $err] = $event_ref01_ent->load($event_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $event_ref01_data_dt0_loaded = $event_ref01_ent->load($event_ref01_match_dt0, null);
         $event_ref01_data_dt0_load_result = Helpers::to_map($event_ref01_data_dt0_loaded);
         $this->assertNotNull($event_ref01_data_dt0_load_result);
         $this->assertEquals($event_ref01_data_dt0_load_result["id"], $event_ref01_data["id"]);

@@ -45,6 +45,7 @@ class GenreEntity
     end
   end
 
+  # @return [Genre, Hash] the current Genre data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class GenreEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Genre fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Genre.
+  #
+  # @param reqmatch [GenreLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Genre, Hash] the loaded Genre; raises MusicbrainzError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class GenreEntity
 
 
   
+  # List Genre items matching the given filter.
+  #
+  # @param reqmatch [GenreListMatch, Hash, nil] match filter (any subset of Genre fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Genre>, Array] the matching Genre items; raises MusicbrainzError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

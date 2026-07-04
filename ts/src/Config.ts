@@ -248,7 +248,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -510,7 +511,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -862,7 +864,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -1018,7 +1021,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -1204,7 +1208,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -1439,7 +1444,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -1676,7 +1682,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -1968,7 +1975,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -2082,7 +2090,8 @@ class Config {
                     "name": "isrc",
                     "orig": "isrc",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -2379,7 +2388,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -2609,7 +2619,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -2723,7 +2734,8 @@ class Config {
                     "name": "discid",
                     "orig": "discid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -2911,7 +2923,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -3155,7 +3168,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -3360,7 +3374,8 @@ class Config {
                     "name": "id",
                     "orig": "mbid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -3456,7 +3471,8 @@ class Config {
                     "name": "iswc",
                     "orig": "iswc",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

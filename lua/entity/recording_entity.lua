@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch RecordingLoadMatch
+---@param ctrl? table
+---@return Recording
+---@return string? err
 function RecordingEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch RecordingListMatch
+---@param ctrl? table
+---@return Recording[]
+---@return string? err
 function RecordingEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

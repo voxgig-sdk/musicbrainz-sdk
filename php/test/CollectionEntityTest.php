@@ -50,8 +50,7 @@ class CollectionEntityTest extends TestCase
         $collection_ref01_ent = $client->Collection(null);
         $collection_ref01_match = [];
 
-        [$collection_ref01_list_result, $err] = $collection_ref01_ent->list($collection_ref01_match, null);
-        $this->assertNull($err);
+        $collection_ref01_list_result = $collection_ref01_ent->list($collection_ref01_match, null);
         $this->assertIsArray($collection_ref01_list_result);
 
     }

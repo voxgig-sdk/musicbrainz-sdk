@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch RatingLoadMatch
+---@param ctrl? table
+---@return Rating
+---@return string? err
 function RatingEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -106,6 +110,10 @@ end
 
 
 
+---@param reqdata RatingCreateData
+---@param ctrl? table
+---@return Rating
+---@return string? err
 function RatingEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Release,
+  ReleaseLoadMatch,
+  ReleaseListMatch,
+} from '../MusicbrainzTypes'
 
 // TODO: needs Entity superclass
-class ReleaseEntity extends MusicbrainzEntityBase {
+class ReleaseEntity extends MusicbrainzEntityBase<Release> {
 
   constructor(client: MusicbrainzSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class ReleaseEntity extends MusicbrainzEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ReleaseLoadMatch, ctrl?: Control): Promise<Release> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class ReleaseEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Release> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ReleaseListMatch, ctrl?: Control): Promise<Release[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class ReleaseEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Release[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

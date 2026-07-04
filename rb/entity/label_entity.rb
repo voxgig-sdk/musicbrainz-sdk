@@ -45,6 +45,7 @@ class LabelEntity
     end
   end
 
+  # @return [Label, Hash] the current Label data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class LabelEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Label fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Label.
+  #
+  # @param reqmatch [LabelLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Label, Hash] the loaded Label; raises MusicbrainzError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class LabelEntity
 
 
   
+  # List Label items matching the given filter.
+  #
+  # @param reqmatch [LabelListMatch, Hash, nil] match filter (any subset of Label fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Label>, Array] the matching Label items; raises MusicbrainzError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

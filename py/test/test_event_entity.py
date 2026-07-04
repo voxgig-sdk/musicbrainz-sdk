@@ -50,16 +50,14 @@ class TestEventEntity:
         event_ref01_ent = client.Event(None)
         event_ref01_match = {}
 
-        event_ref01_list_result, err = event_ref01_ent.list(event_ref01_match, None)
-        assert err is None
+        event_ref01_list_result = event_ref01_ent.list(event_ref01_match, None)
         assert isinstance(event_ref01_list_result, list)
 
         # LOAD
         event_ref01_match_dt0 = {
             "id": event_ref01_data["id"],
         }
-        event_ref01_data_dt0_loaded, err = event_ref01_ent.load(event_ref01_match_dt0, None)
-        assert err is None
+        event_ref01_data_dt0_loaded = event_ref01_ent.load(event_ref01_match_dt0, None)
         event_ref01_data_dt0_load_result = helpers.to_map(event_ref01_data_dt0_loaded)
         assert event_ref01_data_dt0_load_result is not None
         assert event_ref01_data_dt0_load_result["id"] == event_ref01_data["id"]

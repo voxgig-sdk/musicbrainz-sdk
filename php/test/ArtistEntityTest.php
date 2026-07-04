@@ -50,16 +50,14 @@ class ArtistEntityTest extends TestCase
         $artist_ref01_ent = $client->Artist(null);
         $artist_ref01_match = [];
 
-        [$artist_ref01_list_result, $err] = $artist_ref01_ent->list($artist_ref01_match, null);
-        $this->assertNull($err);
+        $artist_ref01_list_result = $artist_ref01_ent->list($artist_ref01_match, null);
         $this->assertIsArray($artist_ref01_list_result);
 
         // LOAD
         $artist_ref01_match_dt0 = [
             "id" => $artist_ref01_data["id"],
         ];
-        [$artist_ref01_data_dt0_loaded, $err] = $artist_ref01_ent->load($artist_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $artist_ref01_data_dt0_loaded = $artist_ref01_ent->load($artist_ref01_match_dt0, null);
         $artist_ref01_data_dt0_load_result = Helpers::to_map($artist_ref01_data_dt0_loaded);
         $this->assertNotNull($artist_ref01_data_dt0_load_result);
         $this->assertEquals($artist_ref01_data_dt0_load_result["id"], $artist_ref01_data["id"]);

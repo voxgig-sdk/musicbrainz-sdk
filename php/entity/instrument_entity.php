@@ -55,6 +55,9 @@ class InstrumentEntity
         return new InstrumentEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Instrument|array $args Instrument data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class InstrumentEntity
         }
     }
 
+    /**
+     * @return Instrument|array The current Instrument data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Instrument fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class InstrumentEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Instrument fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class InstrumentEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Instrument.
+     *
+     * @param InstrumentLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed InstrumentLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Instrument|array The loaded Instrument as an assoc-array at the
+     *   SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class InstrumentEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Instrument items matching the given filter.
+     *
+     * @param InstrumentListMatch|array|null $reqmatch Match filter (any subset
+     *   of Instrument fields) as an assoc-array; InstrumentListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Instrument[]|array A list of Instrument items as assoc-arrays at
+     *   the SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class InstrumentEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

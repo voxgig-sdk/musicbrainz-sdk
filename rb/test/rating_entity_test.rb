@@ -36,15 +36,13 @@ class RatingEntityTest < Minitest::Test
     rating_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.rating"), "rating_ref01"))
 
-    rating_ref01_data_result, err = rating_ref01_ent.create(rating_ref01_data, nil)
-    assert_nil err
+    rating_ref01_data_result = rating_ref01_ent.create(rating_ref01_data, nil)
     rating_ref01_data = Helpers.to_map(rating_ref01_data_result)
     assert !rating_ref01_data.nil?
 
     # LOAD
     rating_ref01_match_dt0 = {}
-    rating_ref01_data_dt0_loaded, err = rating_ref01_ent.load(rating_ref01_match_dt0, nil)
-    assert_nil err
+    rating_ref01_data_dt0_loaded = rating_ref01_ent.load(rating_ref01_match_dt0, nil)
     assert !rating_ref01_data_dt0_loaded.nil?
 
   end

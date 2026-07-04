@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  WorkList,
+  WorkListLoadMatch,
+} from '../MusicbrainzTypes'
 
 // TODO: needs Entity superclass
-class WorkListEntity extends MusicbrainzEntityBase {
+class WorkListEntity extends MusicbrainzEntityBase<WorkList> {
 
   constructor(client: MusicbrainzSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class WorkListEntity extends MusicbrainzEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: WorkListLoadMatch, ctrl?: Control): Promise<WorkList> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class WorkListEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<WorkList> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

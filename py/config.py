@@ -183,6 +183,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -445,6 +446,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -797,6 +799,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -953,6 +956,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -1139,6 +1143,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -1374,6 +1379,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -1611,6 +1617,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -1903,6 +1910,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -2017,6 +2025,7 @@ def make_config():
                       "orig": "isrc",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -2314,6 +2323,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -2544,6 +2554,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -2658,6 +2669,7 @@ def make_config():
                       "orig": "discid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -2846,6 +2858,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -3090,6 +3103,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -3295,6 +3309,7 @@ def make_config():
                       "orig": "mbid",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -3391,6 +3406,7 @@ def make_config():
                       "orig": "iswc",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [

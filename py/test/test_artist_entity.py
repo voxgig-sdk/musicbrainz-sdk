@@ -50,16 +50,14 @@ class TestArtistEntity:
         artist_ref01_ent = client.Artist(None)
         artist_ref01_match = {}
 
-        artist_ref01_list_result, err = artist_ref01_ent.list(artist_ref01_match, None)
-        assert err is None
+        artist_ref01_list_result = artist_ref01_ent.list(artist_ref01_match, None)
         assert isinstance(artist_ref01_list_result, list)
 
         # LOAD
         artist_ref01_match_dt0 = {
             "id": artist_ref01_data["id"],
         }
-        artist_ref01_data_dt0_loaded, err = artist_ref01_ent.load(artist_ref01_match_dt0, None)
-        assert err is None
+        artist_ref01_data_dt0_loaded = artist_ref01_ent.load(artist_ref01_match_dt0, None)
         artist_ref01_data_dt0_load_result = helpers.to_map(artist_ref01_data_dt0_loaded)
         assert artist_ref01_data_dt0_load_result is not None
         assert artist_ref01_data_dt0_load_result["id"] == artist_ref01_data["id"]

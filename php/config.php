@@ -188,6 +188,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -450,6 +451,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -802,6 +804,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -958,6 +961,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -1144,6 +1148,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -1379,6 +1384,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -1616,6 +1622,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -1908,6 +1915,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -2022,6 +2030,7 @@ class MusicbrainzConfig
                         'orig' => 'isrc',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -2319,6 +2328,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -2549,6 +2559,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -2663,6 +2674,7 @@ class MusicbrainzConfig
                         'orig' => 'discid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -2851,6 +2863,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -3095,6 +3108,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -3300,6 +3314,7 @@ class MusicbrainzConfig
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -3396,6 +3411,7 @@ class MusicbrainzConfig
                         'orig' => 'iswc',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [

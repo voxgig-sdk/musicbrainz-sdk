@@ -45,6 +45,7 @@ class InstrumentEntity
     end
   end
 
+  # @return [Instrument, Hash] the current Instrument data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class InstrumentEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Instrument fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Instrument.
+  #
+  # @param reqmatch [InstrumentLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Instrument, Hash] the loaded Instrument; raises MusicbrainzError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class InstrumentEntity
 
 
   
+  # List Instrument items matching the given filter.
+  #
+  # @param reqmatch [InstrumentListMatch, Hash, nil] match filter (any subset of Instrument fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Instrument>, Array] the matching Instrument items; raises MusicbrainzError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

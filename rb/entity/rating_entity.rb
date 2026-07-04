@@ -45,6 +45,7 @@ class RatingEntity
     end
   end
 
+  # @return [Rating, Hash] the current Rating data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class RatingEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Rating fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Rating.
+  #
+  # @param reqmatch [RatingLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Rating, Hash] the loaded Rating; raises MusicbrainzError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -88,6 +95,11 @@ class RatingEntity
   
 
   
+  # Create a new Rating.
+  #
+  # @param reqdata [RatingCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Rating, Hash] the created Rating; raises MusicbrainzError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

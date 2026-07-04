@@ -55,6 +55,9 @@ class ArtistEntity
         return new ArtistEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Artist|array $args Artist data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class ArtistEntity
         }
     }
 
+    /**
+     * @return Artist|array The current Artist data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Artist fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class ArtistEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Artist fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class ArtistEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Artist.
+     *
+     * @param ArtistLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed ArtistLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Artist|array The loaded Artist as an assoc-array at the
+     *   SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class ArtistEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Artist items matching the given filter.
+     *
+     * @param ArtistListMatch|array|null $reqmatch Match filter (any subset
+     *   of Artist fields) as an assoc-array; ArtistListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Artist[]|array A list of Artist items as assoc-arrays at
+     *   the SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class ArtistEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

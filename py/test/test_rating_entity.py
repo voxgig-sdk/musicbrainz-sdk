@@ -44,15 +44,12 @@ class TestRatingEntity:
         rating_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.rating"), "rating_ref01"))
 
-        rating_ref01_data_result, err = rating_ref01_ent.create(rating_ref01_data, None)
-        assert err is None
-        rating_ref01_data = helpers.to_map(rating_ref01_data_result)
+        rating_ref01_data = helpers.to_map(rating_ref01_ent.create(rating_ref01_data, None))
         assert rating_ref01_data is not None
 
         # LOAD
         rating_ref01_match_dt0 = {}
-        rating_ref01_data_dt0_loaded, err = rating_ref01_ent.load(rating_ref01_match_dt0, None)
-        assert err is None
+        rating_ref01_data_dt0_loaded = rating_ref01_ent.load(rating_ref01_match_dt0, None)
         assert rating_ref01_data_dt0_loaded is not None
 
 

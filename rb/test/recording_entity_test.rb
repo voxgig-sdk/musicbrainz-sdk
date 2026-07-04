@@ -43,16 +43,14 @@ class RecordingEntityTest < Minitest::Test
     recording_ref01_ent = client.Recording(nil)
     recording_ref01_match = {}
 
-    recording_ref01_list_result, err = recording_ref01_ent.list(recording_ref01_match, nil)
-    assert_nil err
+    recording_ref01_list_result = recording_ref01_ent.list(recording_ref01_match, nil)
     assert recording_ref01_list_result.is_a?(Array)
 
     # LOAD
     recording_ref01_match_dt0 = {
       "id" => recording_ref01_data["id"],
     }
-    recording_ref01_data_dt0_loaded, err = recording_ref01_ent.load(recording_ref01_match_dt0, nil)
-    assert_nil err
+    recording_ref01_data_dt0_loaded = recording_ref01_ent.load(recording_ref01_match_dt0, nil)
     recording_ref01_data_dt0_load_result = Helpers.to_map(recording_ref01_data_dt0_loaded)
     assert !recording_ref01_data_dt0_load_result.nil?
     assert_equal recording_ref01_data_dt0_load_result["id"], recording_ref01_data["id"]

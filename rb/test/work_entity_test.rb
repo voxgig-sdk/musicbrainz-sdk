@@ -43,16 +43,14 @@ class WorkEntityTest < Minitest::Test
     work_ref01_ent = client.Work(nil)
     work_ref01_match = {}
 
-    work_ref01_list_result, err = work_ref01_ent.list(work_ref01_match, nil)
-    assert_nil err
+    work_ref01_list_result = work_ref01_ent.list(work_ref01_match, nil)
     assert work_ref01_list_result.is_a?(Array)
 
     # LOAD
     work_ref01_match_dt0 = {
       "id" => work_ref01_data["id"],
     }
-    work_ref01_data_dt0_loaded, err = work_ref01_ent.load(work_ref01_match_dt0, nil)
-    assert_nil err
+    work_ref01_data_dt0_loaded = work_ref01_ent.load(work_ref01_match_dt0, nil)
     work_ref01_data_dt0_load_result = Helpers.to_map(work_ref01_data_dt0_loaded)
     assert !work_ref01_data_dt0_load_result.nil?
     assert_equal work_ref01_data_dt0_load_result["id"], work_ref01_data["id"]

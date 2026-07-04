@@ -55,6 +55,9 @@ class WorkEntity
         return new WorkEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Work|array $args Work data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class WorkEntity
         }
     }
 
+    /**
+     * @return Work|array The current Work data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Work fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class WorkEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Work fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class WorkEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Work.
+     *
+     * @param WorkLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed WorkLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Work|array The loaded Work as an assoc-array at the
+     *   SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class WorkEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Work items matching the given filter.
+     *
+     * @param WorkListMatch|array|null $reqmatch Match filter (any subset
+     *   of Work fields) as an assoc-array; WorkListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Work[]|array A list of Work items as assoc-arrays at
+     *   the SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class WorkEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

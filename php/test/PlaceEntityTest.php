@@ -50,16 +50,14 @@ class PlaceEntityTest extends TestCase
         $place_ref01_ent = $client->Place(null);
         $place_ref01_match = [];
 
-        [$place_ref01_list_result, $err] = $place_ref01_ent->list($place_ref01_match, null);
-        $this->assertNull($err);
+        $place_ref01_list_result = $place_ref01_ent->list($place_ref01_match, null);
         $this->assertIsArray($place_ref01_list_result);
 
         // LOAD
         $place_ref01_match_dt0 = [
             "id" => $place_ref01_data["id"],
         ];
-        [$place_ref01_data_dt0_loaded, $err] = $place_ref01_ent->load($place_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $place_ref01_data_dt0_loaded = $place_ref01_ent->load($place_ref01_match_dt0, null);
         $place_ref01_data_dt0_load_result = Helpers::to_map($place_ref01_data_dt0_loaded);
         $this->assertNotNull($place_ref01_data_dt0_load_result);
         $this->assertEquals($place_ref01_data_dt0_load_result["id"], $place_ref01_data["id"]);

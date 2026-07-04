@@ -50,16 +50,14 @@ class LabelEntityTest extends TestCase
         $label_ref01_ent = $client->Label(null);
         $label_ref01_match = [];
 
-        [$label_ref01_list_result, $err] = $label_ref01_ent->list($label_ref01_match, null);
-        $this->assertNull($err);
+        $label_ref01_list_result = $label_ref01_ent->list($label_ref01_match, null);
         $this->assertIsArray($label_ref01_list_result);
 
         // LOAD
         $label_ref01_match_dt0 = [
             "id" => $label_ref01_data["id"],
         ];
-        [$label_ref01_data_dt0_loaded, $err] = $label_ref01_ent->load($label_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $label_ref01_data_dt0_loaded = $label_ref01_ent->load($label_ref01_match_dt0, null);
         $label_ref01_data_dt0_load_result = Helpers::to_map($label_ref01_data_dt0_loaded);
         $this->assertNotNull($label_ref01_data_dt0_load_result);
         $this->assertEquals($label_ref01_data_dt0_load_result["id"], $label_ref01_data["id"]);

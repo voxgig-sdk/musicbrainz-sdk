@@ -50,16 +50,14 @@ class TestInstrumentEntity:
         instrument_ref01_ent = client.Instrument(None)
         instrument_ref01_match = {}
 
-        instrument_ref01_list_result, err = instrument_ref01_ent.list(instrument_ref01_match, None)
-        assert err is None
+        instrument_ref01_list_result = instrument_ref01_ent.list(instrument_ref01_match, None)
         assert isinstance(instrument_ref01_list_result, list)
 
         # LOAD
         instrument_ref01_match_dt0 = {
             "id": instrument_ref01_data["id"],
         }
-        instrument_ref01_data_dt0_loaded, err = instrument_ref01_ent.load(instrument_ref01_match_dt0, None)
-        assert err is None
+        instrument_ref01_data_dt0_loaded = instrument_ref01_ent.load(instrument_ref01_match_dt0, None)
         instrument_ref01_data_dt0_load_result = helpers.to_map(instrument_ref01_data_dt0_loaded)
         assert instrument_ref01_data_dt0_load_result is not None
         assert instrument_ref01_data_dt0_load_result["id"] == instrument_ref01_data["id"]

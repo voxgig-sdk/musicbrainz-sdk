@@ -50,16 +50,14 @@ class TestLabelEntity:
         label_ref01_ent = client.Label(None)
         label_ref01_match = {}
 
-        label_ref01_list_result, err = label_ref01_ent.list(label_ref01_match, None)
-        assert err is None
+        label_ref01_list_result = label_ref01_ent.list(label_ref01_match, None)
         assert isinstance(label_ref01_list_result, list)
 
         # LOAD
         label_ref01_match_dt0 = {
             "id": label_ref01_data["id"],
         }
-        label_ref01_data_dt0_loaded, err = label_ref01_ent.load(label_ref01_match_dt0, None)
-        assert err is None
+        label_ref01_data_dt0_loaded = label_ref01_ent.load(label_ref01_match_dt0, None)
         label_ref01_data_dt0_load_result = helpers.to_map(label_ref01_data_dt0_loaded)
         assert label_ref01_data_dt0_load_result is not None
         assert label_ref01_data_dt0_load_result["id"] == label_ref01_data["id"]

@@ -36,15 +36,13 @@ class TagEntityTest < Minitest::Test
     tag_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.tag"), "tag_ref01"))
 
-    tag_ref01_data_result, err = tag_ref01_ent.create(tag_ref01_data, nil)
-    assert_nil err
+    tag_ref01_data_result = tag_ref01_ent.create(tag_ref01_data, nil)
     tag_ref01_data = Helpers.to_map(tag_ref01_data_result)
     assert !tag_ref01_data.nil?
 
     # LOAD
     tag_ref01_match_dt0 = {}
-    tag_ref01_data_dt0_loaded, err = tag_ref01_ent.load(tag_ref01_match_dt0, nil)
-    assert_nil err
+    tag_ref01_data_dt0_loaded = tag_ref01_ent.load(tag_ref01_match_dt0, nil)
     assert !tag_ref01_data_dt0_loaded.nil?
 
   end

@@ -182,6 +182,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -444,6 +445,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -796,6 +798,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -952,6 +955,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -1138,6 +1142,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -1373,6 +1378,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -1610,6 +1616,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -1902,6 +1909,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -2016,6 +2024,7 @@ func MakeConfig() map[string]any {
 											"orig": "isrc",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -2313,6 +2322,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -2543,6 +2553,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -2657,6 +2668,7 @@ func MakeConfig() map[string]any {
 											"orig": "discid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -2845,6 +2857,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -3089,6 +3102,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -3294,6 +3308,7 @@ func MakeConfig() map[string]any {
 											"orig": "mbid",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -3390,6 +3405,7 @@ func MakeConfig() map[string]any {
 											"orig": "iswc",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{

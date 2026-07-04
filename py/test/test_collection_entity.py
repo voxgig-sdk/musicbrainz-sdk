@@ -50,8 +50,7 @@ class TestCollectionEntity:
         collection_ref01_ent = client.Collection(None)
         collection_ref01_match = {}
 
-        collection_ref01_list_result, err = collection_ref01_ent.list(collection_ref01_match, None)
-        assert err is None
+        collection_ref01_list_result = collection_ref01_ent.list(collection_ref01_match, None)
         assert isinstance(collection_ref01_list_result, list)
 
 

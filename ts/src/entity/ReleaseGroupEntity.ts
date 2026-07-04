@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  ReleaseGroup,
+  ReleaseGroupLoadMatch,
+  ReleaseGroupListMatch,
+} from '../MusicbrainzTypes'
 
 // TODO: needs Entity superclass
-class ReleaseGroupEntity extends MusicbrainzEntityBase {
+class ReleaseGroupEntity extends MusicbrainzEntityBase<ReleaseGroup> {
 
   constructor(client: MusicbrainzSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class ReleaseGroupEntity extends MusicbrainzEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ReleaseGroupLoadMatch, ctrl?: Control): Promise<ReleaseGroup> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class ReleaseGroupEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<ReleaseGroup> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ReleaseGroupListMatch, ctrl?: Control): Promise<ReleaseGroup[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class ReleaseGroupEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<ReleaseGroup[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -55,6 +55,9 @@ class ReleaseGroupEntity
         return new ReleaseGroupEntity($this->_client, $opts);
     }
 
+    /**
+     * @param ReleaseGroup|array $args ReleaseGroup data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class ReleaseGroupEntity
         }
     }
 
+    /**
+     * @return ReleaseGroup|array The current ReleaseGroup data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of ReleaseGroup fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class ReleaseGroupEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of ReleaseGroup fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class ReleaseGroupEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single ReleaseGroup.
+     *
+     * @param ReleaseGroupLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed ReleaseGroupLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return ReleaseGroup|array The loaded ReleaseGroup as an assoc-array at the
+     *   SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class ReleaseGroupEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List ReleaseGroup items matching the given filter.
+     *
+     * @param ReleaseGroupListMatch|array|null $reqmatch Match filter (any subset
+     *   of ReleaseGroup fields) as an assoc-array; ReleaseGroupListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return ReleaseGroup[]|array A list of ReleaseGroup items as assoc-arrays at
+     *   the SDK boundary; throws MusicbrainzError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class ReleaseGroupEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

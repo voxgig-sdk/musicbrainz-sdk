@@ -50,16 +50,14 @@ class SeriesEntityTest extends TestCase
         $series_ref01_ent = $client->Series(null);
         $series_ref01_match = [];
 
-        [$series_ref01_list_result, $err] = $series_ref01_ent->list($series_ref01_match, null);
-        $this->assertNull($err);
+        $series_ref01_list_result = $series_ref01_ent->list($series_ref01_match, null);
         $this->assertIsArray($series_ref01_list_result);
 
         // LOAD
         $series_ref01_match_dt0 = [
             "id" => $series_ref01_data["id"],
         ];
-        [$series_ref01_data_dt0_loaded, $err] = $series_ref01_ent->load($series_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $series_ref01_data_dt0_loaded = $series_ref01_ent->load($series_ref01_match_dt0, null);
         $series_ref01_data_dt0_load_result = Helpers::to_map($series_ref01_data_dt0_loaded);
         $this->assertNotNull($series_ref01_data_dt0_load_result);
         $this->assertEquals($series_ref01_data_dt0_load_result["id"], $series_ref01_data["id"]);

@@ -50,16 +50,14 @@ class UrlEntityTest extends TestCase
         $url_ref01_ent = $client->Url(null);
         $url_ref01_match = [];
 
-        [$url_ref01_list_result, $err] = $url_ref01_ent->list($url_ref01_match, null);
-        $this->assertNull($err);
+        $url_ref01_list_result = $url_ref01_ent->list($url_ref01_match, null);
         $this->assertIsArray($url_ref01_list_result);
 
         // LOAD
         $url_ref01_match_dt0 = [
             "id" => $url_ref01_data["id"],
         ];
-        [$url_ref01_data_dt0_loaded, $err] = $url_ref01_ent->load($url_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $url_ref01_data_dt0_loaded = $url_ref01_ent->load($url_ref01_match_dt0, null);
         $url_ref01_data_dt0_load_result = Helpers::to_map($url_ref01_data_dt0_loaded);
         $this->assertNotNull($url_ref01_data_dt0_load_result);
         $this->assertEquals($url_ref01_data_dt0_load_result["id"], $url_ref01_data["id"]);

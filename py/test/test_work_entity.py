@@ -50,16 +50,14 @@ class TestWorkEntity:
         work_ref01_ent = client.Work(None)
         work_ref01_match = {}
 
-        work_ref01_list_result, err = work_ref01_ent.list(work_ref01_match, None)
-        assert err is None
+        work_ref01_list_result = work_ref01_ent.list(work_ref01_match, None)
         assert isinstance(work_ref01_list_result, list)
 
         # LOAD
         work_ref01_match_dt0 = {
             "id": work_ref01_data["id"],
         }
-        work_ref01_data_dt0_loaded, err = work_ref01_ent.load(work_ref01_match_dt0, None)
-        assert err is None
+        work_ref01_data_dt0_loaded = work_ref01_ent.load(work_ref01_match_dt0, None)
         work_ref01_data_dt0_load_result = helpers.to_map(work_ref01_data_dt0_loaded)
         assert work_ref01_data_dt0_load_result is not None
         assert work_ref01_data_dt0_load_result["id"] == work_ref01_data["id"]

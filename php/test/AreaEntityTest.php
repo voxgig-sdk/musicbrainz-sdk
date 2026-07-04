@@ -50,16 +50,14 @@ class AreaEntityTest extends TestCase
         $area_ref01_ent = $client->Area(null);
         $area_ref01_match = [];
 
-        [$area_ref01_list_result, $err] = $area_ref01_ent->list($area_ref01_match, null);
-        $this->assertNull($err);
+        $area_ref01_list_result = $area_ref01_ent->list($area_ref01_match, null);
         $this->assertIsArray($area_ref01_list_result);
 
         // LOAD
         $area_ref01_match_dt0 = [
             "id" => $area_ref01_data["id"],
         ];
-        [$area_ref01_data_dt0_loaded, $err] = $area_ref01_ent->load($area_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $area_ref01_data_dt0_loaded = $area_ref01_ent->load($area_ref01_match_dt0, null);
         $area_ref01_data_dt0_load_result = Helpers::to_map($area_ref01_data_dt0_loaded);
         $this->assertNotNull($area_ref01_data_dt0_load_result);
         $this->assertEquals($area_ref01_data_dt0_load_result["id"], $area_ref01_data["id"]);

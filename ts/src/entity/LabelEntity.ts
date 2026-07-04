@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Label,
+  LabelLoadMatch,
+  LabelListMatch,
+} from '../MusicbrainzTypes'
 
 // TODO: needs Entity superclass
-class LabelEntity extends MusicbrainzEntityBase {
+class LabelEntity extends MusicbrainzEntityBase<Label> {
 
   constructor(client: MusicbrainzSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class LabelEntity extends MusicbrainzEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: LabelLoadMatch, ctrl?: Control): Promise<Label> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class LabelEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Label> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: LabelListMatch, ctrl?: Control): Promise<Label[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class LabelEntity extends MusicbrainzEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Label[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

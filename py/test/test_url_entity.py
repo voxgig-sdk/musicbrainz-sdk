@@ -50,16 +50,14 @@ class TestUrlEntity:
         url_ref01_ent = client.Url(None)
         url_ref01_match = {}
 
-        url_ref01_list_result, err = url_ref01_ent.list(url_ref01_match, None)
-        assert err is None
+        url_ref01_list_result = url_ref01_ent.list(url_ref01_match, None)
         assert isinstance(url_ref01_list_result, list)
 
         # LOAD
         url_ref01_match_dt0 = {
             "id": url_ref01_data["id"],
         }
-        url_ref01_data_dt0_loaded, err = url_ref01_ent.load(url_ref01_match_dt0, None)
-        assert err is None
+        url_ref01_data_dt0_loaded = url_ref01_ent.load(url_ref01_match_dt0, None)
         url_ref01_data_dt0_load_result = helpers.to_map(url_ref01_data_dt0_loaded)
         assert url_ref01_data_dt0_load_result is not None
         assert url_ref01_data_dt0_load_result["id"] == url_ref01_data["id"]

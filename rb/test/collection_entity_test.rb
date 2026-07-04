@@ -43,8 +43,7 @@ class CollectionEntityTest < Minitest::Test
     collection_ref01_ent = client.Collection(nil)
     collection_ref01_match = {}
 
-    collection_ref01_list_result, err = collection_ref01_ent.list(collection_ref01_match, nil)
-    assert_nil err
+    collection_ref01_list_result = collection_ref01_ent.list(collection_ref01_match, nil)
     assert collection_ref01_list_result.is_a?(Array)
 
   end

@@ -45,6 +45,7 @@ class ReleaseGroupEntity
     end
   end
 
+  # @return [ReleaseGroup, Hash] the current ReleaseGroup data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class ReleaseGroupEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of ReleaseGroup fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single ReleaseGroup.
+  #
+  # @param reqmatch [ReleaseGroupLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [ReleaseGroup, Hash] the loaded ReleaseGroup; raises MusicbrainzError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class ReleaseGroupEntity
 
 
   
+  # List ReleaseGroup items matching the given filter.
+  #
+  # @param reqmatch [ReleaseGroupListMatch, Hash, nil] match filter (any subset of ReleaseGroup fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<ReleaseGroup>, Array] the matching ReleaseGroup items; raises MusicbrainzError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

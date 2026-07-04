@@ -50,16 +50,14 @@ class TestReleaseEntity:
         release_ref01_ent = client.Release(None)
         release_ref01_match = {}
 
-        release_ref01_list_result, err = release_ref01_ent.list(release_ref01_match, None)
-        assert err is None
+        release_ref01_list_result = release_ref01_ent.list(release_ref01_match, None)
         assert isinstance(release_ref01_list_result, list)
 
         # LOAD
         release_ref01_match_dt0 = {
             "id": release_ref01_data["id"],
         }
-        release_ref01_data_dt0_loaded, err = release_ref01_ent.load(release_ref01_match_dt0, None)
-        assert err is None
+        release_ref01_data_dt0_loaded = release_ref01_ent.load(release_ref01_match_dt0, None)
         release_ref01_data_dt0_load_result = helpers.to_map(release_ref01_data_dt0_loaded)
         assert release_ref01_data_dt0_load_result is not None
         assert release_ref01_data_dt0_load_result["id"] == release_ref01_data["id"]

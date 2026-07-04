@@ -43,16 +43,14 @@ class AreaEntityTest < Minitest::Test
     area_ref01_ent = client.Area(nil)
     area_ref01_match = {}
 
-    area_ref01_list_result, err = area_ref01_ent.list(area_ref01_match, nil)
-    assert_nil err
+    area_ref01_list_result = area_ref01_ent.list(area_ref01_match, nil)
     assert area_ref01_list_result.is_a?(Array)
 
     # LOAD
     area_ref01_match_dt0 = {
       "id" => area_ref01_data["id"],
     }
-    area_ref01_data_dt0_loaded, err = area_ref01_ent.load(area_ref01_match_dt0, nil)
-    assert_nil err
+    area_ref01_data_dt0_loaded = area_ref01_ent.load(area_ref01_match_dt0, nil)
     area_ref01_data_dt0_load_result = Helpers.to_map(area_ref01_data_dt0_loaded)
     assert !area_ref01_data_dt0_load_result.nil?
     assert_equal area_ref01_data_dt0_load_result["id"], area_ref01_data["id"]

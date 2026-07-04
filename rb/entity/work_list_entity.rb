@@ -45,6 +45,7 @@ class WorkListEntity
     end
   end
 
+  # @return [WorkList, Hash] the current WorkList data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class WorkListEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of WorkList fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single WorkList.
+  #
+  # @param reqmatch [WorkListLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [WorkList, Hash] the loaded WorkList; raises MusicbrainzError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

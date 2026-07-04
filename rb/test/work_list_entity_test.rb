@@ -42,8 +42,7 @@ class WorkListEntityTest < Minitest::Test
     # LOAD
     work_list_ref01_ent = client.WorkList(nil)
     work_list_ref01_match_dt0 = {}
-    work_list_ref01_data_dt0_loaded, err = work_list_ref01_ent.load(work_list_ref01_match_dt0, nil)
-    assert_nil err
+    work_list_ref01_data_dt0_loaded = work_list_ref01_ent.load(work_list_ref01_match_dt0, nil)
     assert !work_list_ref01_data_dt0_loaded.nil?
 
   end

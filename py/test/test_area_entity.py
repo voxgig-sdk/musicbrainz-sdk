@@ -50,16 +50,14 @@ class TestAreaEntity:
         area_ref01_ent = client.Area(None)
         area_ref01_match = {}
 
-        area_ref01_list_result, err = area_ref01_ent.list(area_ref01_match, None)
-        assert err is None
+        area_ref01_list_result = area_ref01_ent.list(area_ref01_match, None)
         assert isinstance(area_ref01_list_result, list)
 
         # LOAD
         area_ref01_match_dt0 = {
             "id": area_ref01_data["id"],
         }
-        area_ref01_data_dt0_loaded, err = area_ref01_ent.load(area_ref01_match_dt0, None)
-        assert err is None
+        area_ref01_data_dt0_loaded = area_ref01_ent.load(area_ref01_match_dt0, None)
         area_ref01_data_dt0_load_result = helpers.to_map(area_ref01_data_dt0_loaded)
         assert area_ref01_data_dt0_load_result is not None
         assert area_ref01_data_dt0_load_result["id"] == area_ref01_data["id"]

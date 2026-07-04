@@ -43,16 +43,14 @@ class ArtistEntityTest < Minitest::Test
     artist_ref01_ent = client.Artist(nil)
     artist_ref01_match = {}
 
-    artist_ref01_list_result, err = artist_ref01_ent.list(artist_ref01_match, nil)
-    assert_nil err
+    artist_ref01_list_result = artist_ref01_ent.list(artist_ref01_match, nil)
     assert artist_ref01_list_result.is_a?(Array)
 
     # LOAD
     artist_ref01_match_dt0 = {
       "id" => artist_ref01_data["id"],
     }
-    artist_ref01_data_dt0_loaded, err = artist_ref01_ent.load(artist_ref01_match_dt0, nil)
-    assert_nil err
+    artist_ref01_data_dt0_loaded = artist_ref01_ent.load(artist_ref01_match_dt0, nil)
     artist_ref01_data_dt0_load_result = Helpers.to_map(artist_ref01_data_dt0_loaded)
     assert !artist_ref01_data_dt0_load_result.nil?
     assert_equal artist_ref01_data_dt0_load_result["id"], artist_ref01_data["id"]

@@ -49,8 +49,7 @@ class TestWorkListEntity:
         # LOAD
         work_list_ref01_ent = client.WorkList(None)
         work_list_ref01_match_dt0 = {}
-        work_list_ref01_data_dt0_loaded, err = work_list_ref01_ent.load(work_list_ref01_match_dt0, None)
-        assert err is None
+        work_list_ref01_data_dt0_loaded = work_list_ref01_ent.load(work_list_ref01_match_dt0, None)
         assert work_list_ref01_data_dt0_loaded is not None
 
 
