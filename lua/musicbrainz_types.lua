@@ -18,6 +18,12 @@
 ---@field id string
 
 ---@class AreaListMatch
+---@field disambiguation? string
+---@field id? string
+---@field life_span? table
+---@field name? string
+---@field sort_name? string
+---@field type? string
 
 ---@class Artist
 ---@field country? string
@@ -33,6 +39,14 @@
 ---@field id string
 
 ---@class ArtistListMatch
+---@field country? string
+---@field disambiguation? string
+---@field gender? string
+---@field id? string
+---@field life_span? table
+---@field name? string
+---@field sort_name? string
+---@field type? string
 
 ---@class Collection
 ---@field editor? string
@@ -41,6 +55,10 @@
 ---@field name? string
 
 ---@class CollectionListMatch
+---@field editor? string
+---@field entity_type? string
+---@field id? string
+---@field name? string
 
 ---@class Event
 ---@field cancelled? boolean
@@ -55,6 +73,13 @@
 ---@field id string
 
 ---@class EventListMatch
+---@field cancelled? boolean
+---@field disambiguation? string
+---@field id? string
+---@field life_span? table
+---@field name? string
+---@field time? string
+---@field type? string
 
 ---@class Genre
 ---@field disambiguation? string
@@ -65,6 +90,9 @@
 ---@field id string
 
 ---@class GenreListMatch
+---@field disambiguation? string
+---@field id? string
+---@field name? string
 
 ---@class Instrument
 ---@field description? string
@@ -77,6 +105,11 @@
 ---@field id string
 
 ---@class InstrumentListMatch
+---@field description? string
+---@field disambiguation? string
+---@field id? string
+---@field name? string
+---@field type? string
 
 ---@class Label
 ---@field country? string
@@ -92,6 +125,14 @@
 ---@field id string
 
 ---@class LabelListMatch
+---@field country? string
+---@field disambiguation? string
+---@field id? string
+---@field label_code? number
+---@field life_span? table
+---@field name? string
+---@field sort_name? string
+---@field type? string
 
 ---@class Place
 ---@field address? string
@@ -106,6 +147,13 @@
 ---@field id string
 
 ---@class PlaceListMatch
+---@field address? string
+---@field coordinate? table
+---@field disambiguation? string
+---@field id? string
+---@field life_span? table
+---@field name? string
+---@field type? string
 
 ---@class Rating
 
@@ -124,6 +172,11 @@
 ---@field id string
 
 ---@class RecordingListMatch
+---@field disambiguation? string
+---@field id? string
+---@field length? number
+---@field title? string
+---@field video? boolean
 
 ---@class RecordingList
 ---@field count? number
@@ -147,6 +200,14 @@
 ---@field id string
 
 ---@class ReleaseListMatch
+---@field barcode? string
+---@field country? string
+---@field date? string
+---@field disambiguation? string
+---@field id? string
+---@field packaging? string
+---@field status? string
+---@field title? string
 
 ---@class ReleaseGroup
 ---@field disambiguation? string
@@ -160,6 +221,12 @@
 ---@field id string
 
 ---@class ReleaseGroupListMatch
+---@field disambiguation? string
+---@field first_release_date? string
+---@field id? string
+---@field primary_type? string
+---@field secondary_type? table
+---@field title? string
 
 ---@class ReleaseList
 ---@field count? number
@@ -179,6 +246,10 @@
 ---@field id string
 
 ---@class SeriesListMatch
+---@field disambiguation? string
+---@field id? string
+---@field name? string
+---@field type? string
 
 ---@class Tag
 
@@ -194,6 +265,8 @@
 ---@field id string
 
 ---@class UrlListMatch
+---@field id? string
+---@field resource? string
 
 ---@class Work
 ---@field disambiguation? string
@@ -206,6 +279,11 @@
 ---@field id string
 
 ---@class WorkListMatch
+---@field disambiguation? string
+---@field id? string
+---@field language? string
+---@field title? string
+---@field type? string
 
 ---@class WorkList
 ---@field count? number

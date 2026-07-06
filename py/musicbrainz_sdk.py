@@ -221,115 +221,115 @@ class MusicbrainzSDK:
 
 
     def Area(self, data=None) -> "AreaEntity":
-        """Entity factory: client.Area().list({}) / client.Area().load({"id": ...})."""
+        """Entity factory: client.Area().list() / client.Area().load({"id": ...})."""
         from entity.area_entity import AreaEntity
         return AreaEntity(self, data)
 
 
     def Artist(self, data=None) -> "ArtistEntity":
-        """Entity factory: client.Artist().list({}) / client.Artist().load({"id": ...})."""
+        """Entity factory: client.Artist().list() / client.Artist().load({"id": ...})."""
         from entity.artist_entity import ArtistEntity
         return ArtistEntity(self, data)
 
 
     def Collection(self, data=None) -> "CollectionEntity":
-        """Entity factory: client.Collection().list({}) / client.Collection().load({"id": ...})."""
+        """Entity factory: client.Collection().list() / client.Collection().load({"id": ...})."""
         from entity.collection_entity import CollectionEntity
         return CollectionEntity(self, data)
 
 
     def Event(self, data=None) -> "EventEntity":
-        """Entity factory: client.Event().list({}) / client.Event().load({"id": ...})."""
+        """Entity factory: client.Event().list() / client.Event().load({"id": ...})."""
         from entity.event_entity import EventEntity
         return EventEntity(self, data)
 
 
     def Genre(self, data=None) -> "GenreEntity":
-        """Entity factory: client.Genre().list({}) / client.Genre().load({"id": ...})."""
+        """Entity factory: client.Genre().list() / client.Genre().load({"id": ...})."""
         from entity.genre_entity import GenreEntity
         return GenreEntity(self, data)
 
 
     def Instrument(self, data=None) -> "InstrumentEntity":
-        """Entity factory: client.Instrument().list({}) / client.Instrument().load({"id": ...})."""
+        """Entity factory: client.Instrument().list() / client.Instrument().load({"id": ...})."""
         from entity.instrument_entity import InstrumentEntity
         return InstrumentEntity(self, data)
 
 
     def Label(self, data=None) -> "LabelEntity":
-        """Entity factory: client.Label().list({}) / client.Label().load({"id": ...})."""
+        """Entity factory: client.Label().list() / client.Label().load({"id": ...})."""
         from entity.label_entity import LabelEntity
         return LabelEntity(self, data)
 
 
     def Place(self, data=None) -> "PlaceEntity":
-        """Entity factory: client.Place().list({}) / client.Place().load({"id": ...})."""
+        """Entity factory: client.Place().list() / client.Place().load({"id": ...})."""
         from entity.place_entity import PlaceEntity
         return PlaceEntity(self, data)
 
 
     def Rating(self, data=None) -> "RatingEntity":
-        """Entity factory: client.Rating().list({}) / client.Rating().load({"id": ...})."""
+        """Entity factory: client.Rating().list() / client.Rating().load({"id": ...})."""
         from entity.rating_entity import RatingEntity
         return RatingEntity(self, data)
 
 
     def Recording(self, data=None) -> "RecordingEntity":
-        """Entity factory: client.Recording().list({}) / client.Recording().load({"id": ...})."""
+        """Entity factory: client.Recording().list() / client.Recording().load({"id": ...})."""
         from entity.recording_entity import RecordingEntity
         return RecordingEntity(self, data)
 
 
     def RecordingList(self, data=None) -> "RecordingListEntity":
-        """Entity factory: client.RecordingList().list({}) / client.RecordingList().load({"id": ...})."""
+        """Entity factory: client.RecordingList().list() / client.RecordingList().load({"id": ...})."""
         from entity.recording_list_entity import RecordingListEntity
         return RecordingListEntity(self, data)
 
 
     def Release(self, data=None) -> "ReleaseEntity":
-        """Entity factory: client.Release().list({}) / client.Release().load({"id": ...})."""
+        """Entity factory: client.Release().list() / client.Release().load({"id": ...})."""
         from entity.release_entity import ReleaseEntity
         return ReleaseEntity(self, data)
 
 
     def ReleaseGroup(self, data=None) -> "ReleaseGroupEntity":
-        """Entity factory: client.ReleaseGroup().list({}) / client.ReleaseGroup().load({"id": ...})."""
+        """Entity factory: client.ReleaseGroup().list() / client.ReleaseGroup().load({"id": ...})."""
         from entity.release_group_entity import ReleaseGroupEntity
         return ReleaseGroupEntity(self, data)
 
 
     def ReleaseList(self, data=None) -> "ReleaseListEntity":
-        """Entity factory: client.ReleaseList().list({}) / client.ReleaseList().load({"id": ...})."""
+        """Entity factory: client.ReleaseList().list() / client.ReleaseList().load({"id": ...})."""
         from entity.release_list_entity import ReleaseListEntity
         return ReleaseListEntity(self, data)
 
 
     def Series(self, data=None) -> "SeriesEntity":
-        """Entity factory: client.Series().list({}) / client.Series().load({"id": ...})."""
+        """Entity factory: client.Series().list() / client.Series().load({"id": ...})."""
         from entity.series_entity import SeriesEntity
         return SeriesEntity(self, data)
 
 
     def Tag(self, data=None) -> "TagEntity":
-        """Entity factory: client.Tag().list({}) / client.Tag().load({"id": ...})."""
+        """Entity factory: client.Tag().list() / client.Tag().load({"id": ...})."""
         from entity.tag_entity import TagEntity
         return TagEntity(self, data)
 
 
     def Url(self, data=None) -> "UrlEntity":
-        """Entity factory: client.Url().list({}) / client.Url().load({"id": ...})."""
+        """Entity factory: client.Url().list() / client.Url().load({"id": ...})."""
         from entity.url_entity import UrlEntity
         return UrlEntity(self, data)
 
 
     def Work(self, data=None) -> "WorkEntity":
-        """Entity factory: client.Work().list({}) / client.Work().load({"id": ...})."""
+        """Entity factory: client.Work().list() / client.Work().load({"id": ...})."""
         from entity.work_entity import WorkEntity
         return WorkEntity(self, data)
 
 
     def WorkList(self, data=None) -> "WorkListEntity":
-        """Entity factory: client.WorkList().list({}) / client.WorkList().load({"id": ...})."""
+        """Entity factory: client.WorkList().list() / client.WorkList().load({"id": ...})."""
         from entity.work_list_entity import WorkListEntity
         return WorkListEntity(self, data)
 

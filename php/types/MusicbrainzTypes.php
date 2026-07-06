@@ -29,7 +29,7 @@ class AreaLoadMatch
     public string $id;
 }
 
-/** Match filter for Area#list (any subset of Area fields). */
+/** Request payload for Area#list. */
 class AreaListMatch
 {
     public ?string $disambiguation = null;
@@ -59,7 +59,7 @@ class ArtistLoadMatch
     public string $id;
 }
 
-/** Match filter for Artist#list (any subset of Artist fields). */
+/** Request payload for Artist#list. */
 class ArtistListMatch
 {
     public ?string $country = null;
@@ -81,7 +81,7 @@ class Collection
     public ?string $name = null;
 }
 
-/** Match filter for Collection#list (any subset of Collection fields). */
+/** Request payload for Collection#list. */
 class CollectionListMatch
 {
     public ?string $editor = null;
@@ -108,7 +108,7 @@ class EventLoadMatch
     public string $id;
 }
 
-/** Match filter for Event#list (any subset of Event fields). */
+/** Request payload for Event#list. */
 class EventListMatch
 {
     public ?bool $cancelled = null;
@@ -134,7 +134,7 @@ class GenreLoadMatch
     public string $id;
 }
 
-/** Match filter for Genre#list (any subset of Genre fields). */
+/** Request payload for Genre#list. */
 class GenreListMatch
 {
     public ?string $disambiguation = null;
@@ -158,7 +158,7 @@ class InstrumentLoadMatch
     public string $id;
 }
 
-/** Match filter for Instrument#list (any subset of Instrument fields). */
+/** Request payload for Instrument#list. */
 class InstrumentListMatch
 {
     public ?string $description = null;
@@ -187,7 +187,7 @@ class LabelLoadMatch
     public string $id;
 }
 
-/** Match filter for Label#list (any subset of Label fields). */
+/** Request payload for Label#list. */
 class LabelListMatch
 {
     public ?string $country = null;
@@ -218,7 +218,7 @@ class PlaceLoadMatch
     public string $id;
 }
 
-/** Match filter for Place#list (any subset of Place fields). */
+/** Request payload for Place#list. */
 class PlaceListMatch
 {
     public ?string $address = null;
@@ -235,12 +235,12 @@ class Rating
 {
 }
 
-/** Match filter for Rating#load (any subset of Rating fields). */
+/** Request payload for Rating#load. */
 class RatingLoadMatch
 {
 }
 
-/** Match filter for Rating#create (any subset of Rating fields). */
+/** Request payload for Rating#create. */
 class RatingCreateData
 {
 }
@@ -261,7 +261,7 @@ class RecordingLoadMatch
     public string $id;
 }
 
-/** Match filter for Recording#list (any subset of Recording fields). */
+/** Request payload for Recording#list. */
 class RecordingListMatch
 {
     public ?string $disambiguation = null;
@@ -304,7 +304,7 @@ class ReleaseLoadMatch
     public string $id;
 }
 
-/** Match filter for Release#list (any subset of Release fields). */
+/** Request payload for Release#list. */
 class ReleaseListMatch
 {
     public ?string $barcode = null;
@@ -334,7 +334,7 @@ class ReleaseGroupLoadMatch
     public string $id;
 }
 
-/** Match filter for ReleaseGroup#list (any subset of ReleaseGroup fields). */
+/** Request payload for ReleaseGroup#list. */
 class ReleaseGroupListMatch
 {
     public ?string $disambiguation = null;
@@ -374,7 +374,7 @@ class SeriesLoadMatch
     public string $id;
 }
 
-/** Match filter for Series#list (any subset of Series fields). */
+/** Request payload for Series#list. */
 class SeriesListMatch
 {
     public ?string $disambiguation = null;
@@ -388,12 +388,12 @@ class Tag
 {
 }
 
-/** Match filter for Tag#load (any subset of Tag fields). */
+/** Request payload for Tag#load. */
 class TagLoadMatch
 {
 }
 
-/** Match filter for Tag#create (any subset of Tag fields). */
+/** Request payload for Tag#create. */
 class TagCreateData
 {
 }
@@ -411,7 +411,7 @@ class UrlLoadMatch
     public string $id;
 }
 
-/** Match filter for Url#list (any subset of Url fields). */
+/** Request payload for Url#list. */
 class UrlListMatch
 {
     public ?string $id = null;
@@ -434,7 +434,7 @@ class WorkLoadMatch
     public string $id;
 }
 
-/** Match filter for Work#list (any subset of Work fields). */
+/** Request payload for Work#list. */
 class WorkListMatch
 {
     public ?string $disambiguation = null;

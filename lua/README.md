@@ -4,6 +4,8 @@
 
 The Lua SDK for the Musicbrainz API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Area()` — each with the same small set of operations (`list`, `load`, `create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -43,7 +45,7 @@ local areas, err = client:Area():list()
 if err then error(err) end
 
 for _, item in ipairs(areas) do
-  print(item["id"], item["name"])
+  print(item["id"], item["disambiguation"])
 end
 ```
 
@@ -53,6 +55,28 @@ end
 local area, err = client:Area():load({ id = "example_id" })
 if err then error(err) end
 print(area)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local areas, err = client:Area():list()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -98,8 +122,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Area():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Area():list()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -208,8 +232,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
 | `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -224,7 +246,7 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` / `create` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
@@ -516,12 +538,12 @@ Create an instance: `local area = client:Area(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `table` |  |
+| `name` | `string` |  |
+| `sort_name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -551,14 +573,14 @@ Create an instance: `local artist = client:Artist(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `disambiguation` | `string` |  |
+| `gender` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `table` |  |
+| `name` | `string` |  |
+| `sort_name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -587,10 +609,10 @@ Create an instance: `local collection = client:Collection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `editor` | ``$STRING`` |  |
-| `entity_type` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `editor` | `string` |  |
+| `entity_type` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: List
 
@@ -614,13 +636,13 @@ Create an instance: `local event = client:Event(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cancelled` | ``$BOOLEAN`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `time` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `cancelled` | `boolean` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `table` |  |
+| `name` | `string` |  |
+| `time` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -650,9 +672,9 @@ Create an instance: `local genre = client:Genre(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: Load
 
@@ -682,11 +704,11 @@ Create an instance: `local instrument = client:Instrument(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -716,14 +738,14 @@ Create an instance: `local label = client:Label(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `label_code` | ``$INTEGER`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `label_code` | `number` |  |
+| `life_span` | `table` |  |
+| `name` | `string` |  |
+| `sort_name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -753,13 +775,13 @@ Create an instance: `local place = client:Place(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `coordinate` | ``$OBJECT`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `coordinate` | `table` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `table` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -788,7 +810,7 @@ Create an instance: `local rating = client:Rating(nil)`
 #### Example: Load
 
 ```lua
-local rating, err = client:Rating():load({ id = "rating_id" })
+local rating, err = client:Rating():load()
 ```
 
 #### Example: Create
@@ -814,11 +836,11 @@ Create an instance: `local recording = client:Recording(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `length` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `video` | ``$BOOLEAN`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `length` | `number` |  |
+| `title` | `string` |  |
+| `video` | `boolean` |  |
 
 #### Example: Load
 
@@ -847,14 +869,14 @@ Create an instance: `local recording_list = client:RecordingList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `recording` | ``$ARRAY`` |  |
+| `count` | `number` |  |
+| `offset` | `number` |  |
+| `recording` | `table` |  |
 
 #### Example: Load
 
 ```lua
-local recording_list, err = client:RecordingList():load({ id = "recording_list_id" })
+local recording_list, err = client:RecordingList():load()
 ```
 
 
@@ -873,14 +895,14 @@ Create an instance: `local release = client:Release(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `barcode` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `packaging` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `barcode` | `string` |  |
+| `country` | `string` |  |
+| `date` | `string` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `packaging` | `string` |  |
+| `status` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -910,12 +932,12 @@ Create an instance: `local release_group = client:ReleaseGroup(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `first_release_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `primary_type` | ``$STRING`` |  |
-| `secondary_type` | ``$ARRAY`` |  |
-| `title` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `first_release_date` | `string` |  |
+| `id` | `string` |  |
+| `primary_type` | `string` |  |
+| `secondary_type` | `table` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -944,14 +966,14 @@ Create an instance: `local release_list = client:ReleaseList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `release` | ``$ARRAY`` |  |
+| `count` | `number` |  |
+| `offset` | `number` |  |
+| `release` | `table` |  |
 
 #### Example: Load
 
 ```lua
-local release_list, err = client:ReleaseList():load({ id = "release_list_id" })
+local release_list, err = client:ReleaseList():load()
 ```
 
 
@@ -970,10 +992,10 @@ Create an instance: `local series = client:Series(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -1002,7 +1024,7 @@ Create an instance: `local tag = client:Tag(nil)`
 #### Example: Load
 
 ```lua
-local tag, err = client:Tag():load({ id = "tag_id" })
+local tag, err = client:Tag():load()
 ```
 
 #### Example: Create
@@ -1028,8 +1050,8 @@ Create an instance: `local url = client:Url(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `resource` | ``$STRING`` |  |
+| `id` | `string` |  |
+| `resource` | `string` |  |
 
 #### Example: Load
 
@@ -1059,11 +1081,11 @@ Create an instance: `local work = client:Work(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `language` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `language` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -1092,23 +1114,27 @@ Create an instance: `local work_list = client:WorkList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `work` | ``$ARRAY`` |  |
+| `count` | `number` |  |
+| `offset` | `number` |  |
+| `work` | `table` |  |
 
 #### Example: Load
 
 ```lua
-local work_list, err = client:WorkList():load({ id = "work_list_id" })
+local work_list, err = client:WorkList():load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1125,8 +1151,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1170,14 +1197,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local area = client:Area()
-area:load({ id = "example_id" })
+area:list()
 
--- area:data_get() now returns the loaded area data
+-- area:data_get() now returns the area data from the last list
 -- area:match_get() returns the last match criteria
 ```
 

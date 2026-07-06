@@ -4,6 +4,8 @@
 
 The Ruby SDK for the Musicbrainz API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Area` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,7 +39,7 @@ begin
   # list returns an Array of Area records — iterate directly.
   areas = client.Area.list
   areas.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["id"]} #{item["disambiguation"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -54,6 +56,33 @@ begin
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  areas = client.Area.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -74,7 +103,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -105,8 +136,8 @@ client = MusicbrainzSDK.test({
   "entity" => { "area" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
-area = client.Area.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+area = client.Area.list()
 puts area
 ```
 
@@ -212,10 +243,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -520,12 +549,12 @@ Create an instance: `area = client.Area`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `life_span` | `Hash` |  |
+| `name` | `String` |  |
+| `sort_name` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -557,14 +586,14 @@ Create an instance: `artist = client.Artist`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `String` |  |
+| `disambiguation` | `String` |  |
+| `gender` | `String` |  |
+| `id` | `String` |  |
+| `life_span` | `Hash` |  |
+| `name` | `String` |  |
+| `sort_name` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -595,10 +624,10 @@ Create an instance: `collection = client.Collection`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `editor` | ``$STRING`` |  |
-| `entity_type` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `editor` | `String` |  |
+| `entity_type` | `String` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
 
 #### Example: List
 
@@ -623,13 +652,13 @@ Create an instance: `event = client.Event`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cancelled` | ``$BOOLEAN`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `time` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `cancelled` | `Boolean` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `life_span` | `Hash` |  |
+| `name` | `String` |  |
+| `time` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -661,9 +690,9 @@ Create an instance: `genre = client.Genre`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
 
 #### Example: Load
 
@@ -695,11 +724,11 @@ Create an instance: `instrument = client.Instrument`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `description` | `String` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -731,14 +760,14 @@ Create an instance: `label = client.Label`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `label_code` | ``$INTEGER`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `String` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `label_code` | `Integer` |  |
+| `life_span` | `Hash` |  |
+| `name` | `String` |  |
+| `sort_name` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -770,13 +799,13 @@ Create an instance: `place = client.Place`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `coordinate` | ``$OBJECT`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `String` |  |
+| `coordinate` | `Hash` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `life_span` | `Hash` |  |
+| `name` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -808,7 +837,7 @@ Create an instance: `rating = client.Rating`
 
 ```ruby
 # load returns the bare Rating record (raises on error).
-rating = client.Rating.load({ "id" => "rating_id" })
+rating = client.Rating.load()
 ```
 
 #### Example: Create
@@ -834,11 +863,11 @@ Create an instance: `recording = client.Recording`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `length` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `video` | ``$BOOLEAN`` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `length` | `Integer` |  |
+| `title` | `String` |  |
+| `video` | `Boolean` |  |
 
 #### Example: Load
 
@@ -869,15 +898,15 @@ Create an instance: `recording_list = client.RecordingList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `recording` | ``$ARRAY`` |  |
+| `count` | `Integer` |  |
+| `offset` | `Integer` |  |
+| `recording` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare RecordingList record (raises on error).
-recording_list = client.RecordingList.load({ "id" => "recording_list_id" })
+recording_list = client.RecordingList.load()
 ```
 
 
@@ -896,14 +925,14 @@ Create an instance: `release = client.Release`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `barcode` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `packaging` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `barcode` | `String` |  |
+| `country` | `String` |  |
+| `date` | `String` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `packaging` | `String` |  |
+| `status` | `String` |  |
+| `title` | `String` |  |
 
 #### Example: Load
 
@@ -935,12 +964,12 @@ Create an instance: `release_group = client.ReleaseGroup`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `first_release_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `primary_type` | ``$STRING`` |  |
-| `secondary_type` | ``$ARRAY`` |  |
-| `title` | ``$STRING`` |  |
+| `disambiguation` | `String` |  |
+| `first_release_date` | `String` |  |
+| `id` | `String` |  |
+| `primary_type` | `String` |  |
+| `secondary_type` | `Array` |  |
+| `title` | `String` |  |
 
 #### Example: Load
 
@@ -971,15 +1000,15 @@ Create an instance: `release_list = client.ReleaseList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `release` | ``$ARRAY`` |  |
+| `count` | `Integer` |  |
+| `offset` | `Integer` |  |
+| `release` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare ReleaseList record (raises on error).
-release_list = client.ReleaseList.load({ "id" => "release_list_id" })
+release_list = client.ReleaseList.load()
 ```
 
 
@@ -998,10 +1027,10 @@ Create an instance: `series = client.Series`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -1033,7 +1062,7 @@ Create an instance: `tag = client.Tag`
 
 ```ruby
 # load returns the bare Tag record (raises on error).
-tag = client.Tag.load({ "id" => "tag_id" })
+tag = client.Tag.load()
 ```
 
 #### Example: Create
@@ -1059,8 +1088,8 @@ Create an instance: `url = client.Url`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `resource` | ``$STRING`` |  |
+| `id` | `String` |  |
+| `resource` | `String` |  |
 
 #### Example: Load
 
@@ -1092,11 +1121,11 @@ Create an instance: `work = client.Work`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `language` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `String` |  |
+| `id` | `String` |  |
+| `language` | `String` |  |
+| `title` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -1127,24 +1156,28 @@ Create an instance: `work_list = client.WorkList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `work` | ``$ARRAY`` |  |
+| `count` | `Integer` |  |
+| `offset` | `Integer` |  |
+| `work` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare WorkList record (raises on error).
-work_list = client.WorkList.load({ "id" => "work_list_id" })
+work_list = client.WorkList.load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1161,8 +1194,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1206,14 +1240,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 area = client.Area
-area.load({ "id" => "example_id" })
+area.list()
 
-# area.data_get now returns the loaded area data
+# area.data_get now returns the area data from the last list
 # area.match_get returns the last match criteria
 ```
 

@@ -65,8 +65,13 @@ class GenreEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: GenreLoadMatch, ctrl=None) -> Genre:
+    def load(self, reqmatch=None, ctrl=None) -> Genre:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Genre().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class GenreEntity:
 
 
     
-    def list(self, reqmatch: GenreListMatch, ctrl=None) -> list[Genre]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Genre]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Genre().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

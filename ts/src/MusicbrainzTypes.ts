@@ -18,7 +18,14 @@ export interface AreaLoadMatch {
   id: string
 }
 
-export type AreaListMatch = Partial<Area>
+export interface AreaListMatch {
+  disambiguation?: string
+  id?: string
+  life_span?: Record<string, any>
+  name?: string
+  sort_name?: string
+  type?: string
+}
 
 export interface Artist {
   country?: string
@@ -35,7 +42,16 @@ export interface ArtistLoadMatch {
   id: string
 }
 
-export type ArtistListMatch = Partial<Artist>
+export interface ArtistListMatch {
+  country?: string
+  disambiguation?: string
+  gender?: string
+  id?: string
+  life_span?: Record<string, any>
+  name?: string
+  sort_name?: string
+  type?: string
+}
 
 export interface Collection {
   editor?: string
@@ -44,7 +60,12 @@ export interface Collection {
   name?: string
 }
 
-export type CollectionListMatch = Partial<Collection>
+export interface CollectionListMatch {
+  editor?: string
+  entity_type?: string
+  id?: string
+  name?: string
+}
 
 export interface Event {
   cancelled?: boolean
@@ -60,7 +81,15 @@ export interface EventLoadMatch {
   id: string
 }
 
-export type EventListMatch = Partial<Event>
+export interface EventListMatch {
+  cancelled?: boolean
+  disambiguation?: string
+  id?: string
+  life_span?: Record<string, any>
+  name?: string
+  time?: string
+  type?: string
+}
 
 export interface Genre {
   disambiguation?: string
@@ -72,7 +101,11 @@ export interface GenreLoadMatch {
   id: string
 }
 
-export type GenreListMatch = Partial<Genre>
+export interface GenreListMatch {
+  disambiguation?: string
+  id?: string
+  name?: string
+}
 
 export interface Instrument {
   description?: string
@@ -86,7 +119,13 @@ export interface InstrumentLoadMatch {
   id: string
 }
 
-export type InstrumentListMatch = Partial<Instrument>
+export interface InstrumentListMatch {
+  description?: string
+  disambiguation?: string
+  id?: string
+  name?: string
+  type?: string
+}
 
 export interface Label {
   country?: string
@@ -103,7 +142,16 @@ export interface LabelLoadMatch {
   id: string
 }
 
-export type LabelListMatch = Partial<Label>
+export interface LabelListMatch {
+  country?: string
+  disambiguation?: string
+  id?: string
+  label_code?: number
+  life_span?: Record<string, any>
+  name?: string
+  sort_name?: string
+  type?: string
+}
 
 export interface Place {
   address?: string
@@ -119,14 +167,24 @@ export interface PlaceLoadMatch {
   id: string
 }
 
-export type PlaceListMatch = Partial<Place>
+export interface PlaceListMatch {
+  address?: string
+  coordinate?: Record<string, any>
+  disambiguation?: string
+  id?: string
+  life_span?: Record<string, any>
+  name?: string
+  type?: string
+}
 
 export interface Rating {
 }
 
-export type RatingLoadMatch = Partial<Rating>
+export interface RatingLoadMatch {
+}
 
-export type RatingCreateData = Partial<Rating>
+export interface RatingCreateData {
+}
 
 export interface Recording {
   disambiguation?: string
@@ -140,7 +198,13 @@ export interface RecordingLoadMatch {
   id: string
 }
 
-export type RecordingListMatch = Partial<Recording>
+export interface RecordingListMatch {
+  disambiguation?: string
+  id?: string
+  length?: number
+  title?: string
+  video?: boolean
+}
 
 export interface RecordingList {
   count?: number
@@ -167,7 +231,16 @@ export interface ReleaseLoadMatch {
   id: string
 }
 
-export type ReleaseListMatch = Partial<Release>
+export interface ReleaseListMatch {
+  barcode?: string
+  country?: string
+  date?: string
+  disambiguation?: string
+  id?: string
+  packaging?: string
+  status?: string
+  title?: string
+}
 
 export interface ReleaseGroup {
   disambiguation?: string
@@ -182,7 +255,14 @@ export interface ReleaseGroupLoadMatch {
   id: string
 }
 
-export type ReleaseGroupListMatch = Partial<ReleaseGroup>
+export interface ReleaseGroupListMatch {
+  disambiguation?: string
+  first_release_date?: string
+  id?: string
+  primary_type?: string
+  secondary_type?: any[]
+  title?: string
+}
 
 export interface ReleaseList {
   count?: number
@@ -205,14 +285,21 @@ export interface SeriesLoadMatch {
   id: string
 }
 
-export type SeriesListMatch = Partial<Series>
+export interface SeriesListMatch {
+  disambiguation?: string
+  id?: string
+  name?: string
+  type?: string
+}
 
 export interface Tag {
 }
 
-export type TagLoadMatch = Partial<Tag>
+export interface TagLoadMatch {
+}
 
-export type TagCreateData = Partial<Tag>
+export interface TagCreateData {
+}
 
 export interface Url {
   id?: string
@@ -223,7 +310,10 @@ export interface UrlLoadMatch {
   id: string
 }
 
-export type UrlListMatch = Partial<Url>
+export interface UrlListMatch {
+  id?: string
+  resource?: string
+}
 
 export interface Work {
   disambiguation?: string
@@ -237,7 +327,13 @@ export interface WorkLoadMatch {
   id: string
 }
 
-export type WorkListMatch = Partial<Work>
+export interface WorkListMatch {
+  disambiguation?: string
+  id?: string
+  language?: string
+  title?: string
+  type?: string
+}
 
 export interface WorkList {
   count?: number

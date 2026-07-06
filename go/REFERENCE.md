@@ -170,12 +170,12 @@ area := client.Area(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `sort_name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -229,14 +229,14 @@ artist := client.Artist(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `sort_name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -290,10 +290,10 @@ collection := client.Collection(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `editor` | ``$STRING`` | No |  |
-| `entity_type` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `editor` | `string` | No |  |
+| `entity_type` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -339,13 +339,13 @@ event := client.Event(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cancelled` | ``$BOOLEAN`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `time` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `cancelled` | `bool` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `time` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -399,9 +399,9 @@ genre := client.Genre(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -455,11 +455,11 @@ instrument := client.Instrument(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -513,14 +513,14 @@ label := client.Label(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `label_code` | ``$INTEGER`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `label_code` | `int` | No |  |
+| `life_span` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `sort_name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -574,13 +574,13 @@ place := client.Place(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `coordinate` | ``$OBJECT`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `coordinate` | `map[string]any` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -646,7 +646,7 @@ result, err := client.Rating(nil).Create(map[string]any{
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Rating(nil).Load(map[string]any{"id": "rating_id"}, nil)
+result, err := client.Rating(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -683,11 +683,11 @@ recording := client.Recording(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `length` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `video` | ``$BOOLEAN`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `length` | `int` | No |  |
+| `title` | `string` | No |  |
+| `video` | `bool` | No |  |
 
 ### Operations
 
@@ -741,9 +741,9 @@ recording_list := client.RecordingList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `recording` | ``$ARRAY`` | No |  |
+| `count` | `int` | No |  |
+| `offset` | `int` | No |  |
+| `recording` | `[]any` | No |  |
 
 ### Operations
 
@@ -752,7 +752,7 @@ recording_list := client.RecordingList(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.RecordingList(nil).Load(map[string]any{"id": "recording_list_id"}, nil)
+result, err := client.RecordingList(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -789,14 +789,14 @@ release := client.Release(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `barcode` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `packaging` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `barcode` | `string` | No |  |
+| `country` | `string` | No |  |
+| `date` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `packaging` | `string` | No |  |
+| `status` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -850,12 +850,12 @@ release_group := client.ReleaseGroup(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `first_release_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `primary_type` | ``$STRING`` | No |  |
-| `secondary_type` | ``$ARRAY`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `first_release_date` | `string` | No |  |
+| `id` | `string` | No |  |
+| `primary_type` | `string` | No |  |
+| `secondary_type` | `[]any` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -909,9 +909,9 @@ release_list := client.ReleaseList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `release` | ``$ARRAY`` | No |  |
+| `count` | `int` | No |  |
+| `offset` | `int` | No |  |
+| `release` | `[]any` | No |  |
 
 ### Operations
 
@@ -920,7 +920,7 @@ release_list := client.ReleaseList(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ReleaseList(nil).Load(map[string]any{"id": "release_list_id"}, nil)
+result, err := client.ReleaseList(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -957,10 +957,10 @@ series := client.Series(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -1026,7 +1026,7 @@ result, err := client.Tag(nil).Create(map[string]any{
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Tag(nil).Load(map[string]any{"id": "tag_id"}, nil)
+result, err := client.Tag(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -1063,8 +1063,8 @@ url := client.Url(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$STRING`` | No |  |
-| `resource` | ``$STRING`` | No |  |
+| `id` | `string` | No |  |
+| `resource` | `string` | No |  |
 
 ### Operations
 
@@ -1118,11 +1118,11 @@ work := client.Work(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `language` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -1176,9 +1176,9 @@ work_list := client.WorkList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `work` | ``$ARRAY`` | No |  |
+| `count` | `int` | No |  |
+| `offset` | `int` | No |  |
+| `work` | `[]any` | No |  |
 
 ### Operations
 
@@ -1187,7 +1187,7 @@ work_list := client.WorkList(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.WorkList(nil).Load(map[string]any{"id": "work_list_id"}, nil)
+result, err := client.WorkList(nil).Load(nil, nil)
 ```
 
 ### Common Methods

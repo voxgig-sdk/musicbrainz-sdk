@@ -46,7 +46,7 @@ AreaLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Area#list (any subset of Area fields).
+# Request payload for Area#list.
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
@@ -121,7 +121,7 @@ ArtistLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Artist#list (any subset of Artist fields).
+# Request payload for Artist#list.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
@@ -179,7 +179,7 @@ Collection = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Collection#list (any subset of Collection fields).
+# Request payload for Collection#list.
 #
 # @!attribute [rw] editor
 #   @return [String, nil]
@@ -242,7 +242,7 @@ EventLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Event#list (any subset of Event fields).
+# Request payload for Event#list.
 #
 # @!attribute [rw] cancelled
 #   @return [Boolean, nil]
@@ -301,7 +301,7 @@ GenreLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Genre#list (any subset of Genre fields).
+# Request payload for Genre#list.
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
@@ -352,7 +352,7 @@ InstrumentLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Instrument#list (any subset of Instrument fields).
+# Request payload for Instrument#list.
 #
 # @!attribute [rw] description
 #   @return [String, nil]
@@ -423,7 +423,7 @@ LabelLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Label#list (any subset of Label fields).
+# Request payload for Label#list.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
@@ -502,7 +502,7 @@ PlaceLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Place#list (any subset of Place fields).
+# Request payload for Place#list.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
@@ -539,11 +539,11 @@ PlaceListMatch = Struct.new(
 class Rating
 end
 
-# Match filter for Rating#load (any subset of Rating fields).
+# Request payload for Rating#load.
 class RatingLoadMatch
 end
 
-# Match filter for Rating#create (any subset of Rating fields).
+# Request payload for Rating#create.
 class RatingCreateData
 end
 
@@ -581,7 +581,7 @@ RecordingLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Recording#list (any subset of Recording fields).
+# Request payload for Recording#list.
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
@@ -678,7 +678,7 @@ ReleaseLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Release#list (any subset of Release fields).
+# Request payload for Release#list.
 #
 # @!attribute [rw] barcode
 #   @return [String, nil]
@@ -753,7 +753,7 @@ ReleaseGroupLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ReleaseGroup#list (any subset of ReleaseGroup fields).
+# Request payload for ReleaseGroup#list.
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
@@ -838,7 +838,7 @@ SeriesLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Series#list (any subset of Series fields).
+# Request payload for Series#list.
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
@@ -863,11 +863,11 @@ SeriesListMatch = Struct.new(
 class Tag
 end
 
-# Match filter for Tag#load (any subset of Tag fields).
+# Request payload for Tag#load.
 class TagLoadMatch
 end
 
-# Match filter for Tag#create (any subset of Tag fields).
+# Request payload for Tag#create.
 class TagCreateData
 end
 
@@ -893,7 +893,7 @@ UrlLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Url#list (any subset of Url fields).
+# Request payload for Url#list.
 #
 # @!attribute [rw] id
 #   @return [String, nil]
@@ -940,7 +940,7 @@ WorkLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Work#list (any subset of Work fields).
+# Request payload for Work#list.
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]

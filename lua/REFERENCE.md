@@ -163,12 +163,12 @@ local area = client:Area(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `table` | No |  |
+| `name` | `string` | No |  |
+| `sort_name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -228,14 +228,14 @@ local artist = client:Artist(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `table` | No |  |
+| `name` | `string` | No |  |
+| `sort_name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -295,10 +295,10 @@ local collection = client:Collection(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `editor` | ``$STRING`` | No |  |
-| `entity_type` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `editor` | `string` | No |  |
+| `entity_type` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -350,13 +350,13 @@ local event = client:Event(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cancelled` | ``$BOOLEAN`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `time` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `cancelled` | `boolean` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `table` | No |  |
+| `name` | `string` | No |  |
+| `time` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -416,9 +416,9 @@ local genre = client:Genre(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -478,11 +478,11 @@ local instrument = client:Instrument(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -542,14 +542,14 @@ local label = client:Label(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `label_code` | ``$INTEGER`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `label_code` | `number` | No |  |
+| `life_span` | `table` | No |  |
+| `name` | `string` | No |  |
+| `sort_name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -609,13 +609,13 @@ local place = client:Place(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `coordinate` | ``$OBJECT`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `coordinate` | `table` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `table` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -687,7 +687,7 @@ local result, err = client:Rating():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Rating():load({ id = "rating_id" })
+local result, err = client:Rating():load()
 ```
 
 ### Common Methods
@@ -730,11 +730,11 @@ local recording = client:Recording(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `length` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `video` | ``$BOOLEAN`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `length` | `number` | No |  |
+| `title` | `string` | No |  |
+| `video` | `boolean` | No |  |
 
 ### Operations
 
@@ -794,9 +794,9 @@ local recording_list = client:RecordingList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `recording` | ``$ARRAY`` | No |  |
+| `count` | `number` | No |  |
+| `offset` | `number` | No |  |
+| `recording` | `table` | No |  |
 
 ### Operations
 
@@ -805,7 +805,7 @@ local recording_list = client:RecordingList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:RecordingList():load({ id = "recording_list_id" })
+local result, err = client:RecordingList():load()
 ```
 
 ### Common Methods
@@ -848,14 +848,14 @@ local release = client:Release(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `barcode` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `packaging` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `barcode` | `string` | No |  |
+| `country` | `string` | No |  |
+| `date` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `packaging` | `string` | No |  |
+| `status` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -915,12 +915,12 @@ local release_group = client:ReleaseGroup(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `first_release_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `primary_type` | ``$STRING`` | No |  |
-| `secondary_type` | ``$ARRAY`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `first_release_date` | `string` | No |  |
+| `id` | `string` | No |  |
+| `primary_type` | `string` | No |  |
+| `secondary_type` | `table` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -980,9 +980,9 @@ local release_list = client:ReleaseList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `release` | ``$ARRAY`` | No |  |
+| `count` | `number` | No |  |
+| `offset` | `number` | No |  |
+| `release` | `table` | No |  |
 
 ### Operations
 
@@ -991,7 +991,7 @@ local release_list = client:ReleaseList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ReleaseList():load({ id = "release_list_id" })
+local result, err = client:ReleaseList():load()
 ```
 
 ### Common Methods
@@ -1034,10 +1034,10 @@ local series = client:Series(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -1109,7 +1109,7 @@ local result, err = client:Tag():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Tag():load({ id = "tag_id" })
+local result, err = client:Tag():load()
 ```
 
 ### Common Methods
@@ -1152,8 +1152,8 @@ local url = client:Url(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$STRING`` | No |  |
-| `resource` | ``$STRING`` | No |  |
+| `id` | `string` | No |  |
+| `resource` | `string` | No |  |
 
 ### Operations
 
@@ -1213,11 +1213,11 @@ local work = client:Work(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `language` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -1277,9 +1277,9 @@ local work_list = client:WorkList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `work` | ``$ARRAY`` | No |  |
+| `count` | `number` | No |  |
+| `offset` | `number` | No |  |
+| `work` | `table` | No |  |
 
 ### Operations
 
@@ -1288,7 +1288,7 @@ local work_list = client:WorkList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:WorkList():load({ id = "work_list_id" })
+local result, err = client:WorkList():load()
 ```
 
 ### Common Methods

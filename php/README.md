@@ -4,6 +4,8 @@
 
 The PHP SDK for the Musicbrainz API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Area()` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,7 +40,7 @@ try {
     // list() returns an array of Area records — iterate directly.
     $areas = $client->Area()->list();
     foreach ($areas as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["id"] . " " . $item["disambiguation"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -54,6 +56,37 @@ try {
     print_r($area);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $areas = $client->Area()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -77,7 +110,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -106,8 +142,8 @@ $client = MusicbrainzSDK::test([
     "entity" => ["area" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
-$area = $client->Area()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$area = $client->Area()->list();
 print_r($area);
 ```
 
@@ -216,10 +252,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -525,12 +559,12 @@ Create an instance: `$area = $client->Area();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `array` |  |
+| `name` | `string` |  |
+| `sort_name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -562,14 +596,14 @@ Create an instance: `$artist = $client->Artist();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `disambiguation` | `string` |  |
+| `gender` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `array` |  |
+| `name` | `string` |  |
+| `sort_name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -600,10 +634,10 @@ Create an instance: `$collection = $client->Collection();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `editor` | ``$STRING`` |  |
-| `entity_type` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `editor` | `string` |  |
+| `entity_type` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: List
 
@@ -628,13 +662,13 @@ Create an instance: `$event = $client->Event();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cancelled` | ``$BOOLEAN`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `time` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `cancelled` | `bool` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `array` |  |
+| `name` | `string` |  |
+| `time` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -666,9 +700,9 @@ Create an instance: `$genre = $client->Genre();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: Load
 
@@ -700,11 +734,11 @@ Create an instance: `$instrument = $client->Instrument();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -736,14 +770,14 @@ Create an instance: `$label = $client->Label();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `label_code` | ``$INTEGER`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `label_code` | `int` |  |
+| `life_span` | `array` |  |
+| `name` | `string` |  |
+| `sort_name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -775,13 +809,13 @@ Create an instance: `$place = $client->Place();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `coordinate` | ``$OBJECT`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `coordinate` | `array` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `array` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -813,7 +847,7 @@ Create an instance: `$rating = $client->Rating();`
 
 ```php
 // load() returns the bare Rating record (throws on error).
-$rating = $client->Rating()->load(["id" => "rating_id"]);
+$rating = $client->Rating()->load();
 ```
 
 #### Example: Create
@@ -839,11 +873,11 @@ Create an instance: `$recording = $client->Recording();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `length` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `video` | ``$BOOLEAN`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `length` | `int` |  |
+| `title` | `string` |  |
+| `video` | `bool` |  |
 
 #### Example: Load
 
@@ -874,15 +908,15 @@ Create an instance: `$recording_list = $client->RecordingList();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `recording` | ``$ARRAY`` |  |
+| `count` | `int` |  |
+| `offset` | `int` |  |
+| `recording` | `array` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare RecordingList record (throws on error).
-$recording_list = $client->RecordingList()->load(["id" => "recording_list_id"]);
+$recording_list = $client->RecordingList()->load();
 ```
 
 
@@ -901,14 +935,14 @@ Create an instance: `$release = $client->Release();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `barcode` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `packaging` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `barcode` | `string` |  |
+| `country` | `string` |  |
+| `date` | `string` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `packaging` | `string` |  |
+| `status` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -940,12 +974,12 @@ Create an instance: `$release_group = $client->ReleaseGroup();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `first_release_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `primary_type` | ``$STRING`` |  |
-| `secondary_type` | ``$ARRAY`` |  |
-| `title` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `first_release_date` | `string` |  |
+| `id` | `string` |  |
+| `primary_type` | `string` |  |
+| `secondary_type` | `array` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -976,15 +1010,15 @@ Create an instance: `$release_list = $client->ReleaseList();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `release` | ``$ARRAY`` |  |
+| `count` | `int` |  |
+| `offset` | `int` |  |
+| `release` | `array` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare ReleaseList record (throws on error).
-$release_list = $client->ReleaseList()->load(["id" => "release_list_id"]);
+$release_list = $client->ReleaseList()->load();
 ```
 
 
@@ -1003,10 +1037,10 @@ Create an instance: `$series = $client->Series();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -1038,7 +1072,7 @@ Create an instance: `$tag = $client->Tag();`
 
 ```php
 // load() returns the bare Tag record (throws on error).
-$tag = $client->Tag()->load(["id" => "tag_id"]);
+$tag = $client->Tag()->load();
 ```
 
 #### Example: Create
@@ -1064,8 +1098,8 @@ Create an instance: `$url = $client->Url();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `resource` | ``$STRING`` |  |
+| `id` | `string` |  |
+| `resource` | `string` |  |
 
 #### Example: Load
 
@@ -1097,11 +1131,11 @@ Create an instance: `$work = $client->Work();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `language` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `language` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -1132,24 +1166,28 @@ Create an instance: `$work_list = $client->WorkList();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `work` | ``$ARRAY`` |  |
+| `count` | `int` |  |
+| `offset` | `int` |  |
+| `work` | `array` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare WorkList record (throws on error).
-$work_list = $client->WorkList()->load(["id" => "work_list_id"]);
+$work_list = $client->WorkList()->load();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1166,8 +1204,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1211,15 +1250,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $area = $client->Area();
-$area->load(["id" => "example_id"]);
+$area->list();
 
-// $area->dataGet() now returns the loaded area data
-// $area->matchGet() returns the last match criteria
+// $area->data_get() now returns the area data from the last list
+// $area->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

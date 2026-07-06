@@ -4,6 +4,11 @@
 
 The Python SDK for the Musicbrainz API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Area()` — each
+carrying a small, uniform set of operations (`list`, `load`, `create`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,7 +46,7 @@ error — iterate it directly.
 
 ```python
 try:
-    areas = client.Area().list({})
+    areas = client.Area().list()
     for area in areas:
         print(area)
 except Exception as err:
@@ -58,6 +63,34 @@ try:
     print(area)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    areas = client.Area().list()
+    print(areas)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -78,7 +111,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -104,7 +140,7 @@ Create a mock client for unit testing — no server required:
 client = MusicbrainzSDK.test()
 
 # Entity ops return the bare record and raise on error.
-area = client.Area().load({"id": "test01"})
+area = client.Area().list()
 # area contains the mock response record
 ```
 
@@ -212,8 +248,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -512,19 +546,19 @@ Create an instance: `area = client.Area()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `life_span` | `dict` |  |
+| `name` | `str` |  |
+| `sort_name` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -535,7 +569,7 @@ area = client.Area().load({"id": "area_id"})
 #### Example: List
 
 ```python
-areas = client.Area().list({})
+areas = client.Area().list()
 ```
 
 
@@ -547,21 +581,21 @@ Create an instance: `artist = client.Artist()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `str` |  |
+| `disambiguation` | `str` |  |
+| `gender` | `str` |  |
+| `id` | `str` |  |
+| `life_span` | `dict` |  |
+| `name` | `str` |  |
+| `sort_name` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -572,7 +606,7 @@ artist = client.Artist().load({"id": "artist_id"})
 #### Example: List
 
 ```python
-artists = client.Artist().list({})
+artists = client.Artist().list()
 ```
 
 
@@ -584,21 +618,21 @@ Create an instance: `collection = client.Collection()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `editor` | ``$STRING`` |  |
-| `entity_type` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `editor` | `str` |  |
+| `entity_type` | `str` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
 
 #### Example: List
 
 ```python
-collections = client.Collection().list({})
+collections = client.Collection().list()
 ```
 
 
@@ -610,20 +644,20 @@ Create an instance: `event = client.Event()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cancelled` | ``$BOOLEAN`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `time` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `cancelled` | `bool` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `life_span` | `dict` |  |
+| `name` | `str` |  |
+| `time` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -634,7 +668,7 @@ event = client.Event().load({"id": "event_id"})
 #### Example: List
 
 ```python
-events = client.Event().list({})
+events = client.Event().list()
 ```
 
 
@@ -646,16 +680,16 @@ Create an instance: `genre = client.Genre()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
 
 #### Example: Load
 
@@ -666,7 +700,7 @@ genre = client.Genre().load({"id": "genre_id"})
 #### Example: List
 
 ```python
-genres = client.Genre().list({})
+genres = client.Genre().list()
 ```
 
 
@@ -678,18 +712,18 @@ Create an instance: `instrument = client.Instrument()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `description` | `str` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -700,7 +734,7 @@ instrument = client.Instrument().load({"id": "instrument_id"})
 #### Example: List
 
 ```python
-instruments = client.Instrument().list({})
+instruments = client.Instrument().list()
 ```
 
 
@@ -712,21 +746,21 @@ Create an instance: `label = client.Label()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `label_code` | ``$INTEGER`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `str` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `label_code` | `int` |  |
+| `life_span` | `dict` |  |
+| `name` | `str` |  |
+| `sort_name` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -737,7 +771,7 @@ label = client.Label().load({"id": "label_id"})
 #### Example: List
 
 ```python
-labels = client.Label().list({})
+labels = client.Label().list()
 ```
 
 
@@ -749,20 +783,20 @@ Create an instance: `place = client.Place()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `coordinate` | ``$OBJECT`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `str` |  |
+| `coordinate` | `dict` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `life_span` | `dict` |  |
+| `name` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -773,7 +807,7 @@ place = client.Place().load({"id": "place_id"})
 #### Example: List
 
 ```python
-places = client.Place().list({})
+places = client.Place().list()
 ```
 
 
@@ -791,7 +825,7 @@ Create an instance: `rating = client.Rating()`
 #### Example: Load
 
 ```python
-rating = client.Rating().load({"id": "rating_id"})
+rating = client.Rating().load()
 ```
 
 #### Example: Create
@@ -810,18 +844,18 @@ Create an instance: `recording = client.Recording()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `length` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `video` | ``$BOOLEAN`` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `length` | `int` |  |
+| `title` | `str` |  |
+| `video` | `bool` |  |
 
 #### Example: Load
 
@@ -832,7 +866,7 @@ recording = client.Recording().load({"id": "recording_id"})
 #### Example: List
 
 ```python
-recordings = client.Recording().list({})
+recordings = client.Recording().list()
 ```
 
 
@@ -850,14 +884,14 @@ Create an instance: `recording_list = client.RecordingList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `recording` | ``$ARRAY`` |  |
+| `count` | `int` |  |
+| `offset` | `int` |  |
+| `recording` | `list` |  |
 
 #### Example: Load
 
 ```python
-recording_list = client.RecordingList().load({"id": "recording_list_id"})
+recording_list = client.RecordingList().load()
 ```
 
 
@@ -869,21 +903,21 @@ Create an instance: `release = client.Release()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `barcode` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `packaging` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `barcode` | `str` |  |
+| `country` | `str` |  |
+| `date` | `str` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `packaging` | `str` |  |
+| `status` | `str` |  |
+| `title` | `str` |  |
 
 #### Example: Load
 
@@ -894,7 +928,7 @@ release = client.Release().load({"id": "release_id"})
 #### Example: List
 
 ```python
-releases = client.Release().list({})
+releases = client.Release().list()
 ```
 
 
@@ -906,19 +940,19 @@ Create an instance: `release_group = client.ReleaseGroup()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `first_release_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `primary_type` | ``$STRING`` |  |
-| `secondary_type` | ``$ARRAY`` |  |
-| `title` | ``$STRING`` |  |
+| `disambiguation` | `str` |  |
+| `first_release_date` | `str` |  |
+| `id` | `str` |  |
+| `primary_type` | `str` |  |
+| `secondary_type` | `list` |  |
+| `title` | `str` |  |
 
 #### Example: Load
 
@@ -929,7 +963,7 @@ release_group = client.ReleaseGroup().load({"id": "release_group_id"})
 #### Example: List
 
 ```python
-release_groups = client.ReleaseGroup().list({})
+release_groups = client.ReleaseGroup().list()
 ```
 
 
@@ -947,14 +981,14 @@ Create an instance: `release_list = client.ReleaseList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `release` | ``$ARRAY`` |  |
+| `count` | `int` |  |
+| `offset` | `int` |  |
+| `release` | `list` |  |
 
 #### Example: Load
 
 ```python
-release_list = client.ReleaseList().load({"id": "release_list_id"})
+release_list = client.ReleaseList().load()
 ```
 
 
@@ -966,17 +1000,17 @@ Create an instance: `series = client.Series()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -987,7 +1021,7 @@ series = client.Series().load({"id": "series_id"})
 #### Example: List
 
 ```python
-seriess = client.Series().list({})
+seriess = client.Series().list()
 ```
 
 
@@ -1005,7 +1039,7 @@ Create an instance: `tag = client.Tag()`
 #### Example: Load
 
 ```python
-tag = client.Tag().load({"id": "tag_id"})
+tag = client.Tag().load()
 ```
 
 #### Example: Create
@@ -1024,15 +1058,15 @@ Create an instance: `url = client.Url()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `resource` | ``$STRING`` |  |
+| `id` | `str` |  |
+| `resource` | `str` |  |
 
 #### Example: Load
 
@@ -1043,7 +1077,7 @@ url = client.Url().load({"id": "url_id"})
 #### Example: List
 
 ```python
-urls = client.Url().list({})
+urls = client.Url().list()
 ```
 
 
@@ -1055,18 +1089,18 @@ Create an instance: `work = client.Work()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `language` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `str` |  |
+| `id` | `str` |  |
+| `language` | `str` |  |
+| `title` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -1077,7 +1111,7 @@ work = client.Work().load({"id": "work_id"})
 #### Example: List
 
 ```python
-works = client.Work().list({})
+works = client.Work().list()
 ```
 
 
@@ -1095,23 +1129,27 @@ Create an instance: `work_list = client.WorkList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `work` | ``$ARRAY`` |  |
+| `count` | `int` |  |
+| `offset` | `int` |  |
+| `work` | `list` |  |
 
 #### Example: Load
 
 ```python
-work_list = client.WorkList().load({"id": "work_list_id"})
+work_list = client.WorkList().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1128,8 +1166,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1172,14 +1211,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 area = client.Area()
-area.load({"id": "example_id"})
+area.list()
 
-# area.data_get() now returns the loaded area data
+# area.data_get() now returns the area data from the last list
 # area.match_get() returns the last match criteria
 ```
 

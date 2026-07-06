@@ -23,8 +23,7 @@ type AreaLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// AreaListMatch mirrors the area fields as an all-optional match
-// filter (Go analog of Partial<Area>).
+// AreaListMatch is the typed request payload for Area.ListTyped.
 type AreaListMatch struct {
 	Disambiguation *string `json:"disambiguation,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -51,8 +50,7 @@ type ArtistLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ArtistListMatch mirrors the artist fields as an all-optional match
-// filter (Go analog of Partial<Artist>).
+// ArtistListMatch is the typed request payload for Artist.ListTyped.
 type ArtistListMatch struct {
 	Country *string `json:"country,omitempty"`
 	Disambiguation *string `json:"disambiguation,omitempty"`
@@ -72,8 +70,7 @@ type Collection struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// CollectionListMatch mirrors the collection fields as an all-optional match
-// filter (Go analog of Partial<Collection>).
+// CollectionListMatch is the typed request payload for Collection.ListTyped.
 type CollectionListMatch struct {
 	Editor *string `json:"editor,omitempty"`
 	EntityType *string `json:"entity_type,omitempty"`
@@ -97,8 +94,7 @@ type EventLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// EventListMatch mirrors the event fields as an all-optional match
-// filter (Go analog of Partial<Event>).
+// EventListMatch is the typed request payload for Event.ListTyped.
 type EventListMatch struct {
 	Cancelled *bool `json:"cancelled,omitempty"`
 	Disambiguation *string `json:"disambiguation,omitempty"`
@@ -121,8 +117,7 @@ type GenreLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// GenreListMatch mirrors the genre fields as an all-optional match
-// filter (Go analog of Partial<Genre>).
+// GenreListMatch is the typed request payload for Genre.ListTyped.
 type GenreListMatch struct {
 	Disambiguation *string `json:"disambiguation,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -143,8 +138,7 @@ type InstrumentLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// InstrumentListMatch mirrors the instrument fields as an all-optional match
-// filter (Go analog of Partial<Instrument>).
+// InstrumentListMatch is the typed request payload for Instrument.ListTyped.
 type InstrumentListMatch struct {
 	Description *string `json:"description,omitempty"`
 	Disambiguation *string `json:"disambiguation,omitempty"`
@@ -170,8 +164,7 @@ type LabelLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// LabelListMatch mirrors the label fields as an all-optional match
-// filter (Go analog of Partial<Label>).
+// LabelListMatch is the typed request payload for Label.ListTyped.
 type LabelListMatch struct {
 	Country *string `json:"country,omitempty"`
 	Disambiguation *string `json:"disambiguation,omitempty"`
@@ -199,8 +192,7 @@ type PlaceLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// PlaceListMatch mirrors the place fields as an all-optional match
-// filter (Go analog of Partial<Place>).
+// PlaceListMatch is the typed request payload for Place.ListTyped.
 type PlaceListMatch struct {
 	Address *string `json:"address,omitempty"`
 	Coordinate *map[string]any `json:"coordinate,omitempty"`
@@ -215,13 +207,11 @@ type PlaceListMatch struct {
 type Rating struct {
 }
 
-// RatingLoadMatch mirrors the rating fields as an all-optional match
-// filter (Go analog of Partial<Rating>).
+// RatingLoadMatch is the typed request payload for Rating.LoadTyped.
 type RatingLoadMatch struct {
 }
 
-// RatingCreateData mirrors the rating fields as an all-optional match
-// filter (Go analog of Partial<Rating>).
+// RatingCreateData is the typed request payload for Rating.CreateTyped.
 type RatingCreateData struct {
 }
 
@@ -239,8 +229,7 @@ type RecordingLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// RecordingListMatch mirrors the recording fields as an all-optional match
-// filter (Go analog of Partial<Recording>).
+// RecordingListMatch is the typed request payload for Recording.ListTyped.
 type RecordingListMatch struct {
 	Disambiguation *string `json:"disambiguation,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -278,8 +267,7 @@ type ReleaseLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ReleaseListMatch mirrors the release fields as an all-optional match
-// filter (Go analog of Partial<Release>).
+// ReleaseListMatch is the typed request payload for Release.ListTyped.
 type ReleaseListMatch struct {
 	Barcode *string `json:"barcode,omitempty"`
 	Country *string `json:"country,omitempty"`
@@ -306,8 +294,7 @@ type ReleaseGroupLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ReleaseGroupListMatch mirrors the release_group fields as an all-optional match
-// filter (Go analog of Partial<ReleaseGroup>).
+// ReleaseGroupListMatch is the typed request payload for ReleaseGroup.ListTyped.
 type ReleaseGroupListMatch struct {
 	Disambiguation *string `json:"disambiguation,omitempty"`
 	FirstReleaseDate *string `json:"first_release_date,omitempty"`
@@ -342,8 +329,7 @@ type SeriesLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// SeriesListMatch mirrors the series fields as an all-optional match
-// filter (Go analog of Partial<Series>).
+// SeriesListMatch is the typed request payload for Series.ListTyped.
 type SeriesListMatch struct {
 	Disambiguation *string `json:"disambiguation,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -355,13 +341,11 @@ type SeriesListMatch struct {
 type Tag struct {
 }
 
-// TagLoadMatch mirrors the tag fields as an all-optional match
-// filter (Go analog of Partial<Tag>).
+// TagLoadMatch is the typed request payload for Tag.LoadTyped.
 type TagLoadMatch struct {
 }
 
-// TagCreateData mirrors the tag fields as an all-optional match
-// filter (Go analog of Partial<Tag>).
+// TagCreateData is the typed request payload for Tag.CreateTyped.
 type TagCreateData struct {
 }
 
@@ -376,8 +360,7 @@ type UrlLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// UrlListMatch mirrors the url fields as an all-optional match
-// filter (Go analog of Partial<Url>).
+// UrlListMatch is the typed request payload for Url.ListTyped.
 type UrlListMatch struct {
 	Id *string `json:"id,omitempty"`
 	Resource *string `json:"resource,omitempty"`
@@ -397,8 +380,7 @@ type WorkLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// WorkListMatch mirrors the work fields as an all-optional match
-// filter (Go analog of Partial<Work>).
+// WorkListMatch is the typed request payload for Work.ListTyped.
 type WorkListMatch struct {
 	Disambiguation *string `json:"disambiguation,omitempty"`
 	Id *string `json:"id,omitempty"`

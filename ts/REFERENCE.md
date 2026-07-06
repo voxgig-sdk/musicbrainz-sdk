@@ -333,12 +333,12 @@ const area = client.Area()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `sort_name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -396,14 +396,14 @@ const artist = client.Artist()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `sort_name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -461,10 +461,10 @@ const collection = client.Collection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `editor` | ``$STRING`` | No |  |
-| `entity_type` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `editor` | `string` | No |  |
+| `entity_type` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -514,13 +514,13 @@ const event = client.Event()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cancelled` | ``$BOOLEAN`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `time` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `cancelled` | `boolean` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `time` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -578,9 +578,9 @@ const genre = client.Genre()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -638,11 +638,11 @@ const instrument = client.Instrument()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -700,14 +700,14 @@ const label = client.Label()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `label_code` | ``$INTEGER`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `label_code` | `number` | No |  |
+| `life_span` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `sort_name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -765,13 +765,13 @@ const place = client.Place()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `coordinate` | ``$OBJECT`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `coordinate` | `Record<string, any>` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `life_span` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -841,7 +841,7 @@ const result = await client.Rating().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Rating().load({ id: 'rating_id' })
+const result = await client.Rating().load()
 ```
 
 ### Common Methods
@@ -882,11 +882,11 @@ const recording = client.Recording()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `length` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `video` | ``$BOOLEAN`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `length` | `number` | No |  |
+| `title` | `string` | No |  |
+| `video` | `boolean` | No |  |
 
 ### Operations
 
@@ -944,9 +944,9 @@ const recording_list = client.RecordingList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `recording` | ``$ARRAY`` | No |  |
+| `count` | `number` | No |  |
+| `offset` | `number` | No |  |
+| `recording` | `any[]` | No |  |
 
 ### Operations
 
@@ -955,7 +955,7 @@ const recording_list = client.RecordingList()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.RecordingList().load({ id: 'recording_list_id' })
+const result = await client.RecordingList().load()
 ```
 
 ### Common Methods
@@ -996,14 +996,14 @@ const release = client.Release()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `barcode` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `packaging` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `barcode` | `string` | No |  |
+| `country` | `string` | No |  |
+| `date` | `string` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `packaging` | `string` | No |  |
+| `status` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -1061,12 +1061,12 @@ const release_group = client.ReleaseGroup()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `first_release_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `primary_type` | ``$STRING`` | No |  |
-| `secondary_type` | ``$ARRAY`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `first_release_date` | `string` | No |  |
+| `id` | `string` | No |  |
+| `primary_type` | `string` | No |  |
+| `secondary_type` | `any[]` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -1124,9 +1124,9 @@ const release_list = client.ReleaseList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `release` | ``$ARRAY`` | No |  |
+| `count` | `number` | No |  |
+| `offset` | `number` | No |  |
+| `release` | `any[]` | No |  |
 
 ### Operations
 
@@ -1135,7 +1135,7 @@ const release_list = client.ReleaseList()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ReleaseList().load({ id: 'release_list_id' })
+const result = await client.ReleaseList().load()
 ```
 
 ### Common Methods
@@ -1176,10 +1176,10 @@ const series = client.Series()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -1249,7 +1249,7 @@ const result = await client.Tag().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Tag().load({ id: 'tag_id' })
+const result = await client.Tag().load()
 ```
 
 ### Common Methods
@@ -1290,8 +1290,8 @@ const url = client.Url()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$STRING`` | No |  |
-| `resource` | ``$STRING`` | No |  |
+| `id` | `string` | No |  |
+| `resource` | `string` | No |  |
 
 ### Operations
 
@@ -1349,11 +1349,11 @@ const work = client.Work()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `string` | No |  |
+| `id` | `string` | No |  |
+| `language` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -1411,9 +1411,9 @@ const work_list = client.WorkList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `work` | ``$ARRAY`` | No |  |
+| `count` | `number` | No |  |
+| `offset` | `number` | No |  |
+| `work` | `any[]` | No |  |
 
 ### Operations
 
@@ -1422,7 +1422,7 @@ const work_list = client.WorkList()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WorkList().load({ id: 'work_list_id' })
+const result = await client.WorkList().load()
 ```
 
 ### Common Methods

@@ -65,8 +65,13 @@ class ArtistEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: ArtistLoadMatch, ctrl=None) -> Artist:
+    def load(self, reqmatch=None, ctrl=None) -> Artist:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Artist().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class ArtistEntity:
 
 
     
-    def list(self, reqmatch: ArtistListMatch, ctrl=None) -> list[Artist]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Artist]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Artist().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

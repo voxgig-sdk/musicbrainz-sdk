@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the Musicbrainz API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Area()` — each with a small set of operations (`list`, `load`, `create`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -56,6 +61,35 @@ try {
 ```
 
 
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const areas = await client.Area().list()
+  console.log(areas)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
+}
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -100,7 +134,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MusicbrainzSDK.test()
 
-const area = await client.Area().load({ id: 'test01' })
+const area = await client.Area().list()
 // area is a bare entity populated with mock response data
 console.log(area)
 ```
@@ -119,12 +153,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Area()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -237,10 +271,8 @@ All entities share the same interface.
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
 | `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): MusicbrainzSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -250,10 +282,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` and `create` resolve to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -567,12 +598,12 @@ Create an instance: `const area = client.Area()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `sort_name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -602,14 +633,14 @@ Create an instance: `const artist = client.Artist()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `gender` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `disambiguation` | `string` |  |
+| `gender` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `sort_name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -638,10 +669,10 @@ Create an instance: `const collection = client.Collection()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `editor` | ``$STRING`` |  |
-| `entity_type` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `editor` | `string` |  |
+| `entity_type` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: List
 
@@ -665,13 +696,13 @@ Create an instance: `const event = client.Event()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cancelled` | ``$BOOLEAN`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `time` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `cancelled` | `boolean` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `time` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -701,9 +732,9 @@ Create an instance: `const genre = client.Genre()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: Load
 
@@ -733,11 +764,11 @@ Create an instance: `const instrument = client.Instrument()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -767,14 +798,14 @@ Create an instance: `const label = client.Label()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `label_code` | ``$INTEGER`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `sort_name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `label_code` | `number` |  |
+| `life_span` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `sort_name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -804,13 +835,13 @@ Create an instance: `const place = client.Place()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `coordinate` | ``$OBJECT`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `life_span` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `coordinate` | `Record<string, any>` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `life_span` | `Record<string, any>` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -839,7 +870,7 @@ Create an instance: `const rating = client.Rating()`
 #### Example: Load
 
 ```ts
-const rating = await client.Rating().load({ id: 'rating_id' })
+const rating = await client.Rating().load()
 ```
 
 #### Example: Create
@@ -865,11 +896,11 @@ Create an instance: `const recording = client.Recording()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `length` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `video` | ``$BOOLEAN`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `length` | `number` |  |
+| `title` | `string` |  |
+| `video` | `boolean` |  |
 
 #### Example: Load
 
@@ -898,14 +929,14 @@ Create an instance: `const recording_list = client.RecordingList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `recording` | ``$ARRAY`` |  |
+| `count` | `number` |  |
+| `offset` | `number` |  |
+| `recording` | `any[]` |  |
 
 #### Example: Load
 
 ```ts
-const recording_list = await client.RecordingList().load({ id: 'recording_list_id' })
+const recording_list = await client.RecordingList().load()
 ```
 
 
@@ -924,14 +955,14 @@ Create an instance: `const release = client.Release()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `barcode` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `packaging` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `barcode` | `string` |  |
+| `country` | `string` |  |
+| `date` | `string` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `packaging` | `string` |  |
+| `status` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -961,12 +992,12 @@ Create an instance: `const release_group = client.ReleaseGroup()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `first_release_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `primary_type` | ``$STRING`` |  |
-| `secondary_type` | ``$ARRAY`` |  |
-| `title` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `first_release_date` | `string` |  |
+| `id` | `string` |  |
+| `primary_type` | `string` |  |
+| `secondary_type` | `any[]` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -995,14 +1026,14 @@ Create an instance: `const release_list = client.ReleaseList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `release` | ``$ARRAY`` |  |
+| `count` | `number` |  |
+| `offset` | `number` |  |
+| `release` | `any[]` |  |
 
 #### Example: Load
 
 ```ts
-const release_list = await client.ReleaseList().load({ id: 'release_list_id' })
+const release_list = await client.ReleaseList().load()
 ```
 
 
@@ -1021,10 +1052,10 @@ Create an instance: `const series = client.Series()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -1053,7 +1084,7 @@ Create an instance: `const tag = client.Tag()`
 #### Example: Load
 
 ```ts
-const tag = await client.Tag().load({ id: 'tag_id' })
+const tag = await client.Tag().load()
 ```
 
 #### Example: Create
@@ -1079,8 +1110,8 @@ Create an instance: `const url = client.Url()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `resource` | ``$STRING`` |  |
+| `id` | `string` |  |
+| `resource` | `string` |  |
 
 #### Example: Load
 
@@ -1110,11 +1141,11 @@ Create an instance: `const work = client.Work()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `language` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `disambiguation` | `string` |  |
+| `id` | `string` |  |
+| `language` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -1143,23 +1174,27 @@ Create an instance: `const work_list = client.WorkList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | ``$INTEGER`` |  |
-| `offset` | ``$INTEGER`` |  |
-| `work` | ``$ARRAY`` |  |
+| `count` | `number` |  |
+| `offset` | `number` |  |
+| `work` | `any[]` |  |
 
 #### Example: Load
 
 ```ts
-const work_list = await client.WorkList().load({ id: 'work_list_id' })
+const work_list = await client.WorkList().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1176,11 +1211,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1216,16 +1249,16 @@ import { MusicbrainzSDK } from '@voxgig-sdk/musicbrainz'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const area = client.Area()
-await area.load({ id: "example_id" })
+await area.list()
 
-// area.data() now returns the loaded area data
-// area.match() returns { id: "example_id" }
+// area.data() now returns the area data from the last `list`
+// area.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

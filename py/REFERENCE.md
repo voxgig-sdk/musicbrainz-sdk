@@ -160,21 +160,21 @@ area = client.Area()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `life_span` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `sort_name` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Area().list({})
+results = client.Area().list()
 for area in results:
     print(area)
 ```
@@ -226,23 +226,23 @@ artist = client.Artist()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `str` | No |  |
+| `disambiguation` | `str` | No |  |
+| `gender` | `str` | No |  |
+| `id` | `str` | No |  |
+| `life_span` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `sort_name` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Artist().list({})
+results = client.Artist().list()
 for artist in results:
     print(artist)
 ```
@@ -294,19 +294,19 @@ collection = client.Collection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `editor` | ``$STRING`` | No |  |
-| `entity_type` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `editor` | `str` | No |  |
+| `entity_type` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Collection().list({})
+results = client.Collection().list()
 for collection in results:
     print(collection)
 ```
@@ -350,22 +350,22 @@ event = client.Event()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cancelled` | ``$BOOLEAN`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `time` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `cancelled` | `bool` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `life_span` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `time` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Event().list({})
+results = client.Event().list()
 for event in results:
     print(event)
 ```
@@ -417,18 +417,18 @@ genre = client.Genre()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Genre().list({})
+results = client.Genre().list()
 for genre in results:
     print(genre)
 ```
@@ -480,20 +480,20 @@ instrument = client.Instrument()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `description` | `str` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Instrument().list({})
+results = client.Instrument().list()
 for instrument in results:
     print(instrument)
 ```
@@ -545,23 +545,23 @@ label = client.Label()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `label_code` | ``$INTEGER`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `sort_name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `str` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `label_code` | `int` | No |  |
+| `life_span` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `sort_name` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Label().list({})
+results = client.Label().list()
 for label in results:
     print(label)
 ```
@@ -613,22 +613,22 @@ place = client.Place()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `coordinate` | ``$OBJECT`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `life_span` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `str` | No |  |
+| `coordinate` | `dict` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `life_span` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Place().list({})
+results = client.Place().list()
 for place in results:
     print(place)
 ```
@@ -692,7 +692,7 @@ result = client.Rating().create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Rating().load({"id": "rating_id"})
+result = client.Rating().load()
 ```
 
 ### Common Methods
@@ -734,20 +734,20 @@ recording = client.Recording()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `length` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `video` | ``$BOOLEAN`` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `length` | `int` | No |  |
+| `title` | `str` | No |  |
+| `video` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Recording().list({})
+results = client.Recording().list()
 for recording in results:
     print(recording)
 ```
@@ -799,9 +799,9 @@ recording_list = client.RecordingList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `recording` | ``$ARRAY`` | No |  |
+| `count` | `int` | No |  |
+| `offset` | `int` | No |  |
+| `recording` | `list` | No |  |
 
 ### Operations
 
@@ -810,7 +810,7 @@ recording_list = client.RecordingList()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.RecordingList().load({"id": "recording_list_id"})
+result = client.RecordingList().load()
 ```
 
 ### Common Methods
@@ -852,23 +852,23 @@ release = client.Release()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `barcode` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `packaging` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `barcode` | `str` | No |  |
+| `country` | `str` | No |  |
+| `date` | `str` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `packaging` | `str` | No |  |
+| `status` | `str` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Release().list({})
+results = client.Release().list()
 for release in results:
     print(release)
 ```
@@ -920,21 +920,21 @@ release_group = client.ReleaseGroup()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `first_release_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `primary_type` | ``$STRING`` | No |  |
-| `secondary_type` | ``$ARRAY`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `disambiguation` | `str` | No |  |
+| `first_release_date` | `str` | No |  |
+| `id` | `str` | No |  |
+| `primary_type` | `str` | No |  |
+| `secondary_type` | `list` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ReleaseGroup().list({})
+results = client.ReleaseGroup().list()
 for release_group in results:
     print(release_group)
 ```
@@ -986,9 +986,9 @@ release_list = client.ReleaseList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `release` | ``$ARRAY`` | No |  |
+| `count` | `int` | No |  |
+| `offset` | `int` | No |  |
+| `release` | `list` | No |  |
 
 ### Operations
 
@@ -997,7 +997,7 @@ release_list = client.ReleaseList()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ReleaseList().load({"id": "release_list_id"})
+result = client.ReleaseList().load()
 ```
 
 ### Common Methods
@@ -1039,19 +1039,19 @@ series = client.Series()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Series().list({})
+results = client.Series().list()
 for series in results:
     print(series)
 ```
@@ -1115,7 +1115,7 @@ result = client.Tag().create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Tag().load({"id": "tag_id"})
+result = client.Tag().load()
 ```
 
 ### Common Methods
@@ -1157,17 +1157,17 @@ url = client.Url()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$STRING`` | No |  |
-| `resource` | ``$STRING`` | No |  |
+| `id` | `str` | No |  |
+| `resource` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Url().list({})
+results = client.Url().list()
 for url in results:
     print(url)
 ```
@@ -1219,20 +1219,20 @@ work = client.Work()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `disambiguation` | `str` | No |  |
+| `id` | `str` | No |  |
+| `language` | `str` | No |  |
+| `title` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Work().list({})
+results = client.Work().list()
 for work in results:
     print(work)
 ```
@@ -1284,9 +1284,9 @@ work_list = client.WorkList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | ``$INTEGER`` | No |  |
-| `offset` | ``$INTEGER`` | No |  |
-| `work` | ``$ARRAY`` | No |  |
+| `count` | `int` | No |  |
+| `offset` | `int` | No |  |
+| `work` | `list` | No |  |
 
 ### Operations
 
@@ -1295,7 +1295,7 @@ work_list = client.WorkList()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.WorkList().load({"id": "work_list_id"})
+result = client.WorkList().load()
 ```
 
 ### Common Methods
