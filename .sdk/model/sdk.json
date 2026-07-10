@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -4334,14 +4331,24 @@
           "name": "Various - See Data Licenses",
           "url": "https://musicbrainz.org/doc/About/Data_License"
         },
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "Authorization",
+          "prefix": "Bearer",
+          "scheme": "digestAuth",
+          "type": "http"
+        },
         "servers": [
           {
             "description": "MusicBrainz API v2 Production Server",
             "url": "https://musicbrainz.org/ws/2"
           }
         ],
+        "summary": "The MusicBrainz API provides developers with access to the MusicBrainz Database, an extensive collection of music metadata.",
         "title": "MusicBrainz API",
-        "version": "2.0.0"
+        "version": "2.0.0",
+        "website": "https://musicbrainz.org/doc/MusicBrainz_API"
       },
       "option": {},
       "target": {
@@ -4394,6 +4401,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -4444,6 +4454,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

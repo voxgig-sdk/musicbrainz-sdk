@@ -805,7 +805,7 @@ local recording_list = client:RecordingList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:RecordingList():load()
+local result, err = client:RecordingList():load({ isrc = "isrc" })
 ```
 
 ### Common Methods
@@ -991,7 +991,7 @@ local release_list = client:ReleaseList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ReleaseList():load()
+local result, err = client:ReleaseList():load({ discid = "discid" })
 ```
 
 ### Common Methods
@@ -1288,7 +1288,7 @@ local work_list = client:WorkList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:WorkList():load()
+local result, err = client:WorkList():load({ iswc = "iswc" })
 ```
 
 ### Common Methods

@@ -53,14 +53,15 @@ except Exception as err:
     print(f"list failed: {err}")
 ```
 
-### 3. Load an area
+### 3. Load a recordinglist
 
+RecordingList is nested under isrc, so provide the `isrc`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    area = client.Area().load({"id": "example_id"})
-    print(area)
+    recordinglist = client.RecordingList().load({"isrc": "example_isrc"})
+    print(recordinglist)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -891,7 +892,7 @@ Create an instance: `recording_list = client.RecordingList()`
 #### Example: Load
 
 ```python
-recording_list = client.RecordingList().load()
+recording_list = client.RecordingList().load({"isrc": "isrc"})
 ```
 
 
@@ -988,7 +989,7 @@ Create an instance: `release_list = client.ReleaseList()`
 #### Example: Load
 
 ```python
-release_list = client.ReleaseList().load()
+release_list = client.ReleaseList().load({"discid": "discid"})
 ```
 
 
@@ -1136,7 +1137,7 @@ Create an instance: `work_list = client.WorkList()`
 #### Example: Load
 
 ```python
-work_list = client.WorkList().load()
+work_list = client.WorkList().load({"iswc": "iswc"})
 ```
 
 

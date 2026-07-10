@@ -955,7 +955,7 @@ const recording_list = client.RecordingList()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.RecordingList().load()
+const result = await client.RecordingList().load({ isrc: 'isrc' })
 ```
 
 ### Common Methods
@@ -1135,7 +1135,7 @@ const release_list = client.ReleaseList()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ReleaseList().load()
+const result = await client.ReleaseList().load({ discid: 'discid' })
 ```
 
 ### Common Methods
@@ -1422,7 +1422,7 @@ const work_list = client.WorkList()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WorkList().load()
+const result = await client.WorkList().load({ iswc: 'iswc' })
 ```
 
 ### Common Methods

@@ -47,14 +47,17 @@ for (const area of areas) {
 }
 ```
 
-### 3. Load an area
+### 3. Load a recordinglist
 
+RecordingList is nested under isrc, so provide the `isrc`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const area = await client.Area().load({ id: 'example_id' })
-  console.log(area)
+  const recordinglist = await client.RecordingList().load({
+    isrc: 'example_isrc',
+  })
+  console.log(recordinglist)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -936,7 +939,7 @@ Create an instance: `const recording_list = client.RecordingList()`
 #### Example: Load
 
 ```ts
-const recording_list = await client.RecordingList().load()
+const recording_list = await client.RecordingList().load({ isrc: 'isrc' })
 ```
 
 
@@ -1033,7 +1036,7 @@ Create an instance: `const release_list = client.ReleaseList()`
 #### Example: Load
 
 ```ts
-const release_list = await client.ReleaseList().load()
+const release_list = await client.ReleaseList().load({ discid: 'discid' })
 ```
 
 
@@ -1181,7 +1184,7 @@ Create an instance: `const work_list = client.WorkList()`
 #### Example: Load
 
 ```ts
-const work_list = await client.WorkList().load()
+const work_list = await client.WorkList().load({ iswc: 'iswc' })
 ```
 
 

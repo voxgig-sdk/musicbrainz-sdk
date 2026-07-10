@@ -47,13 +47,15 @@ try {
 }
 ```
 
-### 3. Load an area
+### 3. Load a recordinglist
+
+RecordingList is nested under isrc, so provide the `isrc`.
 
 ```php
 try {
-    // load() returns the bare Area record (throws on error).
-    $area = $client->Area()->load(["id" => "example_id"]);
-    print_r($area);
+    // load() returns the bare RecordingList record (throws on error).
+    $recordinglist = $client->RecordingList()->load(["isrc" => "example_isrc"]);
+    print_r($recordinglist);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -916,7 +918,7 @@ Create an instance: `$recording_list = $client->RecordingList();`
 
 ```php
 // load() returns the bare RecordingList record (throws on error).
-$recording_list = $client->RecordingList()->load();
+$recording_list = $client->RecordingList()->load(["isrc" => "isrc"]);
 ```
 
 
@@ -1018,7 +1020,7 @@ Create an instance: `$release_list = $client->ReleaseList();`
 
 ```php
 // load() returns the bare ReleaseList record (throws on error).
-$release_list = $client->ReleaseList()->load();
+$release_list = $client->ReleaseList()->load(["discid" => "discid"]);
 ```
 
 
@@ -1174,7 +1176,7 @@ Create an instance: `$work_list = $client->WorkList();`
 
 ```php
 // load() returns the bare WorkList record (throws on error).
-$work_list = $client->WorkList()->load();
+$work_list = $client->WorkList()->load(["iswc" => "iswc"]);
 ```
 
 

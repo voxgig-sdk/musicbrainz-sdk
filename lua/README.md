@@ -49,12 +49,14 @@ for _, item in ipairs(areas) do
 end
 ```
 
-### 3. Load an area
+### 3. Load a recordinglist
+
+RecordingList is nested under isrc, so provide the `isrc`.
 
 ```lua
-local area, err = client:Area():load({ id = "example_id" })
+local recordinglist, err = client:RecordingList():load({ isrc = "example_isrc" })
 if err then error(err) end
-print(area)
+print(recordinglist)
 ```
 
 
@@ -876,7 +878,7 @@ Create an instance: `local recording_list = client:RecordingList(nil)`
 #### Example: Load
 
 ```lua
-local recording_list, err = client:RecordingList():load()
+local recording_list, err = client:RecordingList():load({ isrc = "isrc" })
 ```
 
 
@@ -973,7 +975,7 @@ Create an instance: `local release_list = client:ReleaseList(nil)`
 #### Example: Load
 
 ```lua
-local release_list, err = client:ReleaseList():load()
+local release_list, err = client:ReleaseList():load({ discid = "discid" })
 ```
 
 
@@ -1121,7 +1123,7 @@ Create an instance: `local work_list = client:WorkList(nil)`
 #### Example: Load
 
 ```lua
-local work_list, err = client:WorkList():load()
+local work_list, err = client:WorkList():load({ iswc = "iswc" })
 ```
 
 

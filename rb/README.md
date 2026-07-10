@@ -46,13 +46,15 @@ rescue => err
 end
 ```
 
-### 3. Load an area
+### 3. Load a recordinglist
+
+RecordingList is nested under isrc, so provide the `isrc`.
 
 ```ruby
 begin
-  # load returns the bare Area record (raises on error).
-  area = client.Area.load({ "id" => "example_id" })
-  puts area
+  # load returns the bare RecordingList record (raises on error).
+  recordinglist = client.RecordingList.load({ "isrc" => "example_isrc" })
+  puts recordinglist
 rescue => err
   warn "load failed: #{err}"
 end
@@ -906,7 +908,7 @@ Create an instance: `recording_list = client.RecordingList`
 
 ```ruby
 # load returns the bare RecordingList record (raises on error).
-recording_list = client.RecordingList.load()
+recording_list = client.RecordingList.load({ "isrc" => "isrc" })
 ```
 
 
@@ -1008,7 +1010,7 @@ Create an instance: `release_list = client.ReleaseList`
 
 ```ruby
 # load returns the bare ReleaseList record (raises on error).
-release_list = client.ReleaseList.load()
+release_list = client.ReleaseList.load({ "discid" => "discid" })
 ```
 
 
@@ -1164,7 +1166,7 @@ Create an instance: `work_list = client.WorkList`
 
 ```ruby
 # load returns the bare WorkList record (raises on error).
-work_list = client.WorkList.load()
+work_list = client.WorkList.load({ "iswc" => "iswc" })
 ```
 
 

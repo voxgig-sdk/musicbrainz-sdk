@@ -808,7 +808,7 @@ recording_list = client.RecordingList
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.RecordingList.load()
+result = client.RecordingList.load({ "isrc" => "isrc" })
 ```
 
 ### Common Methods
@@ -994,7 +994,7 @@ release_list = client.ReleaseList
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ReleaseList.load()
+result = client.ReleaseList.load({ "discid" => "discid" })
 ```
 
 ### Common Methods
@@ -1291,7 +1291,7 @@ work_list = client.WorkList
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.WorkList.load()
+result = client.WorkList.load({ "iswc" => "iswc" })
 ```
 
 ### Common Methods

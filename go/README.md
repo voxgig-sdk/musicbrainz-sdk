@@ -63,7 +63,7 @@ func main() {
     }
 
     // Load a single area — the value is the loaded record.
-    area, err := client.Area(nil).Load(map[string]any{"id": "example"}, nil)
+    area, err := client.Area(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -893,8 +893,8 @@ Create an instance: `rating := client.Rating(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Example: Load
 
@@ -911,6 +911,10 @@ fmt.Println(rating) // the loaded record
 ```go
 result, err := client.Rating(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -958,7 +962,7 @@ fmt.Println(recordings) // the array of records
 
 ### RecordingList
 
-Create an instance: `recording_list := client.RecordingList(nil)`
+Create an instance: `recordingList := client.RecordingList(nil)`
 
 #### Operations
 
@@ -977,11 +981,11 @@ Create an instance: `recording_list := client.RecordingList(nil)`
 #### Example: Load
 
 ```go
-recording_list, err := client.RecordingList(nil).Load(nil, nil)
+recordingList, err := client.RecordingList(nil).Load(map[string]any{"isrc": "isrc"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(recording_list) // the loaded record
+fmt.Println(recordingList) // the loaded record
 ```
 
 
@@ -1032,7 +1036,7 @@ fmt.Println(releases) // the array of records
 
 ### ReleaseGroup
 
-Create an instance: `release_group := client.ReleaseGroup(nil)`
+Create an instance: `releaseGroup := client.ReleaseGroup(nil)`
 
 #### Operations
 
@@ -1055,27 +1059,27 @@ Create an instance: `release_group := client.ReleaseGroup(nil)`
 #### Example: Load
 
 ```go
-release_group, err := client.ReleaseGroup(nil).Load(map[string]any{"id": "release_group_id"}, nil)
+releaseGroup, err := client.ReleaseGroup(nil).Load(map[string]any{"id": "release_group_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(release_group) // the loaded record
+fmt.Println(releaseGroup) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-release_groups, err := client.ReleaseGroup(nil).List(nil, nil)
+releaseGroups, err := client.ReleaseGroup(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(release_groups) // the array of records
+fmt.Println(releaseGroups) // the array of records
 ```
 
 
 ### ReleaseList
 
-Create an instance: `release_list := client.ReleaseList(nil)`
+Create an instance: `releaseList := client.ReleaseList(nil)`
 
 #### Operations
 
@@ -1094,11 +1098,11 @@ Create an instance: `release_list := client.ReleaseList(nil)`
 #### Example: Load
 
 ```go
-release_list, err := client.ReleaseList(nil).Load(nil, nil)
+releaseList, err := client.ReleaseList(nil).Load(map[string]any{"discid": "discid"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(release_list) // the loaded record
+fmt.Println(releaseList) // the loaded record
 ```
 
 
@@ -1151,8 +1155,8 @@ Create an instance: `tag := client.Tag(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Example: Load
 
@@ -1169,6 +1173,10 @@ fmt.Println(tag) // the loaded record
 ```go
 result, err := client.Tag(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -1255,7 +1263,7 @@ fmt.Println(works) // the array of records
 
 ### WorkList
 
-Create an instance: `work_list := client.WorkList(nil)`
+Create an instance: `workList := client.WorkList(nil)`
 
 #### Operations
 
@@ -1274,11 +1282,11 @@ Create an instance: `work_list := client.WorkList(nil)`
 #### Example: Load
 
 ```go
-work_list, err := client.WorkList(nil).Load(nil, nil)
+workList, err := client.WorkList(nil).Load(map[string]any{"iswc": "iswc"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(work_list) // the loaded record
+fmt.Println(workList) // the loaded record
 ```
 
 
