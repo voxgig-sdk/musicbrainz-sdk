@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Musicbrainz SDK exists test
 
 local sdk = require("musicbrainz_sdk")
 
