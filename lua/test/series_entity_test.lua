@@ -97,7 +97,7 @@ describe("SeriesEntity", function()
     }
     local series_ref01_data_dt0_loaded, err = series_ref01_ent:load(series_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local series_ref01_data_dt0_load_result = helpers.to_map(series_ref01_data_dt0_loaded)
+    local series_ref01_data_dt0_load_result = helpers.to_map(type(series_ref01_data_dt0_loaded) == 'table' and series_ref01_data_dt0_loaded.data_get and series_ref01_data_dt0_loaded:data_get() or series_ref01_data_dt0_loaded)
     assert.is_not_nil(series_ref01_data_dt0_load_result)
     assert.are.equal(series_ref01_data_dt0_load_result["id"], series_ref01_data["id"])
 

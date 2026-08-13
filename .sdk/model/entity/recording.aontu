@@ -134,7 +134,7 @@ main: kit: entity: recording: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.recordings`"
           }
         }
       ]

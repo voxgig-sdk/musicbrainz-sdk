@@ -87,7 +87,7 @@ class ArtistEntityTest < Minitest::Test
       "id" => artist_ref01_data["id"],
     }
     artist_ref01_data_dt0_loaded = artist_ref01_ent.load(artist_ref01_match_dt0, nil)
-    artist_ref01_data_dt0_load_result = Helpers.to_map(artist_ref01_data_dt0_loaded)
+    artist_ref01_data_dt0_load_result = Helpers.to_map(artist_ref01_data_dt0_loaded.respond_to?(:data_get) ? artist_ref01_data_dt0_loaded.data_get : artist_ref01_data_dt0_loaded)
     assert !artist_ref01_data_dt0_load_result.nil?
     assert_equal artist_ref01_data_dt0_load_result["id"], artist_ref01_data["id"]
 

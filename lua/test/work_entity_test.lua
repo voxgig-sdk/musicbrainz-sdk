@@ -97,7 +97,7 @@ describe("WorkEntity", function()
     }
     local work_ref01_data_dt0_loaded, err = work_ref01_ent:load(work_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local work_ref01_data_dt0_load_result = helpers.to_map(work_ref01_data_dt0_loaded)
+    local work_ref01_data_dt0_load_result = helpers.to_map(type(work_ref01_data_dt0_loaded) == 'table' and work_ref01_data_dt0_loaded.data_get and work_ref01_data_dt0_loaded:data_get() or work_ref01_data_dt0_loaded)
     assert.is_not_nil(work_ref01_data_dt0_load_result)
     assert.are.equal(work_ref01_data_dt0_load_result["id"], work_ref01_data["id"])
 

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import MusicbrainzControl
-from core.error import MusicbrainzError
-from core.result import MusicbrainzResult
-from core.spec import MusicbrainzSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import MusicbrainzControl
+from projectname_sdk.core.error import MusicbrainzError
+from projectname_sdk.core.result import MusicbrainzResult
+from projectname_sdk.core.spec import MusicbrainzSpec
 
 
 # True when this SDK was generated with the named feature.

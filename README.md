@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = MusicbrainzSDK.test()
-const areas = await client.Area().list()
-// areas is an array of bare Area records populated with mock data
-console.log(areas)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = MusicbrainzSDK.test({
+  entity: {
+    series: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const seriess = await client.Series().list()
+// seriess is an array of Series entities, populated with mock data
+// — call seriess[0].data() for the record itself
+console.log(seriess)
 ```
 
 ### Python
 
 ```python
 client = MusicbrainzSDK.test()
-areas = client.Area().list()
-print(areas)
+seriess = client.Series().list()
+print(seriess)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(areas)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = MusicbrainzSDK::test([
-    "entity" => ["area" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["series" => ["test01" => ["id" => "test01"]]],
 ]);
-$areas = $client->Area()->list();
+$seriess = $client->Series()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Area(nil).List(
+result, err := client.Series(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Area(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = MusicbrainzSDK.test({
-  "entity" => { "area" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "series" => { "test01" => { "id" => "test01" } } },
 })
-areas = client.Area.list()
+seriess = client.Series.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Area():list()
+local results, err = client:Series():list()
 ```
 
 ## Packages
@@ -112,7 +121,7 @@ const client = new MusicbrainzSDK({
   apikey: process.env.MUSICBRAINZ_APIKEY,
 })
 
-// List all areas (returns Area[])
+// List all areas (returns AreaEntity[] — .data() for the record)
 const areas = await client.Area().list()
 for (const area of areas) {
   console.log(area)
@@ -222,7 +231,7 @@ $client = new MusicbrainzSDK([
 $areas = $client->Area()->list();
 print_r($areas);
 
-// Load a specific area (returns the bare record; throws on error)
+// Load a specific area (returns the ENTITY; call data_get() for the record; throws on error)
 $area = $client->Area()->load(["id" => "example_id"]);
 print_r($area);
 ```
@@ -266,7 +275,7 @@ client = MusicbrainzSDK.new({
 areas = client.Area.list
 puts areas
 
-# Load a specific area (returns the bare record; raises on error)
+# Load a specific area (returns the ENTITY; call data_get for the record)
 area = client.Area.load({ "id" => "example_id" })
 puts area
 ```
@@ -405,6 +414,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://musicbrainz.org/doc/MusicBrainz_API](https://musicbrainz.org/doc/MusicBrainz_API)
 

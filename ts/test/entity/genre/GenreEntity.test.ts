@@ -63,13 +63,13 @@ describe('GenreEntity', async () => {
     const genre_ref01_ent = client.Genre()
     const genre_ref01_match: any = {}
 
-    const genre_ref01_list = await genre_ref01_ent.list(genre_ref01_match)
+    const genre_ref01_list = (await genre_ref01_ent.list(genre_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const genre_ref01_match_dt0: any = {}
     genre_ref01_match_dt0.id = genre_ref01_data.id
-    const genre_ref01_data_dt0 = await genre_ref01_ent.load(genre_ref01_match_dt0)
+    const genre_ref01_data_dt0 = (await genre_ref01_ent.load(genre_ref01_match_dt0)).data()
     assert(genre_ref01_data_dt0.id === genre_ref01_data.id)
 
 

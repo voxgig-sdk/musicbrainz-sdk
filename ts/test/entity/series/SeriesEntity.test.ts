@@ -63,13 +63,13 @@ describe('SeriesEntity', async () => {
     const series_ref01_ent = client.Series()
     const series_ref01_match: any = {}
 
-    const series_ref01_list = await series_ref01_ent.list(series_ref01_match)
+    const series_ref01_list = (await series_ref01_ent.list(series_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const series_ref01_match_dt0: any = {}
     series_ref01_match_dt0.id = series_ref01_data.id
-    const series_ref01_data_dt0 = await series_ref01_ent.load(series_ref01_match_dt0)
+    const series_ref01_data_dt0 = (await series_ref01_ent.load(series_ref01_match_dt0)).data()
     assert(series_ref01_data_dt0.id === series_ref01_data.id)
 
 

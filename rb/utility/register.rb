@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ MusicbrainzUtility.registrar = ->(u) {
   u.prepare_params = MusicbrainzUtilities::PrepareParams
   u.prepare_path = MusicbrainzUtilities::PreparePath
   u.prepare_query = MusicbrainzUtilities::PrepareQuery
+  u.graphql_body = MusicbrainzUtilities::GraphqlBody
+  u.graphql_errors = MusicbrainzUtilities::GraphqlErrors
   u.result_basic = MusicbrainzUtilities::ResultBasic
   u.result_body = MusicbrainzUtilities::ResultBody
   u.result_headers = MusicbrainzUtilities::ResultHeaders

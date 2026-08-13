@@ -63,13 +63,13 @@ describe('ReleaseGroupEntity', async () => {
     const release_group_ref01_ent = client.ReleaseGroup()
     const release_group_ref01_match: any = {}
 
-    const release_group_ref01_list = await release_group_ref01_ent.list(release_group_ref01_match)
+    const release_group_ref01_list = (await release_group_ref01_ent.list(release_group_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const release_group_ref01_match_dt0: any = {}
     release_group_ref01_match_dt0.id = release_group_ref01_data.id
-    const release_group_ref01_data_dt0 = await release_group_ref01_ent.load(release_group_ref01_match_dt0)
+    const release_group_ref01_data_dt0 = (await release_group_ref01_ent.load(release_group_ref01_match_dt0)).data()
     assert(release_group_ref01_data_dt0.id === release_group_ref01_data.id)
 
 

@@ -6,6 +6,11 @@ main: kit: entity: label: {
 
   fields: [
     {
+      name: "begin"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "country"
       req: false
       type: "`$STRING`"
@@ -16,17 +21,27 @@ main: kit: entity: label: {
       type: "`$STRING`"
     }
     {
+      name: "end"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ended"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
       name: "id"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "label_code"
+      name: "labelcode"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "life_span"
+      name: "lifespan"
       req: false
       type: "`$OBJECT`"
     }
@@ -36,7 +51,7 @@ main: kit: entity: label: {
       type: "`$STRING`"
     }
     {
-      name: "sort_name"
+      name: "sortname"
       req: false
       type: "`$STRING`"
     }
@@ -141,7 +156,7 @@ main: kit: entity: label: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.labels`"
           }
         }
       ]
@@ -215,7 +230,7 @@ main: kit: entity: label: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.life-span`"
           }
         }
       ]

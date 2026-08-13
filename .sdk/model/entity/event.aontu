@@ -6,6 +6,11 @@ main: kit: entity: event: {
 
   fields: [
     {
+      name: "begin"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "cancelled"
       req: false
       type: "`$BOOLEAN`"
@@ -16,12 +21,22 @@ main: kit: entity: event: {
       type: "`$STRING`"
     }
     {
+      name: "end"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ended"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
       name: "id"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "life_span"
+      name: "lifespan"
       req: false
       type: "`$OBJECT`"
     }
@@ -136,7 +151,7 @@ main: kit: entity: event: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.events`"
           }
         }
       ]
@@ -194,7 +209,7 @@ main: kit: entity: event: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.life-span`"
           }
         }
       ]

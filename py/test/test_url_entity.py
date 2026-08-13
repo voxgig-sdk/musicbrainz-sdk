@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from musicbrainz_sdk.utility.voxgig_struct import voxgig_struct as vs
 from musicbrainz_sdk import MusicbrainzSDK
-from core import helpers
+from musicbrainz_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -42,7 +42,7 @@ class TestUrlEntity:
         assert len(seen) == 3
 
         # Inbound: streaming active -> yields each item from the feature.
-        from config import make_config
+        from musicbrainz_sdk.config import make_config
         cfg = make_config()
         if isinstance(cfg.get("feature"), dict) and "streaming" in cfg["feature"]:
             sdk = MusicbrainzSDK.test(
@@ -92,7 +92,7 @@ class TestUrlEntity:
             "id": url_ref01_data["id"],
         }
         url_ref01_data_dt0_loaded = url_ref01_ent.load(url_ref01_match_dt0, None)
-        url_ref01_data_dt0_load_result = helpers.to_map(url_ref01_data_dt0_loaded)
+        url_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(url_ref01_data_dt0_loaded))
         assert url_ref01_data_dt0_load_result is not None
         assert url_ref01_data_dt0_load_result["id"] == url_ref01_data["id"]
 

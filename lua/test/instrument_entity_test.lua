@@ -97,7 +97,7 @@ describe("InstrumentEntity", function()
     }
     local instrument_ref01_data_dt0_loaded, err = instrument_ref01_ent:load(instrument_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local instrument_ref01_data_dt0_load_result = helpers.to_map(instrument_ref01_data_dt0_loaded)
+    local instrument_ref01_data_dt0_load_result = helpers.to_map(type(instrument_ref01_data_dt0_loaded) == 'table' and instrument_ref01_data_dt0_loaded.data_get and instrument_ref01_data_dt0_loaded:data_get() or instrument_ref01_data_dt0_loaded)
     assert.is_not_nil(instrument_ref01_data_dt0_load_result)
     assert.are.equal(instrument_ref01_data_dt0_load_result["id"], instrument_ref01_data["id"])
 

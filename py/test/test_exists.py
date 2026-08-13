@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Musicbrainz SDK exists test
 
 import pytest
 from musicbrainz_sdk import MusicbrainzSDK

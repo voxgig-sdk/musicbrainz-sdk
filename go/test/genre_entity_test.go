@@ -128,7 +128,7 @@ func TestGenreEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		genreRef01DataDt0LoadResult := core.ToMapAny(genreRef01DataDt0Loaded)
+		genreRef01DataDt0LoadResult := core.ToMapAny(entityData(genreRef01DataDt0Loaded))
 		if genreRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

@@ -4,21 +4,21 @@
       "WORK_LIST00": {
         "count": "s1e",
         "offset": "s1f",
-        "work": [],
+        "works": [],
         "iswc": "ISWC01",
         "id": "WORK_LIST00"
       },
       "WORK_LIST01": {
         "count": "s3c",
         "offset": "s3d",
-        "work": [],
+        "works": [],
         "iswc": "ISWC01",
         "id": "WORK_LIST01"
       },
       "WORK_LIST02": {
         "count": "s5a",
         "offset": "s5b",
-        "work": [],
+        "works": [],
         "iswc": "ISWC01",
         "id": "WORK_LIST02"
       }
@@ -29,7 +29,7 @@
       "work_list_ref01": {
         "count": "s78",
         "offset": "s79",
-        "work": []
+        "works": []
       }
     }
   }

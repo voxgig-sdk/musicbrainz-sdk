@@ -6,6 +6,11 @@ main: kit: entity: artist: {
 
   fields: [
     {
+      name: "begin"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "country"
       req: false
       type: "`$STRING`"
@@ -14,6 +19,16 @@ main: kit: entity: artist: {
       name: "disambiguation"
       req: false
       type: "`$STRING`"
+    }
+    {
+      name: "end"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ended"
+      req: false
+      type: "`$BOOLEAN`"
     }
     {
       name: "gender"
@@ -26,7 +41,7 @@ main: kit: entity: artist: {
       type: "`$STRING`"
     }
     {
-      name: "life_span"
+      name: "lifespan"
       req: false
       type: "`$OBJECT`"
     }
@@ -36,7 +51,7 @@ main: kit: entity: artist: {
       type: "`$STRING`"
     }
     {
-      name: "sort_name"
+      name: "sortname"
       req: false
       type: "`$STRING`"
     }
@@ -165,7 +180,7 @@ main: kit: entity: artist: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.artists`"
           }
         }
       ]
@@ -239,7 +254,7 @@ main: kit: entity: artist: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.life-span`"
           }
         }
       ]

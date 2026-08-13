@@ -87,7 +87,7 @@ class SeriesEntityTest < Minitest::Test
       "id" => series_ref01_data["id"],
     }
     series_ref01_data_dt0_loaded = series_ref01_ent.load(series_ref01_match_dt0, nil)
-    series_ref01_data_dt0_load_result = Helpers.to_map(series_ref01_data_dt0_loaded)
+    series_ref01_data_dt0_load_result = Helpers.to_map(series_ref01_data_dt0_loaded.respond_to?(:data_get) ? series_ref01_data_dt0_loaded.data_get : series_ref01_data_dt0_loaded)
     assert !series_ref01_data_dt0_load_result.nil?
     assert_equal series_ref01_data_dt0_load_result["id"], series_ref01_data["id"]
 

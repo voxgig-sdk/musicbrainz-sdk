@@ -8,36 +8,43 @@ guide: {
   entity: area: {
     path: "/area": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.areas`")|top
     }
     path: "/area/{mbid}": {
       rename: param: "mbid": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.life-span`")|top
     }
   }
 
   entity: artist: {
     path: "/artist": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.artists`")|top
     }
     path: "/artist/{mbid}": {
       rename: param: "mbid": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.life-span`")|top
     }
   }
 
   entity: collection: {
     path: "/collection": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.collections`")|top
     }
   }
 
   entity: event: {
     path: "/event": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.events`")|top
     }
     path: "/event/{mbid}": {
       rename: param: "mbid": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.life-span`")|top
     }
   }
 
@@ -45,6 +52,7 @@ guide: {
     path: "/genre/all": {
       action: "all": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.genres`")|top
     }
     path: "/genre/{mbid}": {
       rename: param: "mbid": *"id"
@@ -55,6 +63,7 @@ guide: {
   entity: instrument: {
     path: "/instrument": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.instruments`")|top
     }
     path: "/instrument/{mbid}": {
       rename: param: "mbid": *"id"
@@ -65,16 +74,19 @@ guide: {
   entity: label: {
     path: "/label": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.labels`")|top
     }
     path: "/label/{mbid}": {
       rename: param: "mbid": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.life-span`")|top
     }
   }
 
   entity: place: {
     path: "/place": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.places`")|top
     }
     path: "/place/{mbid}": {
       rename: param: "mbid": *"id"
@@ -92,6 +104,7 @@ guide: {
   entity: recording: {
     path: "/recording": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.recordings`")|top
     }
     path: "/recording/{mbid}": {
       rename: param: "mbid": *"id"
@@ -108,6 +121,7 @@ guide: {
   entity: release: {
     path: "/release": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.releases`")|top
     }
     path: "/release/{mbid}": {
       rename: param: "mbid": *"id"
@@ -118,6 +132,7 @@ guide: {
   entity: release_group: {
     path: "/release-group": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.release-groups`")|top
     }
     path: "/release-group/{mbid}": {
       rename: param: "mbid": *"id"
@@ -152,6 +167,7 @@ guide: {
   entity: url: {
     path: "/url": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.urls`")|top
     }
     path: "/url/{mbid}": {
       rename: param: "mbid": *"id"
@@ -162,6 +178,7 @@ guide: {
   entity: work: {
     path: "/work": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.works`")|top
     }
     path: "/work/{mbid}": {
       rename: param: "mbid": *"id"

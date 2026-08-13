@@ -58,7 +58,7 @@ func TestTagEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		tagRef01Data = core.ToMapAny(tagRef01DataResult)
+		tagRef01Data = core.ToMapAny(entityData(tagRef01DataResult))
 		if tagRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}

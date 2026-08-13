@@ -44,7 +44,7 @@ class RatingEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.rating"), "rating_ref01"));
 
         $rating_ref01_data_result = $rating_ref01_ent->create($rating_ref01_data, null);
-        $rating_ref01_data = Helpers::to_map($rating_ref01_data_result);
+        $rating_ref01_data = Helpers::to_map(is_object($rating_ref01_data_result) && method_exists($rating_ref01_data_result, 'data_get') ? $rating_ref01_data_result->data_get() : $rating_ref01_data_result);
         $this->assertNotNull($rating_ref01_data);
 
         // LOAD

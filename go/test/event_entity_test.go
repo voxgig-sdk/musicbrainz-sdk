@@ -128,7 +128,7 @@ func TestEventEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		eventRef01DataDt0LoadResult := core.ToMapAny(eventRef01DataDt0Loaded)
+		eventRef01DataDt0LoadResult := core.ToMapAny(entityData(eventRef01DataDt0Loaded))
 		if eventRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

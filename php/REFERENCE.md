@@ -165,11 +165,14 @@ $area = $client->Area();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `bool` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `array` | No |  |
+| `lifespan` | `array` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -230,13 +233,16 @@ $artist = $client->Artist();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `country` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `bool` | No |  |
 | `gender` | `string` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `array` | No |  |
+| `lifespan` | `array` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -298,7 +304,7 @@ $collection = $client->Collection();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `editor` | `string` | No |  |
-| `entity_type` | `string` | No |  |
+| `entitytype` | `string` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
 
@@ -352,10 +358,13 @@ $event = $client->Event();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `cancelled` | `bool` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `bool` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `array` | No |  |
+| `lifespan` | `array` | No |  |
 | `name` | `string` | No |  |
 | `time` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -544,13 +553,16 @@ $label = $client->Label();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `country` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `bool` | No |  |
 | `id` | `string` | No |  |
-| `label_code` | `int` | No |  |
-| `life_span` | `array` | No |  |
+| `labelcode` | `int` | No |  |
+| `lifespan` | `array` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -612,10 +624,10 @@ $place = $client->Place();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `coordinate` | `array` | No |  |
+| `coordinates` | `array` | No |  |
 | `disambiguation` | `string` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `array` | No |  |
+| `lifespan` | `array` | No |  |
 | `name` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -798,7 +810,7 @@ $recording_list = $client->RecordingList();
 | --- | --- | --- | --- |
 | `count` | `int` | No |  |
 | `offset` | `int` | No |  |
-| `recording` | `array` | No |  |
+| `recordings` | `array` | No |  |
 
 ### Operations
 
@@ -918,10 +930,10 @@ $release_group = $client->ReleaseGroup();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `disambiguation` | `string` | No |  |
-| `first_release_date` | `string` | No |  |
+| `firstreleasedate` | `string` | No |  |
 | `id` | `string` | No |  |
-| `primary_type` | `string` | No |  |
-| `secondary_type` | `array` | No |  |
+| `primarytype` | `string` | No |  |
+| `secondarytypes` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -984,7 +996,7 @@ $release_list = $client->ReleaseList();
 | --- | --- | --- | --- |
 | `count` | `int` | No |  |
 | `offset` | `int` | No |  |
-| `release` | `array` | No |  |
+| `releases` | `array` | No |  |
 
 ### Operations
 
@@ -1281,7 +1293,7 @@ $work_list = $client->WorkList();
 | --- | --- | --- | --- |
 | `count` | `int` | No |  |
 | `offset` | `int` | No |  |
-| `work` | `array` | No |  |
+| `works` | `array` | No |  |
 
 ### Operations
 

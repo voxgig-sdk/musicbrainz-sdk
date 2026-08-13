@@ -53,45 +53,66 @@ class MusicbrainzConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'disambiguation',
+              'name' => 'begin',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'id',
+              'name' => 'disambiguation',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'life_span',
+              'name' => 'end',
               'req' => false,
-              'type' => '`$OBJECT`',
+              'type' => '`$STRING`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'name',
+              'name' => 'ended',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$BOOLEAN`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'sort_name',
+              'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 4,
             ],
             [
               'active' => true,
+              'name' => 'lifespan',
+              'req' => false,
+              'type' => '`$OBJECT`',
+              'index$' => 5,
+            ],
+            [
+              'active' => true,
+              'name' => 'name',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 6,
+            ],
+            [
+              'active' => true,
+              'name' => 'sortname',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 7,
+            ],
+            [
+              'active' => true,
               'name' => 'type',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
+              'index$' => 8,
             ],
           ],
           'name' => 'area',
@@ -150,6 +171,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/area',
                   'parts' => [
@@ -166,7 +188,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.areas`',
                   ],
                   'index$' => 0,
                 ],
@@ -212,6 +234,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/area/{mbid}',
                   'parts' => [
@@ -232,7 +255,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.life-span`',
                   ],
                   'index$' => 0,
                 ],
@@ -248,59 +271,80 @@ class MusicbrainzConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'country',
+              'name' => 'begin',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'disambiguation',
+              'name' => 'country',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'gender',
+              'name' => 'disambiguation',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'id',
+              'name' => 'end',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'life_span',
+              'name' => 'ended',
               'req' => false,
-              'type' => '`$OBJECT`',
+              'type' => '`$BOOLEAN`',
               'index$' => 4,
             ],
             [
               'active' => true,
-              'name' => 'name',
+              'name' => 'gender',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'sort_name',
+              'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 6,
             ],
             [
               'active' => true,
+              'name' => 'lifespan',
+              'req' => false,
+              'type' => '`$OBJECT`',
+              'index$' => 7,
+            ],
+            [
+              'active' => true,
+              'name' => 'name',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 8,
+            ],
+            [
+              'active' => true,
+              'name' => 'sortname',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 9,
+            ],
+            [
+              'active' => true,
               'name' => 'type',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
+              'index$' => 10,
             ],
           ],
           'name' => 'artist',
@@ -407,6 +451,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artist',
                   'parts' => [
@@ -429,7 +474,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.artists`',
                   ],
                   'index$' => 0,
                 ],
@@ -491,6 +536,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artist/{mbid}',
                   'parts' => [
@@ -513,7 +559,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.life-span`',
                   ],
                   'index$' => 0,
                 ],
@@ -536,7 +582,7 @@ class MusicbrainzConfig
             ],
             [
               'active' => true,
-              'name' => 'entity_type',
+              'name' => 'entitytype',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 1,
@@ -604,6 +650,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collection',
                   'parts' => [
@@ -619,7 +666,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.collections`',
                   ],
                   'index$' => 0,
                 ],
@@ -635,52 +682,73 @@ class MusicbrainzConfig
           'fields' => [
             [
               'active' => true,
+              'name' => 'begin',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 0,
+            ],
+            [
+              'active' => true,
               'name' => 'cancelled',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
+              'index$' => 1,
             ],
             [
               'active' => true,
               'name' => 'disambiguation',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
+              'index$' => 2,
+            ],
+            [
+              'active' => true,
+              'name' => 'end',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 3,
+            ],
+            [
+              'active' => true,
+              'name' => 'ended',
+              'req' => false,
+              'type' => '`$BOOLEAN`',
+              'index$' => 4,
             ],
             [
               'active' => true,
               'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
+              'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'life_span',
+              'name' => 'lifespan',
               'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 3,
+              'index$' => 6,
             ],
             [
               'active' => true,
               'name' => 'name',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
+              'index$' => 7,
             ],
             [
               'active' => true,
               'name' => 'time',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
+              'index$' => 8,
             ],
             [
               'active' => true,
               'name' => 'type',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
+              'index$' => 9,
             ],
           ],
           'name' => 'event',
@@ -763,6 +831,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event',
                   'parts' => [
@@ -782,7 +851,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.events`',
                   ],
                   'index$' => 0,
                 ],
@@ -828,6 +897,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event/{mbid}',
                   'parts' => [
@@ -848,7 +918,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.life-span`',
                   ],
                   'index$' => 0,
                 ],
@@ -923,6 +993,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/genre/all',
                   'parts' => [
@@ -939,7 +1010,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.genres`',
                   ],
                   'index$' => 0,
                 ],
@@ -976,6 +1047,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/genre/{mbid}',
                   'parts' => [
@@ -1109,6 +1181,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/instrument',
                   'parts' => [
@@ -1126,7 +1199,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.instruments`',
                   ],
                   'index$' => 0,
                 ],
@@ -1172,6 +1245,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/instrument/{mbid}',
                   'parts' => [
@@ -1208,59 +1282,80 @@ class MusicbrainzConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'country',
+              'name' => 'begin',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'disambiguation',
+              'name' => 'country',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'id',
+              'name' => 'disambiguation',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'label_code',
+              'name' => 'end',
               'req' => false,
-              'type' => '`$INTEGER`',
+              'type' => '`$STRING`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'life_span',
+              'name' => 'ended',
               'req' => false,
-              'type' => '`$OBJECT`',
+              'type' => '`$BOOLEAN`',
               'index$' => 4,
             ],
             [
               'active' => true,
-              'name' => 'name',
+              'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'sort_name',
+              'name' => 'labelcode',
+              'req' => false,
+              'type' => '`$INTEGER`',
+              'index$' => 6,
+            ],
+            [
+              'active' => true,
+              'name' => 'lifespan',
+              'req' => false,
+              'type' => '`$OBJECT`',
+              'index$' => 7,
+            ],
+            [
+              'active' => true,
+              'name' => 'name',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
+              'index$' => 8,
+            ],
+            [
+              'active' => true,
+              'name' => 'sortname',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 9,
             ],
             [
               'active' => true,
               'name' => 'type',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
+              'index$' => 10,
             ],
           ],
           'name' => 'label',
@@ -1343,6 +1438,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/label',
                   'parts' => [
@@ -1362,7 +1458,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.labels`',
                   ],
                   'index$' => 0,
                 ],
@@ -1424,6 +1520,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/label/{mbid}',
                   'parts' => [
@@ -1446,7 +1543,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.life-span`',
                   ],
                   'index$' => 0,
                 ],
@@ -1469,7 +1566,7 @@ class MusicbrainzConfig
             ],
             [
               'active' => true,
-              'name' => 'coordinate',
+              'name' => 'coordinates',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 1,
@@ -1490,7 +1587,7 @@ class MusicbrainzConfig
             ],
             [
               'active' => true,
-              'name' => 'life_span',
+              'name' => 'lifespan',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 4,
@@ -1582,6 +1679,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/place',
                   'parts' => [
@@ -1600,7 +1698,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.places`',
                   ],
                   'index$' => 0,
                 ],
@@ -1646,6 +1744,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/place/{mbid}',
                   'parts' => [
@@ -1689,6 +1788,7 @@ class MusicbrainzConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/rating',
                   'parts' => [
@@ -1723,6 +1823,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/rating',
                   'parts' => [
@@ -1873,6 +1974,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/recording',
                   'parts' => [
@@ -1893,7 +1995,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.recordings`',
                   ],
                   'index$' => 0,
                 ],
@@ -1955,6 +2057,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/recording/{mbid}',
                   'parts' => [
@@ -2007,7 +2110,7 @@ class MusicbrainzConfig
             ],
             [
               'active' => true,
-              'name' => 'recording',
+              'name' => 'recordings',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -2054,6 +2157,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/isrc/{isrc}',
                   'parts' => [
@@ -2280,6 +2384,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/release',
                   'parts' => [
@@ -2306,7 +2411,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.releases`',
                   ],
                   'index$' => 0,
                 ],
@@ -2352,6 +2457,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/release/{mbid}',
                   'parts' => [
@@ -2395,7 +2501,7 @@ class MusicbrainzConfig
             ],
             [
               'active' => true,
-              'name' => 'first_release_date',
+              'name' => 'firstreleasedate',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 1,
@@ -2409,14 +2515,14 @@ class MusicbrainzConfig
             ],
             [
               'active' => true,
-              'name' => 'primary_type',
+              'name' => 'primarytype',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'secondary_type',
+              'name' => 'secondarytypes',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 4,
@@ -2517,6 +2623,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/release-group',
                   'parts' => [
@@ -2537,7 +2644,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.release-groups`',
                   ],
                   'index$' => 0,
                 ],
@@ -2599,6 +2706,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/release-group/{mbid}',
                   'parts' => [
@@ -2651,7 +2759,7 @@ class MusicbrainzConfig
             ],
             [
               'active' => true,
-              'name' => 'release',
+              'name' => 'releases',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -2698,6 +2806,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/discid/{discid}',
                   'parts' => [
@@ -2824,6 +2933,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/series',
                   'parts' => [
@@ -2887,6 +2997,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/series/{mbid}',
                   'parts' => [
@@ -2930,6 +3041,7 @@ class MusicbrainzConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/tag',
                   'parts' => [
@@ -2964,6 +3076,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tag',
                   'parts' => [
@@ -3069,6 +3182,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/url',
                   'parts' => [
@@ -3086,7 +3200,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.urls`',
                   ],
                   'index$' => 0,
                 ],
@@ -3132,6 +3246,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/url/{mbid}',
                   'parts' => [
@@ -3274,6 +3389,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/work',
                   'parts' => [
@@ -3292,7 +3408,7 @@ class MusicbrainzConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.works`',
                   ],
                   'index$' => 0,
                 ],
@@ -3338,6 +3454,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/work/{mbid}',
                   'parts' => [
@@ -3388,7 +3505,7 @@ class MusicbrainzConfig
             ],
             [
               'active' => true,
-              'name' => 'work',
+              'name' => 'works',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -3435,6 +3552,7 @@ class MusicbrainzConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/iswc/{iswc}',
                   'parts' => [

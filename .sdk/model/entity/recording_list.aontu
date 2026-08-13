@@ -16,7 +16,7 @@ main: kit: entity: recording_list: {
       type: "`$INTEGER`"
     }
     {
-      name: "recording"
+      name: "recordings"
       req: false
       type: "`$ARRAY`"
     }

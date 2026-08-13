@@ -37,7 +37,9 @@ const client = new MusicbrainzSDK({
 
 ### 2. List area records
 
-`list()` resolves to an array of Area objects — iterate it directly:
+`list()` resolves to an array of Area ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const areas = await client.Area().list()
@@ -70,8 +72,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const areas = await client.Area().list()
-  console.log(areas)
+  const seriess = await client.Series().list()
+  console.log(seriess)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -137,9 +139,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MusicbrainzSDK.test()
 
-const area = await client.Area().list()
-// area is a bare entity populated with mock response data
-console.log(area)
+const series = await client.Series().list()
+// series is the entity, populated with mock response data
+// — call series.data() for the record itself
+console.log(series)
 ```
 
 You can also use the instance method:
@@ -154,7 +157,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Area()
+const entity = client.Series()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -327,11 +330,14 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: list, load.
@@ -342,13 +348,16 @@ API path: `/area`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `country` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `gender` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: list, load.
@@ -360,7 +369,7 @@ API path: `/artist`
 | Field | Description |
 | --- | --- |
 | `editor` |  |
-| `entity_type` |  |
+| `entitytype` |  |
 | `id` |  |
 | `name` |  |
 
@@ -372,10 +381,13 @@ API path: `/collection`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `cancelled` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
 | `time` |  |
 | `type` |  |
@@ -414,13 +426,16 @@ API path: `/instrument`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `country` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `label_code` |  |
-| `life_span` |  |
+| `labelcode` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: list, load.
@@ -432,10 +447,10 @@ API path: `/label`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `coordinate` |  |
+| `coordinates` |  |
 | `disambiguation` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
 | `type` |  |
 
@@ -472,7 +487,7 @@ API path: `/recording`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `recording` |  |
+| `recordings` |  |
 
 Operations: load.
 
@@ -500,10 +515,10 @@ API path: `/release`
 | Field | Description |
 | --- | --- |
 | `disambiguation` |  |
-| `first_release_date` |  |
+| `firstreleasedate` |  |
 | `id` |  |
-| `primary_type` |  |
-| `secondary_type` |  |
+| `primarytype` |  |
+| `secondarytypes` |  |
 | `title` |  |
 
 Operations: list, load.
@@ -516,7 +531,7 @@ API path: `/release-group`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `release` |  |
+| `releases` |  |
 
 Operations: load.
 
@@ -575,7 +590,7 @@ API path: `/work`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `work` |  |
+| `works` |  |
 
 Operations: load.
 
@@ -601,11 +616,14 @@ Create an instance: `const area = client.Area()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `boolean` |  |
 | `id` | `string` |  |
-| `life_span` | `Record<string, any>` |  |
+| `lifespan` | `Record<string, any>` |  |
 | `name` | `string` |  |
-| `sort_name` | `string` |  |
+| `sortname` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -636,13 +654,16 @@ Create an instance: `const artist = client.Artist()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `country` | `string` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `boolean` |  |
 | `gender` | `string` |  |
 | `id` | `string` |  |
-| `life_span` | `Record<string, any>` |  |
+| `lifespan` | `Record<string, any>` |  |
 | `name` | `string` |  |
-| `sort_name` | `string` |  |
+| `sortname` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -673,7 +694,7 @@ Create an instance: `const collection = client.Collection()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `editor` | `string` |  |
-| `entity_type` | `string` |  |
+| `entitytype` | `string` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
 
@@ -699,10 +720,13 @@ Create an instance: `const event = client.Event()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `cancelled` | `boolean` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `boolean` |  |
 | `id` | `string` |  |
-| `life_span` | `Record<string, any>` |  |
+| `lifespan` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `time` | `string` |  |
 | `type` | `string` |  |
@@ -801,13 +825,16 @@ Create an instance: `const label = client.Label()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `country` | `string` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `boolean` |  |
 | `id` | `string` |  |
-| `label_code` | `number` |  |
-| `life_span` | `Record<string, any>` |  |
+| `labelcode` | `number` |  |
+| `lifespan` | `Record<string, any>` |  |
 | `name` | `string` |  |
-| `sort_name` | `string` |  |
+| `sortname` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -839,10 +866,10 @@ Create an instance: `const place = client.Place()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `coordinate` | `Record<string, any>` |  |
+| `coordinates` | `Record<string, any>` |  |
 | `disambiguation` | `string` |  |
 | `id` | `string` |  |
-| `life_span` | `Record<string, any>` |  |
+| `lifespan` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `type` | `string` |  |
 
@@ -934,7 +961,7 @@ Create an instance: `const recording_list = client.RecordingList()`
 | --- | --- | --- |
 | `count` | `number` |  |
 | `offset` | `number` |  |
-| `recording` | `any[]` |  |
+| `recordings` | `any[]` |  |
 
 #### Example: Load
 
@@ -996,10 +1023,10 @@ Create an instance: `const release_group = client.ReleaseGroup()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `disambiguation` | `string` |  |
-| `first_release_date` | `string` |  |
+| `firstreleasedate` | `string` |  |
 | `id` | `string` |  |
-| `primary_type` | `string` |  |
-| `secondary_type` | `any[]` |  |
+| `primarytype` | `string` |  |
+| `secondarytypes` | `any[]` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -1031,7 +1058,7 @@ Create an instance: `const release_list = client.ReleaseList()`
 | --- | --- | --- |
 | `count` | `number` |  |
 | `offset` | `number` |  |
-| `release` | `any[]` |  |
+| `releases` | `any[]` |  |
 
 #### Example: Load
 
@@ -1179,7 +1206,7 @@ Create an instance: `const work_list = client.WorkList()`
 | --- | --- | --- |
 | `count` | `number` |  |
 | `offset` | `number` |  |
-| `work` | `any[]` |  |
+| `works` | `any[]` |  |
 
 #### Example: Load
 
@@ -1257,11 +1284,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const area = client.Area()
-await area.list()
+const series = client.Series()
+await series.list()
 
-// area.data() now returns the area data from the last `list`
-// area.match() returns the last match criteria
+// series.data() now returns the series data from the last `list`
+// series.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

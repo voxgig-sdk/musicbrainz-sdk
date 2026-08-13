@@ -97,7 +97,7 @@ describe("ReleaseGroupEntity", function()
     }
     local release_group_ref01_data_dt0_loaded, err = release_group_ref01_ent:load(release_group_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local release_group_ref01_data_dt0_load_result = helpers.to_map(release_group_ref01_data_dt0_loaded)
+    local release_group_ref01_data_dt0_load_result = helpers.to_map(type(release_group_ref01_data_dt0_loaded) == 'table' and release_group_ref01_data_dt0_loaded.data_get and release_group_ref01_data_dt0_loaded:data_get() or release_group_ref01_data_dt0_loaded)
     assert.is_not_nil(release_group_ref01_data_dt0_load_result)
     assert.are.equal(release_group_ref01_data_dt0_load_result["id"], release_group_ref01_data["id"])
 

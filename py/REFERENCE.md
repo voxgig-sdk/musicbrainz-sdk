@@ -160,11 +160,14 @@ area = client.Area()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `str` | No |  |
 | `disambiguation` | `str` | No |  |
+| `end` | `str` | No |  |
+| `ended` | `bool` | No |  |
 | `id` | `str` | No |  |
-| `life_span` | `dict` | No |  |
+| `lifespan` | `dict` | No |  |
 | `name` | `str` | No |  |
-| `sort_name` | `str` | No |  |
+| `sortname` | `str` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations
@@ -226,13 +229,16 @@ artist = client.Artist()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `str` | No |  |
 | `country` | `str` | No |  |
 | `disambiguation` | `str` | No |  |
+| `end` | `str` | No |  |
+| `ended` | `bool` | No |  |
 | `gender` | `str` | No |  |
 | `id` | `str` | No |  |
-| `life_span` | `dict` | No |  |
+| `lifespan` | `dict` | No |  |
 | `name` | `str` | No |  |
-| `sort_name` | `str` | No |  |
+| `sortname` | `str` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations
@@ -295,7 +301,7 @@ collection = client.Collection()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `editor` | `str` | No |  |
-| `entity_type` | `str` | No |  |
+| `entitytype` | `str` | No |  |
 | `id` | `str` | No |  |
 | `name` | `str` | No |  |
 
@@ -350,10 +356,13 @@ event = client.Event()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `str` | No |  |
 | `cancelled` | `bool` | No |  |
 | `disambiguation` | `str` | No |  |
+| `end` | `str` | No |  |
+| `ended` | `bool` | No |  |
 | `id` | `str` | No |  |
-| `life_span` | `dict` | No |  |
+| `lifespan` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `time` | `str` | No |  |
 | `type` | `str` | No |  |
@@ -545,13 +554,16 @@ label = client.Label()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `str` | No |  |
 | `country` | `str` | No |  |
 | `disambiguation` | `str` | No |  |
+| `end` | `str` | No |  |
+| `ended` | `bool` | No |  |
 | `id` | `str` | No |  |
-| `label_code` | `int` | No |  |
-| `life_span` | `dict` | No |  |
+| `labelcode` | `int` | No |  |
+| `lifespan` | `dict` | No |  |
 | `name` | `str` | No |  |
-| `sort_name` | `str` | No |  |
+| `sortname` | `str` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations
@@ -614,10 +626,10 @@ place = client.Place()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `str` | No |  |
-| `coordinate` | `dict` | No |  |
+| `coordinates` | `dict` | No |  |
 | `disambiguation` | `str` | No |  |
 | `id` | `str` | No |  |
-| `life_span` | `dict` | No |  |
+| `lifespan` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `type` | `str` | No |  |
 
@@ -801,7 +813,7 @@ recording_list = client.RecordingList()
 | --- | --- | --- | --- |
 | `count` | `int` | No |  |
 | `offset` | `int` | No |  |
-| `recording` | `list` | No |  |
+| `recordings` | `list` | No |  |
 
 ### Operations
 
@@ -921,10 +933,10 @@ release_group = client.ReleaseGroup()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `disambiguation` | `str` | No |  |
-| `first_release_date` | `str` | No |  |
+| `firstreleasedate` | `str` | No |  |
 | `id` | `str` | No |  |
-| `primary_type` | `str` | No |  |
-| `secondary_type` | `list` | No |  |
+| `primarytype` | `str` | No |  |
+| `secondarytypes` | `list` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -988,7 +1000,7 @@ release_list = client.ReleaseList()
 | --- | --- | --- | --- |
 | `count` | `int` | No |  |
 | `offset` | `int` | No |  |
-| `release` | `list` | No |  |
+| `releases` | `list` | No |  |
 
 ### Operations
 
@@ -1286,7 +1298,7 @@ work_list = client.WorkList()
 | --- | --- | --- | --- |
 | `count` | `int` | No |  |
 | `offset` | `int` | No |  |
-| `work` | `list` | No |  |
+| `works` | `list` | No |  |
 
 ### Operations
 

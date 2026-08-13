@@ -4,21 +4,21 @@
       "RECORDING_LIST00": {
         "count": "s1e",
         "offset": "s1f",
-        "recording": [],
+        "recordings": [],
         "isrc": "ISRC01",
         "id": "RECORDING_LIST00"
       },
       "RECORDING_LIST01": {
         "count": "s3c",
         "offset": "s3d",
-        "recording": [],
+        "recordings": [],
         "isrc": "ISRC01",
         "id": "RECORDING_LIST01"
       },
       "RECORDING_LIST02": {
         "count": "s5a",
         "offset": "s5b",
-        "recording": [],
+        "recordings": [],
         "isrc": "ISRC01",
         "id": "RECORDING_LIST02"
       }
@@ -29,7 +29,7 @@
       "recording_list_ref01": {
         "count": "s78",
         "offset": "s79",
-        "recording": []
+        "recordings": []
       }
     }
   }

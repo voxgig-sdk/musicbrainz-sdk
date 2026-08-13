@@ -4,21 +4,21 @@
       "RELEASE_LIST00": {
         "count": "s1e",
         "offset": "s1f",
-        "release": [],
+        "releases": [],
         "discid": "DISCID01",
         "id": "RELEASE_LIST00"
       },
       "RELEASE_LIST01": {
         "count": "s3c",
         "offset": "s3d",
-        "release": [],
+        "releases": [],
         "discid": "DISCID01",
         "id": "RELEASE_LIST01"
       },
       "RELEASE_LIST02": {
         "count": "s5a",
         "offset": "s5b",
-        "release": [],
+        "releases": [],
         "discid": "DISCID01",
         "id": "RELEASE_LIST02"
       }
@@ -29,7 +29,7 @@
       "release_list_ref01": {
         "count": "s78",
         "offset": "s79",
-        "release": []
+        "releases": []
       }
     }
   }

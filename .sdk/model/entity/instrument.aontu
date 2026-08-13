@@ -110,7 +110,7 @@ main: kit: entity: instrument: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.instruments`"
           }
         }
       ]

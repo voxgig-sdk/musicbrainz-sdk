@@ -10,29 +10,41 @@
 
 # Area entity data model.
 #
+# @!attribute [rw] begin
+#   @return [String, nil]
+#
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
+#
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] ended
+#   @return [Boolean, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] sort_name
+# @!attribute [rw] sortname
 #   @return [String, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 Area = Struct.new(
+  :begin,
   :disambiguation,
+  :end,
+  :ended,
   :id,
-  :life_span,
+  :lifespan,
   :name,
-  :sort_name,
+  :sortname,
   :type,
   keyword_init: true
 )
@@ -48,34 +60,49 @@ AreaLoadMatch = Struct.new(
 
 # Request payload for Area#list.
 #
+# @!attribute [rw] begin
+#   @return [String, nil]
+#
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
+#
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] ended
+#   @return [Boolean, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] sort_name
+# @!attribute [rw] sortname
 #   @return [String, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 AreaListMatch = Struct.new(
+  :begin,
   :disambiguation,
+  :end,
+  :ended,
   :id,
-  :life_span,
+  :lifespan,
   :name,
-  :sort_name,
+  :sortname,
   :type,
   keyword_init: true
 )
 
 # Artist entity data model.
+#
+# @!attribute [rw] begin
+#   @return [String, nil]
 #
 # @!attribute [rw] country
 #   @return [String, nil]
@@ -83,31 +110,40 @@ AreaListMatch = Struct.new(
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
 #
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] ended
+#   @return [Boolean, nil]
+#
 # @!attribute [rw] gender
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] sort_name
+# @!attribute [rw] sortname
 #   @return [String, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 Artist = Struct.new(
+  :begin,
   :country,
   :disambiguation,
+  :end,
+  :ended,
   :gender,
   :id,
-  :life_span,
+  :lifespan,
   :name,
-  :sort_name,
+  :sortname,
   :type,
   keyword_init: true
 )
@@ -123,11 +159,20 @@ ArtistLoadMatch = Struct.new(
 
 # Request payload for Artist#list.
 #
+# @!attribute [rw] begin
+#   @return [String, nil]
+#
 # @!attribute [rw] country
 #   @return [String, nil]
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
+#
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] ended
+#   @return [Boolean, nil]
 #
 # @!attribute [rw] gender
 #   @return [String, nil]
@@ -135,25 +180,28 @@ ArtistLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] sort_name
+# @!attribute [rw] sortname
 #   @return [String, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 ArtistListMatch = Struct.new(
+  :begin,
   :country,
   :disambiguation,
+  :end,
+  :ended,
   :gender,
   :id,
-  :life_span,
+  :lifespan,
   :name,
-  :sort_name,
+  :sortname,
   :type,
   keyword_init: true
 )
@@ -163,7 +211,7 @@ ArtistListMatch = Struct.new(
 # @!attribute [rw] editor
 #   @return [String, nil]
 #
-# @!attribute [rw] entity_type
+# @!attribute [rw] entitytype
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -173,7 +221,7 @@ ArtistListMatch = Struct.new(
 #   @return [String, nil]
 Collection = Struct.new(
   :editor,
-  :entity_type,
+  :entitytype,
   :id,
   :name,
   keyword_init: true
@@ -184,7 +232,7 @@ Collection = Struct.new(
 # @!attribute [rw] editor
 #   @return [String, nil]
 #
-# @!attribute [rw] entity_type
+# @!attribute [rw] entitytype
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -194,7 +242,7 @@ Collection = Struct.new(
 #   @return [String, nil]
 CollectionListMatch = Struct.new(
   :editor,
-  :entity_type,
+  :entitytype,
   :id,
   :name,
   keyword_init: true
@@ -202,16 +250,25 @@ CollectionListMatch = Struct.new(
 
 # Event entity data model.
 #
+# @!attribute [rw] begin
+#   @return [String, nil]
+#
 # @!attribute [rw] cancelled
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
 #
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] ended
+#   @return [Boolean, nil]
+#
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -223,10 +280,13 @@ CollectionListMatch = Struct.new(
 # @!attribute [rw] type
 #   @return [String, nil]
 Event = Struct.new(
+  :begin,
   :cancelled,
   :disambiguation,
+  :end,
+  :ended,
   :id,
-  :life_span,
+  :lifespan,
   :name,
   :time,
   :type,
@@ -244,16 +304,25 @@ EventLoadMatch = Struct.new(
 
 # Request payload for Event#list.
 #
+# @!attribute [rw] begin
+#   @return [String, nil]
+#
 # @!attribute [rw] cancelled
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
 #
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] ended
+#   @return [Boolean, nil]
+#
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -265,10 +334,13 @@ EventLoadMatch = Struct.new(
 # @!attribute [rw] type
 #   @return [String, nil]
 EventListMatch = Struct.new(
+  :begin,
   :cancelled,
   :disambiguation,
+  :end,
+  :ended,
   :id,
-  :life_span,
+  :lifespan,
   :name,
   :time,
   :type,
@@ -379,37 +451,49 @@ InstrumentListMatch = Struct.new(
 
 # Label entity data model.
 #
+# @!attribute [rw] begin
+#   @return [String, nil]
+#
 # @!attribute [rw] country
 #   @return [String, nil]
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
 #
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] ended
+#   @return [Boolean, nil]
+#
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] label_code
+# @!attribute [rw] labelcode
 #   @return [Integer, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] sort_name
+# @!attribute [rw] sortname
 #   @return [String, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 Label = Struct.new(
+  :begin,
   :country,
   :disambiguation,
+  :end,
+  :ended,
   :id,
-  :label_code,
-  :life_span,
+  :labelcode,
+  :lifespan,
   :name,
-  :sort_name,
+  :sortname,
   :type,
   keyword_init: true
 )
@@ -425,37 +509,49 @@ LabelLoadMatch = Struct.new(
 
 # Request payload for Label#list.
 #
+# @!attribute [rw] begin
+#   @return [String, nil]
+#
 # @!attribute [rw] country
 #   @return [String, nil]
 #
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
 #
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] ended
+#   @return [Boolean, nil]
+#
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] label_code
+# @!attribute [rw] labelcode
 #   @return [Integer, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] sort_name
+# @!attribute [rw] sortname
 #   @return [String, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 LabelListMatch = Struct.new(
+  :begin,
   :country,
   :disambiguation,
+  :end,
+  :ended,
   :id,
-  :label_code,
-  :life_span,
+  :labelcode,
+  :lifespan,
   :name,
-  :sort_name,
+  :sortname,
   :type,
   keyword_init: true
 )
@@ -465,7 +561,7 @@ LabelListMatch = Struct.new(
 # @!attribute [rw] address
 #   @return [String, nil]
 #
-# @!attribute [rw] coordinate
+# @!attribute [rw] coordinates
 #   @return [Hash, nil]
 #
 # @!attribute [rw] disambiguation
@@ -474,7 +570,7 @@ LabelListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -484,10 +580,10 @@ LabelListMatch = Struct.new(
 #   @return [String, nil]
 Place = Struct.new(
   :address,
-  :coordinate,
+  :coordinates,
   :disambiguation,
   :id,
-  :life_span,
+  :lifespan,
   :name,
   :type,
   keyword_init: true
@@ -507,7 +603,7 @@ PlaceLoadMatch = Struct.new(
 # @!attribute [rw] address
 #   @return [String, nil]
 #
-# @!attribute [rw] coordinate
+# @!attribute [rw] coordinates
 #   @return [Hash, nil]
 #
 # @!attribute [rw] disambiguation
@@ -516,7 +612,7 @@ PlaceLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] life_span
+# @!attribute [rw] lifespan
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -526,10 +622,10 @@ PlaceLoadMatch = Struct.new(
 #   @return [String, nil]
 PlaceListMatch = Struct.new(
   :address,
-  :coordinate,
+  :coordinates,
   :disambiguation,
   :id,
-  :life_span,
+  :lifespan,
   :name,
   :type,
   keyword_init: true
@@ -614,12 +710,12 @@ RecordingListMatch = Struct.new(
 # @!attribute [rw] offset
 #   @return [Integer, nil]
 #
-# @!attribute [rw] recording
+# @!attribute [rw] recordings
 #   @return [Array, nil]
 RecordingList = Struct.new(
   :count,
   :offset,
-  :recording,
+  :recordings,
   keyword_init: true
 )
 
@@ -720,26 +816,26 @@ ReleaseListMatch = Struct.new(
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
 #
-# @!attribute [rw] first_release_date
+# @!attribute [rw] firstreleasedate
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] primary_type
+# @!attribute [rw] primarytype
 #   @return [String, nil]
 #
-# @!attribute [rw] secondary_type
+# @!attribute [rw] secondarytypes
 #   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 ReleaseGroup = Struct.new(
   :disambiguation,
-  :first_release_date,
+  :firstreleasedate,
   :id,
-  :primary_type,
-  :secondary_type,
+  :primarytype,
+  :secondarytypes,
   :title,
   keyword_init: true
 )
@@ -758,26 +854,26 @@ ReleaseGroupLoadMatch = Struct.new(
 # @!attribute [rw] disambiguation
 #   @return [String, nil]
 #
-# @!attribute [rw] first_release_date
+# @!attribute [rw] firstreleasedate
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] primary_type
+# @!attribute [rw] primarytype
 #   @return [String, nil]
 #
-# @!attribute [rw] secondary_type
+# @!attribute [rw] secondarytypes
 #   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 ReleaseGroupListMatch = Struct.new(
   :disambiguation,
-  :first_release_date,
+  :firstreleasedate,
   :id,
-  :primary_type,
-  :secondary_type,
+  :primarytype,
+  :secondarytypes,
   :title,
   keyword_init: true
 )
@@ -790,12 +886,12 @@ ReleaseGroupListMatch = Struct.new(
 # @!attribute [rw] offset
 #   @return [Integer, nil]
 #
-# @!attribute [rw] release
+# @!attribute [rw] releases
 #   @return [Array, nil]
 ReleaseList = Struct.new(
   :count,
   :offset,
-  :release,
+  :releases,
   keyword_init: true
 )
 
@@ -973,12 +1069,12 @@ WorkListMatch = Struct.new(
 # @!attribute [rw] offset
 #   @return [Integer, nil]
 #
-# @!attribute [rw] work
+# @!attribute [rw] works
 #   @return [Array, nil]
 WorkList = Struct.new(
   :count,
   :offset,
-  :work,
+  :works,
   keyword_init: true
 )
 

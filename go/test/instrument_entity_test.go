@@ -128,7 +128,7 @@ func TestInstrumentEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		instrumentRef01DataDt0LoadResult := core.ToMapAny(instrumentRef01DataDt0Loaded)
+		instrumentRef01DataDt0LoadResult := core.ToMapAny(entityData(instrumentRef01DataDt0Loaded))
 		if instrumentRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

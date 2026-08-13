@@ -41,7 +41,7 @@ describe("TagEntity", function()
 
     local tag_ref01_data_result, err = tag_ref01_ent:create(tag_ref01_data, nil)
     assert.is_nil(err)
-    tag_ref01_data = helpers.to_map(tag_ref01_data_result)
+    tag_ref01_data = helpers.to_map(type(tag_ref01_data_result) == 'table' and tag_ref01_data_result.data_get and tag_ref01_data_result:data_get() or tag_ref01_data_result)
     assert.is_not_nil(tag_ref01_data)
 
     -- LOAD

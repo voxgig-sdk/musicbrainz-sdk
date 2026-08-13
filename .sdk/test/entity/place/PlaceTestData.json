@@ -3,28 +3,28 @@
     "place": {
       "PLACE00": {
         "address": "s46",
-        "coordinate": {},
+        "coordinates": {},
         "disambiguation": "s48",
         "id": "PLACE00",
-        "life_span": {},
+        "lifespan": {},
         "name": "s4b",
         "type": "s4c"
       },
       "PLACE01": {
         "address": "s8c",
-        "coordinate": {},
+        "coordinates": {},
         "disambiguation": "s8e",
         "id": "PLACE01",
-        "life_span": {},
+        "lifespan": {},
         "name": "s91",
         "type": "s92"
       },
       "PLACE02": {
         "address": "sd2",
-        "coordinate": {},
+        "coordinates": {},
         "disambiguation": "sd4",
         "id": "PLACE02",
-        "life_span": {},
+        "lifespan": {},
         "name": "sd7",
         "type": "sd8"
       }
@@ -34,9 +34,9 @@
     "place": {
       "place_ref01": {
         "address": "s118",
-        "coordinate": {},
+        "coordinates": {},
         "disambiguation": "s11a",
-        "life_span": {},
+        "lifespan": {},
         "name": "s11d",
         "type": "s11e"
       }

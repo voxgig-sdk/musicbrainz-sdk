@@ -16,7 +16,7 @@ main: kit: entity: release_list: {
       type: "`$INTEGER`"
     }
     {
-      name: "release"
+      name: "releases"
       req: false
       type: "`$ARRAY`"
     }

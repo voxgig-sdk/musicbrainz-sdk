@@ -63,13 +63,13 @@ describe('WorkEntity', async () => {
     const work_ref01_ent = client.Work()
     const work_ref01_match: any = {}
 
-    const work_ref01_list = await work_ref01_ent.list(work_ref01_match)
+    const work_ref01_list = (await work_ref01_ent.list(work_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const work_ref01_match_dt0: any = {}
     work_ref01_match_dt0.id = work_ref01_data.id
-    const work_ref01_data_dt0 = await work_ref01_ent.load(work_ref01_match_dt0)
+    const work_ref01_data_dt0 = (await work_ref01_ent.load(work_ref01_match_dt0)).data()
     assert(work_ref01_data_dt0.id === work_ref01_data.id)
 
 

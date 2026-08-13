@@ -97,7 +97,7 @@ class WorkEntityTest extends TestCase
             "id" => $work_ref01_data["id"],
         ];
         $work_ref01_data_dt0_loaded = $work_ref01_ent->load($work_ref01_match_dt0, null);
-        $work_ref01_data_dt0_load_result = Helpers::to_map($work_ref01_data_dt0_loaded);
+        $work_ref01_data_dt0_load_result = Helpers::to_map(is_object($work_ref01_data_dt0_loaded) && method_exists($work_ref01_data_dt0_loaded, 'data_get') ? $work_ref01_data_dt0_loaded->data_get() : $work_ref01_data_dt0_loaded);
         $this->assertNotNull($work_ref01_data_dt0_load_result);
         $this->assertEquals($work_ref01_data_dt0_load_result["id"], $work_ref01_data["id"]);
 

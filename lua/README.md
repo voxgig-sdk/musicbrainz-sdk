@@ -45,7 +45,7 @@ local areas, err = client:Area():list()
 if err then error(err) end
 
 for _, item in ipairs(areas) do
-  print(item["id"], item["disambiguation"])
+  print(item["id"], item["begin"])
 end
 ```
 
@@ -66,7 +66,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local areas, err = client:Area():list()
+local seriess, err = client:Series():list()
 if err then error(err) end
 ```
 
@@ -124,7 +124,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Area():list()
+local result, err = client:Series():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -266,11 +266,14 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -281,13 +284,16 @@ API path: `/area`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `country` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `gender` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -299,7 +305,7 @@ API path: `/artist`
 | Field | Description |
 | --- | --- |
 | `editor` |  |
-| `entity_type` |  |
+| `entitytype` |  |
 | `id` |  |
 | `name` |  |
 
@@ -311,10 +317,13 @@ API path: `/collection`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `cancelled` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
 | `time` |  |
 | `type` |  |
@@ -353,13 +362,16 @@ API path: `/instrument`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `country` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `label_code` |  |
-| `life_span` |  |
+| `labelcode` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -371,10 +383,10 @@ API path: `/label`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `coordinate` |  |
+| `coordinates` |  |
 | `disambiguation` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
 | `type` |  |
 
@@ -411,7 +423,7 @@ API path: `/recording`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `recording` |  |
+| `recordings` |  |
 
 Operations: Load.
 
@@ -439,10 +451,10 @@ API path: `/release`
 | Field | Description |
 | --- | --- |
 | `disambiguation` |  |
-| `first_release_date` |  |
+| `firstreleasedate` |  |
 | `id` |  |
-| `primary_type` |  |
-| `secondary_type` |  |
+| `primarytype` |  |
+| `secondarytypes` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -455,7 +467,7 @@ API path: `/release-group`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `release` |  |
+| `releases` |  |
 
 Operations: Load.
 
@@ -514,7 +526,7 @@ API path: `/work`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `work` |  |
+| `works` |  |
 
 Operations: Load.
 
@@ -540,11 +552,14 @@ Create an instance: `local area = client:Area(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `boolean` |  |
 | `id` | `string` |  |
-| `life_span` | `table` |  |
+| `lifespan` | `table` |  |
 | `name` | `string` |  |
-| `sort_name` | `string` |  |
+| `sortname` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -575,13 +590,16 @@ Create an instance: `local artist = client:Artist(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `country` | `string` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `boolean` |  |
 | `gender` | `string` |  |
 | `id` | `string` |  |
-| `life_span` | `table` |  |
+| `lifespan` | `table` |  |
 | `name` | `string` |  |
-| `sort_name` | `string` |  |
+| `sortname` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -612,7 +630,7 @@ Create an instance: `local collection = client:Collection(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `editor` | `string` |  |
-| `entity_type` | `string` |  |
+| `entitytype` | `string` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
 
@@ -638,10 +656,13 @@ Create an instance: `local event = client:Event(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `cancelled` | `boolean` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `boolean` |  |
 | `id` | `string` |  |
-| `life_span` | `table` |  |
+| `lifespan` | `table` |  |
 | `name` | `string` |  |
 | `time` | `string` |  |
 | `type` | `string` |  |
@@ -740,13 +761,16 @@ Create an instance: `local label = client:Label(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `country` | `string` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `boolean` |  |
 | `id` | `string` |  |
-| `label_code` | `number` |  |
-| `life_span` | `table` |  |
+| `labelcode` | `number` |  |
+| `lifespan` | `table` |  |
 | `name` | `string` |  |
-| `sort_name` | `string` |  |
+| `sortname` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -778,10 +802,10 @@ Create an instance: `local place = client:Place(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `coordinate` | `table` |  |
+| `coordinates` | `table` |  |
 | `disambiguation` | `string` |  |
 | `id` | `string` |  |
-| `life_span` | `table` |  |
+| `lifespan` | `table` |  |
 | `name` | `string` |  |
 | `type` | `string` |  |
 
@@ -873,7 +897,7 @@ Create an instance: `local recording_list = client:RecordingList(nil)`
 | --- | --- | --- |
 | `count` | `number` |  |
 | `offset` | `number` |  |
-| `recording` | `table` |  |
+| `recordings` | `table` |  |
 
 #### Example: Load
 
@@ -935,10 +959,10 @@ Create an instance: `local release_group = client:ReleaseGroup(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `disambiguation` | `string` |  |
-| `first_release_date` | `string` |  |
+| `firstreleasedate` | `string` |  |
 | `id` | `string` |  |
-| `primary_type` | `string` |  |
-| `secondary_type` | `table` |  |
+| `primarytype` | `string` |  |
+| `secondarytypes` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -970,7 +994,7 @@ Create an instance: `local release_list = client:ReleaseList(nil)`
 | --- | --- | --- |
 | `count` | `number` |  |
 | `offset` | `number` |  |
-| `release` | `table` |  |
+| `releases` | `table` |  |
 
 #### Example: Load
 
@@ -1118,7 +1142,7 @@ Create an instance: `local work_list = client:WorkList(nil)`
 | --- | --- | --- |
 | `count` | `number` |  |
 | `offset` | `number` |  |
-| `work` | `table` |  |
+| `works` | `table` |  |
 
 #### Example: Load
 
@@ -1203,11 +1227,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local area = client:Area()
-area:list()
+local series = client:Series()
+series:list()
 
--- area:data_get() now returns the area data from the last list
--- area:match_get() returns the last match criteria
+-- series:data_get() now returns the series data from the last list
+-- series:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

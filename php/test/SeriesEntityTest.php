@@ -97,7 +97,7 @@ class SeriesEntityTest extends TestCase
             "id" => $series_ref01_data["id"],
         ];
         $series_ref01_data_dt0_loaded = $series_ref01_ent->load($series_ref01_match_dt0, null);
-        $series_ref01_data_dt0_load_result = Helpers::to_map($series_ref01_data_dt0_loaded);
+        $series_ref01_data_dt0_load_result = Helpers::to_map(is_object($series_ref01_data_dt0_loaded) && method_exists($series_ref01_data_dt0_loaded, 'data_get') ? $series_ref01_data_dt0_loaded->data_get() : $series_ref01_data_dt0_loaded);
         $this->assertNotNull($series_ref01_data_dt0_load_result);
         $this->assertEquals($series_ref01_data_dt0_load_result["id"], $series_ref01_data["id"]);
 

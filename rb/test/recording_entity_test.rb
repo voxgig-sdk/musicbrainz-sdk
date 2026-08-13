@@ -87,7 +87,7 @@ class RecordingEntityTest < Minitest::Test
       "id" => recording_ref01_data["id"],
     }
     recording_ref01_data_dt0_loaded = recording_ref01_ent.load(recording_ref01_match_dt0, nil)
-    recording_ref01_data_dt0_load_result = Helpers.to_map(recording_ref01_data_dt0_loaded)
+    recording_ref01_data_dt0_load_result = Helpers.to_map(recording_ref01_data_dt0_loaded.respond_to?(:data_get) ? recording_ref01_data_dt0_loaded.data_get : recording_ref01_data_dt0_loaded)
     assert !recording_ref01_data_dt0_load_result.nil?
     assert_equal recording_ref01_data_dt0_load_result["id"], recording_ref01_data["id"]
 

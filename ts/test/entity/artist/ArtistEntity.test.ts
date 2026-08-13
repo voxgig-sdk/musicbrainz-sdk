@@ -63,13 +63,13 @@ describe('ArtistEntity', async () => {
     const artist_ref01_ent = client.Artist()
     const artist_ref01_match: any = {}
 
-    const artist_ref01_list = await artist_ref01_ent.list(artist_ref01_match)
+    const artist_ref01_list = (await artist_ref01_ent.list(artist_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const artist_ref01_match_dt0: any = {}
     artist_ref01_match_dt0.id = artist_ref01_data.id
-    const artist_ref01_data_dt0 = await artist_ref01_ent.load(artist_ref01_match_dt0)
+    const artist_ref01_data_dt0 = (await artist_ref01_ent.load(artist_ref01_match_dt0)).data()
     assert(artist_ref01_data_dt0.id === artist_ref01_data.id)
 
 

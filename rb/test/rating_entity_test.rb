@@ -37,7 +37,7 @@ class RatingEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.rating"), "rating_ref01"))
 
     rating_ref01_data_result = rating_ref01_ent.create(rating_ref01_data, nil)
-    rating_ref01_data = Helpers.to_map(rating_ref01_data_result)
+    rating_ref01_data = Helpers.to_map(rating_ref01_data_result.respond_to?(:data_get) ? rating_ref01_data_result.data_get : rating_ref01_data_result)
     assert !rating_ref01_data.nil?
 
     # LOAD

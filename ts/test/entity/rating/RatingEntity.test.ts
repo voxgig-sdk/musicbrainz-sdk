@@ -62,13 +62,13 @@ describe('RatingEntity', async () => {
     const rating_ref01_ent = client.Rating()
     let rating_ref01_data = setup.data.new.rating['rating_ref01']
 
-    rating_ref01_data = await rating_ref01_ent.create(rating_ref01_data)
+    rating_ref01_data = (await rating_ref01_ent.create(rating_ref01_data)).data()
     assert(null != rating_ref01_data)
 
 
     // LOAD
     const rating_ref01_match_dt0: any = {}
-    const rating_ref01_data_dt0 = await rating_ref01_ent.load(rating_ref01_match_dt0)
+    const rating_ref01_data_dt0 = (await rating_ref01_ent.load(rating_ref01_match_dt0)).data()
     assert(null != rating_ref01_data_dt0)
 
 

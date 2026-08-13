@@ -197,7 +197,7 @@ main: kit: entity: release: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.releases`"
           }
         }
       ]

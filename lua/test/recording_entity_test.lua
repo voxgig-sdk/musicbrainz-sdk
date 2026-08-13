@@ -97,7 +97,7 @@ describe("RecordingEntity", function()
     }
     local recording_ref01_data_dt0_loaded, err = recording_ref01_ent:load(recording_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local recording_ref01_data_dt0_load_result = helpers.to_map(recording_ref01_data_dt0_loaded)
+    local recording_ref01_data_dt0_load_result = helpers.to_map(type(recording_ref01_data_dt0_loaded) == 'table' and recording_ref01_data_dt0_loaded.data_get and recording_ref01_data_dt0_loaded:data_get() or recording_ref01_data_dt0_loaded)
     assert.is_not_nil(recording_ref01_data_dt0_load_result)
     assert.are.equal(recording_ref01_data_dt0_load_result["id"], recording_ref01_data["id"])
 

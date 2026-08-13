@@ -97,7 +97,7 @@ describe("LabelEntity", function()
     }
     local label_ref01_data_dt0_loaded, err = label_ref01_ent:load(label_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local label_ref01_data_dt0_load_result = helpers.to_map(label_ref01_data_dt0_loaded)
+    local label_ref01_data_dt0_load_result = helpers.to_map(type(label_ref01_data_dt0_loaded) == 'table' and label_ref01_data_dt0_loaded.data_get and label_ref01_data_dt0_loaded:data_get() or label_ref01_data_dt0_loaded)
     assert.is_not_nil(label_ref01_data_dt0_load_result)
     assert.are.equal(label_ref01_data_dt0_load_result["id"], label_ref01_data["id"])
 

@@ -78,12 +78,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-areas, err := client.Area(nil).List(nil, nil)
+seriess, err := client.Series(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = areas
+_ = seriess
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -147,13 +147,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-area, err := client.Area(nil).List(
+series, err := client.Series(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(area) // the returned mock data
+fmt.Println(series) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -293,11 +293,14 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
+| `"begin"` |  |
 | `"disambiguation"` |  |
+| `"end"` |  |
+| `"ended"` |  |
 | `"id"` |  |
-| `"life_span"` |  |
+| `"lifespan"` |  |
 | `"name"` |  |
-| `"sort_name"` |  |
+| `"sortname"` |  |
 | `"type"` |  |
 
 Operations: List, Load.
@@ -308,13 +311,16 @@ API path: `/area`
 
 | Field | Description |
 | --- | --- |
+| `"begin"` |  |
 | `"country"` |  |
 | `"disambiguation"` |  |
+| `"end"` |  |
+| `"ended"` |  |
 | `"gender"` |  |
 | `"id"` |  |
-| `"life_span"` |  |
+| `"lifespan"` |  |
 | `"name"` |  |
-| `"sort_name"` |  |
+| `"sortname"` |  |
 | `"type"` |  |
 
 Operations: List, Load.
@@ -326,7 +332,7 @@ API path: `/artist`
 | Field | Description |
 | --- | --- |
 | `"editor"` |  |
-| `"entity_type"` |  |
+| `"entitytype"` |  |
 | `"id"` |  |
 | `"name"` |  |
 
@@ -338,10 +344,13 @@ API path: `/collection`
 
 | Field | Description |
 | --- | --- |
+| `"begin"` |  |
 | `"cancelled"` |  |
 | `"disambiguation"` |  |
+| `"end"` |  |
+| `"ended"` |  |
 | `"id"` |  |
-| `"life_span"` |  |
+| `"lifespan"` |  |
 | `"name"` |  |
 | `"time"` |  |
 | `"type"` |  |
@@ -380,13 +389,16 @@ API path: `/instrument`
 
 | Field | Description |
 | --- | --- |
+| `"begin"` |  |
 | `"country"` |  |
 | `"disambiguation"` |  |
+| `"end"` |  |
+| `"ended"` |  |
 | `"id"` |  |
-| `"label_code"` |  |
-| `"life_span"` |  |
+| `"labelcode"` |  |
+| `"lifespan"` |  |
 | `"name"` |  |
-| `"sort_name"` |  |
+| `"sortname"` |  |
 | `"type"` |  |
 
 Operations: List, Load.
@@ -398,10 +410,10 @@ API path: `/label`
 | Field | Description |
 | --- | --- |
 | `"address"` |  |
-| `"coordinate"` |  |
+| `"coordinates"` |  |
 | `"disambiguation"` |  |
 | `"id"` |  |
-| `"life_span"` |  |
+| `"lifespan"` |  |
 | `"name"` |  |
 | `"type"` |  |
 
@@ -438,7 +450,7 @@ API path: `/recording`
 | --- | --- |
 | `"count"` |  |
 | `"offset"` |  |
-| `"recording"` |  |
+| `"recordings"` |  |
 
 Operations: Load.
 
@@ -466,10 +478,10 @@ API path: `/release`
 | Field | Description |
 | --- | --- |
 | `"disambiguation"` |  |
-| `"first_release_date"` |  |
+| `"firstreleasedate"` |  |
 | `"id"` |  |
-| `"primary_type"` |  |
-| `"secondary_type"` |  |
+| `"primarytype"` |  |
+| `"secondarytypes"` |  |
 | `"title"` |  |
 
 Operations: List, Load.
@@ -482,7 +494,7 @@ API path: `/release-group`
 | --- | --- |
 | `"count"` |  |
 | `"offset"` |  |
-| `"release"` |  |
+| `"releases"` |  |
 
 Operations: Load.
 
@@ -541,7 +553,7 @@ API path: `/work`
 | --- | --- |
 | `"count"` |  |
 | `"offset"` |  |
-| `"work"` |  |
+| `"works"` |  |
 
 Operations: Load.
 
@@ -567,11 +579,14 @@ Create an instance: `area := client.Area(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `bool` |  |
 | `id` | `string` |  |
-| `life_span` | `map[string]any` |  |
+| `lifespan` | `map[string]any` |  |
 | `name` | `string` |  |
-| `sort_name` | `string` |  |
+| `sortname` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -610,13 +625,16 @@ Create an instance: `artist := client.Artist(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `country` | `string` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `bool` |  |
 | `gender` | `string` |  |
 | `id` | `string` |  |
-| `life_span` | `map[string]any` |  |
+| `lifespan` | `map[string]any` |  |
 | `name` | `string` |  |
-| `sort_name` | `string` |  |
+| `sortname` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -655,7 +673,7 @@ Create an instance: `collection := client.Collection(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `editor` | `string` |  |
-| `entity_type` | `string` |  |
+| `entitytype` | `string` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
 
@@ -685,10 +703,13 @@ Create an instance: `event := client.Event(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `cancelled` | `bool` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `bool` |  |
 | `id` | `string` |  |
-| `life_span` | `map[string]any` |  |
+| `lifespan` | `map[string]any` |  |
 | `name` | `string` |  |
 | `time` | `string` |  |
 | `type` | `string` |  |
@@ -811,13 +832,16 @@ Create an instance: `label := client.Label(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `string` |  |
 | `country` | `string` |  |
 | `disambiguation` | `string` |  |
+| `end` | `string` |  |
+| `ended` | `bool` |  |
 | `id` | `string` |  |
-| `label_code` | `int` |  |
-| `life_span` | `map[string]any` |  |
+| `labelcode` | `int` |  |
+| `lifespan` | `map[string]any` |  |
 | `name` | `string` |  |
-| `sort_name` | `string` |  |
+| `sortname` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -857,10 +881,10 @@ Create an instance: `place := client.Place(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `coordinate` | `map[string]any` |  |
+| `coordinates` | `map[string]any` |  |
 | `disambiguation` | `string` |  |
 | `id` | `string` |  |
-| `life_span` | `map[string]any` |  |
+| `lifespan` | `map[string]any` |  |
 | `name` | `string` |  |
 | `type` | `string` |  |
 
@@ -976,7 +1000,7 @@ Create an instance: `recordingList := client.RecordingList(nil)`
 | --- | --- | --- |
 | `count` | `int` |  |
 | `offset` | `int` |  |
-| `recording` | `[]any` |  |
+| `recordings` | `[]any` |  |
 
 #### Example: Load
 
@@ -1050,10 +1074,10 @@ Create an instance: `releaseGroup := client.ReleaseGroup(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `disambiguation` | `string` |  |
-| `first_release_date` | `string` |  |
+| `firstreleasedate` | `string` |  |
 | `id` | `string` |  |
-| `primary_type` | `string` |  |
-| `secondary_type` | `[]any` |  |
+| `primarytype` | `string` |  |
+| `secondarytypes` | `[]any` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -1093,7 +1117,7 @@ Create an instance: `releaseList := client.ReleaseList(nil)`
 | --- | --- | --- |
 | `count` | `int` |  |
 | `offset` | `int` |  |
-| `release` | `[]any` |  |
+| `releases` | `[]any` |  |
 
 #### Example: Load
 
@@ -1277,7 +1301,7 @@ Create an instance: `workList := client.WorkList(nil)`
 | --- | --- | --- |
 | `count` | `int` |  |
 | `offset` | `int` |  |
-| `work` | `[]any` |  |
+| `works` | `[]any` |  |
 
 #### Example: Load
 
@@ -1363,11 +1387,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-area := client.Area(nil)
-area.List(nil, nil)
+series := client.Series(nil)
+series.List(nil, nil)
 
-// area.Data() now returns the area data from the last list
-// area.Match() returns the last match criteria
+// series.Data() now returns the series data from the last list
+// series.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

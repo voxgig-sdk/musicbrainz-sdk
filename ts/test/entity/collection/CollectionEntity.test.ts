@@ -63,7 +63,7 @@ describe('CollectionEntity', async () => {
     const collection_ref01_ent = client.Collection()
     const collection_ref01_match: any = {}
 
-    const collection_ref01_list = await collection_ref01_ent.list(collection_ref01_match)
+    const collection_ref01_list = (await collection_ref01_ent.list(collection_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "area": {
           "active": true,
@@ -27,9 +32,27 @@
           "fields": [
             {
               "active": true,
+              "name": "begin",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "disambiguation",
               "req": false,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "end",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "ended",
+              "req": false,
+              "type": "`$BOOLEAN`"
             },
             {
               "active": true,
@@ -39,7 +62,7 @@
             },
             {
               "active": true,
-              "name": "life_span",
+              "name": "lifespan",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -51,7 +74,7 @@
             },
             {
               "active": true,
-              "name": "sort_name",
+              "name": "sortname",
               "req": false,
               "type": "`$STRING`"
             },
@@ -122,6 +145,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/area",
                   "parts": [
@@ -138,7 +162,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.areas`"
                   }
                 }
               ]
@@ -181,6 +205,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/area/{mbid}",
                   "parts": [
@@ -201,7 +226,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.life-span`"
                   }
                 }
               ]
@@ -219,6 +244,12 @@
           "fields": [
             {
               "active": true,
+              "name": "begin",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "country",
               "req": false,
               "type": "`$STRING`"
@@ -228,6 +259,18 @@
               "name": "disambiguation",
               "req": false,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "end",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "ended",
+              "req": false,
+              "type": "`$BOOLEAN`"
             },
             {
               "active": true,
@@ -243,7 +286,7 @@
             },
             {
               "active": true,
-              "name": "life_span",
+              "name": "lifespan",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -255,7 +298,7 @@
             },
             {
               "active": true,
-              "name": "sort_name",
+              "name": "sortname",
               "req": false,
               "type": "`$STRING`"
             },
@@ -374,6 +417,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artist",
                   "parts": [
@@ -396,7 +440,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.artists`"
                   }
                 }
               ]
@@ -455,6 +499,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artist/{mbid}",
                   "parts": [
@@ -477,7 +522,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.life-span`"
                   }
                 }
               ]
@@ -501,7 +546,7 @@
             },
             {
               "active": true,
-              "name": "entity_type",
+              "name": "entitytype",
               "req": false,
               "type": "`$STRING`"
             },
@@ -570,6 +615,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/collection",
                   "parts": [
@@ -585,7 +631,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.collections`"
                   }
                 }
               ]
@@ -603,6 +649,12 @@
           "fields": [
             {
               "active": true,
+              "name": "begin",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "cancelled",
               "req": false,
               "type": "`$BOOLEAN`"
@@ -615,13 +667,25 @@
             },
             {
               "active": true,
+              "name": "end",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "ended",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
               "name": "id",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "life_span",
+              "name": "lifespan",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -728,6 +792,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/event",
                   "parts": [
@@ -747,7 +812,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.events`"
                   }
                 }
               ]
@@ -790,6 +855,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/event/{mbid}",
                   "parts": [
@@ -810,7 +876,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.life-span`"
                   }
                 }
               ]
@@ -888,6 +954,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/genre/all",
                   "parts": [
@@ -904,7 +971,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.genres`"
                   }
                 }
               ]
@@ -938,6 +1005,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/genre/{mbid}",
                   "parts": [
@@ -1072,6 +1140,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/instrument",
                   "parts": [
@@ -1089,7 +1158,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.instruments`"
                   }
                 }
               ]
@@ -1132,6 +1201,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/instrument/{mbid}",
                   "parts": [
@@ -1170,6 +1240,12 @@
           "fields": [
             {
               "active": true,
+              "name": "begin",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "country",
               "req": false,
               "type": "`$STRING`"
@@ -1182,19 +1258,31 @@
             },
             {
               "active": true,
+              "name": "end",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "ended",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
               "name": "id",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "label_code",
+              "name": "labelcode",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "life_span",
+              "name": "lifespan",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -1206,7 +1294,7 @@
             },
             {
               "active": true,
-              "name": "sort_name",
+              "name": "sortname",
               "req": false,
               "type": "`$STRING`"
             },
@@ -1301,6 +1389,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/label",
                   "parts": [
@@ -1320,7 +1409,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.labels`"
                   }
                 }
               ]
@@ -1379,6 +1468,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/label/{mbid}",
                   "parts": [
@@ -1401,7 +1491,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.life-span`"
                   }
                 }
               ]
@@ -1425,7 +1515,7 @@
             },
             {
               "active": true,
-              "name": "coordinate",
+              "name": "coordinates",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -1443,7 +1533,7 @@
             },
             {
               "active": true,
-              "name": "life_span",
+              "name": "lifespan",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -1536,6 +1626,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/place",
                   "parts": [
@@ -1554,7 +1645,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.places`"
                   }
                 }
               ]
@@ -1597,6 +1688,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/place/{mbid}",
                   "parts": [
@@ -1642,6 +1734,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/rating",
                   "parts": [
@@ -1674,6 +1767,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/rating",
                   "parts": [
@@ -1825,6 +1919,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/recording",
                   "parts": [
@@ -1845,7 +1940,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.recordings`"
                   }
                 }
               ]
@@ -1904,6 +1999,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/recording/{mbid}",
                   "parts": [
@@ -1956,7 +2052,7 @@
             },
             {
               "active": true,
-              "name": "recording",
+              "name": "recordings",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -2001,6 +2097,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/isrc/{isrc}",
                   "parts": [
@@ -2225,6 +2322,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/release",
                   "parts": [
@@ -2251,7 +2349,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.releases`"
                   }
                 }
               ]
@@ -2294,6 +2392,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/release/{mbid}",
                   "parts": [
@@ -2338,7 +2437,7 @@
             },
             {
               "active": true,
-              "name": "first_release_date",
+              "name": "firstreleasedate",
               "req": false,
               "type": "`$STRING`"
             },
@@ -2350,13 +2449,13 @@
             },
             {
               "active": true,
-              "name": "primary_type",
+              "name": "primarytype",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "secondary_type",
+              "name": "secondarytypes",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -2459,6 +2558,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/release-group",
                   "parts": [
@@ -2479,7 +2579,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.release-groups`"
                   }
                 }
               ]
@@ -2538,6 +2638,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/release-group/{mbid}",
                   "parts": [
@@ -2590,7 +2691,7 @@
             },
             {
               "active": true,
-              "name": "release",
+              "name": "releases",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -2635,6 +2736,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/discid/{discid}",
                   "parts": [
@@ -2763,6 +2865,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/series",
                   "parts": [
@@ -2823,6 +2926,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/series/{mbid}",
                   "parts": [
@@ -2868,6 +2972,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/tag",
                   "parts": [
@@ -2900,6 +3005,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/tag",
                   "parts": [
@@ -3009,6 +3115,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/url",
                   "parts": [
@@ -3026,7 +3133,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.urls`"
                   }
                 }
               ]
@@ -3069,6 +3176,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/url/{mbid}",
                   "parts": [
@@ -3212,6 +3320,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/work",
                   "parts": [
@@ -3230,7 +3339,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.works`"
                   }
                 }
               ]
@@ -3273,6 +3382,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/work/{mbid}",
                   "parts": [
@@ -3323,7 +3433,7 @@
             },
             {
               "active": true,
-              "name": "work",
+              "name": "works",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -3368,6 +3478,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/iswc/{iswc}",
                   "parts": [
@@ -4351,18 +4462,41 @@
         "website": "https://musicbrainz.org/doc/MusicBrainz_API"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "musicbrainz"
+            "goversion": "",
+            "name": "musicbrainz",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4384,22 +4518,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "musicbrainz"
+            "goversion": "",
+            "name": "musicbrainz",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -4438,21 +4590,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "musicbrainz"
+            "goversion": "",
+            "name": "musicbrainz",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -4491,12 +4661,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -4508,10 +4683,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "musicbrainz"
+            "goversion": "",
+            "name": "musicbrainz",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4533,22 +4721,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "musicbrainz"
+            "goversion": "",
+            "name": "musicbrainz",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4570,13 +4776,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -4588,10 +4799,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "musicbrainz"
+            "goversion": "",
+            "name": "musicbrainz",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4613,13 +4837,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -4636,10 +4865,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "musicbrainz"
+            "goversion": "",
+            "name": "musicbrainz",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4661,13 +4903,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -4690,10 +4937,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "musicbrainz"
+            "goversion": "",
+            "name": "musicbrainz",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4715,9 +4975,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

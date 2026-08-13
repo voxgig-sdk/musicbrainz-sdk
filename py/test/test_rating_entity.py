@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from musicbrainz_sdk.utility.voxgig_struct import voxgig_struct as vs
 from musicbrainz_sdk import MusicbrainzSDK
-from core import helpers
+from musicbrainz_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -44,7 +44,7 @@ class TestRatingEntity:
         rating_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.rating"), "rating_ref01"))
 
-        rating_ref01_data = helpers.to_map(rating_ref01_ent.create(rating_ref01_data, None))
+        rating_ref01_data = helpers.to_map(runner.entity_data(rating_ref01_ent.create(rating_ref01_data, None)))
         assert rating_ref01_data is not None
 
         # LOAD

@@ -128,7 +128,7 @@ func TestAreaEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		areaRef01DataDt0LoadResult := core.ToMapAny(areaRef01DataDt0Loaded)
+		areaRef01DataDt0LoadResult := core.ToMapAny(entityData(areaRef01DataDt0Loaded))
 		if areaRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

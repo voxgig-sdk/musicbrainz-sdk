@@ -97,7 +97,7 @@ class LabelEntityTest extends TestCase
             "id" => $label_ref01_data["id"],
         ];
         $label_ref01_data_dt0_loaded = $label_ref01_ent->load($label_ref01_match_dt0, null);
-        $label_ref01_data_dt0_load_result = Helpers::to_map($label_ref01_data_dt0_loaded);
+        $label_ref01_data_dt0_load_result = Helpers::to_map(is_object($label_ref01_data_dt0_loaded) && method_exists($label_ref01_data_dt0_loaded, 'data_get') ? $label_ref01_data_dt0_loaded->data_get() : $label_ref01_data_dt0_loaded);
         $this->assertNotNull($label_ref01_data_dt0_load_result);
         $this->assertEquals($label_ref01_data_dt0_load_result["id"], $label_ref01_data["id"]);
 

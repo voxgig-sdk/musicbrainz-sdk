@@ -11,7 +11,7 @@ main: kit: entity: place: {
       type: "`$STRING`"
     }
     {
-      name: "coordinate"
+      name: "coordinates"
       req: false
       type: "`$OBJECT`"
     }
@@ -26,7 +26,7 @@ main: kit: entity: place: {
       type: "`$STRING`"
     }
     {
-      name: "life_span"
+      name: "lifespan"
       req: false
       type: "`$OBJECT`"
     }
@@ -128,7 +128,7 @@ main: kit: entity: place: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.places`"
           }
         }
       ]

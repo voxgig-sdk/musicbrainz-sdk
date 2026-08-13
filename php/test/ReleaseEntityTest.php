@@ -97,7 +97,7 @@ class ReleaseEntityTest extends TestCase
             "id" => $release_ref01_data["id"],
         ];
         $release_ref01_data_dt0_loaded = $release_ref01_ent->load($release_ref01_match_dt0, null);
-        $release_ref01_data_dt0_load_result = Helpers::to_map($release_ref01_data_dt0_loaded);
+        $release_ref01_data_dt0_load_result = Helpers::to_map(is_object($release_ref01_data_dt0_loaded) && method_exists($release_ref01_data_dt0_loaded, 'data_get') ? $release_ref01_data_dt0_loaded->data_get() : $release_ref01_data_dt0_loaded);
         $this->assertNotNull($release_ref01_data_dt0_load_result);
         $this->assertEquals($release_ref01_data_dt0_load_result["id"], $release_ref01_data["id"]);
 

@@ -39,7 +39,7 @@ begin
   # list returns an Array of Area records — iterate directly.
   areas = client.Area.list
   areas.each do |item|
-    puts "#{item["id"]} #{item["disambiguation"]}"
+    puts "#{item["id"]} #{item["begin"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -52,7 +52,7 @@ RecordingList is nested under isrc, so provide the `isrc`.
 
 ```ruby
 begin
-  # load returns the bare RecordingList record (raises on error).
+  # load returns the ENTITY — call data_get for the RecordingList record (raises on error).
   recordinglist = client.RecordingList.load({ "isrc" => "example_isrc" })
   puts recordinglist
 rescue => err
@@ -67,7 +67,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  areas = client.Area.list()
+  seriess = client.Series.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -135,12 +135,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = MusicbrainzSDK.test({
-  "entity" => { "area" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "series" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-area = client.Area.list()
-puts area
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+series = client.Series.list()
+puts series
 ```
 
 ### Use a custom fetch function
@@ -277,11 +278,14 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -292,13 +296,16 @@ API path: `/area`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `country` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `gender` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -310,7 +317,7 @@ API path: `/artist`
 | Field | Description |
 | --- | --- |
 | `editor` |  |
-| `entity_type` |  |
+| `entitytype` |  |
 | `id` |  |
 | `name` |  |
 
@@ -322,10 +329,13 @@ API path: `/collection`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `cancelled` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
 | `time` |  |
 | `type` |  |
@@ -364,13 +374,16 @@ API path: `/instrument`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `country` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `label_code` |  |
-| `life_span` |  |
+| `labelcode` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -382,10 +395,10 @@ API path: `/label`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `coordinate` |  |
+| `coordinates` |  |
 | `disambiguation` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
 | `type` |  |
 
@@ -422,7 +435,7 @@ API path: `/recording`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `recording` |  |
+| `recordings` |  |
 
 Operations: Load.
 
@@ -450,10 +463,10 @@ API path: `/release`
 | Field | Description |
 | --- | --- |
 | `disambiguation` |  |
-| `first_release_date` |  |
+| `firstreleasedate` |  |
 | `id` |  |
-| `primary_type` |  |
-| `secondary_type` |  |
+| `primarytype` |  |
+| `secondarytypes` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -466,7 +479,7 @@ API path: `/release-group`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `release` |  |
+| `releases` |  |
 
 Operations: Load.
 
@@ -525,7 +538,7 @@ API path: `/work`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `work` |  |
+| `works` |  |
 
 Operations: Load.
 
@@ -551,17 +564,20 @@ Create an instance: `area = client.Area`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `String` |  |
 | `disambiguation` | `String` |  |
+| `end` | `String` |  |
+| `ended` | `Boolean` |  |
 | `id` | `String` |  |
-| `life_span` | `Hash` |  |
+| `lifespan` | `Hash` |  |
 | `name` | `String` |  |
-| `sort_name` | `String` |  |
+| `sortname` | `String` |  |
 | `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Area record (raises on error).
+# load returns the ENTITY — call data_get for the Area record (raises on error).
 area = client.Area.load({ "id" => "area_id" })
 ```
 
@@ -588,19 +604,22 @@ Create an instance: `artist = client.Artist`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `String` |  |
 | `country` | `String` |  |
 | `disambiguation` | `String` |  |
+| `end` | `String` |  |
+| `ended` | `Boolean` |  |
 | `gender` | `String` |  |
 | `id` | `String` |  |
-| `life_span` | `Hash` |  |
+| `lifespan` | `Hash` |  |
 | `name` | `String` |  |
-| `sort_name` | `String` |  |
+| `sortname` | `String` |  |
 | `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Artist record (raises on error).
+# load returns the ENTITY — call data_get for the Artist record (raises on error).
 artist = client.Artist.load({ "id" => "artist_id" })
 ```
 
@@ -627,7 +646,7 @@ Create an instance: `collection = client.Collection`
 | Field | Type | Description |
 | --- | --- | --- |
 | `editor` | `String` |  |
-| `entity_type` | `String` |  |
+| `entitytype` | `String` |  |
 | `id` | `String` |  |
 | `name` | `String` |  |
 
@@ -654,10 +673,13 @@ Create an instance: `event = client.Event`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `String` |  |
 | `cancelled` | `Boolean` |  |
 | `disambiguation` | `String` |  |
+| `end` | `String` |  |
+| `ended` | `Boolean` |  |
 | `id` | `String` |  |
-| `life_span` | `Hash` |  |
+| `lifespan` | `Hash` |  |
 | `name` | `String` |  |
 | `time` | `String` |  |
 | `type` | `String` |  |
@@ -665,7 +687,7 @@ Create an instance: `event = client.Event`
 #### Example: Load
 
 ```ruby
-# load returns the bare Event record (raises on error).
+# load returns the ENTITY — call data_get for the Event record (raises on error).
 event = client.Event.load({ "id" => "event_id" })
 ```
 
@@ -699,7 +721,7 @@ Create an instance: `genre = client.Genre`
 #### Example: Load
 
 ```ruby
-# load returns the bare Genre record (raises on error).
+# load returns the ENTITY — call data_get for the Genre record (raises on error).
 genre = client.Genre.load({ "id" => "genre_id" })
 ```
 
@@ -735,7 +757,7 @@ Create an instance: `instrument = client.Instrument`
 #### Example: Load
 
 ```ruby
-# load returns the bare Instrument record (raises on error).
+# load returns the ENTITY — call data_get for the Instrument record (raises on error).
 instrument = client.Instrument.load({ "id" => "instrument_id" })
 ```
 
@@ -762,19 +784,22 @@ Create an instance: `label = client.Label`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `String` |  |
 | `country` | `String` |  |
 | `disambiguation` | `String` |  |
+| `end` | `String` |  |
+| `ended` | `Boolean` |  |
 | `id` | `String` |  |
-| `label_code` | `Integer` |  |
-| `life_span` | `Hash` |  |
+| `labelcode` | `Integer` |  |
+| `lifespan` | `Hash` |  |
 | `name` | `String` |  |
-| `sort_name` | `String` |  |
+| `sortname` | `String` |  |
 | `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Label record (raises on error).
+# load returns the ENTITY — call data_get for the Label record (raises on error).
 label = client.Label.load({ "id" => "label_id" })
 ```
 
@@ -802,17 +827,17 @@ Create an instance: `place = client.Place`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `String` |  |
-| `coordinate` | `Hash` |  |
+| `coordinates` | `Hash` |  |
 | `disambiguation` | `String` |  |
 | `id` | `String` |  |
-| `life_span` | `Hash` |  |
+| `lifespan` | `Hash` |  |
 | `name` | `String` |  |
 | `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Place record (raises on error).
+# load returns the ENTITY — call data_get for the Place record (raises on error).
 place = client.Place.load({ "id" => "place_id" })
 ```
 
@@ -838,7 +863,7 @@ Create an instance: `rating = client.Rating`
 #### Example: Load
 
 ```ruby
-# load returns the bare Rating record (raises on error).
+# load returns the ENTITY — call data_get for the Rating record (raises on error).
 rating = client.Rating.load()
 ```
 
@@ -874,7 +899,7 @@ Create an instance: `recording = client.Recording`
 #### Example: Load
 
 ```ruby
-# load returns the bare Recording record (raises on error).
+# load returns the ENTITY — call data_get for the Recording record (raises on error).
 recording = client.Recording.load({ "id" => "recording_id" })
 ```
 
@@ -902,12 +927,12 @@ Create an instance: `recording_list = client.RecordingList`
 | --- | --- | --- |
 | `count` | `Integer` |  |
 | `offset` | `Integer` |  |
-| `recording` | `Array` |  |
+| `recordings` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare RecordingList record (raises on error).
+# load returns the ENTITY — call data_get for the RecordingList record (raises on error).
 recording_list = client.RecordingList.load({ "isrc" => "isrc" })
 ```
 
@@ -939,7 +964,7 @@ Create an instance: `release = client.Release`
 #### Example: Load
 
 ```ruby
-# load returns the bare Release record (raises on error).
+# load returns the ENTITY — call data_get for the Release record (raises on error).
 release = client.Release.load({ "id" => "release_id" })
 ```
 
@@ -967,16 +992,16 @@ Create an instance: `release_group = client.ReleaseGroup`
 | Field | Type | Description |
 | --- | --- | --- |
 | `disambiguation` | `String` |  |
-| `first_release_date` | `String` |  |
+| `firstreleasedate` | `String` |  |
 | `id` | `String` |  |
-| `primary_type` | `String` |  |
-| `secondary_type` | `Array` |  |
+| `primarytype` | `String` |  |
+| `secondarytypes` | `Array` |  |
 | `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare ReleaseGroup record (raises on error).
+# load returns the ENTITY — call data_get for the ReleaseGroup record (raises on error).
 release_group = client.ReleaseGroup.load({ "id" => "release_group_id" })
 ```
 
@@ -1004,12 +1029,12 @@ Create an instance: `release_list = client.ReleaseList`
 | --- | --- | --- |
 | `count` | `Integer` |  |
 | `offset` | `Integer` |  |
-| `release` | `Array` |  |
+| `releases` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare ReleaseList record (raises on error).
+# load returns the ENTITY — call data_get for the ReleaseList record (raises on error).
 release_list = client.ReleaseList.load({ "discid" => "discid" })
 ```
 
@@ -1037,7 +1062,7 @@ Create an instance: `series = client.Series`
 #### Example: Load
 
 ```ruby
-# load returns the bare Series record (raises on error).
+# load returns the ENTITY — call data_get for the Series record (raises on error).
 series = client.Series.load({ "id" => "series_id" })
 ```
 
@@ -1063,7 +1088,7 @@ Create an instance: `tag = client.Tag`
 #### Example: Load
 
 ```ruby
-# load returns the bare Tag record (raises on error).
+# load returns the ENTITY — call data_get for the Tag record (raises on error).
 tag = client.Tag.load()
 ```
 
@@ -1096,7 +1121,7 @@ Create an instance: `url = client.Url`
 #### Example: Load
 
 ```ruby
-# load returns the bare Url record (raises on error).
+# load returns the ENTITY — call data_get for the Url record (raises on error).
 url = client.Url.load({ "id" => "url_id" })
 ```
 
@@ -1132,7 +1157,7 @@ Create an instance: `work = client.Work`
 #### Example: Load
 
 ```ruby
-# load returns the bare Work record (raises on error).
+# load returns the ENTITY — call data_get for the Work record (raises on error).
 work = client.Work.load({ "id" => "work_id" })
 ```
 
@@ -1160,12 +1185,12 @@ Create an instance: `work_list = client.WorkList`
 | --- | --- | --- |
 | `count` | `Integer` |  |
 | `offset` | `Integer` |  |
-| `work` | `Array` |  |
+| `works` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare WorkList record (raises on error).
+# load returns the ENTITY — call data_get for the WorkList record (raises on error).
 work_list = client.WorkList.load({ "iswc" => "iswc" })
 ```
 
@@ -1246,11 +1271,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-area = client.Area
-area.list()
+series = client.Series
+series.list()
 
-# area.data_get now returns the area data from the last list
-# area.match_get returns the last match criteria
+# series.data_get now returns the series data from the last list
+# series.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

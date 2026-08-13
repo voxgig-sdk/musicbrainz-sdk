@@ -97,7 +97,7 @@ describe("EventEntity", function()
     }
     local event_ref01_data_dt0_loaded, err = event_ref01_ent:load(event_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local event_ref01_data_dt0_load_result = helpers.to_map(event_ref01_data_dt0_loaded)
+    local event_ref01_data_dt0_load_result = helpers.to_map(type(event_ref01_data_dt0_loaded) == 'table' and event_ref01_data_dt0_loaded.data_get and event_ref01_data_dt0_loaded:data_get() or event_ref01_data_dt0_loaded)
     assert.is_not_nil(event_ref01_data_dt0_load_result)
     assert.are.equal(event_ref01_data_dt0_load_result["id"], event_ref01_data["id"])
 

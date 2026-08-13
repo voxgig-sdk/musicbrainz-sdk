@@ -87,7 +87,7 @@ class UrlEntityTest < Minitest::Test
       "id" => url_ref01_data["id"],
     }
     url_ref01_data_dt0_loaded = url_ref01_ent.load(url_ref01_match_dt0, nil)
-    url_ref01_data_dt0_load_result = Helpers.to_map(url_ref01_data_dt0_loaded)
+    url_ref01_data_dt0_load_result = Helpers.to_map(url_ref01_data_dt0_loaded.respond_to?(:data_get) ? url_ref01_data_dt0_loaded.data_get : url_ref01_data_dt0_loaded)
     assert !url_ref01_data_dt0_load_result.nil?
     assert_equal url_ref01_data_dt0_load_result["id"], url_ref01_data["id"]
 

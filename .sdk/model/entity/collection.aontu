@@ -11,7 +11,7 @@ main: kit: entity: collection: {
       type: "`$STRING`"
     }
     {
-      name: "entity_type"
+      name: "entitytype"
       req: false
       type: "`$STRING`"
     }
@@ -89,7 +89,7 @@ main: kit: entity: collection: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.collections`"
           }
         }
       ]

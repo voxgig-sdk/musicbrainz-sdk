@@ -7,64 +7,79 @@
 -- edit by hand.
 
 ---@class Area
+---@field begin? string
 ---@field disambiguation? string
+---@field end? string
+---@field ended? boolean
 ---@field id? string
----@field life_span? table
+---@field lifespan? table
 ---@field name? string
----@field sort_name? string
+---@field sortname? string
 ---@field type? string
 
 ---@class AreaLoadMatch
 ---@field id string
 
 ---@class AreaListMatch
+---@field begin? string
 ---@field disambiguation? string
+---@field end? string
+---@field ended? boolean
 ---@field id? string
----@field life_span? table
+---@field lifespan? table
 ---@field name? string
----@field sort_name? string
+---@field sortname? string
 ---@field type? string
 
 ---@class Artist
+---@field begin? string
 ---@field country? string
 ---@field disambiguation? string
+---@field end? string
+---@field ended? boolean
 ---@field gender? string
 ---@field id? string
----@field life_span? table
+---@field lifespan? table
 ---@field name? string
----@field sort_name? string
+---@field sortname? string
 ---@field type? string
 
 ---@class ArtistLoadMatch
 ---@field id string
 
 ---@class ArtistListMatch
+---@field begin? string
 ---@field country? string
 ---@field disambiguation? string
+---@field end? string
+---@field ended? boolean
 ---@field gender? string
 ---@field id? string
----@field life_span? table
+---@field lifespan? table
 ---@field name? string
----@field sort_name? string
+---@field sortname? string
 ---@field type? string
 
 ---@class Collection
 ---@field editor? string
----@field entity_type? string
+---@field entitytype? string
 ---@field id? string
 ---@field name? string
 
 ---@class CollectionListMatch
 ---@field editor? string
----@field entity_type? string
+---@field entitytype? string
 ---@field id? string
 ---@field name? string
 
 ---@class Event
+---@field begin? string
 ---@field cancelled? boolean
 ---@field disambiguation? string
+---@field end? string
+---@field ended? boolean
 ---@field id? string
----@field life_span? table
+---@field lifespan? table
 ---@field name? string
 ---@field time? string
 ---@field type? string
@@ -73,10 +88,13 @@
 ---@field id string
 
 ---@class EventListMatch
+---@field begin? string
 ---@field cancelled? boolean
 ---@field disambiguation? string
+---@field end? string
+---@field ended? boolean
 ---@field id? string
----@field life_span? table
+---@field lifespan? table
 ---@field name? string
 ---@field time? string
 ---@field type? string
@@ -112,34 +130,40 @@
 ---@field type? string
 
 ---@class Label
+---@field begin? string
 ---@field country? string
 ---@field disambiguation? string
+---@field end? string
+---@field ended? boolean
 ---@field id? string
----@field label_code? number
----@field life_span? table
+---@field labelcode? number
+---@field lifespan? table
 ---@field name? string
----@field sort_name? string
+---@field sortname? string
 ---@field type? string
 
 ---@class LabelLoadMatch
 ---@field id string
 
 ---@class LabelListMatch
+---@field begin? string
 ---@field country? string
 ---@field disambiguation? string
+---@field end? string
+---@field ended? boolean
 ---@field id? string
----@field label_code? number
----@field life_span? table
+---@field labelcode? number
+---@field lifespan? table
 ---@field name? string
----@field sort_name? string
+---@field sortname? string
 ---@field type? string
 
 ---@class Place
 ---@field address? string
----@field coordinate? table
+---@field coordinates? table
 ---@field disambiguation? string
 ---@field id? string
----@field life_span? table
+---@field lifespan? table
 ---@field name? string
 ---@field type? string
 
@@ -148,10 +172,10 @@
 
 ---@class PlaceListMatch
 ---@field address? string
----@field coordinate? table
+---@field coordinates? table
 ---@field disambiguation? string
 ---@field id? string
----@field life_span? table
+---@field lifespan? table
 ---@field name? string
 ---@field type? string
 
@@ -181,7 +205,7 @@
 ---@class RecordingList
 ---@field count? number
 ---@field offset? number
----@field recording? table
+---@field recordings? table
 
 ---@class RecordingListLoadMatch
 ---@field isrc string
@@ -211,10 +235,10 @@
 
 ---@class ReleaseGroup
 ---@field disambiguation? string
----@field first_release_date? string
+---@field firstreleasedate? string
 ---@field id? string
----@field primary_type? string
----@field secondary_type? table
+---@field primarytype? string
+---@field secondarytypes? table
 ---@field title? string
 
 ---@class ReleaseGroupLoadMatch
@@ -222,16 +246,16 @@
 
 ---@class ReleaseGroupListMatch
 ---@field disambiguation? string
----@field first_release_date? string
+---@field firstreleasedate? string
 ---@field id? string
----@field primary_type? string
----@field secondary_type? table
+---@field primarytype? string
+---@field secondarytypes? table
 ---@field title? string
 
 ---@class ReleaseList
 ---@field count? number
 ---@field offset? number
----@field release? table
+---@field releases? table
 
 ---@class ReleaseListLoadMatch
 ---@field discid string
@@ -288,7 +312,7 @@
 ---@class WorkList
 ---@field count? number
 ---@field offset? number
----@field work? table
+---@field works? table
 
 ---@class WorkListLoadMatch
 ---@field iswc string

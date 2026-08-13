@@ -62,13 +62,13 @@ describe('TagEntity', async () => {
     const tag_ref01_ent = client.Tag()
     let tag_ref01_data = setup.data.new.tag['tag_ref01']
 
-    tag_ref01_data = await tag_ref01_ent.create(tag_ref01_data)
+    tag_ref01_data = (await tag_ref01_ent.create(tag_ref01_data)).data()
     assert(null != tag_ref01_data)
 
 
     // LOAD
     const tag_ref01_match_dt0: any = {}
-    const tag_ref01_data_dt0 = await tag_ref01_ent.load(tag_ref01_match_dt0)
+    const tag_ref01_data_dt0 = (await tag_ref01_ent.load(tag_ref01_match_dt0)).data()
     assert(null != tag_ref01_data_dt0)
 
 

@@ -97,7 +97,7 @@ class UrlEntityTest extends TestCase
             "id" => $url_ref01_data["id"],
         ];
         $url_ref01_data_dt0_loaded = $url_ref01_ent->load($url_ref01_match_dt0, null);
-        $url_ref01_data_dt0_load_result = Helpers::to_map($url_ref01_data_dt0_loaded);
+        $url_ref01_data_dt0_load_result = Helpers::to_map(is_object($url_ref01_data_dt0_loaded) && method_exists($url_ref01_data_dt0_loaded, 'data_get') ? $url_ref01_data_dt0_loaded->data_get() : $url_ref01_data_dt0_loaded);
         $this->assertNotNull($url_ref01_data_dt0_load_result);
         $this->assertEquals($url_ref01_data_dt0_load_result["id"], $url_ref01_data["id"]);
 

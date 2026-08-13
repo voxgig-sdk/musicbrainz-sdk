@@ -56,7 +56,7 @@ except Exception as err:
 ### 3. Load a recordinglist
 
 RecordingList is nested under isrc, so provide the `isrc`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -73,8 +73,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    areas = client.Area().list()
-    print(areas)
+    seriess = client.Series().list()
+    print(seriess)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -140,9 +140,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MusicbrainzSDK.test()
 
-# Entity ops return the bare record and raise on error.
-area = client.Area().list()
-# area contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+series = client.Series().list()
+# series contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -258,7 +259,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -280,11 +281,14 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -295,13 +299,16 @@ API path: `/area`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `country` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `gender` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -313,7 +320,7 @@ API path: `/artist`
 | Field | Description |
 | --- | --- |
 | `editor` |  |
-| `entity_type` |  |
+| `entitytype` |  |
 | `id` |  |
 | `name` |  |
 
@@ -325,10 +332,13 @@ API path: `/collection`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `cancelled` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
 | `time` |  |
 | `type` |  |
@@ -367,13 +377,16 @@ API path: `/instrument`
 
 | Field | Description |
 | --- | --- |
+| `begin` |  |
 | `country` |  |
 | `disambiguation` |  |
+| `end` |  |
+| `ended` |  |
 | `id` |  |
-| `label_code` |  |
-| `life_span` |  |
+| `labelcode` |  |
+| `lifespan` |  |
 | `name` |  |
-| `sort_name` |  |
+| `sortname` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -385,10 +398,10 @@ API path: `/label`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `coordinate` |  |
+| `coordinates` |  |
 | `disambiguation` |  |
 | `id` |  |
-| `life_span` |  |
+| `lifespan` |  |
 | `name` |  |
 | `type` |  |
 
@@ -425,7 +438,7 @@ API path: `/recording`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `recording` |  |
+| `recordings` |  |
 
 Operations: Load.
 
@@ -453,10 +466,10 @@ API path: `/release`
 | Field | Description |
 | --- | --- |
 | `disambiguation` |  |
-| `first_release_date` |  |
+| `firstreleasedate` |  |
 | `id` |  |
-| `primary_type` |  |
-| `secondary_type` |  |
+| `primarytype` |  |
+| `secondarytypes` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -469,7 +482,7 @@ API path: `/release-group`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `release` |  |
+| `releases` |  |
 
 Operations: Load.
 
@@ -528,7 +541,7 @@ API path: `/work`
 | --- | --- |
 | `count` |  |
 | `offset` |  |
-| `work` |  |
+| `works` |  |
 
 Operations: Load.
 
@@ -554,11 +567,14 @@ Create an instance: `area = client.Area()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `str` |  |
 | `disambiguation` | `str` |  |
+| `end` | `str` |  |
+| `ended` | `bool` |  |
 | `id` | `str` |  |
-| `life_span` | `dict` |  |
+| `lifespan` | `dict` |  |
 | `name` | `str` |  |
-| `sort_name` | `str` |  |
+| `sortname` | `str` |  |
 | `type` | `str` |  |
 
 #### Example: Load
@@ -589,13 +605,16 @@ Create an instance: `artist = client.Artist()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `str` |  |
 | `country` | `str` |  |
 | `disambiguation` | `str` |  |
+| `end` | `str` |  |
+| `ended` | `bool` |  |
 | `gender` | `str` |  |
 | `id` | `str` |  |
-| `life_span` | `dict` |  |
+| `lifespan` | `dict` |  |
 | `name` | `str` |  |
-| `sort_name` | `str` |  |
+| `sortname` | `str` |  |
 | `type` | `str` |  |
 
 #### Example: Load
@@ -626,7 +645,7 @@ Create an instance: `collection = client.Collection()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `editor` | `str` |  |
-| `entity_type` | `str` |  |
+| `entitytype` | `str` |  |
 | `id` | `str` |  |
 | `name` | `str` |  |
 
@@ -652,10 +671,13 @@ Create an instance: `event = client.Event()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `str` |  |
 | `cancelled` | `bool` |  |
 | `disambiguation` | `str` |  |
+| `end` | `str` |  |
+| `ended` | `bool` |  |
 | `id` | `str` |  |
-| `life_span` | `dict` |  |
+| `lifespan` | `dict` |  |
 | `name` | `str` |  |
 | `time` | `str` |  |
 | `type` | `str` |  |
@@ -754,13 +776,16 @@ Create an instance: `label = client.Label()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `begin` | `str` |  |
 | `country` | `str` |  |
 | `disambiguation` | `str` |  |
+| `end` | `str` |  |
+| `ended` | `bool` |  |
 | `id` | `str` |  |
-| `label_code` | `int` |  |
-| `life_span` | `dict` |  |
+| `labelcode` | `int` |  |
+| `lifespan` | `dict` |  |
 | `name` | `str` |  |
-| `sort_name` | `str` |  |
+| `sortname` | `str` |  |
 | `type` | `str` |  |
 
 #### Example: Load
@@ -792,10 +817,10 @@ Create an instance: `place = client.Place()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `str` |  |
-| `coordinate` | `dict` |  |
+| `coordinates` | `dict` |  |
 | `disambiguation` | `str` |  |
 | `id` | `str` |  |
-| `life_span` | `dict` |  |
+| `lifespan` | `dict` |  |
 | `name` | `str` |  |
 | `type` | `str` |  |
 
@@ -887,7 +912,7 @@ Create an instance: `recording_list = client.RecordingList()`
 | --- | --- | --- |
 | `count` | `int` |  |
 | `offset` | `int` |  |
-| `recording` | `list` |  |
+| `recordings` | `list` |  |
 
 #### Example: Load
 
@@ -949,10 +974,10 @@ Create an instance: `release_group = client.ReleaseGroup()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `disambiguation` | `str` |  |
-| `first_release_date` | `str` |  |
+| `firstreleasedate` | `str` |  |
 | `id` | `str` |  |
-| `primary_type` | `str` |  |
-| `secondary_type` | `list` |  |
+| `primarytype` | `str` |  |
+| `secondarytypes` | `list` |  |
 | `title` | `str` |  |
 
 #### Example: Load
@@ -984,7 +1009,7 @@ Create an instance: `release_list = client.ReleaseList()`
 | --- | --- | --- |
 | `count` | `int` |  |
 | `offset` | `int` |  |
-| `release` | `list` |  |
+| `releases` | `list` |  |
 
 #### Example: Load
 
@@ -1132,7 +1157,7 @@ Create an instance: `work_list = client.WorkList()`
 | --- | --- | --- |
 | `count` | `int` |  |
 | `offset` | `int` |  |
-| `work` | `list` |  |
+| `works` | `list` |  |
 
 #### Example: Load
 
@@ -1216,11 +1241,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-area = client.Area()
-area.list()
+series = client.Series()
+series.list()
 
-# area.data_get() now returns the area data from the last list
-# area.match_get() returns the last match criteria
+# series.data_get() now returns the series data from the last list
+# series.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

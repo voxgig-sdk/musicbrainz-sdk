@@ -16,7 +16,7 @@ main: kit: entity: work_list: {
       type: "`$INTEGER`"
     }
     {
-      name: "work"
+      name: "works"
       req: false
       type: "`$ARRAY`"
     }

@@ -63,13 +63,13 @@ describe('UrlEntity', async () => {
     const url_ref01_ent = client.Url()
     const url_ref01_match: any = {}
 
-    const url_ref01_list = await url_ref01_ent.list(url_ref01_match)
+    const url_ref01_list = (await url_ref01_ent.list(url_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const url_ref01_match_dt0: any = {}
     url_ref01_match_dt0.id = url_ref01_data.id
-    const url_ref01_data_dt0 = await url_ref01_ent.load(url_ref01_match_dt0)
+    const url_ref01_data_dt0 = (await url_ref01_ent.load(url_ref01_match_dt0)).data()
     assert(url_ref01_data_dt0.id === url_ref01_data.id)
 
 

@@ -15,11 +15,14 @@ declare(strict_types=1);
 /** Area entity data model. */
 class Area
 {
+    public ?string $begin = null;
     public ?string $disambiguation = null;
+    public ?string $end = null;
+    public ?bool $ended = null;
     public ?string $id = null;
-    public ?array $life_span = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
-    public ?string $sort_name = null;
+    public ?string $sortname = null;
     public ?string $type = null;
 }
 
@@ -32,24 +35,30 @@ class AreaLoadMatch
 /** Request payload for Area#list. */
 class AreaListMatch
 {
+    public ?string $begin = null;
     public ?string $disambiguation = null;
+    public ?string $end = null;
+    public ?bool $ended = null;
     public ?string $id = null;
-    public ?array $life_span = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
-    public ?string $sort_name = null;
+    public ?string $sortname = null;
     public ?string $type = null;
 }
 
 /** Artist entity data model. */
 class Artist
 {
+    public ?string $begin = null;
     public ?string $country = null;
     public ?string $disambiguation = null;
+    public ?string $end = null;
+    public ?bool $ended = null;
     public ?string $gender = null;
     public ?string $id = null;
-    public ?array $life_span = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
-    public ?string $sort_name = null;
+    public ?string $sortname = null;
     public ?string $type = null;
 }
 
@@ -62,13 +71,16 @@ class ArtistLoadMatch
 /** Request payload for Artist#list. */
 class ArtistListMatch
 {
+    public ?string $begin = null;
     public ?string $country = null;
     public ?string $disambiguation = null;
+    public ?string $end = null;
+    public ?bool $ended = null;
     public ?string $gender = null;
     public ?string $id = null;
-    public ?array $life_span = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
-    public ?string $sort_name = null;
+    public ?string $sortname = null;
     public ?string $type = null;
 }
 
@@ -76,7 +88,7 @@ class ArtistListMatch
 class Collection
 {
     public ?string $editor = null;
-    public ?string $entity_type = null;
+    public ?string $entitytype = null;
     public ?string $id = null;
     public ?string $name = null;
 }
@@ -85,7 +97,7 @@ class Collection
 class CollectionListMatch
 {
     public ?string $editor = null;
-    public ?string $entity_type = null;
+    public ?string $entitytype = null;
     public ?string $id = null;
     public ?string $name = null;
 }
@@ -93,10 +105,13 @@ class CollectionListMatch
 /** Event entity data model. */
 class Event
 {
+    public ?string $begin = null;
     public ?bool $cancelled = null;
     public ?string $disambiguation = null;
+    public ?string $end = null;
+    public ?bool $ended = null;
     public ?string $id = null;
-    public ?array $life_span = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
     public ?string $time = null;
     public ?string $type = null;
@@ -111,10 +126,13 @@ class EventLoadMatch
 /** Request payload for Event#list. */
 class EventListMatch
 {
+    public ?string $begin = null;
     public ?bool $cancelled = null;
     public ?string $disambiguation = null;
+    public ?string $end = null;
+    public ?bool $ended = null;
     public ?string $id = null;
-    public ?array $life_span = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
     public ?string $time = null;
     public ?string $type = null;
@@ -171,13 +189,16 @@ class InstrumentListMatch
 /** Label entity data model. */
 class Label
 {
+    public ?string $begin = null;
     public ?string $country = null;
     public ?string $disambiguation = null;
+    public ?string $end = null;
+    public ?bool $ended = null;
     public ?string $id = null;
-    public ?int $label_code = null;
-    public ?array $life_span = null;
+    public ?int $labelcode = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
-    public ?string $sort_name = null;
+    public ?string $sortname = null;
     public ?string $type = null;
 }
 
@@ -190,13 +211,16 @@ class LabelLoadMatch
 /** Request payload for Label#list. */
 class LabelListMatch
 {
+    public ?string $begin = null;
     public ?string $country = null;
     public ?string $disambiguation = null;
+    public ?string $end = null;
+    public ?bool $ended = null;
     public ?string $id = null;
-    public ?int $label_code = null;
-    public ?array $life_span = null;
+    public ?int $labelcode = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
-    public ?string $sort_name = null;
+    public ?string $sortname = null;
     public ?string $type = null;
 }
 
@@ -204,10 +228,10 @@ class LabelListMatch
 class Place
 {
     public ?string $address = null;
-    public ?array $coordinate = null;
+    public ?array $coordinates = null;
     public ?string $disambiguation = null;
     public ?string $id = null;
-    public ?array $life_span = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
     public ?string $type = null;
 }
@@ -222,10 +246,10 @@ class PlaceLoadMatch
 class PlaceListMatch
 {
     public ?string $address = null;
-    public ?array $coordinate = null;
+    public ?array $coordinates = null;
     public ?string $disambiguation = null;
     public ?string $id = null;
-    public ?array $life_span = null;
+    public ?array $lifespan = null;
     public ?string $name = null;
     public ?string $type = null;
 }
@@ -276,7 +300,7 @@ class RecordingList
 {
     public ?int $count = null;
     public ?int $offset = null;
-    public ?array $recording = null;
+    public ?array $recordings = null;
 }
 
 /** Request payload for RecordingList#load. */
@@ -321,10 +345,10 @@ class ReleaseListMatch
 class ReleaseGroup
 {
     public ?string $disambiguation = null;
-    public ?string $first_release_date = null;
+    public ?string $firstreleasedate = null;
     public ?string $id = null;
-    public ?string $primary_type = null;
-    public ?array $secondary_type = null;
+    public ?string $primarytype = null;
+    public ?array $secondarytypes = null;
     public ?string $title = null;
 }
 
@@ -338,10 +362,10 @@ class ReleaseGroupLoadMatch
 class ReleaseGroupListMatch
 {
     public ?string $disambiguation = null;
-    public ?string $first_release_date = null;
+    public ?string $firstreleasedate = null;
     public ?string $id = null;
-    public ?string $primary_type = null;
-    public ?array $secondary_type = null;
+    public ?string $primarytype = null;
+    public ?array $secondarytypes = null;
     public ?string $title = null;
 }
 
@@ -350,7 +374,7 @@ class ReleaseList
 {
     public ?int $count = null;
     public ?int $offset = null;
-    public ?array $release = null;
+    public ?array $releases = null;
 }
 
 /** Request payload for ReleaseList#load. */
@@ -449,7 +473,7 @@ class WorkList
 {
     public ?int $count = null;
     public ?int $offset = null;
-    public ?array $work = null;
+    public ?array $works = null;
 }
 
 /** Request payload for WorkList#load. */

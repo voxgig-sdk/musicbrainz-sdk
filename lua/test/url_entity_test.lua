@@ -97,7 +97,7 @@ describe("UrlEntity", function()
     }
     local url_ref01_data_dt0_loaded, err = url_ref01_ent:load(url_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local url_ref01_data_dt0_load_result = helpers.to_map(url_ref01_data_dt0_loaded)
+    local url_ref01_data_dt0_load_result = helpers.to_map(type(url_ref01_data_dt0_loaded) == 'table' and url_ref01_data_dt0_loaded.data_get and url_ref01_data_dt0_loaded:data_get() or url_ref01_data_dt0_loaded)
     assert.is_not_nil(url_ref01_data_dt0_load_result)
     assert.are.equal(url_ref01_data_dt0_load_result["id"], url_ref01_data["id"])
 

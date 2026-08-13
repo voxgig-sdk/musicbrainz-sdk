@@ -3,19 +3,19 @@
     "collection": {
       "COLLECTION00": {
         "editor": "s28",
-        "entity_type": "s29",
+        "entitytype": "s29",
         "id": "COLLECTION00",
         "name": "s2b"
       },
       "COLLECTION01": {
         "editor": "s50",
-        "entity_type": "s51",
+        "entitytype": "s51",
         "id": "COLLECTION01",
         "name": "s53"
       },
       "COLLECTION02": {
         "editor": "s78",
-        "entity_type": "s79",
+        "entitytype": "s79",
         "id": "COLLECTION02",
         "name": "s7b"
       }
@@ -25,7 +25,7 @@
     "collection": {
       "collection_ref01": {
         "editor": "sa0",
-        "entity_type": "sa1",
+        "entitytype": "sa1",
         "name": "sa3"
       }
     }

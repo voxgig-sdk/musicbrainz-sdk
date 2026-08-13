@@ -63,13 +63,13 @@ describe('ReleaseEntity', async () => {
     const release_ref01_ent = client.Release()
     const release_ref01_match: any = {}
 
-    const release_ref01_list = await release_ref01_ent.list(release_ref01_match)
+    const release_ref01_list = (await release_ref01_ent.list(release_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const release_ref01_match_dt0: any = {}
     release_ref01_match_dt0.id = release_ref01_data.id
-    const release_ref01_data_dt0 = await release_ref01_ent.load(release_ref01_match_dt0)
+    const release_ref01_data_dt0 = (await release_ref01_ent.load(release_ref01_match_dt0)).data()
     assert(release_ref01_data_dt0.id === release_ref01_data.id)
 
 

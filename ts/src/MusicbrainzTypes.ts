@@ -6,11 +6,14 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Area {
+  begin?: string
   disambiguation?: string
+  end?: string
+  ended?: boolean
   id?: string
-  life_span?: Record<string, any>
+  lifespan?: Record<string, any>
   name?: string
-  sort_name?: string
+  sortname?: string
   type?: string
 }
 
@@ -19,22 +22,28 @@ export interface AreaLoadMatch {
 }
 
 export interface AreaListMatch {
+  begin?: string
   disambiguation?: string
+  end?: string
+  ended?: boolean
   id?: string
-  life_span?: Record<string, any>
+  lifespan?: Record<string, any>
   name?: string
-  sort_name?: string
+  sortname?: string
   type?: string
 }
 
 export interface Artist {
+  begin?: string
   country?: string
   disambiguation?: string
+  end?: string
+  ended?: boolean
   gender?: string
   id?: string
-  life_span?: Record<string, any>
+  lifespan?: Record<string, any>
   name?: string
-  sort_name?: string
+  sortname?: string
   type?: string
 }
 
@@ -43,35 +52,41 @@ export interface ArtistLoadMatch {
 }
 
 export interface ArtistListMatch {
+  begin?: string
   country?: string
   disambiguation?: string
+  end?: string
+  ended?: boolean
   gender?: string
   id?: string
-  life_span?: Record<string, any>
+  lifespan?: Record<string, any>
   name?: string
-  sort_name?: string
+  sortname?: string
   type?: string
 }
 
 export interface Collection {
   editor?: string
-  entity_type?: string
+  entitytype?: string
   id?: string
   name?: string
 }
 
 export interface CollectionListMatch {
   editor?: string
-  entity_type?: string
+  entitytype?: string
   id?: string
   name?: string
 }
 
 export interface Event {
+  begin?: string
   cancelled?: boolean
   disambiguation?: string
+  end?: string
+  ended?: boolean
   id?: string
-  life_span?: Record<string, any>
+  lifespan?: Record<string, any>
   name?: string
   time?: string
   type?: string
@@ -82,10 +97,13 @@ export interface EventLoadMatch {
 }
 
 export interface EventListMatch {
+  begin?: string
   cancelled?: boolean
   disambiguation?: string
+  end?: string
+  ended?: boolean
   id?: string
-  life_span?: Record<string, any>
+  lifespan?: Record<string, any>
   name?: string
   time?: string
   type?: string
@@ -105,6 +123,12 @@ export interface GenreListMatch {
   disambiguation?: string
   id?: string
   name?: string
+
+  // Selects a custom action instead of the plain list:
+  //   'all'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Instrument {
@@ -128,13 +152,16 @@ export interface InstrumentListMatch {
 }
 
 export interface Label {
+  begin?: string
   country?: string
   disambiguation?: string
+  end?: string
+  ended?: boolean
   id?: string
-  label_code?: number
-  life_span?: Record<string, any>
+  labelcode?: number
+  lifespan?: Record<string, any>
   name?: string
-  sort_name?: string
+  sortname?: string
   type?: string
 }
 
@@ -143,22 +170,25 @@ export interface LabelLoadMatch {
 }
 
 export interface LabelListMatch {
+  begin?: string
   country?: string
   disambiguation?: string
+  end?: string
+  ended?: boolean
   id?: string
-  label_code?: number
-  life_span?: Record<string, any>
+  labelcode?: number
+  lifespan?: Record<string, any>
   name?: string
-  sort_name?: string
+  sortname?: string
   type?: string
 }
 
 export interface Place {
   address?: string
-  coordinate?: Record<string, any>
+  coordinates?: Record<string, any>
   disambiguation?: string
   id?: string
-  life_span?: Record<string, any>
+  lifespan?: Record<string, any>
   name?: string
   type?: string
 }
@@ -169,10 +199,10 @@ export interface PlaceLoadMatch {
 
 export interface PlaceListMatch {
   address?: string
-  coordinate?: Record<string, any>
+  coordinates?: Record<string, any>
   disambiguation?: string
   id?: string
-  life_span?: Record<string, any>
+  lifespan?: Record<string, any>
   name?: string
   type?: string
 }
@@ -209,7 +239,7 @@ export interface RecordingListMatch {
 export interface RecordingList {
   count?: number
   offset?: number
-  recording?: any[]
+  recordings?: any[]
 }
 
 export interface RecordingListLoadMatch {
@@ -244,10 +274,10 @@ export interface ReleaseListMatch {
 
 export interface ReleaseGroup {
   disambiguation?: string
-  first_release_date?: string
+  firstreleasedate?: string
   id?: string
-  primary_type?: string
-  secondary_type?: any[]
+  primarytype?: string
+  secondarytypes?: any[]
   title?: string
 }
 
@@ -257,17 +287,17 @@ export interface ReleaseGroupLoadMatch {
 
 export interface ReleaseGroupListMatch {
   disambiguation?: string
-  first_release_date?: string
+  firstreleasedate?: string
   id?: string
-  primary_type?: string
-  secondary_type?: any[]
+  primarytype?: string
+  secondarytypes?: any[]
   title?: string
 }
 
 export interface ReleaseList {
   count?: number
   offset?: number
-  release?: any[]
+  releases?: any[]
 }
 
 export interface ReleaseListLoadMatch {
@@ -338,7 +368,7 @@ export interface WorkListMatch {
 export interface WorkList {
   count?: number
   offset?: number
-  work?: any[]
+  works?: any[]
 }
 
 export interface WorkListLoadMatch {

@@ -16,11 +16,11 @@
 import pytest
 
 from musicbrainz_sdk import MusicbrainzSDK
-from core.error import MusicbrainzError
-from core.result import MusicbrainzResult
-from core.response import MusicbrainzResponse
-from core.spec import MusicbrainzSpec
-from feature.base_feature import MusicbrainzBaseFeature
+from musicbrainz_sdk.core.error import MusicbrainzError
+from musicbrainz_sdk.core.result import MusicbrainzResult
+from musicbrainz_sdk.core.response import MusicbrainzResponse
+from musicbrainz_sdk.core.spec import MusicbrainzSpec
+from musicbrainz_sdk.feature.base_feature import MusicbrainzBaseFeature
 
 
 def _client():

@@ -128,7 +128,7 @@ func TestRecordingEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		recordingRef01DataDt0LoadResult := core.ToMapAny(recordingRef01DataDt0Loaded)
+		recordingRef01DataDt0LoadResult := core.ToMapAny(entityData(recordingRef01DataDt0Loaded))
 		if recordingRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

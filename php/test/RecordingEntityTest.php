@@ -97,7 +97,7 @@ class RecordingEntityTest extends TestCase
             "id" => $recording_ref01_data["id"],
         ];
         $recording_ref01_data_dt0_loaded = $recording_ref01_ent->load($recording_ref01_match_dt0, null);
-        $recording_ref01_data_dt0_load_result = Helpers::to_map($recording_ref01_data_dt0_loaded);
+        $recording_ref01_data_dt0_load_result = Helpers::to_map(is_object($recording_ref01_data_dt0_loaded) && method_exists($recording_ref01_data_dt0_loaded, 'data_get') ? $recording_ref01_data_dt0_loaded->data_get() : $recording_ref01_data_dt0_loaded);
         $this->assertNotNull($recording_ref01_data_dt0_load_result);
         $this->assertEquals($recording_ref01_data_dt0_load_result["id"], $recording_ref01_data["id"]);
 

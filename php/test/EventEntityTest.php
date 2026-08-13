@@ -97,7 +97,7 @@ class EventEntityTest extends TestCase
             "id" => $event_ref01_data["id"],
         ];
         $event_ref01_data_dt0_loaded = $event_ref01_ent->load($event_ref01_match_dt0, null);
-        $event_ref01_data_dt0_load_result = Helpers::to_map($event_ref01_data_dt0_loaded);
+        $event_ref01_data_dt0_load_result = Helpers::to_map(is_object($event_ref01_data_dt0_loaded) && method_exists($event_ref01_data_dt0_loaded, 'data_get') ? $event_ref01_data_dt0_loaded->data_get() : $event_ref01_data_dt0_loaded);
         $this->assertNotNull($event_ref01_data_dt0_load_result);
         $this->assertEquals($event_ref01_data_dt0_load_result["id"], $event_ref01_data["id"]);
 

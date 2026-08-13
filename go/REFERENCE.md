@@ -171,11 +171,14 @@ fmt.Println(area.GetName()) // "area"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `bool` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `map[string]any` | No |  |
+| `lifespan` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -239,13 +242,16 @@ fmt.Println(artist.GetName()) // "artist"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `country` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `bool` | No |  |
 | `gender` | `string` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `map[string]any` | No |  |
+| `lifespan` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -310,7 +316,7 @@ fmt.Println(collection.GetName()) // "collection"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `editor` | `string` | No |  |
-| `entity_type` | `string` | No |  |
+| `entitytype` | `string` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
 
@@ -363,10 +369,13 @@ fmt.Println(event.GetName()) // "event"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `cancelled` | `bool` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `bool` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `map[string]any` | No |  |
+| `lifespan` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `time` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -564,13 +573,16 @@ fmt.Println(label.GetName()) // "label"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `country` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `bool` | No |  |
 | `id` | `string` | No |  |
-| `label_code` | `int` | No |  |
-| `life_span` | `map[string]any` | No |  |
+| `labelcode` | `int` | No |  |
+| `lifespan` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -635,10 +647,10 @@ fmt.Println(place.GetName()) // "place"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `coordinate` | `map[string]any` | No |  |
+| `coordinates` | `map[string]any` | No |  |
 | `disambiguation` | `string` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `map[string]any` | No |  |
+| `lifespan` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -830,7 +842,7 @@ fmt.Println(recordingList.GetName()) // "recording_list"
 | --- | --- | --- | --- |
 | `count` | `int` | No |  |
 | `offset` | `int` | No |  |
-| `recording` | `[]any` | No |  |
+| `recordings` | `[]any` | No |  |
 
 ### Operations
 
@@ -952,10 +964,10 @@ fmt.Println(releaseGroup.GetName()) // "release_group"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `disambiguation` | `string` | No |  |
-| `first_release_date` | `string` | No |  |
+| `firstreleasedate` | `string` | No |  |
 | `id` | `string` | No |  |
-| `primary_type` | `string` | No |  |
-| `secondary_type` | `[]any` | No |  |
+| `primarytype` | `string` | No |  |
+| `secondarytypes` | `[]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -1021,7 +1033,7 @@ fmt.Println(releaseList.GetName()) // "release_list"
 | --- | --- | --- | --- |
 | `count` | `int` | No |  |
 | `offset` | `int` | No |  |
-| `release` | `[]any` | No |  |
+| `releases` | `[]any` | No |  |
 
 ### Operations
 
@@ -1329,7 +1341,7 @@ fmt.Println(workList.GetName()) // "work_list"
 | --- | --- | --- | --- |
 | `count` | `int` | No |  |
 | `offset` | `int` | No |  |
-| `work` | `[]any` | No |  |
+| `works` | `[]any` | No |  |
 
 ### Operations
 

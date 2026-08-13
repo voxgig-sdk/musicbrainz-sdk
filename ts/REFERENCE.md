@@ -333,11 +333,14 @@ const area = client.Area()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `boolean` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `Record<string, any>` | No |  |
+| `lifespan` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -396,13 +399,16 @@ const artist = client.Artist()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `country` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `boolean` | No |  |
 | `gender` | `string` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `Record<string, any>` | No |  |
+| `lifespan` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -462,7 +468,7 @@ const collection = client.Collection()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `editor` | `string` | No |  |
-| `entity_type` | `string` | No |  |
+| `entitytype` | `string` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
 
@@ -514,10 +520,13 @@ const event = client.Event()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `cancelled` | `boolean` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `boolean` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `Record<string, any>` | No |  |
+| `lifespan` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `time` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -581,6 +590,26 @@ const genre = client.Genre()
 | `disambiguation` | `string` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `all` | `/genre/all` | `client.Genre().list({ $action: 'all', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Genre record — check the API definition for its shape.
+
+```ts
+const result = await client.Genre().list({
+  $action: 'all',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -700,13 +729,16 @@ const label = client.Label()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `country` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `boolean` | No |  |
 | `id` | `string` | No |  |
-| `label_code` | `number` | No |  |
-| `life_span` | `Record<string, any>` | No |  |
+| `labelcode` | `number` | No |  |
+| `lifespan` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -766,10 +798,10 @@ const place = client.Place()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `coordinate` | `Record<string, any>` | No |  |
+| `coordinates` | `Record<string, any>` | No |  |
 | `disambiguation` | `string` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `Record<string, any>` | No |  |
+| `lifespan` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -946,7 +978,7 @@ const recording_list = client.RecordingList()
 | --- | --- | --- | --- |
 | `count` | `number` | No |  |
 | `offset` | `number` | No |  |
-| `recording` | `any[]` | No |  |
+| `recordings` | `any[]` | No |  |
 
 ### Operations
 
@@ -1062,10 +1094,10 @@ const release_group = client.ReleaseGroup()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `disambiguation` | `string` | No |  |
-| `first_release_date` | `string` | No |  |
+| `firstreleasedate` | `string` | No |  |
 | `id` | `string` | No |  |
-| `primary_type` | `string` | No |  |
-| `secondary_type` | `any[]` | No |  |
+| `primarytype` | `string` | No |  |
+| `secondarytypes` | `any[]` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -1126,7 +1158,7 @@ const release_list = client.ReleaseList()
 | --- | --- | --- | --- |
 | `count` | `number` | No |  |
 | `offset` | `number` | No |  |
-| `release` | `any[]` | No |  |
+| `releases` | `any[]` | No |  |
 
 ### Operations
 
@@ -1413,7 +1445,7 @@ const work_list = client.WorkList()
 | --- | --- | --- | --- |
 | `count` | `number` | No |  |
 | `offset` | `number` | No |  |
-| `work` | `any[]` | No |  |
+| `works` | `any[]` | No |  |
 
 ### Operations
 

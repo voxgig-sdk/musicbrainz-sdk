@@ -63,13 +63,13 @@ describe('InstrumentEntity', async () => {
     const instrument_ref01_ent = client.Instrument()
     const instrument_ref01_match: any = {}
 
-    const instrument_ref01_list = await instrument_ref01_ent.list(instrument_ref01_match)
+    const instrument_ref01_list = (await instrument_ref01_ent.list(instrument_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const instrument_ref01_match_dt0: any = {}
     instrument_ref01_match_dt0.id = instrument_ref01_data.id
-    const instrument_ref01_data_dt0 = await instrument_ref01_ent.load(instrument_ref01_match_dt0)
+    const instrument_ref01_data_dt0 = (await instrument_ref01_ent.load(instrument_ref01_match_dt0)).data()
     assert(instrument_ref01_data_dt0.id === instrument_ref01_data.id)
 
 

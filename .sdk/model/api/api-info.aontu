@@ -32,3 +32,5 @@ main: {
       website: "https://musicbrainz.org/doc/MusicBrainz_API"
     }
   }
+}
+

@@ -97,7 +97,7 @@ describe("ArtistEntity", function()
     }
     local artist_ref01_data_dt0_loaded, err = artist_ref01_ent:load(artist_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local artist_ref01_data_dt0_load_result = helpers.to_map(artist_ref01_data_dt0_loaded)
+    local artist_ref01_data_dt0_load_result = helpers.to_map(type(artist_ref01_data_dt0_loaded) == 'table' and artist_ref01_data_dt0_loaded.data_get and artist_ref01_data_dt0_loaded:data_get() or artist_ref01_data_dt0_loaded)
     assert.is_not_nil(artist_ref01_data_dt0_load_result)
     assert.are.equal(artist_ref01_data_dt0_load_result["id"], artist_ref01_data["id"])
 

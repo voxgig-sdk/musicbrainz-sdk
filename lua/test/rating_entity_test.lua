@@ -41,7 +41,7 @@ describe("RatingEntity", function()
 
     local rating_ref01_data_result, err = rating_ref01_ent:create(rating_ref01_data, nil)
     assert.is_nil(err)
-    rating_ref01_data = helpers.to_map(rating_ref01_data_result)
+    rating_ref01_data = helpers.to_map(type(rating_ref01_data_result) == 'table' and rating_ref01_data_result.data_get and rating_ref01_data_result:data_get() or rating_ref01_data_result)
     assert.is_not_nil(rating_ref01_data)
 
     -- LOAD

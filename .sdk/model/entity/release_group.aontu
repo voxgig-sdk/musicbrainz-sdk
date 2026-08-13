@@ -11,7 +11,7 @@ main: kit: entity: release_group: {
       type: "`$STRING`"
     }
     {
-      name: "first_release_date"
+      name: "firstreleasedate"
       req: false
       type: "`$STRING`"
     }
@@ -21,12 +21,12 @@ main: kit: entity: release_group: {
       type: "`$STRING`"
     }
     {
-      name: "primary_type"
+      name: "primarytype"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "secondary_type"
+      name: "secondarytypes"
       req: false
       type: "`$ARRAY`"
     }
@@ -139,7 +139,7 @@ main: kit: entity: release_group: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.release-groups`"
           }
         }
       ]

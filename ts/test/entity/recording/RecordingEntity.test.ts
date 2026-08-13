@@ -63,13 +63,13 @@ describe('RecordingEntity', async () => {
     const recording_ref01_ent = client.Recording()
     const recording_ref01_match: any = {}
 
-    const recording_ref01_list = await recording_ref01_ent.list(recording_ref01_match)
+    const recording_ref01_list = (await recording_ref01_ent.list(recording_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const recording_ref01_match_dt0: any = {}
     recording_ref01_match_dt0.id = recording_ref01_data.id
-    const recording_ref01_data_dt0 = await recording_ref01_ent.load(recording_ref01_match_dt0)
+    const recording_ref01_data_dt0 = (await recording_ref01_ent.load(recording_ref01_match_dt0)).data()
     assert(recording_ref01_data_dt0.id === recording_ref01_data.id)
 
 

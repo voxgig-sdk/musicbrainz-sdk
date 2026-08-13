@@ -163,11 +163,14 @@ local area = client:Area(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `boolean` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `table` | No |  |
+| `lifespan` | `table` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -228,13 +231,16 @@ local artist = client:Artist(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `country` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `boolean` | No |  |
 | `gender` | `string` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `table` | No |  |
+| `lifespan` | `table` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -296,7 +302,7 @@ local collection = client:Collection(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `editor` | `string` | No |  |
-| `entity_type` | `string` | No |  |
+| `entitytype` | `string` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
 
@@ -350,10 +356,13 @@ local event = client:Event(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `cancelled` | `boolean` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `boolean` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `table` | No |  |
+| `lifespan` | `table` | No |  |
 | `name` | `string` | No |  |
 | `time` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -542,13 +551,16 @@ local label = client:Label(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `string` | No |  |
 | `country` | `string` | No |  |
 | `disambiguation` | `string` | No |  |
+| `end` | `string` | No |  |
+| `ended` | `boolean` | No |  |
 | `id` | `string` | No |  |
-| `label_code` | `number` | No |  |
-| `life_span` | `table` | No |  |
+| `labelcode` | `number` | No |  |
+| `lifespan` | `table` | No |  |
 | `name` | `string` | No |  |
-| `sort_name` | `string` | No |  |
+| `sortname` | `string` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -610,10 +622,10 @@ local place = client:Place(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `coordinate` | `table` | No |  |
+| `coordinates` | `table` | No |  |
 | `disambiguation` | `string` | No |  |
 | `id` | `string` | No |  |
-| `life_span` | `table` | No |  |
+| `lifespan` | `table` | No |  |
 | `name` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -796,7 +808,7 @@ local recording_list = client:RecordingList(nil)
 | --- | --- | --- | --- |
 | `count` | `number` | No |  |
 | `offset` | `number` | No |  |
-| `recording` | `table` | No |  |
+| `recordings` | `table` | No |  |
 
 ### Operations
 
@@ -916,10 +928,10 @@ local release_group = client:ReleaseGroup(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `disambiguation` | `string` | No |  |
-| `first_release_date` | `string` | No |  |
+| `firstreleasedate` | `string` | No |  |
 | `id` | `string` | No |  |
-| `primary_type` | `string` | No |  |
-| `secondary_type` | `table` | No |  |
+| `primarytype` | `string` | No |  |
+| `secondarytypes` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -982,7 +994,7 @@ local release_list = client:ReleaseList(nil)
 | --- | --- | --- | --- |
 | `count` | `number` | No |  |
 | `offset` | `number` | No |  |
-| `release` | `table` | No |  |
+| `releases` | `table` | No |  |
 
 ### Operations
 
@@ -1279,7 +1291,7 @@ local work_list = client:WorkList(nil)
 | --- | --- | --- | --- |
 | `count` | `number` | No |  |
 | `offset` | `number` | No |  |
-| `work` | `table` | No |  |
+| `works` | `table` | No |  |
 
 ### Operations
 

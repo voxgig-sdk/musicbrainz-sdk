@@ -95,7 +95,7 @@ main: kit: entity: url: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.urls`"
           }
         }
       ]

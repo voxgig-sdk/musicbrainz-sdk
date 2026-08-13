@@ -166,11 +166,14 @@ area = client.Area
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `String` | No |  |
 | `disambiguation` | `String` | No |  |
+| `end` | `String` | No |  |
+| `ended` | `Boolean` | No |  |
 | `id` | `String` | No |  |
-| `life_span` | `Hash` | No |  |
+| `lifespan` | `Hash` | No |  |
 | `name` | `String` | No |  |
-| `sort_name` | `String` | No |  |
+| `sortname` | `String` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations
@@ -231,13 +234,16 @@ artist = client.Artist
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `String` | No |  |
 | `country` | `String` | No |  |
 | `disambiguation` | `String` | No |  |
+| `end` | `String` | No |  |
+| `ended` | `Boolean` | No |  |
 | `gender` | `String` | No |  |
 | `id` | `String` | No |  |
-| `life_span` | `Hash` | No |  |
+| `lifespan` | `Hash` | No |  |
 | `name` | `String` | No |  |
-| `sort_name` | `String` | No |  |
+| `sortname` | `String` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations
@@ -299,7 +305,7 @@ collection = client.Collection
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `editor` | `String` | No |  |
-| `entity_type` | `String` | No |  |
+| `entitytype` | `String` | No |  |
 | `id` | `String` | No |  |
 | `name` | `String` | No |  |
 
@@ -353,10 +359,13 @@ event = client.Event
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `String` | No |  |
 | `cancelled` | `Boolean` | No |  |
 | `disambiguation` | `String` | No |  |
+| `end` | `String` | No |  |
+| `ended` | `Boolean` | No |  |
 | `id` | `String` | No |  |
-| `life_span` | `Hash` | No |  |
+| `lifespan` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `time` | `String` | No |  |
 | `type` | `String` | No |  |
@@ -545,13 +554,16 @@ label = client.Label
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `begin` | `String` | No |  |
 | `country` | `String` | No |  |
 | `disambiguation` | `String` | No |  |
+| `end` | `String` | No |  |
+| `ended` | `Boolean` | No |  |
 | `id` | `String` | No |  |
-| `label_code` | `Integer` | No |  |
-| `life_span` | `Hash` | No |  |
+| `labelcode` | `Integer` | No |  |
+| `lifespan` | `Hash` | No |  |
 | `name` | `String` | No |  |
-| `sort_name` | `String` | No |  |
+| `sortname` | `String` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations
@@ -613,10 +625,10 @@ place = client.Place
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `String` | No |  |
-| `coordinate` | `Hash` | No |  |
+| `coordinates` | `Hash` | No |  |
 | `disambiguation` | `String` | No |  |
 | `id` | `String` | No |  |
-| `life_span` | `Hash` | No |  |
+| `lifespan` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `type` | `String` | No |  |
 
@@ -799,7 +811,7 @@ recording_list = client.RecordingList
 | --- | --- | --- | --- |
 | `count` | `Integer` | No |  |
 | `offset` | `Integer` | No |  |
-| `recording` | `Array` | No |  |
+| `recordings` | `Array` | No |  |
 
 ### Operations
 
@@ -919,10 +931,10 @@ release_group = client.ReleaseGroup
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `disambiguation` | `String` | No |  |
-| `first_release_date` | `String` | No |  |
+| `firstreleasedate` | `String` | No |  |
 | `id` | `String` | No |  |
-| `primary_type` | `String` | No |  |
-| `secondary_type` | `Array` | No |  |
+| `primarytype` | `String` | No |  |
+| `secondarytypes` | `Array` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -985,7 +997,7 @@ release_list = client.ReleaseList
 | --- | --- | --- | --- |
 | `count` | `Integer` | No |  |
 | `offset` | `Integer` | No |  |
-| `release` | `Array` | No |  |
+| `releases` | `Array` | No |  |
 
 ### Operations
 
@@ -1282,7 +1294,7 @@ work_list = client.WorkList
 | --- | --- | --- | --- |
 | `count` | `Integer` | No |  |
 | `offset` | `Integer` | No |  |
-| `work` | `Array` | No |  |
+| `works` | `Array` | No |  |
 
 ### Operations
 

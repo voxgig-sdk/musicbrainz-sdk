@@ -2,43 +2,55 @@
   "existing": {
     "event": {
       "EVENT00": {
-        "cancelled": true,
-        "disambiguation": "s47",
+        "begin": "s64",
+        "cancelled": false,
+        "disambiguation": "s66",
+        "end": "s67",
+        "ended": true,
         "id": "EVENT00",
-        "life_span": {},
-        "name": "s4a",
-        "time": "s4b",
-        "type": "s4c"
+        "lifespan": {},
+        "name": "s6b",
+        "time": "s6c",
+        "type": "s6d"
       },
       "EVENT01": {
-        "cancelled": true,
-        "disambiguation": "s8d",
+        "begin": "sc8",
+        "cancelled": false,
+        "disambiguation": "sca",
+        "end": "scb",
+        "ended": true,
         "id": "EVENT01",
-        "life_span": {},
-        "name": "s90",
-        "time": "s91",
-        "type": "s92"
+        "lifespan": {},
+        "name": "scf",
+        "time": "sd0",
+        "type": "sd1"
       },
       "EVENT02": {
-        "cancelled": true,
-        "disambiguation": "sd3",
+        "begin": "s12c",
+        "cancelled": false,
+        "disambiguation": "s12e",
+        "end": "s12f",
+        "ended": true,
         "id": "EVENT02",
-        "life_span": {},
-        "name": "sd6",
-        "time": "sd7",
-        "type": "sd8"
+        "lifespan": {},
+        "name": "s133",
+        "time": "s134",
+        "type": "s135"
       }
     }
   },
   "new": {
     "event": {
       "event_ref01": {
-        "cancelled": true,
-        "disambiguation": "s119",
-        "life_span": {},
-        "name": "s11c",
-        "time": "s11d",
-        "type": "s11e"
+        "begin": "s190",
+        "cancelled": false,
+        "disambiguation": "s192",
+        "end": "s193",
+        "ended": true,
+        "lifespan": {},
+        "name": "s197",
+        "time": "s198",
+        "type": "s199"
       }
     }
   }

@@ -87,7 +87,7 @@ class InstrumentEntityTest < Minitest::Test
       "id" => instrument_ref01_data["id"],
     }
     instrument_ref01_data_dt0_loaded = instrument_ref01_ent.load(instrument_ref01_match_dt0, nil)
-    instrument_ref01_data_dt0_load_result = Helpers.to_map(instrument_ref01_data_dt0_loaded)
+    instrument_ref01_data_dt0_load_result = Helpers.to_map(instrument_ref01_data_dt0_loaded.respond_to?(:data_get) ? instrument_ref01_data_dt0_loaded.data_get : instrument_ref01_data_dt0_loaded)
     assert !instrument_ref01_data_dt0_load_result.nil?
     assert_equal instrument_ref01_data_dt0_load_result["id"], instrument_ref01_data["id"]
 

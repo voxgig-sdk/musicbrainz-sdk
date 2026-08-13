@@ -164,8 +164,29 @@ class MusicbrainzSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('MusicbrainzSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -226,136 +247,228 @@ class MusicbrainzSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('MusicbrainzSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('MusicbrainzSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Area().list()` / `client.Area().load({ id })`.
-  Area(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Area(entopts?: Record<string, any>) {
     const self = this
-    return new AreaEntity(self,data)
+    return new AreaEntity(self, entopts)
   }
 
 
   // Entity access: `client.Artist().list()` / `client.Artist().load({ id })`.
-  Artist(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Artist(entopts?: Record<string, any>) {
     const self = this
-    return new ArtistEntity(self,data)
+    return new ArtistEntity(self, entopts)
   }
 
 
   // Entity access: `client.Collection().list()` / `client.Collection().load({ id })`.
-  Collection(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Collection(entopts?: Record<string, any>) {
     const self = this
-    return new CollectionEntity(self,data)
+    return new CollectionEntity(self, entopts)
   }
 
 
   // Entity access: `client.Event().list()` / `client.Event().load({ id })`.
-  Event(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Event(entopts?: Record<string, any>) {
     const self = this
-    return new EventEntity(self,data)
+    return new EventEntity(self, entopts)
   }
 
 
   // Entity access: `client.Genre().list()` / `client.Genre().load({ id })`.
-  Genre(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Genre(entopts?: Record<string, any>) {
     const self = this
-    return new GenreEntity(self,data)
+    return new GenreEntity(self, entopts)
   }
 
 
   // Entity access: `client.Instrument().list()` / `client.Instrument().load({ id })`.
-  Instrument(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Instrument(entopts?: Record<string, any>) {
     const self = this
-    return new InstrumentEntity(self,data)
+    return new InstrumentEntity(self, entopts)
   }
 
 
   // Entity access: `client.Label().list()` / `client.Label().load({ id })`.
-  Label(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Label(entopts?: Record<string, any>) {
     const self = this
-    return new LabelEntity(self,data)
+    return new LabelEntity(self, entopts)
   }
 
 
   // Entity access: `client.Place().list()` / `client.Place().load({ id })`.
-  Place(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Place(entopts?: Record<string, any>) {
     const self = this
-    return new PlaceEntity(self,data)
+    return new PlaceEntity(self, entopts)
   }
 
 
   // Entity access: `client.Rating().list()` / `client.Rating().load({ id })`.
-  Rating(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Rating(entopts?: Record<string, any>) {
     const self = this
-    return new RatingEntity(self,data)
+    return new RatingEntity(self, entopts)
   }
 
 
   // Entity access: `client.Recording().list()` / `client.Recording().load({ id })`.
-  Recording(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Recording(entopts?: Record<string, any>) {
     const self = this
-    return new RecordingEntity(self,data)
+    return new RecordingEntity(self, entopts)
   }
 
 
   // Entity access: `client.RecordingList().list()` / `client.RecordingList().load({ id })`.
-  RecordingList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  RecordingList(entopts?: Record<string, any>) {
     const self = this
-    return new RecordingListEntity(self,data)
+    return new RecordingListEntity(self, entopts)
   }
 
 
   // Entity access: `client.Release().list()` / `client.Release().load({ id })`.
-  Release(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Release(entopts?: Record<string, any>) {
     const self = this
-    return new ReleaseEntity(self,data)
+    return new ReleaseEntity(self, entopts)
   }
 
 
   // Entity access: `client.ReleaseGroup().list()` / `client.ReleaseGroup().load({ id })`.
-  ReleaseGroup(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ReleaseGroup(entopts?: Record<string, any>) {
     const self = this
-    return new ReleaseGroupEntity(self,data)
+    return new ReleaseGroupEntity(self, entopts)
   }
 
 
   // Entity access: `client.ReleaseList().list()` / `client.ReleaseList().load({ id })`.
-  ReleaseList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ReleaseList(entopts?: Record<string, any>) {
     const self = this
-    return new ReleaseListEntity(self,data)
+    return new ReleaseListEntity(self, entopts)
   }
 
 
   // Entity access: `client.Series().list()` / `client.Series().load({ id })`.
-  Series(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Series(entopts?: Record<string, any>) {
     const self = this
-    return new SeriesEntity(self,data)
+    return new SeriesEntity(self, entopts)
   }
 
 
   // Entity access: `client.Tag().list()` / `client.Tag().load({ id })`.
-  Tag(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Tag(entopts?: Record<string, any>) {
     const self = this
-    return new TagEntity(self,data)
+    return new TagEntity(self, entopts)
   }
 
 
   // Entity access: `client.Url().list()` / `client.Url().load({ id })`.
-  Url(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Url(entopts?: Record<string, any>) {
     const self = this
-    return new UrlEntity(self,data)
+    return new UrlEntity(self, entopts)
   }
 
 
   // Entity access: `client.Work().list()` / `client.Work().load({ id })`.
-  Work(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Work(entopts?: Record<string, any>) {
     const self = this
-    return new WorkEntity(self,data)
+    return new WorkEntity(self, entopts)
   }
 
 
   // Entity access: `client.WorkList().list()` / `client.WorkList().load({ id })`.
-  WorkList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WorkList(entopts?: Record<string, any>) {
     const self = this
-    return new WorkListEntity(self,data)
+    return new WorkListEntity(self, entopts)
   }
 
 
