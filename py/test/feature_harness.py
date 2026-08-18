@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from musicbrainz_sdk.config import make_config
+from musicbrainz_sdk.config import shared_config
 from musicbrainz_sdk.features import _make_feature
 from musicbrainz_sdk.core.control import MusicbrainzControl
 from musicbrainz_sdk.core.error import MusicbrainzError
@@ -24,7 +24,7 @@ from musicbrainz_sdk.core.spec import MusicbrainzSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

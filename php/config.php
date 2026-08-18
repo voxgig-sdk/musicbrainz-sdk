@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class MusicbrainzConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -52,67 +75,40 @@ class MusicbrainzConfig
         'area' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'begin',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'end',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'ended',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'lifespan',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'sortname',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
           ],
           'name' => 'area',
@@ -122,51 +118,40 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -190,46 +175,37 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.areas`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -257,10 +233,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.life-span`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -270,81 +244,48 @@ class MusicbrainzConfig
         'artist' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'begin',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'end',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'ended',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'gender',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'lifespan',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'sortname',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
           ],
           'name' => 'artist',
@@ -354,99 +295,76 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'area',
                         'orig' => 'area',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'collection',
                         'orig' => 'collection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'recording',
                         'orig' => 'recording',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'release',
                         'orig' => 'release',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'release_group',
                         'orig' => 'release_group',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'work',
                         'orig' => 'work',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -476,62 +394,49 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.artists`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'status',
                         'orig' => 'status',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type',
                         'orig' => 'type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -561,10 +466,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.life-span`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -574,32 +477,20 @@ class MusicbrainzConfig
         'collection' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'editor',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'entitytype',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
           ],
           'name' => 'collection',
@@ -609,43 +500,34 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -668,10 +550,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.collections`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -681,74 +561,44 @@ class MusicbrainzConfig
         'event' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'begin',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'cancelled',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'end',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'ended',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'lifespan',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'time',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
           ],
           'name' => 'event',
@@ -758,75 +608,58 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'area',
                         'orig' => 'area',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'artist',
                         'orig' => 'artist',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'place',
                         'orig' => 'place',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -853,46 +686,37 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.events`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -920,10 +744,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.life-span`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -933,25 +755,16 @@ class MusicbrainzConfig
         'genre' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
           ],
           'name' => 'genre',
@@ -961,34 +774,27 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -1012,37 +818,30 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.genres`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1069,10 +868,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1082,39 +879,24 @@ class MusicbrainzConfig
         'instrument' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'description',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
           ],
           'name' => 'instrument',
@@ -1124,59 +906,46 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'collection',
                         'orig' => 'collection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1201,46 +970,37 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.instruments`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1268,10 +1028,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1281,81 +1039,48 @@ class MusicbrainzConfig
         'label' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'begin',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'end',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'ended',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'labelcode',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'lifespan',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'sortname',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
           ],
           'name' => 'label',
@@ -1365,75 +1090,58 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'area',
                         'orig' => 'area',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'collection',
                         'orig' => 'collection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'release',
                         'orig' => 'release',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1460,62 +1168,49 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.labels`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'status',
                         'orig' => 'status',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type',
                         'orig' => 'type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1545,10 +1240,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.life-span`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1558,53 +1251,32 @@ class MusicbrainzConfig
         'place' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'address',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'coordinates',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'lifespan',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
           ],
           'name' => 'place',
@@ -1614,67 +1286,52 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'area',
                         'orig' => 'area',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'collection',
                         'orig' => 'collection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1700,46 +1357,37 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.places`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1767,10 +1415,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1786,7 +1432,6 @@ class MusicbrainzConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -1799,26 +1444,21 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1838,10 +1478,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1851,39 +1489,24 @@ class MusicbrainzConfig
         'recording' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'length',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'title',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'video',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
           ],
           'name' => 'recording',
@@ -1893,83 +1516,64 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'artist',
                         'orig' => 'artist',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'collection',
                         'orig' => 'collection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'release',
                         'orig' => 'release',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'work',
                         'orig' => 'work',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1997,62 +1601,49 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.recordings`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'status',
                         'orig' => 'status',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type',
                         'orig' => 'type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2082,10 +1673,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2095,25 +1684,16 @@ class MusicbrainzConfig
         'recording_list' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'count',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'offset',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'recordings',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
           ],
           'name' => 'recording_list',
@@ -2123,36 +1703,29 @@ class MusicbrainzConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'isrc',
                         'orig' => 'isrc',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2175,10 +1748,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2192,60 +1763,36 @@ class MusicbrainzConfig
         'release' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'barcode',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'date',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'packaging',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'status',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'title',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
           ],
           'name' => 'release',
@@ -2255,131 +1802,100 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'area',
                         'orig' => 'area',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'artist',
                         'orig' => 'artist',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'collection',
                         'orig' => 'collection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'label',
                         'orig' => 'label',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'recording',
                         'orig' => 'recording',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'release_group',
                         'orig' => 'release_group',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'status',
                         'orig' => 'status',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'track',
                         'orig' => 'track',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'track_artist',
                         'orig' => 'track_artist',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type',
                         'orig' => 'type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2413,46 +1929,37 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.releases`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2480,10 +1987,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2493,46 +1998,28 @@ class MusicbrainzConfig
         'release_group' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'firstreleasedate',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'primarytype',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'secondarytypes',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'title',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
           ],
           'name' => 'release_group',
@@ -2542,83 +2029,64 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'artist',
                         'orig' => 'artist',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'collection',
                         'orig' => 'collection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'release',
                         'orig' => 'release',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type',
                         'orig' => 'type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2646,62 +2114,49 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.release-groups`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'status',
                         'orig' => 'status',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type',
                         'orig' => 'type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2731,10 +2186,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2744,25 +2197,16 @@ class MusicbrainzConfig
         'release_list' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'count',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'offset',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'releases',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
           ],
           'name' => 'release_list',
@@ -2772,36 +2216,29 @@ class MusicbrainzConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'discid',
                         'orig' => 'discid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2824,10 +2261,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2841,32 +2276,20 @@ class MusicbrainzConfig
         'series' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
           ],
           'name' => 'series',
@@ -2876,59 +2299,46 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'collection',
                         'orig' => 'collection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2953,46 +2363,37 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.series`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3020,10 +2421,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -3039,7 +2438,6 @@ class MusicbrainzConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -3052,26 +2450,21 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3091,10 +2484,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -3104,18 +2495,12 @@ class MusicbrainzConfig
         'url' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'resource',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
           ],
           'name' => 'url',
@@ -3125,59 +2510,46 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'resource',
                         'orig' => 'resource',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3202,46 +2574,37 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.urls`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3269,10 +2632,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -3282,39 +2643,24 @@ class MusicbrainzConfig
         'work' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'disambiguation',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'language',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'title',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
           ],
           'name' => 'work',
@@ -3324,67 +2670,52 @@ class MusicbrainzConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'artist',
                         'orig' => 'artist',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'collection',
                         'orig' => 'collection',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3410,46 +2741,37 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body.works`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'mbid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3477,10 +2799,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -3490,25 +2810,16 @@ class MusicbrainzConfig
         'work_list' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'count',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'offset',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'works',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
           ],
           'name' => 'work_list',
@@ -3518,36 +2829,29 @@ class MusicbrainzConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'iswc',
                         'orig' => 'iswc',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'xml',
                         'kind' => 'query',
                         'name' => 'fmt',
                         'orig' => 'fmt',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artist-credits+genres',
                         'kind' => 'query',
                         'name' => 'inc',
                         'orig' => 'inc',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3570,10 +2874,8 @@ class MusicbrainzConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [

@@ -40,7 +40,7 @@ class MusicbrainzSDK
         $utility = new MusicbrainzUtility();
         $this->_utility = $utility;
 
-        $config = MusicbrainzConfig::make_config();
+        $config = MusicbrainzConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

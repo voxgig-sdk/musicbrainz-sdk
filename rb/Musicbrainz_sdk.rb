@@ -28,7 +28,7 @@ class MusicbrainzSDK
     utility = MusicbrainzUtility.new
     @_utility = utility
 
-    config = MusicbrainzConfig.make_config
+    config = MusicbrainzConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
