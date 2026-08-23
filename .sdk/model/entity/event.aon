@@ -1,0 +1,230 @@
+# Entity: event
+
+main: kit: entity: event: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "begin"
+      req: false
+      short: "Begin date"
+      type: "`$STRING`"
+    }
+    {
+      name: "cancelled"
+      req: false
+      short: "Whether the event was cancelled"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "disambiguation"
+      req: false
+      short: "Disambiguation comment"
+      type: "`$STRING`"
+    }
+    {
+      name: "end"
+      req: false
+      short: "End date"
+      type: "`$STRING`"
+    }
+    {
+      name: "ended"
+      req: false
+      short: "Whether the entity has ended"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "MusicBrainz ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "lifespan"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Event name"
+      type: "`$STRING`"
+    }
+    {
+      name: "time"
+      req: false
+      short: "Event time"
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "Event type"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "event"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "area"
+                orig: "area"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "artist"
+                orig: "artist"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "place"
+                orig: "place"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/event"
+          parts: [
+            "event"
+          ]
+          select: {
+            exist: [
+              "area"
+              "artist"
+              "fmt"
+              "inc"
+              "limit"
+              "offset"
+              "place"
+              "query"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.events`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "mbid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/event/{mbid}"
+          parts: [
+            "event"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              mbid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "fmt"
+              "id"
+              "inc"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.life-span`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -160,15 +160,15 @@ area = client.Area()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `str` | No |  |
-| `disambiguation` | `str` | No |  |
-| `end` | `str` | No |  |
-| `ended` | `bool` | No |  |
-| `id` | `str` | No |  |
+| `begin` | `str` | No | Begin date |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `end` | `str` | No | End date |
+| `ended` | `bool` | No | Whether the entity has ended |
+| `id` | `str` | No | MusicBrainz ID |
 | `lifespan` | `dict` | No |  |
-| `name` | `str` | No |  |
-| `sortname` | `str` | No |  |
-| `type` | `str` | No |  |
+| `name` | `str` | No | Area name |
+| `sortname` | `str` | No | Sort name |
+| `type` | `str` | No | Area type |
 
 ### Operations
 
@@ -229,17 +229,17 @@ artist = client.Artist()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `str` | No |  |
-| `country` | `str` | No |  |
-| `disambiguation` | `str` | No |  |
-| `end` | `str` | No |  |
-| `ended` | `bool` | No |  |
-| `gender` | `str` | No |  |
-| `id` | `str` | No |  |
+| `begin` | `str` | No | Begin date |
+| `country` | `str` | No | Country code |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `end` | `str` | No | End date |
+| `ended` | `bool` | No | Whether the entity has ended |
+| `gender` | `str` | No | Gender (for person type) |
+| `id` | `str` | No | MusicBrainz ID |
 | `lifespan` | `dict` | No |  |
-| `name` | `str` | No |  |
-| `sortname` | `str` | No |  |
-| `type` | `str` | No |  |
+| `name` | `str` | No | Artist name |
+| `sortname` | `str` | No | Sort name |
+| `type` | `str` | No | Artist type (person, group, etc.) |
 
 ### Operations
 
@@ -356,16 +356,16 @@ event = client.Event()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `str` | No |  |
-| `cancelled` | `bool` | No |  |
-| `disambiguation` | `str` | No |  |
-| `end` | `str` | No |  |
-| `ended` | `bool` | No |  |
-| `id` | `str` | No |  |
+| `begin` | `str` | No | Begin date |
+| `cancelled` | `bool` | No | Whether the event was cancelled |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `end` | `str` | No | End date |
+| `ended` | `bool` | No | Whether the entity has ended |
+| `id` | `str` | No | MusicBrainz ID |
 | `lifespan` | `dict` | No |  |
-| `name` | `str` | No |  |
-| `time` | `str` | No |  |
-| `type` | `str` | No |  |
+| `name` | `str` | No | Event name |
+| `time` | `str` | No | Event time |
+| `type` | `str` | No | Event type |
 
 ### Operations
 
@@ -426,9 +426,9 @@ genre = client.Genre()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `str` | No |  |
-| `id` | `str` | No |  |
-| `name` | `str` | No |  |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `id` | `str` | No | MusicBrainz ID |
+| `name` | `str` | No | Genre name |
 
 ### Operations
 
@@ -489,11 +489,11 @@ instrument = client.Instrument()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No |  |
-| `disambiguation` | `str` | No |  |
-| `id` | `str` | No |  |
-| `name` | `str` | No |  |
-| `type` | `str` | No |  |
+| `description` | `str` | No | Instrument description |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `id` | `str` | No | MusicBrainz ID |
+| `name` | `str` | No | Instrument name |
+| `type` | `str` | No | Instrument type |
 
 ### Operations
 
@@ -554,17 +554,17 @@ label = client.Label()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `str` | No |  |
-| `country` | `str` | No |  |
-| `disambiguation` | `str` | No |  |
-| `end` | `str` | No |  |
-| `ended` | `bool` | No |  |
-| `id` | `str` | No |  |
-| `labelcode` | `int` | No |  |
+| `begin` | `str` | No | Begin date |
+| `country` | `str` | No | Country code |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `end` | `str` | No | End date |
+| `ended` | `bool` | No | Whether the entity has ended |
+| `id` | `str` | No | MusicBrainz ID |
+| `labelcode` | `int` | No | Label code |
 | `lifespan` | `dict` | No |  |
-| `name` | `str` | No |  |
-| `sortname` | `str` | No |  |
-| `type` | `str` | No |  |
+| `name` | `str` | No | Label name |
+| `sortname` | `str` | No | Sort name |
+| `type` | `str` | No | Label type |
 
 ### Operations
 
@@ -625,13 +625,13 @@ place = client.Place()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `str` | No |  |
+| `address` | `str` | No | Place address |
 | `coordinates` | `dict` | No |  |
-| `disambiguation` | `str` | No |  |
-| `id` | `str` | No |  |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `id` | `str` | No | MusicBrainz ID |
 | `lifespan` | `dict` | No |  |
-| `name` | `str` | No |  |
-| `type` | `str` | No |  |
+| `name` | `str` | No | Place name |
+| `type` | `str` | No | Place type |
 
 ### Operations
 
@@ -746,11 +746,11 @@ recording = client.Recording()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `str` | No |  |
-| `id` | `str` | No |  |
-| `length` | `int` | No |  |
-| `title` | `str` | No |  |
-| `video` | `bool` | No |  |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `id` | `str` | No | MusicBrainz ID |
+| `length` | `int` | No | Duration in milliseconds |
+| `title` | `str` | No | Recording title |
+| `video` | `bool` | No | Whether this is a video recording |
 
 ### Operations
 
@@ -864,14 +864,14 @@ release = client.Release()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `barcode` | `str` | No |  |
-| `country` | `str` | No |  |
-| `date` | `str` | No |  |
-| `disambiguation` | `str` | No |  |
-| `id` | `str` | No |  |
-| `packaging` | `str` | No |  |
-| `status` | `str` | No |  |
-| `title` | `str` | No |  |
+| `barcode` | `str` | No | Barcode |
+| `country` | `str` | No | Release country |
+| `date` | `str` | No | Release date |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `id` | `str` | No | MusicBrainz ID |
+| `packaging` | `str` | No | Packaging type |
+| `status` | `str` | No | Release status (official, promotion, bootleg, pseudo-release) |
+| `title` | `str` | No | Release title |
 
 ### Operations
 
@@ -932,12 +932,12 @@ release_group = client.ReleaseGroup()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `str` | No |  |
-| `firstreleasedate` | `str` | No |  |
-| `id` | `str` | No |  |
-| `primarytype` | `str` | No |  |
-| `secondarytypes` | `list` | No |  |
-| `title` | `str` | No |  |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `firstreleasedate` | `str` | No | Date of first release |
+| `id` | `str` | No | MusicBrainz ID |
+| `primarytype` | `str` | No | Primary type (album, single, ep, broadcast, other) |
+| `secondarytypes` | `list` | No | Secondary types (compilation, soundtrack, etc.) |
+| `title` | `str` | No | Release group title |
 
 ### Operations
 
@@ -1051,10 +1051,10 @@ series = client.Series()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `str` | No |  |
-| `id` | `str` | No |  |
-| `name` | `str` | No |  |
-| `type` | `str` | No |  |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `id` | `str` | No | MusicBrainz ID |
+| `name` | `str` | No | Series name |
+| `type` | `str` | No | Series type |
 
 ### Operations
 
@@ -1169,8 +1169,8 @@ url = client.Url()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No |  |
-| `resource` | `str` | No |  |
+| `id` | `str` | No | MusicBrainz ID |
+| `resource` | `str` | No | The URL resource |
 
 ### Operations
 
@@ -1231,11 +1231,11 @@ work = client.Work()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `str` | No |  |
-| `id` | `str` | No |  |
-| `language` | `str` | No |  |
-| `title` | `str` | No |  |
-| `type` | `str` | No |  |
+| `disambiguation` | `str` | No | Disambiguation comment |
+| `id` | `str` | No | MusicBrainz ID |
+| `language` | `str` | No | Language code |
+| `title` | `str` | No | Work title |
+| `type` | `str` | No | Work type |
 
 ### Operations
 

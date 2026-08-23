@@ -1,0 +1,275 @@
+# Entity: release
+
+main: kit: entity: release: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "barcode"
+      req: false
+      short: "Barcode"
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      short: "Release country"
+      type: "`$STRING`"
+    }
+    {
+      name: "date"
+      req: false
+      short: "Release date"
+      type: "`$STRING`"
+    }
+    {
+      name: "disambiguation"
+      req: false
+      short: "Disambiguation comment"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "MusicBrainz ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "packaging"
+      req: false
+      short: "Packaging type"
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      short: "Release status (official, promotion, bootleg, pseudo-release)"
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "Release title"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "release"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "area"
+                orig: "area"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "artist"
+                orig: "artist"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "collection"
+                orig: "collection"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "label"
+                orig: "label"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "recording"
+                orig: "recording"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "release_group"
+                orig: "release_group"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "status"
+                orig: "status"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "track"
+                orig: "track"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "track_artist"
+                orig: "track_artist"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "type"
+                orig: "type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/release"
+          parts: [
+            "release"
+          ]
+          select: {
+            exist: [
+              "area"
+              "artist"
+              "collection"
+              "fmt"
+              "inc"
+              "label"
+              "limit"
+              "offset"
+              "query"
+              "recording"
+              "release_group"
+              "status"
+              "track"
+              "track_artist"
+              "type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.releases`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "mbid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "xml"
+                kind: "query"
+                name: "fmt"
+                orig: "fmt"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "artist-credits+genres"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/release/{mbid}"
+          parts: [
+            "release"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              mbid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "fmt"
+              "id"
+              "inc"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

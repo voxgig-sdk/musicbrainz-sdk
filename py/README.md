@@ -281,15 +281,15 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `begin` |  |
-| `disambiguation` |  |
-| `end` |  |
-| `ended` |  |
-| `id` |  |
+| `begin` | Begin date |
+| `disambiguation` | Disambiguation comment |
+| `end` | End date |
+| `ended` | Whether the entity has ended |
+| `id` | MusicBrainz ID |
 | `lifespan` |  |
-| `name` |  |
-| `sortname` |  |
-| `type` |  |
+| `name` | Area name |
+| `sortname` | Sort name |
+| `type` | Area type |
 
 Operations: List, Load.
 
@@ -299,17 +299,17 @@ API path: `/area`
 
 | Field | Description |
 | --- | --- |
-| `begin` |  |
-| `country` |  |
-| `disambiguation` |  |
-| `end` |  |
-| `ended` |  |
-| `gender` |  |
-| `id` |  |
+| `begin` | Begin date |
+| `country` | Country code |
+| `disambiguation` | Disambiguation comment |
+| `end` | End date |
+| `ended` | Whether the entity has ended |
+| `gender` | Gender (for person type) |
+| `id` | MusicBrainz ID |
 | `lifespan` |  |
-| `name` |  |
-| `sortname` |  |
-| `type` |  |
+| `name` | Artist name |
+| `sortname` | Sort name |
+| `type` | Artist type (person, group, etc.) |
 
 Operations: List, Load.
 
@@ -332,16 +332,16 @@ API path: `/collection`
 
 | Field | Description |
 | --- | --- |
-| `begin` |  |
-| `cancelled` |  |
-| `disambiguation` |  |
-| `end` |  |
-| `ended` |  |
-| `id` |  |
+| `begin` | Begin date |
+| `cancelled` | Whether the event was cancelled |
+| `disambiguation` | Disambiguation comment |
+| `end` | End date |
+| `ended` | Whether the entity has ended |
+| `id` | MusicBrainz ID |
 | `lifespan` |  |
-| `name` |  |
-| `time` |  |
-| `type` |  |
+| `name` | Event name |
+| `time` | Event time |
+| `type` | Event type |
 
 Operations: List, Load.
 
@@ -351,9 +351,9 @@ API path: `/event`
 
 | Field | Description |
 | --- | --- |
-| `disambiguation` |  |
-| `id` |  |
-| `name` |  |
+| `disambiguation` | Disambiguation comment |
+| `id` | MusicBrainz ID |
+| `name` | Genre name |
 
 Operations: List, Load.
 
@@ -363,11 +363,11 @@ API path: `/genre/all`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `disambiguation` |  |
-| `id` |  |
-| `name` |  |
-| `type` |  |
+| `description` | Instrument description |
+| `disambiguation` | Disambiguation comment |
+| `id` | MusicBrainz ID |
+| `name` | Instrument name |
+| `type` | Instrument type |
 
 Operations: List, Load.
 
@@ -377,17 +377,17 @@ API path: `/instrument`
 
 | Field | Description |
 | --- | --- |
-| `begin` |  |
-| `country` |  |
-| `disambiguation` |  |
-| `end` |  |
-| `ended` |  |
-| `id` |  |
-| `labelcode` |  |
+| `begin` | Begin date |
+| `country` | Country code |
+| `disambiguation` | Disambiguation comment |
+| `end` | End date |
+| `ended` | Whether the entity has ended |
+| `id` | MusicBrainz ID |
+| `labelcode` | Label code |
 | `lifespan` |  |
-| `name` |  |
-| `sortname` |  |
-| `type` |  |
+| `name` | Label name |
+| `sortname` | Sort name |
+| `type` | Label type |
 
 Operations: List, Load.
 
@@ -397,13 +397,13 @@ API path: `/label`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
+| `address` | Place address |
 | `coordinates` |  |
-| `disambiguation` |  |
-| `id` |  |
+| `disambiguation` | Disambiguation comment |
+| `id` | MusicBrainz ID |
 | `lifespan` |  |
-| `name` |  |
-| `type` |  |
+| `name` | Place name |
+| `type` | Place type |
 
 Operations: List, Load.
 
@@ -422,11 +422,11 @@ API path: `/rating`
 
 | Field | Description |
 | --- | --- |
-| `disambiguation` |  |
-| `id` |  |
-| `length` |  |
-| `title` |  |
-| `video` |  |
+| `disambiguation` | Disambiguation comment |
+| `id` | MusicBrainz ID |
+| `length` | Duration in milliseconds |
+| `title` | Recording title |
+| `video` | Whether this is a video recording |
 
 Operations: List, Load.
 
@@ -448,14 +448,14 @@ API path: `/isrc/{isrc}`
 
 | Field | Description |
 | --- | --- |
-| `barcode` |  |
-| `country` |  |
-| `date` |  |
-| `disambiguation` |  |
-| `id` |  |
-| `packaging` |  |
-| `status` |  |
-| `title` |  |
+| `barcode` | Barcode |
+| `country` | Release country |
+| `date` | Release date |
+| `disambiguation` | Disambiguation comment |
+| `id` | MusicBrainz ID |
+| `packaging` | Packaging type |
+| `status` | Release status (official, promotion, bootleg, pseudo-release) |
+| `title` | Release title |
 
 Operations: List, Load.
 
@@ -465,12 +465,12 @@ API path: `/release`
 
 | Field | Description |
 | --- | --- |
-| `disambiguation` |  |
-| `firstreleasedate` |  |
-| `id` |  |
-| `primarytype` |  |
-| `secondarytypes` |  |
-| `title` |  |
+| `disambiguation` | Disambiguation comment |
+| `firstreleasedate` | Date of first release |
+| `id` | MusicBrainz ID |
+| `primarytype` | Primary type (album, single, ep, broadcast, other) |
+| `secondarytypes` | Secondary types (compilation, soundtrack, etc.) |
+| `title` | Release group title |
 
 Operations: List, Load.
 
@@ -492,10 +492,10 @@ API path: `/discid/{discid}`
 
 | Field | Description |
 | --- | --- |
-| `disambiguation` |  |
-| `id` |  |
-| `name` |  |
-| `type` |  |
+| `disambiguation` | Disambiguation comment |
+| `id` | MusicBrainz ID |
+| `name` | Series name |
+| `type` | Series type |
 
 Operations: List, Load.
 
@@ -514,8 +514,8 @@ API path: `/tag`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `resource` |  |
+| `id` | MusicBrainz ID |
+| `resource` | The URL resource |
 
 Operations: List, Load.
 
@@ -525,11 +525,11 @@ API path: `/url`
 
 | Field | Description |
 | --- | --- |
-| `disambiguation` |  |
-| `id` |  |
-| `language` |  |
-| `title` |  |
-| `type` |  |
+| `disambiguation` | Disambiguation comment |
+| `id` | MusicBrainz ID |
+| `language` | Language code |
+| `title` | Work title |
+| `type` | Work type |
 
 Operations: List, Load.
 
@@ -567,15 +567,15 @@ Create an instance: `area = client.Area()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `begin` | `str` |  |
-| `disambiguation` | `str` |  |
-| `end` | `str` |  |
-| `ended` | `bool` |  |
-| `id` | `str` |  |
+| `begin` | `str` | Begin date |
+| `disambiguation` | `str` | Disambiguation comment |
+| `end` | `str` | End date |
+| `ended` | `bool` | Whether the entity has ended |
+| `id` | `str` | MusicBrainz ID |
 | `lifespan` | `dict` |  |
-| `name` | `str` |  |
-| `sortname` | `str` |  |
-| `type` | `str` |  |
+| `name` | `str` | Area name |
+| `sortname` | `str` | Sort name |
+| `type` | `str` | Area type |
 
 #### Example: Load
 
@@ -605,17 +605,17 @@ Create an instance: `artist = client.Artist()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `begin` | `str` |  |
-| `country` | `str` |  |
-| `disambiguation` | `str` |  |
-| `end` | `str` |  |
-| `ended` | `bool` |  |
-| `gender` | `str` |  |
-| `id` | `str` |  |
+| `begin` | `str` | Begin date |
+| `country` | `str` | Country code |
+| `disambiguation` | `str` | Disambiguation comment |
+| `end` | `str` | End date |
+| `ended` | `bool` | Whether the entity has ended |
+| `gender` | `str` | Gender (for person type) |
+| `id` | `str` | MusicBrainz ID |
 | `lifespan` | `dict` |  |
-| `name` | `str` |  |
-| `sortname` | `str` |  |
-| `type` | `str` |  |
+| `name` | `str` | Artist name |
+| `sortname` | `str` | Sort name |
+| `type` | `str` | Artist type (person, group, etc.) |
 
 #### Example: Load
 
@@ -671,16 +671,16 @@ Create an instance: `event = client.Event()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `begin` | `str` |  |
-| `cancelled` | `bool` |  |
-| `disambiguation` | `str` |  |
-| `end` | `str` |  |
-| `ended` | `bool` |  |
-| `id` | `str` |  |
+| `begin` | `str` | Begin date |
+| `cancelled` | `bool` | Whether the event was cancelled |
+| `disambiguation` | `str` | Disambiguation comment |
+| `end` | `str` | End date |
+| `ended` | `bool` | Whether the entity has ended |
+| `id` | `str` | MusicBrainz ID |
 | `lifespan` | `dict` |  |
-| `name` | `str` |  |
-| `time` | `str` |  |
-| `type` | `str` |  |
+| `name` | `str` | Event name |
+| `time` | `str` | Event time |
+| `type` | `str` | Event type |
 
 #### Example: Load
 
@@ -710,9 +710,9 @@ Create an instance: `genre = client.Genre()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | `str` |  |
-| `id` | `str` |  |
-| `name` | `str` |  |
+| `disambiguation` | `str` | Disambiguation comment |
+| `id` | `str` | MusicBrainz ID |
+| `name` | `str` | Genre name |
 
 #### Example: Load
 
@@ -742,11 +742,11 @@ Create an instance: `instrument = client.Instrument()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` |  |
-| `disambiguation` | `str` |  |
-| `id` | `str` |  |
-| `name` | `str` |  |
-| `type` | `str` |  |
+| `description` | `str` | Instrument description |
+| `disambiguation` | `str` | Disambiguation comment |
+| `id` | `str` | MusicBrainz ID |
+| `name` | `str` | Instrument name |
+| `type` | `str` | Instrument type |
 
 #### Example: Load
 
@@ -776,17 +776,17 @@ Create an instance: `label = client.Label()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `begin` | `str` |  |
-| `country` | `str` |  |
-| `disambiguation` | `str` |  |
-| `end` | `str` |  |
-| `ended` | `bool` |  |
-| `id` | `str` |  |
-| `labelcode` | `int` |  |
+| `begin` | `str` | Begin date |
+| `country` | `str` | Country code |
+| `disambiguation` | `str` | Disambiguation comment |
+| `end` | `str` | End date |
+| `ended` | `bool` | Whether the entity has ended |
+| `id` | `str` | MusicBrainz ID |
+| `labelcode` | `int` | Label code |
 | `lifespan` | `dict` |  |
-| `name` | `str` |  |
-| `sortname` | `str` |  |
-| `type` | `str` |  |
+| `name` | `str` | Label name |
+| `sortname` | `str` | Sort name |
+| `type` | `str` | Label type |
 
 #### Example: Load
 
@@ -816,13 +816,13 @@ Create an instance: `place = client.Place()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `str` |  |
+| `address` | `str` | Place address |
 | `coordinates` | `dict` |  |
-| `disambiguation` | `str` |  |
-| `id` | `str` |  |
+| `disambiguation` | `str` | Disambiguation comment |
+| `id` | `str` | MusicBrainz ID |
 | `lifespan` | `dict` |  |
-| `name` | `str` |  |
-| `type` | `str` |  |
+| `name` | `str` | Place name |
+| `type` | `str` | Place type |
 
 #### Example: Load
 
@@ -877,11 +877,11 @@ Create an instance: `recording = client.Recording()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | `str` |  |
-| `id` | `str` |  |
-| `length` | `int` |  |
-| `title` | `str` |  |
-| `video` | `bool` |  |
+| `disambiguation` | `str` | Disambiguation comment |
+| `id` | `str` | MusicBrainz ID |
+| `length` | `int` | Duration in milliseconds |
+| `title` | `str` | Recording title |
+| `video` | `bool` | Whether this is a video recording |
 
 #### Example: Load
 
@@ -936,14 +936,14 @@ Create an instance: `release = client.Release()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `barcode` | `str` |  |
-| `country` | `str` |  |
-| `date` | `str` |  |
-| `disambiguation` | `str` |  |
-| `id` | `str` |  |
-| `packaging` | `str` |  |
-| `status` | `str` |  |
-| `title` | `str` |  |
+| `barcode` | `str` | Barcode |
+| `country` | `str` | Release country |
+| `date` | `str` | Release date |
+| `disambiguation` | `str` | Disambiguation comment |
+| `id` | `str` | MusicBrainz ID |
+| `packaging` | `str` | Packaging type |
+| `status` | `str` | Release status (official, promotion, bootleg, pseudo-release) |
+| `title` | `str` | Release title |
 
 #### Example: Load
 
@@ -973,12 +973,12 @@ Create an instance: `release_group = client.ReleaseGroup()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | `str` |  |
-| `firstreleasedate` | `str` |  |
-| `id` | `str` |  |
-| `primarytype` | `str` |  |
-| `secondarytypes` | `list` |  |
-| `title` | `str` |  |
+| `disambiguation` | `str` | Disambiguation comment |
+| `firstreleasedate` | `str` | Date of first release |
+| `id` | `str` | MusicBrainz ID |
+| `primarytype` | `str` | Primary type (album, single, ep, broadcast, other) |
+| `secondarytypes` | `list` | Secondary types (compilation, soundtrack, etc.) |
+| `title` | `str` | Release group title |
 
 #### Example: Load
 
@@ -1033,10 +1033,10 @@ Create an instance: `series = client.Series()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | `str` |  |
-| `id` | `str` |  |
-| `name` | `str` |  |
-| `type` | `str` |  |
+| `disambiguation` | `str` | Disambiguation comment |
+| `id` | `str` | MusicBrainz ID |
+| `name` | `str` | Series name |
+| `type` | `str` | Series type |
 
 #### Example: Load
 
@@ -1091,8 +1091,8 @@ Create an instance: `url = client.Url()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `str` |  |
-| `resource` | `str` |  |
+| `id` | `str` | MusicBrainz ID |
+| `resource` | `str` | The URL resource |
 
 #### Example: Load
 
@@ -1122,11 +1122,11 @@ Create an instance: `work = client.Work()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disambiguation` | `str` |  |
-| `id` | `str` |  |
-| `language` | `str` |  |
-| `title` | `str` |  |
-| `type` | `str` |  |
+| `disambiguation` | `str` | Disambiguation comment |
+| `id` | `str` | MusicBrainz ID |
+| `language` | `str` | Language code |
+| `title` | `str` | Work title |
+| `type` | `str` | Work type |
 
 #### Example: Load
 

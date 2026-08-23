@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Musicbrainz",
+            "slug": "musicbrainz",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -71,22 +74,27 @@ def make_config():
         "fields": [
           {
             "name": "begin",
+            "short": "Begin date",
             "type": "`$STRING`",
           },
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "end",
+            "short": "End date",
             "type": "`$STRING`",
           },
           {
             "name": "ended",
+            "short": "Whether the entity has ended",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
@@ -95,14 +103,17 @@ def make_config():
           },
           {
             "name": "name",
+            "short": "Area name",
             "type": "`$STRING`",
           },
           {
             "name": "sortname",
+            "short": "Sort name",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "Area type",
             "type": "`$STRING`",
           },
         ],
@@ -240,30 +251,37 @@ def make_config():
         "fields": [
           {
             "name": "begin",
+            "short": "Begin date",
             "type": "`$STRING`",
           },
           {
             "name": "country",
+            "short": "Country code",
             "type": "`$STRING`",
           },
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "end",
+            "short": "End date",
             "type": "`$STRING`",
           },
           {
             "name": "ended",
+            "short": "Whether the entity has ended",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "gender",
+            "short": "Gender (for person type)",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
@@ -272,14 +290,17 @@ def make_config():
           },
           {
             "name": "name",
+            "short": "Artist name",
             "type": "`$STRING`",
           },
           {
             "name": "sortname",
+            "short": "Sort name",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "Artist type (person, group, etc.)",
             "type": "`$STRING`",
           },
         ],
@@ -557,26 +578,32 @@ def make_config():
         "fields": [
           {
             "name": "begin",
+            "short": "Begin date",
             "type": "`$STRING`",
           },
           {
             "name": "cancelled",
+            "short": "Whether the event was cancelled",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "end",
+            "short": "End date",
             "type": "`$STRING`",
           },
           {
             "name": "ended",
+            "short": "Whether the entity has ended",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
@@ -585,14 +612,17 @@ def make_config():
           },
           {
             "name": "name",
+            "short": "Event name",
             "type": "`$STRING`",
           },
           {
             "name": "time",
+            "short": "Event time",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "Event type",
             "type": "`$STRING`",
           },
         ],
@@ -751,14 +781,17 @@ def make_config():
         "fields": [
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "Genre name",
             "type": "`$STRING`",
           },
         ],
@@ -875,22 +908,27 @@ def make_config():
         "fields": [
           {
             "name": "description",
+            "short": "Instrument description",
             "type": "`$STRING`",
           },
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "Instrument name",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "Instrument type",
             "type": "`$STRING`",
           },
         ],
@@ -1035,30 +1073,37 @@ def make_config():
         "fields": [
           {
             "name": "begin",
+            "short": "Begin date",
             "type": "`$STRING`",
           },
           {
             "name": "country",
+            "short": "Country code",
             "type": "`$STRING`",
           },
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "end",
+            "short": "End date",
             "type": "`$STRING`",
           },
           {
             "name": "ended",
+            "short": "Whether the entity has ended",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
             "name": "labelcode",
+            "short": "Label code",
             "type": "`$INTEGER`",
           },
           {
@@ -1067,14 +1112,17 @@ def make_config():
           },
           {
             "name": "name",
+            "short": "Label name",
             "type": "`$STRING`",
           },
           {
             "name": "sortname",
+            "short": "Sort name",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "Label type",
             "type": "`$STRING`",
           },
         ],
@@ -1247,6 +1295,7 @@ def make_config():
         "fields": [
           {
             "name": "address",
+            "short": "Place address",
             "type": "`$STRING`",
           },
           {
@@ -1255,10 +1304,12 @@ def make_config():
           },
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
@@ -1267,10 +1318,12 @@ def make_config():
           },
           {
             "name": "name",
+            "short": "Place name",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "Place type",
             "type": "`$STRING`",
           },
         ],
@@ -1485,22 +1538,27 @@ def make_config():
         "fields": [
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
             "name": "length",
+            "short": "Duration in milliseconds",
             "type": "`$INTEGER`",
           },
           {
             "name": "title",
+            "short": "Recording title",
             "type": "`$STRING`",
           },
           {
             "name": "video",
+            "short": "Whether this is a video recording",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -1759,34 +1817,42 @@ def make_config():
         "fields": [
           {
             "name": "barcode",
+            "short": "Barcode",
             "type": "`$STRING`",
           },
           {
             "name": "country",
+            "short": "Release country",
             "type": "`$STRING`",
           },
           {
             "name": "date",
+            "short": "Release date",
             "type": "`$STRING`",
           },
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
             "name": "packaging",
+            "short": "Packaging type",
             "type": "`$STRING`",
           },
           {
             "name": "status",
+            "short": "Release status (official, promotion, bootleg, pseudo-release)",
             "type": "`$STRING`",
           },
           {
             "name": "title",
+            "short": "Release title",
             "type": "`$STRING`",
           },
         ],
@@ -1994,26 +2060,32 @@ def make_config():
         "fields": [
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "firstreleasedate",
+            "short": "Date of first release",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
             "name": "primarytype",
+            "short": "Primary type (album, single, ep, broadcast, other)",
             "type": "`$STRING`",
           },
           {
             "name": "secondarytypes",
+            "short": "Secondary types (compilation, soundtrack, etc.)",
             "type": "`$ARRAY`",
           },
           {
             "name": "title",
+            "short": "Release group title",
             "type": "`$STRING`",
           },
         ],
@@ -2272,18 +2344,22 @@ def make_config():
         "fields": [
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "Series name",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "Series type",
             "type": "`$STRING`",
           },
         ],
@@ -2491,10 +2567,12 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
             "name": "resource",
+            "short": "The URL resource",
             "type": "`$STRING`",
           },
         ],
@@ -2639,22 +2717,27 @@ def make_config():
         "fields": [
           {
             "name": "disambiguation",
+            "short": "Disambiguation comment",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
             "name": "language",
+            "short": "Language code",
             "type": "`$STRING`",
           },
           {
             "name": "title",
+            "short": "Work title",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "Work type",
             "type": "`$STRING`",
           },
         ],

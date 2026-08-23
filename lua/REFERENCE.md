@@ -163,15 +163,15 @@ local area = client:Area(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `end` | `string` | No |  |
-| `ended` | `boolean` | No |  |
-| `id` | `string` | No |  |
+| `begin` | `string` | No | Begin date |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `end` | `string` | No | End date |
+| `ended` | `boolean` | No | Whether the entity has ended |
+| `id` | `string` | No | MusicBrainz ID |
 | `lifespan` | `table` | No |  |
-| `name` | `string` | No |  |
-| `sortname` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Area name |
+| `sortname` | `string` | No | Sort name |
+| `type` | `string` | No | Area type |
 
 ### Operations
 
@@ -231,17 +231,17 @@ local artist = client:Artist(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `string` | No |  |
-| `country` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `end` | `string` | No |  |
-| `ended` | `boolean` | No |  |
-| `gender` | `string` | No |  |
-| `id` | `string` | No |  |
+| `begin` | `string` | No | Begin date |
+| `country` | `string` | No | Country code |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `end` | `string` | No | End date |
+| `ended` | `boolean` | No | Whether the entity has ended |
+| `gender` | `string` | No | Gender (for person type) |
+| `id` | `string` | No | MusicBrainz ID |
 | `lifespan` | `table` | No |  |
-| `name` | `string` | No |  |
-| `sortname` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Artist name |
+| `sortname` | `string` | No | Sort name |
+| `type` | `string` | No | Artist type (person, group, etc.) |
 
 ### Operations
 
@@ -356,16 +356,16 @@ local event = client:Event(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `string` | No |  |
-| `cancelled` | `boolean` | No |  |
-| `disambiguation` | `string` | No |  |
-| `end` | `string` | No |  |
-| `ended` | `boolean` | No |  |
-| `id` | `string` | No |  |
+| `begin` | `string` | No | Begin date |
+| `cancelled` | `boolean` | No | Whether the event was cancelled |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `end` | `string` | No | End date |
+| `ended` | `boolean` | No | Whether the entity has ended |
+| `id` | `string` | No | MusicBrainz ID |
 | `lifespan` | `table` | No |  |
-| `name` | `string` | No |  |
-| `time` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Event name |
+| `time` | `string` | No | Event time |
+| `type` | `string` | No | Event type |
 
 ### Operations
 
@@ -425,9 +425,9 @@ local genre = client:Genre(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `name` | `string` | No | Genre name |
 
 ### Operations
 
@@ -487,11 +487,11 @@ local instrument = client:Instrument(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
+| `description` | `string` | No | Instrument description |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `name` | `string` | No | Instrument name |
+| `type` | `string` | No | Instrument type |
 
 ### Operations
 
@@ -551,17 +551,17 @@ local label = client:Label(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `string` | No |  |
-| `country` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `end` | `string` | No |  |
-| `ended` | `boolean` | No |  |
-| `id` | `string` | No |  |
-| `labelcode` | `number` | No |  |
+| `begin` | `string` | No | Begin date |
+| `country` | `string` | No | Country code |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `end` | `string` | No | End date |
+| `ended` | `boolean` | No | Whether the entity has ended |
+| `id` | `string` | No | MusicBrainz ID |
+| `labelcode` | `number` | No | Label code |
 | `lifespan` | `table` | No |  |
-| `name` | `string` | No |  |
-| `sortname` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Label name |
+| `sortname` | `string` | No | Sort name |
+| `type` | `string` | No | Label type |
 
 ### Operations
 
@@ -621,13 +621,13 @@ local place = client:Place(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
+| `address` | `string` | No | Place address |
 | `coordinates` | `table` | No |  |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
 | `lifespan` | `table` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Place name |
+| `type` | `string` | No | Place type |
 
 ### Operations
 
@@ -742,11 +742,11 @@ local recording = client:Recording(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `length` | `number` | No |  |
-| `title` | `string` | No |  |
-| `video` | `boolean` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `length` | `number` | No | Duration in milliseconds |
+| `title` | `string` | No | Recording title |
+| `video` | `boolean` | No | Whether this is a video recording |
 
 ### Operations
 
@@ -860,14 +860,14 @@ local release = client:Release(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `barcode` | `string` | No |  |
-| `country` | `string` | No |  |
-| `date` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `packaging` | `string` | No |  |
-| `status` | `string` | No |  |
-| `title` | `string` | No |  |
+| `barcode` | `string` | No | Barcode |
+| `country` | `string` | No | Release country |
+| `date` | `string` | No | Release date |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `packaging` | `string` | No | Packaging type |
+| `status` | `string` | No | Release status (official, promotion, bootleg, pseudo-release) |
+| `title` | `string` | No | Release title |
 
 ### Operations
 
@@ -927,12 +927,12 @@ local release_group = client:ReleaseGroup(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `firstreleasedate` | `string` | No |  |
-| `id` | `string` | No |  |
-| `primarytype` | `string` | No |  |
-| `secondarytypes` | `table` | No |  |
-| `title` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `firstreleasedate` | `string` | No | Date of first release |
+| `id` | `string` | No | MusicBrainz ID |
+| `primarytype` | `string` | No | Primary type (album, single, ep, broadcast, other) |
+| `secondarytypes` | `table` | No | Secondary types (compilation, soundtrack, etc.) |
+| `title` | `string` | No | Release group title |
 
 ### Operations
 
@@ -1046,10 +1046,10 @@ local series = client:Series(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `name` | `string` | No | Series name |
+| `type` | `string` | No | Series type |
 
 ### Operations
 
@@ -1164,8 +1164,8 @@ local url = client:Url(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
-| `resource` | `string` | No |  |
+| `id` | `string` | No | MusicBrainz ID |
+| `resource` | `string` | No | The URL resource |
 
 ### Operations
 
@@ -1225,11 +1225,11 @@ local work = client:Work(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `language` | `string` | No |  |
-| `title` | `string` | No |  |
-| `type` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `language` | `string` | No | Language code |
+| `title` | `string` | No | Work title |
+| `type` | `string` | No | Work type |
 
 ### Operations
 

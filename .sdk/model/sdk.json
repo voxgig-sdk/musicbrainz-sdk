@@ -36,30 +36,35 @@
               "active": true,
               "name": "begin",
               "req": false,
+              "short": "Begin date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "end",
               "req": false,
+              "short": "End date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "ended",
               "req": false,
+              "short": "Whether the entity has ended",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
@@ -72,18 +77,21 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Area name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "sortname",
               "req": false,
+              "short": "Sort name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Area type",
               "type": "`$STRING`"
             }
           ],
@@ -248,42 +256,49 @@
               "active": true,
               "name": "begin",
               "req": false,
+              "short": "Begin date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "end",
               "req": false,
+              "short": "End date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "ended",
               "req": false,
+              "short": "Whether the entity has ended",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "gender",
               "req": false,
+              "short": "Gender (for person type)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
@@ -296,18 +311,21 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Artist name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "sortname",
               "req": false,
+              "short": "Sort name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Artist type (person, group, etc.)",
               "type": "`$STRING`"
             }
           ],
@@ -653,36 +671,42 @@
               "active": true,
               "name": "begin",
               "req": false,
+              "short": "Begin date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "cancelled",
               "req": false,
+              "short": "Whether the event was cancelled",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "end",
               "req": false,
+              "short": "End date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "ended",
               "req": false,
+              "short": "Whether the entity has ended",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
@@ -695,18 +719,21 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Event name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "time",
               "req": false,
+              "short": "Event time",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Event type",
               "type": "`$STRING`"
             }
           ],
@@ -898,18 +925,21 @@
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Genre name",
               "type": "`$STRING`"
             }
           ],
@@ -1047,30 +1077,35 @@
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Instrument description",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Instrument name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Instrument type",
               "type": "`$STRING`"
             }
           ],
@@ -1244,42 +1279,49 @@
               "active": true,
               "name": "begin",
               "req": false,
+              "short": "Begin date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "end",
               "req": false,
+              "short": "End date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "ended",
               "req": false,
+              "short": "Whether the entity has ended",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "labelcode",
               "req": false,
+              "short": "Label code",
               "type": "`$INTEGER`"
             },
             {
@@ -1292,18 +1334,21 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Label name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "sortname",
               "req": false,
+              "short": "Sort name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Label type",
               "type": "`$STRING`"
             }
           ],
@@ -1513,6 +1558,7 @@
               "active": true,
               "name": "address",
               "req": false,
+              "short": "Place address",
               "type": "`$STRING`"
             },
             {
@@ -1525,12 +1571,14 @@
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
@@ -1543,12 +1591,14 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Place name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Place type",
               "type": "`$STRING`"
             }
           ],
@@ -1802,30 +1852,35 @@
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "length",
               "req": false,
+              "short": "Duration in milliseconds",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Recording title",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "video",
               "req": false,
+              "short": "Whether this is a video recording",
               "type": "`$BOOLEAN`"
             }
           ],
@@ -2139,48 +2194,56 @@
               "active": true,
               "name": "barcode",
               "req": false,
+              "short": "Barcode",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Release country",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "date",
               "req": false,
+              "short": "Release date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "packaging",
               "req": false,
+              "short": "Packaging type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Release status (official, promotion, bootleg, pseudo-release)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Release title",
               "type": "`$STRING`"
             }
           ],
@@ -2435,36 +2498,42 @@
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "firstreleasedate",
               "req": false,
+              "short": "Date of first release",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "primarytype",
               "req": false,
+              "short": "Primary type (album, single, ep, broadcast, other)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "secondarytypes",
               "req": false,
+              "short": "Secondary types (compilation, soundtrack, etc.)",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Release group title",
               "type": "`$STRING`"
             }
           ],
@@ -2778,24 +2847,28 @@
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Series name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Series type",
               "type": "`$STRING`"
             }
           ],
@@ -3040,12 +3113,14 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "resource",
               "req": false,
+              "short": "The URL resource",
               "type": "`$STRING`"
             }
           ],
@@ -3219,30 +3294,35 @@
               "active": true,
               "name": "disambiguation",
               "req": false,
+              "short": "Disambiguation comment",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "MusicBrainz ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "language",
               "req": false,
+              "short": "Language code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Work title",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Work type",
               "type": "`$STRING`"
             }
           ],

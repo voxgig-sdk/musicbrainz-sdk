@@ -166,15 +166,15 @@ area = client.Area
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `String` | No |  |
-| `disambiguation` | `String` | No |  |
-| `end` | `String` | No |  |
-| `ended` | `Boolean` | No |  |
-| `id` | `String` | No |  |
+| `begin` | `String` | No | Begin date |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `end` | `String` | No | End date |
+| `ended` | `Boolean` | No | Whether the entity has ended |
+| `id` | `String` | No | MusicBrainz ID |
 | `lifespan` | `Hash` | No |  |
-| `name` | `String` | No |  |
-| `sortname` | `String` | No |  |
-| `type` | `String` | No |  |
+| `name` | `String` | No | Area name |
+| `sortname` | `String` | No | Sort name |
+| `type` | `String` | No | Area type |
 
 ### Operations
 
@@ -234,17 +234,17 @@ artist = client.Artist
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `String` | No |  |
-| `country` | `String` | No |  |
-| `disambiguation` | `String` | No |  |
-| `end` | `String` | No |  |
-| `ended` | `Boolean` | No |  |
-| `gender` | `String` | No |  |
-| `id` | `String` | No |  |
+| `begin` | `String` | No | Begin date |
+| `country` | `String` | No | Country code |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `end` | `String` | No | End date |
+| `ended` | `Boolean` | No | Whether the entity has ended |
+| `gender` | `String` | No | Gender (for person type) |
+| `id` | `String` | No | MusicBrainz ID |
 | `lifespan` | `Hash` | No |  |
-| `name` | `String` | No |  |
-| `sortname` | `String` | No |  |
-| `type` | `String` | No |  |
+| `name` | `String` | No | Artist name |
+| `sortname` | `String` | No | Sort name |
+| `type` | `String` | No | Artist type (person, group, etc.) |
 
 ### Operations
 
@@ -359,16 +359,16 @@ event = client.Event
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `String` | No |  |
-| `cancelled` | `Boolean` | No |  |
-| `disambiguation` | `String` | No |  |
-| `end` | `String` | No |  |
-| `ended` | `Boolean` | No |  |
-| `id` | `String` | No |  |
+| `begin` | `String` | No | Begin date |
+| `cancelled` | `Boolean` | No | Whether the event was cancelled |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `end` | `String` | No | End date |
+| `ended` | `Boolean` | No | Whether the entity has ended |
+| `id` | `String` | No | MusicBrainz ID |
 | `lifespan` | `Hash` | No |  |
-| `name` | `String` | No |  |
-| `time` | `String` | No |  |
-| `type` | `String` | No |  |
+| `name` | `String` | No | Event name |
+| `time` | `String` | No | Event time |
+| `type` | `String` | No | Event type |
 
 ### Operations
 
@@ -428,9 +428,9 @@ genre = client.Genre
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `String` | No |  |
-| `id` | `String` | No |  |
-| `name` | `String` | No |  |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `id` | `String` | No | MusicBrainz ID |
+| `name` | `String` | No | Genre name |
 
 ### Operations
 
@@ -490,11 +490,11 @@ instrument = client.Instrument
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | No |  |
-| `disambiguation` | `String` | No |  |
-| `id` | `String` | No |  |
-| `name` | `String` | No |  |
-| `type` | `String` | No |  |
+| `description` | `String` | No | Instrument description |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `id` | `String` | No | MusicBrainz ID |
+| `name` | `String` | No | Instrument name |
+| `type` | `String` | No | Instrument type |
 
 ### Operations
 
@@ -554,17 +554,17 @@ label = client.Label
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `String` | No |  |
-| `country` | `String` | No |  |
-| `disambiguation` | `String` | No |  |
-| `end` | `String` | No |  |
-| `ended` | `Boolean` | No |  |
-| `id` | `String` | No |  |
-| `labelcode` | `Integer` | No |  |
+| `begin` | `String` | No | Begin date |
+| `country` | `String` | No | Country code |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `end` | `String` | No | End date |
+| `ended` | `Boolean` | No | Whether the entity has ended |
+| `id` | `String` | No | MusicBrainz ID |
+| `labelcode` | `Integer` | No | Label code |
 | `lifespan` | `Hash` | No |  |
-| `name` | `String` | No |  |
-| `sortname` | `String` | No |  |
-| `type` | `String` | No |  |
+| `name` | `String` | No | Label name |
+| `sortname` | `String` | No | Sort name |
+| `type` | `String` | No | Label type |
 
 ### Operations
 
@@ -624,13 +624,13 @@ place = client.Place
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `String` | No |  |
+| `address` | `String` | No | Place address |
 | `coordinates` | `Hash` | No |  |
-| `disambiguation` | `String` | No |  |
-| `id` | `String` | No |  |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `id` | `String` | No | MusicBrainz ID |
 | `lifespan` | `Hash` | No |  |
-| `name` | `String` | No |  |
-| `type` | `String` | No |  |
+| `name` | `String` | No | Place name |
+| `type` | `String` | No | Place type |
 
 ### Operations
 
@@ -745,11 +745,11 @@ recording = client.Recording
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `String` | No |  |
-| `id` | `String` | No |  |
-| `length` | `Integer` | No |  |
-| `title` | `String` | No |  |
-| `video` | `Boolean` | No |  |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `id` | `String` | No | MusicBrainz ID |
+| `length` | `Integer` | No | Duration in milliseconds |
+| `title` | `String` | No | Recording title |
+| `video` | `Boolean` | No | Whether this is a video recording |
 
 ### Operations
 
@@ -863,14 +863,14 @@ release = client.Release
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `barcode` | `String` | No |  |
-| `country` | `String` | No |  |
-| `date` | `String` | No |  |
-| `disambiguation` | `String` | No |  |
-| `id` | `String` | No |  |
-| `packaging` | `String` | No |  |
-| `status` | `String` | No |  |
-| `title` | `String` | No |  |
+| `barcode` | `String` | No | Barcode |
+| `country` | `String` | No | Release country |
+| `date` | `String` | No | Release date |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `id` | `String` | No | MusicBrainz ID |
+| `packaging` | `String` | No | Packaging type |
+| `status` | `String` | No | Release status (official, promotion, bootleg, pseudo-release) |
+| `title` | `String` | No | Release title |
 
 ### Operations
 
@@ -930,12 +930,12 @@ release_group = client.ReleaseGroup
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `String` | No |  |
-| `firstreleasedate` | `String` | No |  |
-| `id` | `String` | No |  |
-| `primarytype` | `String` | No |  |
-| `secondarytypes` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `firstreleasedate` | `String` | No | Date of first release |
+| `id` | `String` | No | MusicBrainz ID |
+| `primarytype` | `String` | No | Primary type (album, single, ep, broadcast, other) |
+| `secondarytypes` | `Array` | No | Secondary types (compilation, soundtrack, etc.) |
+| `title` | `String` | No | Release group title |
 
 ### Operations
 
@@ -1049,10 +1049,10 @@ series = client.Series
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `String` | No |  |
-| `id` | `String` | No |  |
-| `name` | `String` | No |  |
-| `type` | `String` | No |  |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `id` | `String` | No | MusicBrainz ID |
+| `name` | `String` | No | Series name |
+| `type` | `String` | No | Series type |
 
 ### Operations
 
@@ -1167,8 +1167,8 @@ url = client.Url
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `String` | No |  |
-| `resource` | `String` | No |  |
+| `id` | `String` | No | MusicBrainz ID |
+| `resource` | `String` | No | The URL resource |
 
 ### Operations
 
@@ -1228,11 +1228,11 @@ work = client.Work
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `String` | No |  |
-| `id` | `String` | No |  |
-| `language` | `String` | No |  |
-| `title` | `String` | No |  |
-| `type` | `String` | No |  |
+| `disambiguation` | `String` | No | Disambiguation comment |
+| `id` | `String` | No | MusicBrainz ID |
+| `language` | `String` | No | Language code |
+| `title` | `String` | No | Work title |
+| `type` | `String` | No | Work type |
 
 ### Operations
 

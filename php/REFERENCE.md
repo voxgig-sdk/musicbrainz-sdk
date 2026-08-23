@@ -165,15 +165,15 @@ $area = $client->Area();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `end` | `string` | No |  |
-| `ended` | `bool` | No |  |
-| `id` | `string` | No |  |
+| `begin` | `string` | No | Begin date |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `end` | `string` | No | End date |
+| `ended` | `bool` | No | Whether the entity has ended |
+| `id` | `string` | No | MusicBrainz ID |
 | `lifespan` | `array` | No |  |
-| `name` | `string` | No |  |
-| `sortname` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Area name |
+| `sortname` | `string` | No | Sort name |
+| `type` | `string` | No | Area type |
 
 ### Operations
 
@@ -233,17 +233,17 @@ $artist = $client->Artist();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `string` | No |  |
-| `country` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `end` | `string` | No |  |
-| `ended` | `bool` | No |  |
-| `gender` | `string` | No |  |
-| `id` | `string` | No |  |
+| `begin` | `string` | No | Begin date |
+| `country` | `string` | No | Country code |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `end` | `string` | No | End date |
+| `ended` | `bool` | No | Whether the entity has ended |
+| `gender` | `string` | No | Gender (for person type) |
+| `id` | `string` | No | MusicBrainz ID |
 | `lifespan` | `array` | No |  |
-| `name` | `string` | No |  |
-| `sortname` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Artist name |
+| `sortname` | `string` | No | Sort name |
+| `type` | `string` | No | Artist type (person, group, etc.) |
 
 ### Operations
 
@@ -358,16 +358,16 @@ $event = $client->Event();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `string` | No |  |
-| `cancelled` | `bool` | No |  |
-| `disambiguation` | `string` | No |  |
-| `end` | `string` | No |  |
-| `ended` | `bool` | No |  |
-| `id` | `string` | No |  |
+| `begin` | `string` | No | Begin date |
+| `cancelled` | `bool` | No | Whether the event was cancelled |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `end` | `string` | No | End date |
+| `ended` | `bool` | No | Whether the entity has ended |
+| `id` | `string` | No | MusicBrainz ID |
 | `lifespan` | `array` | No |  |
-| `name` | `string` | No |  |
-| `time` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Event name |
+| `time` | `string` | No | Event time |
+| `type` | `string` | No | Event type |
 
 ### Operations
 
@@ -427,9 +427,9 @@ $genre = $client->Genre();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `name` | `string` | No | Genre name |
 
 ### Operations
 
@@ -489,11 +489,11 @@ $instrument = $client->Instrument();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
+| `description` | `string` | No | Instrument description |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `name` | `string` | No | Instrument name |
+| `type` | `string` | No | Instrument type |
 
 ### Operations
 
@@ -553,17 +553,17 @@ $label = $client->Label();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `begin` | `string` | No |  |
-| `country` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `end` | `string` | No |  |
-| `ended` | `bool` | No |  |
-| `id` | `string` | No |  |
-| `labelcode` | `int` | No |  |
+| `begin` | `string` | No | Begin date |
+| `country` | `string` | No | Country code |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `end` | `string` | No | End date |
+| `ended` | `bool` | No | Whether the entity has ended |
+| `id` | `string` | No | MusicBrainz ID |
+| `labelcode` | `int` | No | Label code |
 | `lifespan` | `array` | No |  |
-| `name` | `string` | No |  |
-| `sortname` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Label name |
+| `sortname` | `string` | No | Sort name |
+| `type` | `string` | No | Label type |
 
 ### Operations
 
@@ -623,13 +623,13 @@ $place = $client->Place();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
+| `address` | `string` | No | Place address |
 | `coordinates` | `array` | No |  |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
 | `lifespan` | `array` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Place name |
+| `type` | `string` | No | Place type |
 
 ### Operations
 
@@ -744,11 +744,11 @@ $recording = $client->Recording();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `length` | `int` | No |  |
-| `title` | `string` | No |  |
-| `video` | `bool` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `length` | `int` | No | Duration in milliseconds |
+| `title` | `string` | No | Recording title |
+| `video` | `bool` | No | Whether this is a video recording |
 
 ### Operations
 
@@ -862,14 +862,14 @@ $release = $client->Release();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `barcode` | `string` | No |  |
-| `country` | `string` | No |  |
-| `date` | `string` | No |  |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `packaging` | `string` | No |  |
-| `status` | `string` | No |  |
-| `title` | `string` | No |  |
+| `barcode` | `string` | No | Barcode |
+| `country` | `string` | No | Release country |
+| `date` | `string` | No | Release date |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `packaging` | `string` | No | Packaging type |
+| `status` | `string` | No | Release status (official, promotion, bootleg, pseudo-release) |
+| `title` | `string` | No | Release title |
 
 ### Operations
 
@@ -929,12 +929,12 @@ $release_group = $client->ReleaseGroup();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `firstreleasedate` | `string` | No |  |
-| `id` | `string` | No |  |
-| `primarytype` | `string` | No |  |
-| `secondarytypes` | `array` | No |  |
-| `title` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `firstreleasedate` | `string` | No | Date of first release |
+| `id` | `string` | No | MusicBrainz ID |
+| `primarytype` | `string` | No | Primary type (album, single, ep, broadcast, other) |
+| `secondarytypes` | `array` | No | Secondary types (compilation, soundtrack, etc.) |
+| `title` | `string` | No | Release group title |
 
 ### Operations
 
@@ -1048,10 +1048,10 @@ $series = $client->Series();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `name` | `string` | No | Series name |
+| `type` | `string` | No | Series type |
 
 ### Operations
 
@@ -1166,8 +1166,8 @@ $url = $client->Url();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
-| `resource` | `string` | No |  |
+| `id` | `string` | No | MusicBrainz ID |
+| `resource` | `string` | No | The URL resource |
 
 ### Operations
 
@@ -1227,11 +1227,11 @@ $work = $client->Work();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disambiguation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `language` | `string` | No |  |
-| `title` | `string` | No |  |
-| `type` | `string` | No |  |
+| `disambiguation` | `string` | No | Disambiguation comment |
+| `id` | `string` | No | MusicBrainz ID |
+| `language` | `string` | No | Language code |
+| `title` | `string` | No | Work title |
+| `type` | `string` | No | Work type |
 
 ### Operations
 

@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Musicbrainz",
+			"slug": "musicbrainz",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -54,22 +57,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "begin",
+						"short": "Begin date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "end",
+						"short": "End date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ended",
+						"short": "Whether the entity has ended",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -78,14 +86,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Area name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "sortname",
+						"short": "Sort name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Area type",
 						"type": "`$STRING`",
 					},
 				},
@@ -223,30 +234,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "begin",
+						"short": "Begin date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
+						"short": "Country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "end",
+						"short": "End date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ended",
+						"short": "Whether the entity has ended",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "gender",
+						"short": "Gender (for person type)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -255,14 +273,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Artist name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "sortname",
+						"short": "Sort name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Artist type (person, group, etc.)",
 						"type": "`$STRING`",
 					},
 				},
@@ -540,26 +561,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "begin",
+						"short": "Begin date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "cancelled",
+						"short": "Whether the event was cancelled",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "end",
+						"short": "End date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ended",
+						"short": "Whether the entity has ended",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -568,14 +595,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Event name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "time",
+						"short": "Event time",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Event type",
 						"type": "`$STRING`",
 					},
 				},
@@ -734,14 +764,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Genre name",
 						"type": "`$STRING`",
 					},
 				},
@@ -858,22 +891,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"short": "Instrument description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Instrument name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Instrument type",
 						"type": "`$STRING`",
 					},
 				},
@@ -1018,30 +1056,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "begin",
+						"short": "Begin date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
+						"short": "Country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "end",
+						"short": "End date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ended",
+						"short": "Whether the entity has ended",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "labelcode",
+						"short": "Label code",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -1050,14 +1095,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Label name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "sortname",
+						"short": "Sort name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Label type",
 						"type": "`$STRING`",
 					},
 				},
@@ -1230,6 +1278,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "address",
+						"short": "Place address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1238,10 +1287,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1250,10 +1301,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Place name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Place type",
 						"type": "`$STRING`",
 					},
 				},
@@ -1468,22 +1521,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "length",
+						"short": "Duration in milliseconds",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Recording title",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "video",
+						"short": "Whether this is a video recording",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -1742,34 +1800,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "barcode",
+						"short": "Barcode",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
+						"short": "Release country",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "date",
+						"short": "Release date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "packaging",
+						"short": "Packaging type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status",
+						"short": "Release status (official, promotion, bootleg, pseudo-release)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Release title",
 						"type": "`$STRING`",
 					},
 				},
@@ -1977,26 +2043,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "firstreleasedate",
+						"short": "Date of first release",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "primarytype",
+						"short": "Primary type (album, single, ep, broadcast, other)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "secondarytypes",
+						"short": "Secondary types (compilation, soundtrack, etc.)",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Release group title",
 						"type": "`$STRING`",
 					},
 				},
@@ -2255,18 +2327,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Series name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Series type",
 						"type": "`$STRING`",
 					},
 				},
@@ -2474,10 +2550,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "resource",
+						"short": "The URL resource",
 						"type": "`$STRING`",
 					},
 				},
@@ -2622,22 +2700,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "disambiguation",
+						"short": "Disambiguation comment",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "language",
+						"short": "Language code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Work title",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Work type",
 						"type": "`$STRING`",
 					},
 				},
