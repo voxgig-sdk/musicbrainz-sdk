@@ -42,6 +42,7 @@ class MusicbrainzConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
