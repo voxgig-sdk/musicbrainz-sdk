@@ -19,18 +19,16 @@ export interface Area {
 
 export interface AreaLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
 }
 
 export interface AreaListMatch {
-  begin?: string
-  disambiguation?: string
-  end?: string
-  ended?: boolean
-  id?: string
-  lifespan?: Record<string, any>
-  name?: string
-  sortname?: string
-  type?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
 }
 
 export interface Artist {
@@ -49,20 +47,24 @@ export interface Artist {
 
 export interface ArtistLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
+  status?: string
+  type?: string
 }
 
 export interface ArtistListMatch {
-  begin?: string
-  country?: string
-  disambiguation?: string
-  end?: string
-  ended?: boolean
-  gender?: string
-  id?: string
-  lifespan?: Record<string, any>
-  name?: string
-  sortname?: string
-  type?: string
+  area?: string
+  collection?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
+  recording?: string
+  release?: string
+  release_group?: string
+  work?: string
 }
 
 export interface Collection {
@@ -73,10 +75,10 @@ export interface Collection {
 }
 
 export interface CollectionListMatch {
-  editor?: string
-  entitytype?: string
-  id?: string
-  name?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
 }
 
 export interface Event {
@@ -94,19 +96,19 @@ export interface Event {
 
 export interface EventLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
 }
 
 export interface EventListMatch {
-  begin?: string
-  cancelled?: boolean
-  disambiguation?: string
-  end?: string
-  ended?: boolean
-  id?: string
-  lifespan?: Record<string, any>
-  name?: string
-  time?: string
-  type?: string
+  area?: string
+  artist?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  place?: string
+  query?: string
 }
 
 export interface Genre {
@@ -117,12 +119,13 @@ export interface Genre {
 
 export interface GenreLoadMatch {
   id: string
+  fmt?: string
 }
 
 export interface GenreListMatch {
-  disambiguation?: string
-  id?: string
-  name?: string
+  fmt?: string
+  limit?: number
+  offset?: number
 
   // Selects a custom action instead of the plain list:
   //   'all'
@@ -141,14 +144,17 @@ export interface Instrument {
 
 export interface InstrumentLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
 }
 
 export interface InstrumentListMatch {
-  description?: string
-  disambiguation?: string
-  id?: string
-  name?: string
-  type?: string
+  collection?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
 }
 
 export interface Label {
@@ -167,20 +173,21 @@ export interface Label {
 
 export interface LabelLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
+  status?: string
+  type?: string
 }
 
 export interface LabelListMatch {
-  begin?: string
-  country?: string
-  disambiguation?: string
-  end?: string
-  ended?: boolean
-  id?: string
-  labelcode?: number
-  lifespan?: Record<string, any>
-  name?: string
-  sortname?: string
-  type?: string
+  area?: string
+  collection?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
+  release?: string
 }
 
 export interface Place {
@@ -195,22 +202,25 @@ export interface Place {
 
 export interface PlaceLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
 }
 
 export interface PlaceListMatch {
-  address?: string
-  coordinates?: Record<string, any>
-  disambiguation?: string
-  id?: string
-  lifespan?: Record<string, any>
-  name?: string
-  type?: string
+  area?: string
+  collection?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
 }
 
 export interface Rating {
 }
 
 export interface RatingLoadMatch {
+  fmt?: string
 }
 
 export interface RatingCreateData {
@@ -226,14 +236,22 @@ export interface Recording {
 
 export interface RecordingLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
+  status?: string
+  type?: string
 }
 
 export interface RecordingListMatch {
-  disambiguation?: string
-  id?: string
-  length?: number
-  title?: string
-  video?: boolean
+  artist?: string
+  collection?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
+  release?: string
+  work?: string
 }
 
 export interface RecordingList {
@@ -244,6 +262,8 @@ export interface RecordingList {
 
 export interface RecordingListLoadMatch {
   isrc: string
+  fmt?: string
+  inc?: string
 }
 
 export interface Release {
@@ -259,17 +279,26 @@ export interface Release {
 
 export interface ReleaseLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
 }
 
 export interface ReleaseListMatch {
-  barcode?: string
-  country?: string
-  date?: string
-  disambiguation?: string
-  id?: string
-  packaging?: string
+  area?: string
+  artist?: string
+  collection?: string
+  fmt?: string
+  inc?: string
+  label?: string
+  limit?: number
+  offset?: number
+  query?: string
+  recording?: string
+  release_group?: string
   status?: string
-  title?: string
+  track?: string
+  track_artist?: string
+  type?: string
 }
 
 export interface ReleaseGroup {
@@ -283,15 +312,22 @@ export interface ReleaseGroup {
 
 export interface ReleaseGroupLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
+  status?: string
+  type?: string
 }
 
 export interface ReleaseGroupListMatch {
-  disambiguation?: string
-  firstreleasedate?: string
-  id?: string
-  primarytype?: string
-  secondarytypes?: any[]
-  title?: string
+  artist?: string
+  collection?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
+  release?: string
+  type?: string
 }
 
 export interface ReleaseList {
@@ -302,6 +338,8 @@ export interface ReleaseList {
 
 export interface ReleaseListLoadMatch {
   discid: string
+  fmt?: string
+  inc?: string
 }
 
 export interface Series {
@@ -313,19 +351,24 @@ export interface Series {
 
 export interface SeriesLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
 }
 
 export interface SeriesListMatch {
-  disambiguation?: string
-  id?: string
-  name?: string
-  type?: string
+  collection?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
 }
 
 export interface Tag {
 }
 
 export interface TagLoadMatch {
+  fmt?: string
 }
 
 export interface TagCreateData {
@@ -338,10 +381,16 @@ export interface Url {
 
 export interface UrlLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
 }
 
 export interface UrlListMatch {
-  id?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
   resource?: string
 }
 
@@ -355,14 +404,18 @@ export interface Work {
 
 export interface WorkLoadMatch {
   id: string
+  fmt?: string
+  inc?: string
 }
 
 export interface WorkListMatch {
-  disambiguation?: string
-  id?: string
-  language?: string
-  title?: string
-  type?: string
+  artist?: string
+  collection?: string
+  fmt?: string
+  inc?: string
+  limit?: number
+  offset?: number
+  query?: string
 }
 
 export interface WorkList {
@@ -373,5 +426,7 @@ export interface WorkList {
 
 export interface WorkListLoadMatch {
   iswc: string
+  fmt?: string
+  inc?: string
 }
 

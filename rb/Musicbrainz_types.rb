@@ -53,49 +53,41 @@ Area = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 AreaLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
 # Request payload for Area#list.
 #
-# @!attribute [rw] begin
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] end
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] ended
-#   @return [Boolean, nil]
+# @!attribute [rw] offset
+#   @return [Integer, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] lifespan
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] sortname
-#   @return [String, nil]
-#
-# @!attribute [rw] type
+# @!attribute [rw] query
 #   @return [String, nil]
 AreaListMatch = Struct.new(
-  :begin,
-  :disambiguation,
-  :end,
-  :ended,
-  :id,
-  :lifespan,
-  :name,
-  :sortname,
-  :type,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
   keyword_init: true
 )
 
@@ -152,57 +144,73 @@ Artist = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
 ArtistLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
+  :status,
+  :type,
   keyword_init: true
 )
 
 # Request payload for Artist#list.
 #
-# @!attribute [rw] begin
+# @!attribute [rw] area
 #   @return [String, nil]
 #
-# @!attribute [rw] country
+# @!attribute [rw] collection
 #   @return [String, nil]
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] end
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] ended
-#   @return [Boolean, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] gender
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] recording
 #   @return [String, nil]
 #
-# @!attribute [rw] lifespan
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
+# @!attribute [rw] release
 #   @return [String, nil]
 #
-# @!attribute [rw] sortname
+# @!attribute [rw] release_group
 #   @return [String, nil]
 #
-# @!attribute [rw] type
+# @!attribute [rw] work
 #   @return [String, nil]
 ArtistListMatch = Struct.new(
-  :begin,
-  :country,
-  :disambiguation,
-  :end,
-  :ended,
-  :gender,
-  :id,
-  :lifespan,
-  :name,
-  :sortname,
-  :type,
+  :area,
+  :collection,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
+  :recording,
+  :release,
+  :release_group,
+  :work,
   keyword_init: true
 )
 
@@ -229,22 +237,22 @@ Collection = Struct.new(
 
 # Request payload for Collection#list.
 #
-# @!attribute [rw] editor
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] entitytype
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
+# @!attribute [rw] offset
+#   @return [Integer, nil]
 CollectionListMatch = Struct.new(
-  :editor,
-  :entitytype,
-  :id,
-  :name,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -297,53 +305,53 @@ Event = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 EventLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
 # Request payload for Event#list.
 #
-# @!attribute [rw] begin
+# @!attribute [rw] area
 #   @return [String, nil]
 #
-# @!attribute [rw] cancelled
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] disambiguation
+# @!attribute [rw] artist
 #   @return [String, nil]
 #
-# @!attribute [rw] end
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] ended
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] lifespan
-#   @return [Hash, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] name
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] place
 #   @return [String, nil]
 #
-# @!attribute [rw] time
-#   @return [String, nil]
-#
-# @!attribute [rw] type
+# @!attribute [rw] query
 #   @return [String, nil]
 EventListMatch = Struct.new(
-  :begin,
-  :cancelled,
-  :disambiguation,
-  :end,
-  :ended,
-  :id,
-  :lifespan,
-  :name,
-  :time,
-  :type,
+  :area,
+  :artist,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :place,
+  :query,
   keyword_init: true
 )
 
@@ -368,25 +376,29 @@ Genre = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
 GenreLoadMatch = Struct.new(
   :id,
+  :fmt,
   keyword_init: true
 )
 
 # Request payload for Genre#list.
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
+# @!attribute [rw] offset
+#   @return [Integer, nil]
 GenreListMatch = Struct.new(
-  :disambiguation,
-  :id,
-  :name,
+  :fmt,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -419,33 +431,45 @@ Instrument = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 InstrumentLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
 # Request payload for Instrument#list.
 #
-# @!attribute [rw] description
+# @!attribute [rw] collection
 #   @return [String, nil]
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] type
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 InstrumentListMatch = Struct.new(
-  :description,
-  :disambiguation,
-  :id,
-  :name,
-  :type,
+  :collection,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
   keyword_init: true
 )
 
@@ -502,57 +526,61 @@ Label = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
 LabelLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
+  :status,
+  :type,
   keyword_init: true
 )
 
 # Request payload for Label#list.
 #
-# @!attribute [rw] begin
+# @!attribute [rw] area
 #   @return [String, nil]
 #
-# @!attribute [rw] country
+# @!attribute [rw] collection
 #   @return [String, nil]
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] end
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] ended
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] labelcode
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] lifespan
-#   @return [Hash, nil]
+# @!attribute [rw] offset
+#   @return [Integer, nil]
 #
-# @!attribute [rw] name
+# @!attribute [rw] query
 #   @return [String, nil]
 #
-# @!attribute [rw] sortname
-#   @return [String, nil]
-#
-# @!attribute [rw] type
+# @!attribute [rw] release
 #   @return [String, nil]
 LabelListMatch = Struct.new(
-  :begin,
-  :country,
-  :disambiguation,
-  :end,
-  :ended,
-  :id,
-  :labelcode,
-  :lifespan,
-  :name,
-  :sortname,
-  :type,
+  :area,
+  :collection,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
+  :release,
   keyword_init: true
 )
 
@@ -593,41 +621,49 @@ Place = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 PlaceLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
 # Request payload for Place#list.
 #
-# @!attribute [rw] address
+# @!attribute [rw] area
 #   @return [String, nil]
 #
-# @!attribute [rw] coordinates
-#   @return [Hash, nil]
-#
-# @!attribute [rw] disambiguation
+# @!attribute [rw] collection
 #   @return [String, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] lifespan
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] type
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 PlaceListMatch = Struct.new(
-  :address,
-  :coordinates,
-  :disambiguation,
-  :id,
-  :lifespan,
-  :name,
-  :type,
+  :area,
+  :collection,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
   keyword_init: true
 )
 
@@ -636,8 +672,13 @@ class Rating
 end
 
 # Request payload for Rating#load.
-class RatingLoadMatch
-end
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+RatingLoadMatch = Struct.new(
+  :fmt,
+  keyword_init: true
+)
 
 # Request payload for Rating#create.
 class RatingCreateData
@@ -672,33 +713,65 @@ Recording = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
 RecordingLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
+  :status,
+  :type,
   keyword_init: true
 )
 
 # Request payload for Recording#list.
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] artist
 #   @return [String, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] collection
 #   @return [String, nil]
 #
-# @!attribute [rw] length
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] title
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 #
-# @!attribute [rw] video
-#   @return [Boolean, nil]
+# @!attribute [rw] release
+#   @return [String, nil]
+#
+# @!attribute [rw] work
+#   @return [String, nil]
 RecordingListMatch = Struct.new(
-  :disambiguation,
-  :id,
-  :length,
-  :title,
-  :video,
+  :artist,
+  :collection,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
+  :release,
+  :work,
   keyword_init: true
 )
 
@@ -723,8 +796,16 @@ RecordingList = Struct.new(
 #
 # @!attribute [rw] isrc
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 RecordingListLoadMatch = Struct.new(
   :isrc,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
@@ -769,45 +850,81 @@ Release = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 ReleaseLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
 # Request payload for Release#list.
 #
-# @!attribute [rw] barcode
+# @!attribute [rw] area
 #   @return [String, nil]
 #
-# @!attribute [rw] country
+# @!attribute [rw] artist
 #   @return [String, nil]
 #
-# @!attribute [rw] date
+# @!attribute [rw] collection
 #   @return [String, nil]
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] packaging
+# @!attribute [rw] label
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
+#   @return [String, nil]
+#
+# @!attribute [rw] recording
+#   @return [String, nil]
+#
+# @!attribute [rw] release_group
 #   @return [String, nil]
 #
 # @!attribute [rw] status
 #   @return [String, nil]
 #
-# @!attribute [rw] title
+# @!attribute [rw] track
+#   @return [String, nil]
+#
+# @!attribute [rw] track_artist
+#   @return [String, nil]
+#
+# @!attribute [rw] type
 #   @return [String, nil]
 ReleaseListMatch = Struct.new(
-  :barcode,
-  :country,
-  :date,
-  :disambiguation,
-  :id,
-  :packaging,
+  :area,
+  :artist,
+  :collection,
+  :fmt,
+  :inc,
+  :label,
+  :limit,
+  :offset,
+  :query,
+  :recording,
+  :release_group,
   :status,
-  :title,
+  :track,
+  :track_artist,
+  :type,
   keyword_init: true
 )
 
@@ -844,37 +961,65 @@ ReleaseGroup = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
 ReleaseGroupLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
+  :status,
+  :type,
   keyword_init: true
 )
 
 # Request payload for ReleaseGroup#list.
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] artist
 #   @return [String, nil]
 #
-# @!attribute [rw] firstreleasedate
+# @!attribute [rw] collection
 #   @return [String, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] primarytype
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] secondarytypes
-#   @return [Array, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] title
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
+#   @return [String, nil]
+#
+# @!attribute [rw] release
+#   @return [String, nil]
+#
+# @!attribute [rw] type
 #   @return [String, nil]
 ReleaseGroupListMatch = Struct.new(
-  :disambiguation,
-  :firstreleasedate,
-  :id,
-  :primarytype,
-  :secondarytypes,
-  :title,
+  :artist,
+  :collection,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
+  :release,
+  :type,
   keyword_init: true
 )
 
@@ -899,8 +1044,16 @@ ReleaseList = Struct.new(
 #
 # @!attribute [rw] discid
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 ReleaseListLoadMatch = Struct.new(
   :discid,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
@@ -929,29 +1082,45 @@ Series = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 SeriesLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
 # Request payload for Series#list.
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] collection
 #   @return [String, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] name
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] type
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 SeriesListMatch = Struct.new(
-  :disambiguation,
-  :id,
-  :name,
-  :type,
+  :collection,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
   keyword_init: true
 )
 
@@ -960,8 +1129,13 @@ class Tag
 end
 
 # Request payload for Tag#load.
-class TagLoadMatch
-end
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+TagLoadMatch = Struct.new(
+  :fmt,
+  keyword_init: true
+)
 
 # Request payload for Tag#create.
 class TagCreateData
@@ -984,20 +1158,44 @@ Url = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 UrlLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
 # Request payload for Url#list.
 #
-# @!attribute [rw] id
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 #
 # @!attribute [rw] resource
 #   @return [String, nil]
 UrlListMatch = Struct.new(
-  :id,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
   :resource,
   keyword_init: true
 )
@@ -1031,33 +1229,49 @@ Work = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 WorkLoadMatch = Struct.new(
   :id,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
 # Request payload for Work#list.
 #
-# @!attribute [rw] disambiguation
+# @!attribute [rw] artist
 #   @return [String, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] collection
 #   @return [String, nil]
 #
-# @!attribute [rw] language
+# @!attribute [rw] fmt
 #   @return [String, nil]
 #
-# @!attribute [rw] title
+# @!attribute [rw] inc
 #   @return [String, nil]
 #
-# @!attribute [rw] type
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 WorkListMatch = Struct.new(
-  :disambiguation,
-  :id,
-  :language,
-  :title,
-  :type,
+  :artist,
+  :collection,
+  :fmt,
+  :inc,
+  :limit,
+  :offset,
+  :query,
   keyword_init: true
 )
 
@@ -1082,8 +1296,16 @@ WorkList = Struct.new(
 #
 # @!attribute [rw] iswc
 #   @return [String]
+#
+# @!attribute [rw] fmt
+#   @return [String, nil]
+#
+# @!attribute [rw] inc
+#   @return [String, nil]
 WorkListLoadMatch = Struct.new(
   :iswc,
+  :fmt,
+  :inc,
   keyword_init: true
 )
 
