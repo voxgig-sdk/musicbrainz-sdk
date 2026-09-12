@@ -59,9 +59,13 @@ main: kit: entity: release_list: {
           }
           method: "GET"
           orig: "/discid/{discid}"
-          parts: [
-            "discid"
-            "{discid}"
+          segments: [
+            {
+              lit: "discid"
+            }
+            {
+              var: "discid"
+            }
           ]
           select: {
             exist: [

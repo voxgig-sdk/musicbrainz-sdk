@@ -59,9 +59,13 @@ main: kit: entity: work_list: {
           }
           method: "GET"
           orig: "/iswc/{iswc}"
-          parts: [
-            "iswc"
-            "{iswc}"
+          segments: [
+            {
+              lit: "iswc"
+            }
+            {
+              var: "iswc"
+            }
           ]
           select: {
             exist: [

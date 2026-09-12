@@ -98,7 +98,7 @@ func TestEventEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		eventRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.event", setup.data)))
+		eventRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.event")))
 		var eventRef01Data map[string]any
 		if len(eventRef01DataRaw) > 0 {
 			eventRef01Data = core.ToMapAny(eventRef01DataRaw[0][1])
@@ -163,7 +163,7 @@ func eventBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"event01", "event02", "event03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -183,7 +183,7 @@ func eventBasicSetup(extra map[string]any) *entityTestSetup {
 		"MUSICBRAINZ_TEST_EVENT_ENTID": idmap,
 		"MUSICBRAINZ_TEST_LIVE":      "FALSE",
 		"MUSICBRAINZ_TEST_EXPLAIN":   "FALSE",
-		"MUSICBRAINZ_APIKEY":         "NONE",
+		"MUSICBRAINZ_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["MUSICBRAINZ_TEST_EVENT_ENTID"])
@@ -192,11 +192,23 @@ func eventBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["MUSICBRAINZ_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["MUSICBRAINZ_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMusicbrainzSDK(core.ToMapAny(mergedOpts))
 	}

@@ -12,8 +12,10 @@ main: kit: entity: rating: {
         {
           method: "POST"
           orig: "/rating"
-          parts: [
-            "rating"
+          segments: [
+            {
+              lit: "rating"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -40,8 +42,10 @@ main: kit: entity: rating: {
           }
           method: "GET"
           orig: "/rating"
-          parts: [
-            "rating"
+          segments: [
+            {
+              lit: "rating"
+            }
           ]
           select: {
             exist: [

@@ -107,15 +107,18 @@ def _url_direct_setup(mockres):
     env = runner.env_override({
         "MUSICBRAINZ_TEST_URL_ENTID": {},
         "MUSICBRAINZ_TEST_LIVE": "FALSE",
-        "MUSICBRAINZ_APIKEY": "NONE",
+        "MUSICBRAINZ_APIKEY": "",
     })
 
     live = env.get("MUSICBRAINZ_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("MUSICBRAINZ_APIKEY"),
-        }
+        })
         client = MusicbrainzSDK(merged_opts)
         return {
             "client": client,

@@ -62,6 +62,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -158,8 +159,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/area",
-                  "parts": [
-                    "area"
+                  "segments": [
+                    {
+                      "lit": "area"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -218,15 +221,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/area/{mbid}",
-                  "parts": [
-                    "area",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "area"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -296,6 +303,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -440,8 +448,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/artist",
-                  "parts": [
-                    "artist"
+                  "segments": [
+                    {
+                      "lit": "artist"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -522,15 +532,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/artist/{mbid}",
-                  "parts": [
-                    "artist",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "artist"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -572,6 +586,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "type": "`$STRING`"
@@ -638,8 +653,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/collection",
-                  "parts": [
-                    "collection"
+                  "segments": [
+                    {
+                      "lit": "collection"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -704,6 +721,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -824,8 +842,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/event",
-                  "parts": [
-                    "event"
+                  "segments": [
+                    {
+                      "lit": "event"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -887,15 +907,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/event/{mbid}",
-                  "parts": [
-                    "event",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "event"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -930,6 +954,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -989,9 +1014,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/genre/all",
-                  "parts": [
-                    "genre",
-                    "all"
+                  "segments": [
+                    {
+                      "lit": "genre"
+                    },
+                    {
+                      "lit": "all"
+                    }
                   ],
                   "select": {
                     "$action": "all",
@@ -1040,15 +1069,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/genre/{mbid}",
-                  "parts": [
-                    "genre",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "genre"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -1089,6 +1122,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -1180,8 +1214,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/instrument",
-                  "parts": [
-                    "instrument"
+                  "segments": [
+                    {
+                      "lit": "instrument"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1241,15 +1277,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/instrument/{mbid}",
-                  "parts": [
-                    "instrument",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "instrument"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -1312,6 +1352,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -1439,8 +1480,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/label",
-                  "parts": [
-                    "label"
+                  "segments": [
+                    {
+                      "lit": "label"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1518,15 +1561,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/label/{mbid}",
-                  "parts": [
-                    "label",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "label"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -1576,6 +1623,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -1681,8 +1729,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/place",
-                  "parts": [
-                    "place"
+                  "segments": [
+                    {
+                      "lit": "place"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1743,15 +1793,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/place/{mbid}",
-                  "parts": [
-                    "place",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "place"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -1789,8 +1843,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/rating",
-                  "parts": [
-                    "rating"
+                  "segments": [
+                    {
+                      "lit": "rating"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1822,8 +1878,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/rating",
-                  "parts": [
-                    "rating"
+                  "segments": [
+                    {
+                      "lit": "rating"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1857,6 +1915,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -1979,8 +2038,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/recording",
-                  "parts": [
-                    "recording"
+                  "segments": [
+                    {
+                      "lit": "recording"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2059,15 +2120,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/recording/{mbid}",
-                  "parts": [
-                    "recording",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "recording"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -2157,9 +2222,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/isrc/{isrc}",
-                  "parts": [
-                    "isrc",
-                    "{isrc}"
+                  "segments": [
+                    {
+                      "lit": "isrc"
+                    },
+                    {
+                      "var": "isrc"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2220,6 +2289,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -2390,8 +2460,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/release",
-                  "parts": [
-                    "release"
+                  "segments": [
+                    {
+                      "lit": "release"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2460,15 +2532,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/release/{mbid}",
-                  "parts": [
-                    "release",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "release"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -2510,6 +2586,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -2632,8 +2709,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/release-group",
-                  "parts": [
-                    "release-group"
+                  "segments": [
+                    {
+                      "lit": "release-group"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2712,15 +2791,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/release-group/{mbid}",
-                  "parts": [
-                    "release-group",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "release-group"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -2810,9 +2893,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/discid/{discid}",
-                  "parts": [
-                    "discid",
-                    "{discid}"
+                  "segments": [
+                    {
+                      "lit": "discid"
+                    },
+                    {
+                      "var": "discid"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2852,6 +2939,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -2943,8 +3031,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/series",
-                  "parts": [
-                    "series"
+                  "segments": [
+                    {
+                      "lit": "series"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -3004,15 +3094,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/series/{mbid}",
-                  "parts": [
-                    "series",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "series"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -3050,8 +3144,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/tag",
-                  "parts": [
-                    "tag"
+                  "segments": [
+                    {
+                      "lit": "tag"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -3083,8 +3179,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/tag",
-                  "parts": [
-                    "tag"
+                  "segments": [
+                    {
+                      "lit": "tag"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -3111,6 +3209,7 @@
           "fields": [
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -3118,6 +3217,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "resource",
               "req": false,
               "short": "The URL resource",
@@ -3195,8 +3295,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/url",
-                  "parts": [
-                    "url"
+                  "segments": [
+                    {
+                      "lit": "url"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -3256,15 +3358,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/url/{mbid}",
-                  "parts": [
-                    "url",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "url"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -3299,6 +3405,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": false,
               "short": "MusicBrainz ID",
@@ -3405,8 +3512,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/work",
-                  "parts": [
-                    "work"
+                  "segments": [
+                    {
+                      "lit": "work"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -3467,15 +3576,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/work/{mbid}",
-                  "parts": [
-                    "work",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "mbid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "work"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "fmt",
@@ -3563,9 +3676,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/iswc/{iswc}",
-                  "parts": [
-                    "iswc",
-                    "{iswc}"
+                  "segments": [
+                    {
+                      "lit": "iswc"
+                    },
+                    {
+                      "var": "iswc"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -3655,8 +3772,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -4587,6 +4707,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4612,6 +4735,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -4663,6 +4790,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -4687,6 +4815,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -4738,6 +4867,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -4762,6 +4892,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -4802,6 +4933,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4827,6 +4961,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -4861,6 +4998,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4886,6 +5026,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -4926,6 +5069,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4951,6 +5097,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -4996,6 +5145,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -5021,6 +5173,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -5038,11 +5193,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -5071,6 +5221,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -5095,6 +5248,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

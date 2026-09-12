@@ -59,9 +59,13 @@ main: kit: entity: recording_list: {
           }
           method: "GET"
           orig: "/isrc/{isrc}"
-          parts: [
-            "isrc"
-            "{isrc}"
+          segments: [
+            {
+              lit: "isrc"
+            }
+            {
+              var: "isrc"
+            }
           ]
           select: {
             exist: [

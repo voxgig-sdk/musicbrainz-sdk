@@ -196,14 +196,22 @@ func placeDirectSetup(mockres any) *placeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MUSICBRAINZ_TEST_PLACE_ENTID": map[string]any{},
 		"MUSICBRAINZ_TEST_LIVE":    "FALSE",
-		"MUSICBRAINZ_APIKEY":       "NONE",
+		"MUSICBRAINZ_APIKEY":       "",
 	})
 
 	live := env["MUSICBRAINZ_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["MUSICBRAINZ_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewMusicbrainzSDK(mergedOpts)
 

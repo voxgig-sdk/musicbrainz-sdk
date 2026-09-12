@@ -18,6 +18,7 @@ main: kit: entity: instrument: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -100,8 +101,10 @@ main: kit: entity: instrument: {
           }
           method: "GET"
           orig: "/instrument"
-          parts: [
-            "instrument"
+          segments: [
+            {
+              lit: "instrument"
+            }
           ]
           select: {
             exist: [
@@ -155,15 +158,19 @@ main: kit: entity: instrument: {
           }
           method: "GET"
           orig: "/instrument/{mbid}"
-          parts: [
-            "instrument"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "instrument"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

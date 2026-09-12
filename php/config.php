@@ -99,6 +99,7 @@ class MusicbrainzConfig
               'type' => '`$BOOLEAN`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -122,6 +123,10 @@ class MusicbrainzConfig
               'short' => 'Area type',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'area',
           'op' => [
@@ -171,8 +176,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/area',
-                  'parts' => [
-                    'area',
+                  'segments' => [
+                    [
+                      'lit' => 'area',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -186,6 +193,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.areas`',
+                  ],
+                  'parts' => [
+                    'area',
                   ],
                 ],
               ],
@@ -225,13 +235,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/area/{mbid}',
-                  'parts' => [
-                    'area',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'area',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -244,6 +258,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.life-span`',
+                  ],
+                  'parts' => [
+                    'area',
+                    '{id}',
                   ],
                 ],
               ],
@@ -286,6 +304,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -309,6 +328,10 @@ class MusicbrainzConfig
               'short' => 'Artist type (person, group, etc.)',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'artist',
           'op' => [
@@ -394,8 +417,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artist',
-                  'parts' => [
-                    'artist',
+                  'segments' => [
+                    [
+                      'lit' => 'artist',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -415,6 +440,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.artists`',
+                  ],
+                  'parts' => [
+                    'artist',
                   ],
                 ],
               ],
@@ -466,13 +494,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artist/{mbid}',
-                  'parts' => [
-                    'artist',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'artist',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -487,6 +519,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.life-span`',
+                  ],
+                  'parts' => [
+                    'artist',
+                    '{id}',
                   ],
                 ],
               ],
@@ -507,6 +543,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'type' => '`$STRING`',
             ],
@@ -514,6 +551,10 @@ class MusicbrainzConfig
               'name' => 'name',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'collection',
           'op' => [
@@ -557,8 +598,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collection',
-                  'parts' => [
-                    'collection',
+                  'segments' => [
+                    [
+                      'lit' => 'collection',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -571,6 +614,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.collections`',
+                  ],
+                  'parts' => [
+                    'collection',
                   ],
                 ],
               ],
@@ -608,6 +654,7 @@ class MusicbrainzConfig
               'type' => '`$BOOLEAN`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -631,6 +678,10 @@ class MusicbrainzConfig
               'short' => 'Event type',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'event',
           'op' => [
@@ -698,8 +749,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event',
-                  'parts' => [
-                    'event',
+                  'segments' => [
+                    [
+                      'lit' => 'event',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -716,6 +769,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.events`',
+                  ],
+                  'parts' => [
+                    'event',
                   ],
                 ],
               ],
@@ -755,13 +811,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event/{mbid}',
-                  'parts' => [
-                    'event',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'event',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -774,6 +834,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.life-span`',
+                  ],
+                  'parts' => [
+                    'event',
+                    '{id}',
                   ],
                 ],
               ],
@@ -791,6 +855,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -800,6 +865,10 @@ class MusicbrainzConfig
               'short' => 'Genre name',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'genre',
           'op' => [
@@ -836,9 +905,13 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/genre/all',
-                  'parts' => [
-                    'genre',
-                    'all',
+                  'segments' => [
+                    [
+                      'lit' => 'genre',
+                    ],
+                    [
+                      'lit' => 'all',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'all',
@@ -851,6 +924,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.genres`',
+                  ],
+                  'parts' => [
+                    'genre',
+                    'all',
                   ],
                 ],
               ],
@@ -883,13 +960,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/genre/{mbid}',
-                  'parts' => [
-                    'genre',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'genre',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -901,6 +982,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'genre',
+                    '{id}',
                   ],
                 ],
               ],
@@ -923,6 +1008,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -937,6 +1023,10 @@ class MusicbrainzConfig
               'short' => 'Instrument type',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'instrument',
           'op' => [
@@ -992,8 +1082,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/instrument',
-                  'parts' => [
-                    'instrument',
+                  'segments' => [
+                    [
+                      'lit' => 'instrument',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1008,6 +1100,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.instruments`',
+                  ],
+                  'parts' => [
+                    'instrument',
                   ],
                 ],
               ],
@@ -1047,13 +1142,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/instrument/{mbid}',
-                  'parts' => [
-                    'instrument',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'instrument',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -1066,6 +1165,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'instrument',
+                    '{id}',
                   ],
                 ],
               ],
@@ -1103,6 +1206,7 @@ class MusicbrainzConfig
               'type' => '`$BOOLEAN`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -1131,6 +1235,10 @@ class MusicbrainzConfig
               'short' => 'Label type',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'label',
           'op' => [
@@ -1198,8 +1306,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/label',
-                  'parts' => [
-                    'label',
+                  'segments' => [
+                    [
+                      'lit' => 'label',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1216,6 +1326,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.labels`',
+                  ],
+                  'parts' => [
+                    'label',
                   ],
                 ],
               ],
@@ -1267,13 +1380,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/label/{mbid}',
-                  'parts' => [
-                    'label',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'label',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -1288,6 +1405,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.life-span`',
+                  ],
+                  'parts' => [
+                    'label',
+                    '{id}',
                   ],
                 ],
               ],
@@ -1314,6 +1435,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -1332,6 +1454,10 @@ class MusicbrainzConfig
               'short' => 'Place type',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'place',
           'op' => [
@@ -1393,8 +1519,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/place',
-                  'parts' => [
-                    'place',
+                  'segments' => [
+                    [
+                      'lit' => 'place',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1410,6 +1538,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.places`',
+                  ],
+                  'parts' => [
+                    'place',
                   ],
                 ],
               ],
@@ -1449,13 +1580,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/place/{mbid}',
-                  'parts' => [
-                    'place',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'place',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -1468,6 +1603,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'place',
+                    '{id}',
                   ],
                 ],
               ],
@@ -1490,13 +1629,18 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/rating',
-                  'parts' => [
-                    'rating',
+                  'segments' => [
+                    [
+                      'lit' => 'rating',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'rating',
                   ],
                 ],
               ],
@@ -1520,8 +1664,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/rating',
-                  'parts' => [
-                    'rating',
+                  'segments' => [
+                    [
+                      'lit' => 'rating',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1531,6 +1677,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'rating',
                   ],
                 ],
               ],
@@ -1548,6 +1697,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -1567,6 +1717,10 @@ class MusicbrainzConfig
               'short' => 'Whether this is a video recording',
               'type' => '`$BOOLEAN`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'recording',
           'op' => [
@@ -1640,8 +1794,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/recording',
-                  'parts' => [
-                    'recording',
+                  'segments' => [
+                    [
+                      'lit' => 'recording',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1659,6 +1815,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.recordings`',
+                  ],
+                  'parts' => [
+                    'recording',
                   ],
                 ],
               ],
@@ -1710,13 +1869,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/recording/{mbid}',
-                  'parts' => [
-                    'recording',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'recording',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -1731,6 +1894,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'recording',
+                    '{id}',
                   ],
                 ],
               ],
@@ -1792,9 +1959,13 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/isrc/{isrc}',
-                  'parts' => [
-                    'isrc',
-                    '{isrc}',
+                  'segments' => [
+                    [
+                      'lit' => 'isrc',
+                    ],
+                    [
+                      'var' => 'isrc',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1806,6 +1977,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'isrc',
+                    '{isrc}',
                   ],
                 ],
               ],
@@ -1842,6 +2017,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -1861,6 +2037,10 @@ class MusicbrainzConfig
               'short' => 'Release title',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'release',
           'op' => [
@@ -1970,8 +2150,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/release',
-                  'parts' => [
-                    'release',
+                  'segments' => [
+                    [
+                      'lit' => 'release',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1995,6 +2177,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.releases`',
+                  ],
+                  'parts' => [
+                    'release',
                   ],
                 ],
               ],
@@ -2034,13 +2219,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/release/{mbid}',
-                  'parts' => [
-                    'release',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'release',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -2053,6 +2242,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'release',
+                    '{id}',
                   ],
                 ],
               ],
@@ -2075,6 +2268,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -2094,6 +2288,10 @@ class MusicbrainzConfig
               'short' => 'Release group title',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'release_group',
           'op' => [
@@ -2167,8 +2365,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/release-group',
-                  'parts' => [
-                    'release-group',
+                  'segments' => [
+                    [
+                      'lit' => 'release-group',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -2186,6 +2386,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.release-groups`',
+                  ],
+                  'parts' => [
+                    'release-group',
                   ],
                 ],
               ],
@@ -2237,13 +2440,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/release-group/{mbid}',
-                  'parts' => [
-                    'release-group',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'release-group',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -2258,6 +2465,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'release-group',
+                    '{id}',
                   ],
                 ],
               ],
@@ -2319,9 +2530,13 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/discid/{discid}',
-                  'parts' => [
-                    'discid',
-                    '{discid}',
+                  'segments' => [
+                    [
+                      'lit' => 'discid',
+                    ],
+                    [
+                      'var' => 'discid',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -2333,6 +2548,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'discid',
+                    '{discid}',
                   ],
                 ],
               ],
@@ -2354,6 +2573,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -2368,6 +2588,10 @@ class MusicbrainzConfig
               'short' => 'Series type',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'series',
           'op' => [
@@ -2423,8 +2647,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/series',
-                  'parts' => [
-                    'series',
+                  'segments' => [
+                    [
+                      'lit' => 'series',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -2439,6 +2665,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.series`',
+                  ],
+                  'parts' => [
+                    'series',
                   ],
                 ],
               ],
@@ -2478,13 +2707,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/series/{mbid}',
-                  'parts' => [
-                    'series',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'series',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -2497,6 +2730,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'series',
+                    '{id}',
                   ],
                 ],
               ],
@@ -2519,13 +2756,18 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/tag',
-                  'parts' => [
-                    'tag',
+                  'segments' => [
+                    [
+                      'lit' => 'tag',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'tag',
                   ],
                 ],
               ],
@@ -2549,8 +2791,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tag',
-                  'parts' => [
-                    'tag',
+                  'segments' => [
+                    [
+                      'lit' => 'tag',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -2560,6 +2804,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'tag',
                   ],
                 ],
               ],
@@ -2572,15 +2819,21 @@ class MusicbrainzConfig
         'url' => [
           'fields' => [
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'resource',
               'short' => 'The URL resource',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'url',
           'op' => [
@@ -2636,8 +2889,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/url',
-                  'parts' => [
-                    'url',
+                  'segments' => [
+                    [
+                      'lit' => 'url',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -2652,6 +2907,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.urls`',
+                  ],
+                  'parts' => [
+                    'url',
                   ],
                 ],
               ],
@@ -2691,13 +2949,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/url/{mbid}',
-                  'parts' => [
-                    'url',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'url',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -2710,6 +2972,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'url',
+                    '{id}',
                   ],
                 ],
               ],
@@ -2727,6 +2993,7 @@ class MusicbrainzConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'id',
               'short' => 'MusicBrainz ID',
               'type' => '`$STRING`',
@@ -2746,6 +3013,10 @@ class MusicbrainzConfig
               'short' => 'Work type',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'work',
           'op' => [
@@ -2807,8 +3078,10 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/work',
-                  'parts' => [
-                    'work',
+                  'segments' => [
+                    [
+                      'lit' => 'work',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -2824,6 +3097,9 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.works`',
+                  ],
+                  'parts' => [
+                    'work',
                   ],
                 ],
               ],
@@ -2863,13 +3139,17 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/work/{mbid}',
-                  'parts' => [
-                    'work',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'mbid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'work',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -2882,6 +3162,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'work',
+                    '{id}',
                   ],
                 ],
               ],
@@ -2943,9 +3227,13 @@ class MusicbrainzConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/iswc/{iswc}',
-                  'parts' => [
-                    'iswc',
-                    '{iswc}',
+                  'segments' => [
+                    [
+                      'lit' => 'iswc',
+                    ],
+                    [
+                      'var' => 'iswc',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -2957,6 +3245,10 @@ class MusicbrainzConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'iswc',
+                    '{iswc}',
                   ],
                 ],
               ],

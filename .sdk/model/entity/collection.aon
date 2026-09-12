@@ -16,6 +16,7 @@ main: kit: entity: collection: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       type: "`$STRING`"
@@ -76,8 +77,10 @@ main: kit: entity: collection: {
           }
           method: "GET"
           orig: "/collection"
-          parts: [
-            "collection"
+          segments: [
+            {
+              lit: "collection"
+            }
           ]
           select: {
             exist: [

@@ -12,8 +12,10 @@ main: kit: entity: tag: {
         {
           method: "POST"
           orig: "/tag"
-          parts: [
-            "tag"
+          segments: [
+            {
+              lit: "tag"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -40,8 +42,10 @@ main: kit: entity: tag: {
           }
           method: "GET"
           orig: "/tag"
-          parts: [
-            "tag"
+          segments: [
+            {
+              lit: "tag"
+            }
           ]
           select: {
             exist: [

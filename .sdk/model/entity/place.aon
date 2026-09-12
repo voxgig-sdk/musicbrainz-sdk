@@ -23,6 +23,7 @@ main: kit: entity: place: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -117,8 +118,10 @@ main: kit: entity: place: {
           }
           method: "GET"
           orig: "/place"
-          parts: [
-            "place"
+          segments: [
+            {
+              lit: "place"
+            }
           ]
           select: {
             exist: [
@@ -173,15 +176,19 @@ main: kit: entity: place: {
           }
           method: "GET"
           orig: "/place/{mbid}"
-          parts: [
-            "place"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "place"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

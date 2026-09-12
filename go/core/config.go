@@ -77,6 +77,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -100,6 +101,10 @@ func MakeConfig() map[string]any {
 						"short": "Area type",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "area",
 				"op": map[string]any{
@@ -149,8 +154,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/area",
-								"parts": []any{
-									"area",
+								"segments": []any{
+									map[string]any{
+										"lit": "area",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -164,6 +171,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.areas`",
+								},
+								"parts": []any{
+									"area",
 								},
 							},
 						},
@@ -203,13 +213,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/area/{mbid}",
-								"parts": []any{
-									"area",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "area",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -222,6 +236,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.life-span`",
+								},
+								"parts": []any{
+									"area",
+									"{id}",
 								},
 							},
 						},
@@ -264,6 +282,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -287,6 +306,10 @@ func MakeConfig() map[string]any {
 						"short": "Artist type (person, group, etc.)",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "artist",
 				"op": map[string]any{
@@ -372,8 +395,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artist",
-								"parts": []any{
-									"artist",
+								"segments": []any{
+									map[string]any{
+										"lit": "artist",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -393,6 +418,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.artists`",
+								},
+								"parts": []any{
+									"artist",
 								},
 							},
 						},
@@ -444,13 +472,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artist/{mbid}",
-								"parts": []any{
-									"artist",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "artist",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -465,6 +497,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.life-span`",
+								},
+								"parts": []any{
+									"artist",
+									"{id}",
 								},
 							},
 						},
@@ -485,6 +521,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"type": "`$STRING`",
 					},
@@ -492,6 +529,10 @@ func MakeConfig() map[string]any {
 						"name": "name",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "collection",
 				"op": map[string]any{
@@ -535,8 +576,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collection",
-								"parts": []any{
-									"collection",
+								"segments": []any{
+									map[string]any{
+										"lit": "collection",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -549,6 +592,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.collections`",
+								},
+								"parts": []any{
+									"collection",
 								},
 							},
 						},
@@ -586,6 +632,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -609,6 +656,10 @@ func MakeConfig() map[string]any {
 						"short": "Event type",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "event",
 				"op": map[string]any{
@@ -676,8 +727,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/event",
-								"parts": []any{
-									"event",
+								"segments": []any{
+									map[string]any{
+										"lit": "event",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -694,6 +747,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.events`",
+								},
+								"parts": []any{
+									"event",
 								},
 							},
 						},
@@ -733,13 +789,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/event/{mbid}",
-								"parts": []any{
-									"event",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "event",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -752,6 +812,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.life-span`",
+								},
+								"parts": []any{
+									"event",
+									"{id}",
 								},
 							},
 						},
@@ -769,6 +833,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -778,6 +843,10 @@ func MakeConfig() map[string]any {
 						"short": "Genre name",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "genre",
 				"op": map[string]any{
@@ -814,9 +883,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/genre/all",
-								"parts": []any{
-									"genre",
-									"all",
+								"segments": []any{
+									map[string]any{
+										"lit": "genre",
+									},
+									map[string]any{
+										"lit": "all",
+									},
 								},
 								"select": map[string]any{
 									"$action": "all",
@@ -829,6 +902,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.genres`",
+								},
+								"parts": []any{
+									"genre",
+									"all",
 								},
 							},
 						},
@@ -861,13 +938,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/genre/{mbid}",
-								"parts": []any{
-									"genre",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "genre",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -879,6 +960,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"genre",
+									"{id}",
 								},
 							},
 						},
@@ -901,6 +986,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -915,6 +1001,10 @@ func MakeConfig() map[string]any {
 						"short": "Instrument type",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "instrument",
 				"op": map[string]any{
@@ -970,8 +1060,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/instrument",
-								"parts": []any{
-									"instrument",
+								"segments": []any{
+									map[string]any{
+										"lit": "instrument",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -986,6 +1078,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.instruments`",
+								},
+								"parts": []any{
+									"instrument",
 								},
 							},
 						},
@@ -1025,13 +1120,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/instrument/{mbid}",
-								"parts": []any{
-									"instrument",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "instrument",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -1044,6 +1143,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"instrument",
+									"{id}",
 								},
 							},
 						},
@@ -1081,6 +1184,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -1109,6 +1213,10 @@ func MakeConfig() map[string]any {
 						"short": "Label type",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "label",
 				"op": map[string]any{
@@ -1176,8 +1284,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/label",
-								"parts": []any{
-									"label",
+								"segments": []any{
+									map[string]any{
+										"lit": "label",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1194,6 +1304,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.labels`",
+								},
+								"parts": []any{
+									"label",
 								},
 							},
 						},
@@ -1245,13 +1358,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/label/{mbid}",
-								"parts": []any{
-									"label",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "label",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -1266,6 +1383,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.life-span`",
+								},
+								"parts": []any{
+									"label",
+									"{id}",
 								},
 							},
 						},
@@ -1292,6 +1413,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -1310,6 +1432,10 @@ func MakeConfig() map[string]any {
 						"short": "Place type",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "place",
 				"op": map[string]any{
@@ -1371,8 +1497,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/place",
-								"parts": []any{
-									"place",
+								"segments": []any{
+									map[string]any{
+										"lit": "place",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1388,6 +1516,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.places`",
+								},
+								"parts": []any{
+									"place",
 								},
 							},
 						},
@@ -1427,13 +1558,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/place/{mbid}",
-								"parts": []any{
-									"place",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "place",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -1446,6 +1581,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"place",
+									"{id}",
 								},
 							},
 						},
@@ -1468,13 +1607,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/rating",
-								"parts": []any{
-									"rating",
+								"segments": []any{
+									map[string]any{
+										"lit": "rating",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"rating",
 								},
 							},
 						},
@@ -1498,8 +1642,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/rating",
-								"parts": []any{
-									"rating",
+								"segments": []any{
+									map[string]any{
+										"lit": "rating",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1509,6 +1655,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"rating",
 								},
 							},
 						},
@@ -1526,6 +1675,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -1545,6 +1695,10 @@ func MakeConfig() map[string]any {
 						"short": "Whether this is a video recording",
 						"type": "`$BOOLEAN`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "recording",
 				"op": map[string]any{
@@ -1618,8 +1772,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/recording",
-								"parts": []any{
-									"recording",
+								"segments": []any{
+									map[string]any{
+										"lit": "recording",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1637,6 +1793,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.recordings`",
+								},
+								"parts": []any{
+									"recording",
 								},
 							},
 						},
@@ -1688,13 +1847,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/recording/{mbid}",
-								"parts": []any{
-									"recording",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "recording",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -1709,6 +1872,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"recording",
+									"{id}",
 								},
 							},
 						},
@@ -1770,9 +1937,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/isrc/{isrc}",
-								"parts": []any{
-									"isrc",
-									"{isrc}",
+								"segments": []any{
+									map[string]any{
+										"lit": "isrc",
+									},
+									map[string]any{
+										"var": "isrc",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1784,6 +1955,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"isrc",
+									"{isrc}",
 								},
 							},
 						},
@@ -1820,6 +1995,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -1839,6 +2015,10 @@ func MakeConfig() map[string]any {
 						"short": "Release title",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "release",
 				"op": map[string]any{
@@ -1948,8 +2128,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/release",
-								"parts": []any{
-									"release",
+								"segments": []any{
+									map[string]any{
+										"lit": "release",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1973,6 +2155,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.releases`",
+								},
+								"parts": []any{
+									"release",
 								},
 							},
 						},
@@ -2012,13 +2197,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/release/{mbid}",
-								"parts": []any{
-									"release",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "release",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -2031,6 +2220,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"release",
+									"{id}",
 								},
 							},
 						},
@@ -2053,6 +2246,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -2072,6 +2266,10 @@ func MakeConfig() map[string]any {
 						"short": "Release group title",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "release_group",
 				"op": map[string]any{
@@ -2145,8 +2343,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/release-group",
-								"parts": []any{
-									"release-group",
+								"segments": []any{
+									map[string]any{
+										"lit": "release-group",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2164,6 +2364,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.release-groups`",
+								},
+								"parts": []any{
+									"release-group",
 								},
 							},
 						},
@@ -2215,13 +2418,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/release-group/{mbid}",
-								"parts": []any{
-									"release-group",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "release-group",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -2236,6 +2443,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"release-group",
+									"{id}",
 								},
 							},
 						},
@@ -2297,9 +2508,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/discid/{discid}",
-								"parts": []any{
-									"discid",
-									"{discid}",
+								"segments": []any{
+									map[string]any{
+										"lit": "discid",
+									},
+									map[string]any{
+										"var": "discid",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2311,6 +2526,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"discid",
+									"{discid}",
 								},
 							},
 						},
@@ -2332,6 +2551,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -2346,6 +2566,10 @@ func MakeConfig() map[string]any {
 						"short": "Series type",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "series",
 				"op": map[string]any{
@@ -2401,8 +2625,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/series",
-								"parts": []any{
-									"series",
+								"segments": []any{
+									map[string]any{
+										"lit": "series",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2417,6 +2643,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.series`",
+								},
+								"parts": []any{
+									"series",
 								},
 							},
 						},
@@ -2456,13 +2685,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/series/{mbid}",
-								"parts": []any{
-									"series",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "series",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -2475,6 +2708,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"series",
+									"{id}",
 								},
 							},
 						},
@@ -2497,13 +2734,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/tag",
-								"parts": []any{
-									"tag",
+								"segments": []any{
+									map[string]any{
+										"lit": "tag",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"tag",
 								},
 							},
 						},
@@ -2527,8 +2769,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/tag",
-								"parts": []any{
-									"tag",
+								"segments": []any{
+									map[string]any{
+										"lit": "tag",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2538,6 +2782,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"tag",
 								},
 							},
 						},
@@ -2550,15 +2797,21 @@ func MakeConfig() map[string]any {
 			"url": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "resource",
 						"short": "The URL resource",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "url",
 				"op": map[string]any{
@@ -2614,8 +2867,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/url",
-								"parts": []any{
-									"url",
+								"segments": []any{
+									map[string]any{
+										"lit": "url",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2630,6 +2885,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.urls`",
+								},
+								"parts": []any{
+									"url",
 								},
 							},
 						},
@@ -2669,13 +2927,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/url/{mbid}",
-								"parts": []any{
-									"url",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "url",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -2688,6 +2950,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"url",
+									"{id}",
 								},
 							},
 						},
@@ -2705,6 +2971,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "MusicBrainz ID",
 						"type": "`$STRING`",
@@ -2724,6 +2991,10 @@ func MakeConfig() map[string]any {
 						"short": "Work type",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "work",
 				"op": map[string]any{
@@ -2785,8 +3056,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/work",
-								"parts": []any{
-									"work",
+								"segments": []any{
+									map[string]any{
+										"lit": "work",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2802,6 +3075,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.works`",
+								},
+								"parts": []any{
+									"work",
 								},
 							},
 						},
@@ -2841,13 +3117,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/work/{mbid}",
-								"parts": []any{
-									"work",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"mbid": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "work",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -2860,6 +3140,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"work",
+									"{id}",
 								},
 							},
 						},
@@ -2921,9 +3205,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/iswc/{iswc}",
-								"parts": []any{
-									"iswc",
-									"{iswc}",
+								"segments": []any{
+									map[string]any{
+										"lit": "iswc",
+									},
+									map[string]any{
+										"var": "iswc",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2935,6 +3223,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"iswc",
+									"{iswc}",
 								},
 							},
 						},
@@ -2950,6 +3242,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

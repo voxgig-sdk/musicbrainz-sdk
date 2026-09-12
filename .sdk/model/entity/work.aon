@@ -12,6 +12,7 @@ main: kit: entity: work: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -107,8 +108,10 @@ main: kit: entity: work: {
           }
           method: "GET"
           orig: "/work"
-          parts: [
-            "work"
+          segments: [
+            {
+              lit: "work"
+            }
           ]
           select: {
             exist: [
@@ -163,15 +166,19 @@ main: kit: entity: work: {
           }
           method: "GET"
           orig: "/work/{mbid}"
-          parts: [
-            "work"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "work"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

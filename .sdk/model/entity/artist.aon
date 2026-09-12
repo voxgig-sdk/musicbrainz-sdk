@@ -42,6 +42,7 @@ main: kit: entity: artist: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -170,8 +171,10 @@ main: kit: entity: artist: {
           }
           method: "GET"
           orig: "/artist"
-          parts: [
-            "artist"
+          segments: [
+            {
+              lit: "artist"
+            }
           ]
           select: {
             exist: [
@@ -244,15 +247,19 @@ main: kit: entity: artist: {
           }
           method: "GET"
           orig: "/artist/{mbid}"
-          parts: [
-            "artist"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "artist"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

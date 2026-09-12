@@ -30,6 +30,7 @@ main: kit: entity: area: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -116,8 +117,10 @@ main: kit: entity: area: {
           }
           method: "GET"
           orig: "/area"
-          parts: [
-            "area"
+          segments: [
+            {
+              lit: "area"
+            }
           ]
           select: {
             exist: [
@@ -170,15 +173,19 @@ main: kit: entity: area: {
           }
           method: "GET"
           orig: "/area/{mbid}"
-          parts: [
-            "area"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "area"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

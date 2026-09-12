@@ -1,6 +1,14 @@
 # Musicbrainz SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -94,6 +102,7 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -118,6 +127,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "area",
         "op": {
           "list": {
@@ -166,8 +179,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/area",
-                "parts": [
-                  "area",
+                "segments": [
+                  {
+                    "lit": "area",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -182,6 +197,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.areas`",
                 },
+                "parts": [
+                  "area",
+                ],
               },
             ],
           },
@@ -220,15 +238,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/area/{mbid}",
-                "parts": [
-                  "area",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "area",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -240,6 +262,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.life-span`",
                 },
+                "parts": [
+                  "area",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -281,6 +307,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -305,6 +332,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "artist",
         "op": {
           "list": {
@@ -389,8 +420,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/artist",
-                "parts": [
-                  "artist",
+                "segments": [
+                  {
+                    "lit": "artist",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -411,6 +444,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.artists`",
                 },
+                "parts": [
+                  "artist",
+                ],
               },
             ],
           },
@@ -461,15 +497,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/artist/{mbid}",
-                "parts": [
-                  "artist",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "artist",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -483,6 +523,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.life-span`",
                 },
+                "parts": [
+                  "artist",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -502,6 +546,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "type": "`$STRING`",
           },
@@ -510,6 +555,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "collection",
         "op": {
           "list": {
@@ -552,8 +601,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collection",
-                "parts": [
-                  "collection",
+                "segments": [
+                  {
+                    "lit": "collection",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -567,6 +618,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.collections`",
                 },
+                "parts": [
+                  "collection",
+                ],
               },
             ],
           },
@@ -603,6 +657,7 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -627,6 +682,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "event",
         "op": {
           "list": {
@@ -693,8 +752,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/event",
-                "parts": [
-                  "event",
+                "segments": [
+                  {
+                    "lit": "event",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -712,6 +773,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.events`",
                 },
+                "parts": [
+                  "event",
+                ],
               },
             ],
           },
@@ -750,15 +814,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/event/{mbid}",
-                "parts": [
-                  "event",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "event",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -770,6 +838,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.life-span`",
                 },
+                "parts": [
+                  "event",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -786,6 +858,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -796,6 +869,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "genre",
         "op": {
           "list": {
@@ -831,9 +908,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/genre/all",
-                "parts": [
-                  "genre",
-                  "all",
+                "segments": [
+                  {
+                    "lit": "genre",
+                  },
+                  {
+                    "lit": "all",
+                  },
                 ],
                 "select": {
                   "$action": "all",
@@ -847,6 +928,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.genres`",
                 },
+                "parts": [
+                  "genre",
+                  "all",
+                ],
               },
             ],
           },
@@ -878,15 +963,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/genre/{mbid}",
-                "parts": [
-                  "genre",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "genre",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -897,6 +986,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "genre",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -918,6 +1011,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -933,6 +1027,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "instrument",
         "op": {
           "list": {
@@ -987,8 +1085,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/instrument",
-                "parts": [
-                  "instrument",
+                "segments": [
+                  {
+                    "lit": "instrument",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1004,6 +1104,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.instruments`",
                 },
+                "parts": [
+                  "instrument",
+                ],
               },
             ],
           },
@@ -1042,15 +1145,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/instrument/{mbid}",
-                "parts": [
-                  "instrument",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "instrument",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -1062,6 +1169,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "instrument",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -1098,6 +1209,7 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -1127,6 +1239,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "label",
         "op": {
           "list": {
@@ -1193,8 +1309,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/label",
-                "parts": [
-                  "label",
+                "segments": [
+                  {
+                    "lit": "label",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1212,6 +1330,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.labels`",
                 },
+                "parts": [
+                  "label",
+                ],
               },
             ],
           },
@@ -1262,15 +1383,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/label/{mbid}",
-                "parts": [
-                  "label",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "label",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -1284,6 +1409,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.life-span`",
                 },
+                "parts": [
+                  "label",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -1309,6 +1438,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -1328,6 +1458,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "place",
         "op": {
           "list": {
@@ -1388,8 +1522,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/place",
-                "parts": [
-                  "place",
+                "segments": [
+                  {
+                    "lit": "place",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1406,6 +1542,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.places`",
                 },
+                "parts": [
+                  "place",
+                ],
               },
             ],
           },
@@ -1444,15 +1583,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/place/{mbid}",
-                "parts": [
-                  "place",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "place",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -1464,6 +1607,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "place",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -1485,14 +1632,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/rating",
-                "parts": [
-                  "rating",
+                "segments": [
+                  {
+                    "lit": "rating",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "rating",
+                ],
               },
             ],
           },
@@ -1515,8 +1667,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/rating",
-                "parts": [
-                  "rating",
+                "segments": [
+                  {
+                    "lit": "rating",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1527,6 +1681,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "rating",
+                ],
               },
             ],
           },
@@ -1543,6 +1700,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -1563,6 +1721,10 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "recording",
         "op": {
           "list": {
@@ -1635,8 +1797,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/recording",
-                "parts": [
-                  "recording",
+                "segments": [
+                  {
+                    "lit": "recording",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1655,6 +1819,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.recordings`",
                 },
+                "parts": [
+                  "recording",
+                ],
               },
             ],
           },
@@ -1705,15 +1872,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/recording/{mbid}",
-                "parts": [
-                  "recording",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "recording",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -1727,6 +1898,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "recording",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -1787,9 +1962,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/isrc/{isrc}",
-                "parts": [
-                  "isrc",
-                  "{isrc}",
+                "segments": [
+                  {
+                    "lit": "isrc",
+                  },
+                  {
+                    "var": "isrc",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1802,6 +1981,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "isrc",
+                  "{isrc}",
+                ],
               },
             ],
           },
@@ -1837,6 +2020,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -1857,6 +2041,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "release",
         "op": {
           "list": {
@@ -1965,8 +2153,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/release",
-                "parts": [
-                  "release",
+                "segments": [
+                  {
+                    "lit": "release",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1991,6 +2181,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.releases`",
                 },
+                "parts": [
+                  "release",
+                ],
               },
             ],
           },
@@ -2029,15 +2222,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/release/{mbid}",
-                "parts": [
-                  "release",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "release",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -2049,6 +2246,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "release",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -2070,6 +2271,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -2090,6 +2292,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "release_group",
         "op": {
           "list": {
@@ -2162,8 +2368,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/release-group",
-                "parts": [
-                  "release-group",
+                "segments": [
+                  {
+                    "lit": "release-group",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -2182,6 +2390,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.release-groups`",
                 },
+                "parts": [
+                  "release-group",
+                ],
               },
             ],
           },
@@ -2232,15 +2443,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/release-group/{mbid}",
-                "parts": [
-                  "release-group",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "release-group",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -2254,6 +2469,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "release-group",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -2314,9 +2533,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/discid/{discid}",
-                "parts": [
-                  "discid",
-                  "{discid}",
+                "segments": [
+                  {
+                    "lit": "discid",
+                  },
+                  {
+                    "var": "discid",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -2329,6 +2552,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "discid",
+                  "{discid}",
+                ],
               },
             ],
           },
@@ -2349,6 +2576,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -2364,6 +2592,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "series",
         "op": {
           "list": {
@@ -2418,8 +2650,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/series",
-                "parts": [
-                  "series",
+                "segments": [
+                  {
+                    "lit": "series",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -2435,6 +2669,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.series`",
                 },
+                "parts": [
+                  "series",
+                ],
               },
             ],
           },
@@ -2473,15 +2710,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/series/{mbid}",
-                "parts": [
-                  "series",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "series",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -2493,6 +2734,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "series",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -2514,14 +2759,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/tag",
-                "parts": [
-                  "tag",
+                "segments": [
+                  {
+                    "lit": "tag",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "tag",
+                ],
               },
             ],
           },
@@ -2544,8 +2794,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tag",
-                "parts": [
-                  "tag",
+                "segments": [
+                  {
+                    "lit": "tag",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -2556,6 +2808,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "tag",
+                ],
               },
             ],
           },
@@ -2567,16 +2822,22 @@ def make_config():
       "url": {
         "fields": [
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "resource",
             "short": "The URL resource",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "url",
         "op": {
           "list": {
@@ -2631,8 +2892,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/url",
-                "parts": [
-                  "url",
+                "segments": [
+                  {
+                    "lit": "url",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -2648,6 +2911,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.urls`",
                 },
+                "parts": [
+                  "url",
+                ],
               },
             ],
           },
@@ -2686,15 +2952,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/url/{mbid}",
-                "parts": [
-                  "url",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "url",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -2706,6 +2976,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "url",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -2722,6 +2996,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "id",
             "short": "MusicBrainz ID",
             "type": "`$STRING`",
@@ -2742,6 +3017,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "work",
         "op": {
           "list": {
@@ -2802,8 +3081,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/work",
-                "parts": [
-                  "work",
+                "segments": [
+                  {
+                    "lit": "work",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -2820,6 +3101,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.works`",
                 },
+                "parts": [
+                  "work",
+                ],
               },
             ],
           },
@@ -2858,15 +3142,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/work/{mbid}",
-                "parts": [
-                  "work",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "mbid": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "work",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fmt",
@@ -2878,6 +3166,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "work",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -2938,9 +3230,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/iswc/{iswc}",
-                "parts": [
-                  "iswc",
-                  "{iswc}",
+                "segments": [
+                  {
+                    "lit": "iswc",
+                  },
+                  {
+                    "var": "iswc",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -2953,6 +3249,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "iswc",
+                  "{iswc}",
+                ],
               },
             ],
           },

@@ -73,6 +73,7 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -96,6 +97,10 @@ local function make_config()
             ["short"] = "Area type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "area",
         ["op"] = {
@@ -145,8 +150,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/area",
-                ["parts"] = {
-                  "area",
+                ["segments"] = {
+                  {
+                    ["lit"] = "area",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -160,6 +167,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.areas`",
+                },
+                ["parts"] = {
+                  "area",
                 },
               },
             },
@@ -199,13 +209,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/area/{mbid}",
-                ["parts"] = {
-                  "area",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "area",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -218,6 +232,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.life-span`",
+                },
+                ["parts"] = {
+                  "area",
+                  "{id}",
                 },
               },
             },
@@ -260,6 +278,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -283,6 +302,10 @@ local function make_config()
             ["short"] = "Artist type (person, group, etc.)",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "artist",
         ["op"] = {
@@ -368,8 +391,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artist",
-                ["parts"] = {
-                  "artist",
+                ["segments"] = {
+                  {
+                    ["lit"] = "artist",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -389,6 +414,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.artists`",
+                },
+                ["parts"] = {
+                  "artist",
                 },
               },
             },
@@ -440,13 +468,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artist/{mbid}",
-                ["parts"] = {
-                  "artist",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "artist",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -461,6 +493,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.life-span`",
+                },
+                ["parts"] = {
+                  "artist",
+                  "{id}",
                 },
               },
             },
@@ -481,6 +517,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["type"] = "`$STRING`",
           },
@@ -488,6 +525,10 @@ local function make_config()
             ["name"] = "name",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "collection",
         ["op"] = {
@@ -531,8 +572,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/collection",
-                ["parts"] = {
-                  "collection",
+                ["segments"] = {
+                  {
+                    ["lit"] = "collection",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -545,6 +588,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.collections`",
+                },
+                ["parts"] = {
+                  "collection",
                 },
               },
             },
@@ -582,6 +628,7 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -605,6 +652,10 @@ local function make_config()
             ["short"] = "Event type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "event",
         ["op"] = {
@@ -672,8 +723,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/event",
-                ["parts"] = {
-                  "event",
+                ["segments"] = {
+                  {
+                    ["lit"] = "event",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -690,6 +743,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.events`",
+                },
+                ["parts"] = {
+                  "event",
                 },
               },
             },
@@ -729,13 +785,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/event/{mbid}",
-                ["parts"] = {
-                  "event",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "event",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -748,6 +808,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.life-span`",
+                },
+                ["parts"] = {
+                  "event",
+                  "{id}",
                 },
               },
             },
@@ -765,6 +829,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -774,6 +839,10 @@ local function make_config()
             ["short"] = "Genre name",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "genre",
         ["op"] = {
@@ -810,9 +879,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/genre/all",
-                ["parts"] = {
-                  "genre",
-                  "all",
+                ["segments"] = {
+                  {
+                    ["lit"] = "genre",
+                  },
+                  {
+                    ["lit"] = "all",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "all",
@@ -825,6 +898,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.genres`",
+                },
+                ["parts"] = {
+                  "genre",
+                  "all",
                 },
               },
             },
@@ -857,13 +934,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/genre/{mbid}",
-                ["parts"] = {
-                  "genre",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "genre",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -875,6 +956,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "genre",
+                  "{id}",
                 },
               },
             },
@@ -897,6 +982,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -911,6 +997,10 @@ local function make_config()
             ["short"] = "Instrument type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "instrument",
         ["op"] = {
@@ -966,8 +1056,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/instrument",
-                ["parts"] = {
-                  "instrument",
+                ["segments"] = {
+                  {
+                    ["lit"] = "instrument",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -982,6 +1074,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.instruments`",
+                },
+                ["parts"] = {
+                  "instrument",
                 },
               },
             },
@@ -1021,13 +1116,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/instrument/{mbid}",
-                ["parts"] = {
-                  "instrument",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "instrument",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1040,6 +1139,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "instrument",
+                  "{id}",
                 },
               },
             },
@@ -1077,6 +1180,7 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -1105,6 +1209,10 @@ local function make_config()
             ["short"] = "Label type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "label",
         ["op"] = {
@@ -1172,8 +1280,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/label",
-                ["parts"] = {
-                  "label",
+                ["segments"] = {
+                  {
+                    ["lit"] = "label",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1190,6 +1300,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.labels`",
+                },
+                ["parts"] = {
+                  "label",
                 },
               },
             },
@@ -1241,13 +1354,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/label/{mbid}",
-                ["parts"] = {
-                  "label",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "label",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1262,6 +1379,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.life-span`",
+                },
+                ["parts"] = {
+                  "label",
+                  "{id}",
                 },
               },
             },
@@ -1288,6 +1409,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -1306,6 +1428,10 @@ local function make_config()
             ["short"] = "Place type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "place",
         ["op"] = {
@@ -1367,8 +1493,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/place",
-                ["parts"] = {
-                  "place",
+                ["segments"] = {
+                  {
+                    ["lit"] = "place",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1384,6 +1512,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.places`",
+                },
+                ["parts"] = {
+                  "place",
                 },
               },
             },
@@ -1423,13 +1554,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/place/{mbid}",
-                ["parts"] = {
-                  "place",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "place",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1442,6 +1577,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "place",
+                  "{id}",
                 },
               },
             },
@@ -1464,13 +1603,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/rating",
-                ["parts"] = {
-                  "rating",
+                ["segments"] = {
+                  {
+                    ["lit"] = "rating",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "rating",
                 },
               },
             },
@@ -1494,8 +1638,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/rating",
-                ["parts"] = {
-                  "rating",
+                ["segments"] = {
+                  {
+                    ["lit"] = "rating",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1505,6 +1651,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "rating",
                 },
               },
             },
@@ -1522,6 +1671,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -1541,6 +1691,10 @@ local function make_config()
             ["short"] = "Whether this is a video recording",
             ["type"] = "`$BOOLEAN`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "recording",
         ["op"] = {
@@ -1614,8 +1768,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/recording",
-                ["parts"] = {
-                  "recording",
+                ["segments"] = {
+                  {
+                    ["lit"] = "recording",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1633,6 +1789,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.recordings`",
+                },
+                ["parts"] = {
+                  "recording",
                 },
               },
             },
@@ -1684,13 +1843,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/recording/{mbid}",
-                ["parts"] = {
-                  "recording",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "recording",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1705,6 +1868,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "recording",
+                  "{id}",
                 },
               },
             },
@@ -1766,9 +1933,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/isrc/{isrc}",
-                ["parts"] = {
-                  "isrc",
-                  "{isrc}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "isrc",
+                  },
+                  {
+                    ["var"] = "isrc",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1780,6 +1951,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "isrc",
+                  "{isrc}",
                 },
               },
             },
@@ -1816,6 +1991,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -1835,6 +2011,10 @@ local function make_config()
             ["short"] = "Release title",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "release",
         ["op"] = {
@@ -1944,8 +2124,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/release",
-                ["parts"] = {
-                  "release",
+                ["segments"] = {
+                  {
+                    ["lit"] = "release",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1969,6 +2151,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.releases`",
+                },
+                ["parts"] = {
+                  "release",
                 },
               },
             },
@@ -2008,13 +2193,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/release/{mbid}",
-                ["parts"] = {
-                  "release",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "release",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -2027,6 +2216,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "release",
+                  "{id}",
                 },
               },
             },
@@ -2049,6 +2242,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -2068,6 +2262,10 @@ local function make_config()
             ["short"] = "Release group title",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "release_group",
         ["op"] = {
@@ -2141,8 +2339,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/release-group",
-                ["parts"] = {
-                  "release-group",
+                ["segments"] = {
+                  {
+                    ["lit"] = "release-group",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2160,6 +2360,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.release-groups`",
+                },
+                ["parts"] = {
+                  "release-group",
                 },
               },
             },
@@ -2211,13 +2414,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/release-group/{mbid}",
-                ["parts"] = {
-                  "release-group",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "release-group",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -2232,6 +2439,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "release-group",
+                  "{id}",
                 },
               },
             },
@@ -2293,9 +2504,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/discid/{discid}",
-                ["parts"] = {
-                  "discid",
-                  "{discid}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "discid",
+                  },
+                  {
+                    ["var"] = "discid",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2307,6 +2522,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "discid",
+                  "{discid}",
                 },
               },
             },
@@ -2328,6 +2547,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -2342,6 +2562,10 @@ local function make_config()
             ["short"] = "Series type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "series",
         ["op"] = {
@@ -2397,8 +2621,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/series",
-                ["parts"] = {
-                  "series",
+                ["segments"] = {
+                  {
+                    ["lit"] = "series",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2413,6 +2639,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.series`",
+                },
+                ["parts"] = {
+                  "series",
                 },
               },
             },
@@ -2452,13 +2681,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/series/{mbid}",
-                ["parts"] = {
-                  "series",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "series",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -2471,6 +2704,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "series",
+                  "{id}",
                 },
               },
             },
@@ -2493,13 +2730,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/tag",
-                ["parts"] = {
-                  "tag",
+                ["segments"] = {
+                  {
+                    ["lit"] = "tag",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "tag",
                 },
               },
             },
@@ -2523,8 +2765,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tag",
-                ["parts"] = {
-                  "tag",
+                ["segments"] = {
+                  {
+                    ["lit"] = "tag",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2534,6 +2778,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "tag",
                 },
               },
             },
@@ -2546,15 +2793,21 @@ local function make_config()
       ["url"] = {
         ["fields"] = {
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "resource",
             ["short"] = "The URL resource",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "url",
         ["op"] = {
@@ -2610,8 +2863,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/url",
-                ["parts"] = {
-                  "url",
+                ["segments"] = {
+                  {
+                    ["lit"] = "url",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2626,6 +2881,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.urls`",
+                },
+                ["parts"] = {
+                  "url",
                 },
               },
             },
@@ -2665,13 +2923,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/url/{mbid}",
-                ["parts"] = {
-                  "url",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "url",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -2684,6 +2946,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "url",
+                  "{id}",
                 },
               },
             },
@@ -2701,6 +2967,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "MusicBrainz ID",
             ["type"] = "`$STRING`",
@@ -2720,6 +2987,10 @@ local function make_config()
             ["short"] = "Work type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "work",
         ["op"] = {
@@ -2781,8 +3052,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/work",
-                ["parts"] = {
-                  "work",
+                ["segments"] = {
+                  {
+                    ["lit"] = "work",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2798,6 +3071,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.works`",
+                },
+                ["parts"] = {
+                  "work",
                 },
               },
             },
@@ -2837,13 +3113,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/work/{mbid}",
-                ["parts"] = {
-                  "work",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["mbid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "work",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -2856,6 +3136,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "work",
+                  "{id}",
                 },
               },
             },
@@ -2917,9 +3201,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/iswc/{iswc}",
-                ["parts"] = {
-                  "iswc",
-                  "{iswc}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "iswc",
+                  },
+                  {
+                    ["var"] = "iswc",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2931,6 +3219,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "iswc",
+                  "{iswc}",
                 },
               },
             },

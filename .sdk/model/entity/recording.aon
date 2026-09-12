@@ -12,6 +12,7 @@ main: kit: entity: recording: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -121,8 +122,10 @@ main: kit: entity: recording: {
           }
           method: "GET"
           orig: "/recording"
-          parts: [
-            "recording"
+          segments: [
+            {
+              lit: "recording"
+            }
           ]
           select: {
             exist: [
@@ -193,15 +196,19 @@ main: kit: entity: recording: {
           }
           method: "GET"
           orig: "/recording/{mbid}"
-          parts: [
-            "recording"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "recording"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

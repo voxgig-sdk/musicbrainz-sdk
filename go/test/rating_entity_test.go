@@ -52,7 +52,7 @@ func TestRatingEntity(t *testing.T) {
 		// CREATE
 		ratingRef01Ent := client.Rating(nil)
 		ratingRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "rating"}, setup.data), "rating_ref01"))
+			vs.GetPath(setup.data, []any{"new", "rating"}), "rating_ref01"))
 
 		ratingRef01DataResult, err := ratingRef01Ent.Create(ratingRef01Data, nil)
 		if err != nil {
@@ -100,7 +100,7 @@ func ratingBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"rating01", "rating02", "rating03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -120,7 +120,7 @@ func ratingBasicSetup(extra map[string]any) *entityTestSetup {
 		"MUSICBRAINZ_TEST_RATING_ENTID": idmap,
 		"MUSICBRAINZ_TEST_LIVE":      "FALSE",
 		"MUSICBRAINZ_TEST_EXPLAIN":   "FALSE",
-		"MUSICBRAINZ_APIKEY":         "NONE",
+		"MUSICBRAINZ_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["MUSICBRAINZ_TEST_RATING_ENTID"])
@@ -129,11 +129,23 @@ func ratingBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["MUSICBRAINZ_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["MUSICBRAINZ_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMusicbrainzSDK(core.ToMapAny(mergedOpts))
 	}

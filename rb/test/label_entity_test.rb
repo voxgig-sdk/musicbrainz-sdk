@@ -127,7 +127,7 @@ def label_basic_setup(extra)
     "MUSICBRAINZ_TEST_LABEL_ENTID" => idmap,
     "MUSICBRAINZ_TEST_LIVE" => "FALSE",
     "MUSICBRAINZ_TEST_EXPLAIN" => "FALSE",
-    "MUSICBRAINZ_APIKEY" => "NONE",
+    "MUSICBRAINZ_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -138,6 +138,9 @@ def label_basic_setup(extra)
 
   if env["MUSICBRAINZ_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["MUSICBRAINZ_APIKEY"],
       },

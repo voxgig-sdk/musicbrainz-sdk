@@ -50,7 +50,7 @@ func TestRecordingListEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		recordingListRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.recording_list", setup.data)))
+		recordingListRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.recording_list")))
 		var recordingListRef01Data map[string]any
 		if len(recordingListRef01DataRaw) > 0 {
 			recordingListRef01Data = core.ToMapAny(recordingListRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func recording_listBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"recording_list01", "recording_list02", "recording_list03", "isrc01", "isrc02", "isrc03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func recording_listBasicSetup(extra map[string]any) *entityTestSetup {
 		"MUSICBRAINZ_TEST_RECORDING_LIST_ENTID": idmap,
 		"MUSICBRAINZ_TEST_LIVE":      "FALSE",
 		"MUSICBRAINZ_TEST_EXPLAIN":   "FALSE",
-		"MUSICBRAINZ_APIKEY":         "NONE",
+		"MUSICBRAINZ_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["MUSICBRAINZ_TEST_RECORDING_LIST_ENTID"])
@@ -126,11 +126,23 @@ func recording_listBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["MUSICBRAINZ_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["MUSICBRAINZ_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMusicbrainzSDK(core.ToMapAny(mergedOpts))
 	}

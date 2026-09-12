@@ -36,6 +36,7 @@ main: kit: entity: label: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -149,8 +150,10 @@ main: kit: entity: label: {
           }
           method: "GET"
           orig: "/label"
-          parts: [
-            "label"
+          segments: [
+            {
+              lit: "label"
+            }
           ]
           select: {
             exist: [
@@ -220,15 +223,19 @@ main: kit: entity: label: {
           }
           method: "GET"
           orig: "/label/{mbid}"
-          parts: [
-            "label"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "label"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

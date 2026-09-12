@@ -30,6 +30,7 @@ main: kit: entity: release: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -181,8 +182,10 @@ main: kit: entity: release: {
           }
           method: "GET"
           orig: "/release"
-          parts: [
-            "release"
+          segments: [
+            {
+              lit: "release"
+            }
           ]
           select: {
             exist: [
@@ -245,15 +248,19 @@ main: kit: entity: release: {
           }
           method: "GET"
           orig: "/release/{mbid}"
-          parts: [
-            "release"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "release"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

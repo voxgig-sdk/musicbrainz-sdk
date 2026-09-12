@@ -6,12 +6,14 @@ main: kit: entity: url: {
 
   fields: [
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "resource"
       req: false
       short: "The URL resource"
@@ -82,8 +84,10 @@ main: kit: entity: url: {
           }
           method: "GET"
           orig: "/url"
-          parts: [
-            "url"
+          segments: [
+            {
+              lit: "url"
+            }
           ]
           select: {
             exist: [
@@ -137,15 +141,19 @@ main: kit: entity: url: {
           }
           method: "GET"
           orig: "/url/{mbid}"
-          parts: [
-            "url"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "url"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

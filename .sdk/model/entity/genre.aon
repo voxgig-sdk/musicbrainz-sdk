@@ -12,6 +12,7 @@ main: kit: entity: genre: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -66,9 +67,13 @@ main: kit: entity: genre: {
           }
           method: "GET"
           orig: "/genre/all"
-          parts: [
-            "genre"
-            "all"
+          segments: [
+            {
+              lit: "genre"
+            }
+            {
+              lit: "all"
+            }
           ]
           select: {
             "$action": "all"
@@ -112,15 +117,19 @@ main: kit: entity: genre: {
           }
           method: "GET"
           orig: "/genre/{mbid}"
-          parts: [
-            "genre"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "genre"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"

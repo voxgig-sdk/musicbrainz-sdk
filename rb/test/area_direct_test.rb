@@ -116,15 +116,17 @@ def area_direct_setup(mockres)
   env = Runner.env_override({
     "MUSICBRAINZ_TEST_AREA_ENTID" => {},
     "MUSICBRAINZ_TEST_LIVE" => "FALSE",
-    "MUSICBRAINZ_APIKEY" => "NONE",
+    "MUSICBRAINZ_APIKEY" => "",
   })
 
   live = env["MUSICBRAINZ_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
       "apikey" => env["MUSICBRAINZ_APIKEY"],
-    }
+    })
     client = MusicbrainzSDK.new(merged_opts)
     return {
       client: client,

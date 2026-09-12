@@ -50,7 +50,7 @@ func TestWorkListEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		workListRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.work_list", setup.data)))
+		workListRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.work_list")))
 		var workListRef01Data map[string]any
 		if len(workListRef01DataRaw) > 0 {
 			workListRef01Data = core.ToMapAny(workListRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func work_listBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"work_list01", "work_list02", "work_list03", "iswc01", "iswc02", "iswc03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func work_listBasicSetup(extra map[string]any) *entityTestSetup {
 		"MUSICBRAINZ_TEST_WORK_LIST_ENTID": idmap,
 		"MUSICBRAINZ_TEST_LIVE":      "FALSE",
 		"MUSICBRAINZ_TEST_EXPLAIN":   "FALSE",
-		"MUSICBRAINZ_APIKEY":         "NONE",
+		"MUSICBRAINZ_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["MUSICBRAINZ_TEST_WORK_LIST_ENTID"])
@@ -126,11 +126,23 @@ func work_listBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["MUSICBRAINZ_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["MUSICBRAINZ_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMusicbrainzSDK(core.ToMapAny(mergedOpts))
 	}

@@ -85,6 +85,7 @@ module MusicbrainzConfig
               "type" => "`$BOOLEAN`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -109,6 +110,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "area",
           "op" => {
             "list" => {
@@ -157,8 +162,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/area",
-                  "parts" => [
-                    "area",
+                  "segments" => [
+                    {
+                      "lit" => "area",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -173,6 +180,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.areas`",
                   },
+                  "parts" => [
+                    "area",
+                  ],
                 },
               ],
             },
@@ -211,15 +221,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/area/{mbid}",
-                  "parts" => [
-                    "area",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "area",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -231,6 +245,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.life-span`",
                   },
+                  "parts" => [
+                    "area",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -272,6 +290,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -296,6 +315,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "artist",
           "op" => {
             "list" => {
@@ -380,8 +403,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/artist",
-                  "parts" => [
-                    "artist",
+                  "segments" => [
+                    {
+                      "lit" => "artist",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -402,6 +427,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.artists`",
                   },
+                  "parts" => [
+                    "artist",
+                  ],
                 },
               ],
             },
@@ -452,15 +480,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/artist/{mbid}",
-                  "parts" => [
-                    "artist",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "artist",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -474,6 +506,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.life-span`",
                   },
+                  "parts" => [
+                    "artist",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -493,6 +529,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "type" => "`$STRING`",
             },
@@ -501,6 +538,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "collection",
           "op" => {
             "list" => {
@@ -543,8 +584,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/collection",
-                  "parts" => [
-                    "collection",
+                  "segments" => [
+                    {
+                      "lit" => "collection",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -558,6 +601,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.collections`",
                   },
+                  "parts" => [
+                    "collection",
+                  ],
                 },
               ],
             },
@@ -594,6 +640,7 @@ module MusicbrainzConfig
               "type" => "`$BOOLEAN`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -618,6 +665,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "event",
           "op" => {
             "list" => {
@@ -684,8 +735,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/event",
-                  "parts" => [
-                    "event",
+                  "segments" => [
+                    {
+                      "lit" => "event",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -703,6 +756,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.events`",
                   },
+                  "parts" => [
+                    "event",
+                  ],
                 },
               ],
             },
@@ -741,15 +797,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/event/{mbid}",
-                  "parts" => [
-                    "event",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "event",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -761,6 +821,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.life-span`",
                   },
+                  "parts" => [
+                    "event",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -777,6 +841,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -787,6 +852,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "genre",
           "op" => {
             "list" => {
@@ -822,9 +891,13 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/genre/all",
-                  "parts" => [
-                    "genre",
-                    "all",
+                  "segments" => [
+                    {
+                      "lit" => "genre",
+                    },
+                    {
+                      "lit" => "all",
+                    },
                   ],
                   "select" => {
                     "$action" => "all",
@@ -838,6 +911,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.genres`",
                   },
+                  "parts" => [
+                    "genre",
+                    "all",
+                  ],
                 },
               ],
             },
@@ -869,15 +946,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/genre/{mbid}",
-                  "parts" => [
-                    "genre",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "genre",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -888,6 +969,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "genre",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -909,6 +994,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -924,6 +1010,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "instrument",
           "op" => {
             "list" => {
@@ -978,8 +1068,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/instrument",
-                  "parts" => [
-                    "instrument",
+                  "segments" => [
+                    {
+                      "lit" => "instrument",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -995,6 +1087,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.instruments`",
                   },
+                  "parts" => [
+                    "instrument",
+                  ],
                 },
               ],
             },
@@ -1033,15 +1128,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/instrument/{mbid}",
-                  "parts" => [
-                    "instrument",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "instrument",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -1053,6 +1152,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "instrument",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1089,6 +1192,7 @@ module MusicbrainzConfig
               "type" => "`$BOOLEAN`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -1118,6 +1222,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "label",
           "op" => {
             "list" => {
@@ -1184,8 +1292,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/label",
-                  "parts" => [
-                    "label",
+                  "segments" => [
+                    {
+                      "lit" => "label",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1203,6 +1313,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.labels`",
                   },
+                  "parts" => [
+                    "label",
+                  ],
                 },
               ],
             },
@@ -1253,15 +1366,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/label/{mbid}",
-                  "parts" => [
-                    "label",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "label",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -1275,6 +1392,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.life-span`",
                   },
+                  "parts" => [
+                    "label",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1300,6 +1421,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -1319,6 +1441,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "place",
           "op" => {
             "list" => {
@@ -1379,8 +1505,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/place",
-                  "parts" => [
-                    "place",
+                  "segments" => [
+                    {
+                      "lit" => "place",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1397,6 +1525,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.places`",
                   },
+                  "parts" => [
+                    "place",
+                  ],
                 },
               ],
             },
@@ -1435,15 +1566,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/place/{mbid}",
-                  "parts" => [
-                    "place",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "place",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -1455,6 +1590,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "place",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1476,14 +1615,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/rating",
-                  "parts" => [
-                    "rating",
+                  "segments" => [
+                    {
+                      "lit" => "rating",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "rating",
+                  ],
                 },
               ],
             },
@@ -1506,8 +1650,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/rating",
-                  "parts" => [
-                    "rating",
+                  "segments" => [
+                    {
+                      "lit" => "rating",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1518,6 +1664,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "rating",
+                  ],
                 },
               ],
             },
@@ -1534,6 +1683,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -1554,6 +1704,10 @@ module MusicbrainzConfig
               "type" => "`$BOOLEAN`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "recording",
           "op" => {
             "list" => {
@@ -1626,8 +1780,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/recording",
-                  "parts" => [
-                    "recording",
+                  "segments" => [
+                    {
+                      "lit" => "recording",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1646,6 +1802,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.recordings`",
                   },
+                  "parts" => [
+                    "recording",
+                  ],
                 },
               ],
             },
@@ -1696,15 +1855,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/recording/{mbid}",
-                  "parts" => [
-                    "recording",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "recording",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -1718,6 +1881,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "recording",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1778,9 +1945,13 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/isrc/{isrc}",
-                  "parts" => [
-                    "isrc",
-                    "{isrc}",
+                  "segments" => [
+                    {
+                      "lit" => "isrc",
+                    },
+                    {
+                      "var" => "isrc",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1793,6 +1964,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "isrc",
+                    "{isrc}",
+                  ],
                 },
               ],
             },
@@ -1828,6 +2003,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -1848,6 +2024,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "release",
           "op" => {
             "list" => {
@@ -1956,8 +2136,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/release",
-                  "parts" => [
-                    "release",
+                  "segments" => [
+                    {
+                      "lit" => "release",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1982,6 +2164,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.releases`",
                   },
+                  "parts" => [
+                    "release",
+                  ],
                 },
               ],
             },
@@ -2020,15 +2205,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/release/{mbid}",
-                  "parts" => [
-                    "release",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "release",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -2040,6 +2229,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "release",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -2061,6 +2254,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -2081,6 +2275,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "release_group",
           "op" => {
             "list" => {
@@ -2153,8 +2351,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/release-group",
-                  "parts" => [
-                    "release-group",
+                  "segments" => [
+                    {
+                      "lit" => "release-group",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2173,6 +2373,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.release-groups`",
                   },
+                  "parts" => [
+                    "release-group",
+                  ],
                 },
               ],
             },
@@ -2223,15 +2426,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/release-group/{mbid}",
-                  "parts" => [
-                    "release-group",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "release-group",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -2245,6 +2452,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "release-group",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -2305,9 +2516,13 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/discid/{discid}",
-                  "parts" => [
-                    "discid",
-                    "{discid}",
+                  "segments" => [
+                    {
+                      "lit" => "discid",
+                    },
+                    {
+                      "var" => "discid",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2320,6 +2535,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "discid",
+                    "{discid}",
+                  ],
                 },
               ],
             },
@@ -2340,6 +2559,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -2355,6 +2575,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "series",
           "op" => {
             "list" => {
@@ -2409,8 +2633,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/series",
-                  "parts" => [
-                    "series",
+                  "segments" => [
+                    {
+                      "lit" => "series",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2426,6 +2652,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.series`",
                   },
+                  "parts" => [
+                    "series",
+                  ],
                 },
               ],
             },
@@ -2464,15 +2693,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/series/{mbid}",
-                  "parts" => [
-                    "series",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "series",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -2484,6 +2717,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "series",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -2505,14 +2742,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/tag",
-                  "parts" => [
-                    "tag",
+                  "segments" => [
+                    {
+                      "lit" => "tag",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "tag",
+                  ],
                 },
               ],
             },
@@ -2535,8 +2777,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/tag",
-                  "parts" => [
-                    "tag",
+                  "segments" => [
+                    {
+                      "lit" => "tag",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2547,6 +2791,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "tag",
+                  ],
                 },
               ],
             },
@@ -2558,16 +2805,22 @@ module MusicbrainzConfig
         "url" => {
           "fields" => [
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "resource",
               "short" => "The URL resource",
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "url",
           "op" => {
             "list" => {
@@ -2622,8 +2875,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/url",
-                  "parts" => [
-                    "url",
+                  "segments" => [
+                    {
+                      "lit" => "url",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2639,6 +2894,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.urls`",
                   },
+                  "parts" => [
+                    "url",
+                  ],
                 },
               ],
             },
@@ -2677,15 +2935,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/url/{mbid}",
-                  "parts" => [
-                    "url",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "url",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -2697,6 +2959,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "url",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -2713,6 +2979,7 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "id",
               "short" => "MusicBrainz ID",
               "type" => "`$STRING`",
@@ -2733,6 +3000,10 @@ module MusicbrainzConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "work",
           "op" => {
             "list" => {
@@ -2793,8 +3064,10 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/work",
-                  "parts" => [
-                    "work",
+                  "segments" => [
+                    {
+                      "lit" => "work",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2811,6 +3084,9 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body.works`",
                   },
+                  "parts" => [
+                    "work",
+                  ],
                 },
               ],
             },
@@ -2849,15 +3125,19 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/work/{mbid}",
-                  "parts" => [
-                    "work",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "mbid" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "work",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fmt",
@@ -2869,6 +3149,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "work",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -2929,9 +3213,13 @@ module MusicbrainzConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/iswc/{iswc}",
-                  "parts" => [
-                    "iswc",
-                    "{iswc}",
+                  "segments" => [
+                    {
+                      "lit" => "iswc",
+                    },
+                    {
+                      "var" => "iswc",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2944,6 +3232,10 @@ module MusicbrainzConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "iswc",
+                    "{iswc}",
+                  ],
                 },
               ],
             },

@@ -36,6 +36,7 @@ main: kit: entity: event: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "MusicBrainz ID"
@@ -143,8 +144,10 @@ main: kit: entity: event: {
           }
           method: "GET"
           orig: "/event"
-          parts: [
-            "event"
+          segments: [
+            {
+              lit: "event"
+            }
           ]
           select: {
             exist: [
@@ -200,15 +203,19 @@ main: kit: entity: event: {
           }
           method: "GET"
           orig: "/event/{mbid}"
-          parts: [
-            "event"
-            "{id}"
-          ]
           rename: {
             param: {
               mbid: "id"
             }
           }
+          segments: [
+            {
+              lit: "event"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fmt"
