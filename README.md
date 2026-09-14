@@ -105,7 +105,7 @@ local results, err = client:Series():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/releases) |
+| TypeScript | `@voxgig-sdk/musicbrainz-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/releases) |
 | Python | `voxgig-sdk-musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/releases) |
 | PHP | `voxgig-sdk/musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/musicbrainz-sdk/go` | `go get github.com/voxgig-sdk/musicbrainz-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Series():list()
 ### TypeScript
 
 ```ts
-import { MusicbrainzSDK } from '@voxgig-sdk/musicbrainz'
+import { MusicbrainzSDK } from '@voxgig-sdk/musicbrainz-sdk'
 
 const client = new MusicbrainzSDK({
   apikey: process.env.MUSICBRAINZ_APIKEY,

@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MusicbrainzSDK } from '@voxgig-sdk/musicbrainz'
+import { MusicbrainzSDK } from '@voxgig-sdk/musicbrainz-sdk'
 
 const client = new MusicbrainzSDK({
   apikey: process.env.MUSICBRAINZ_APIKEY,
@@ -1297,7 +1297,7 @@ musicbrainz/
 Import the SDK from the package root:
 
 ```ts
-import { MusicbrainzSDK } from '@voxgig-sdk/musicbrainz'
+import { MusicbrainzSDK } from '@voxgig-sdk/musicbrainz-sdk'
 ```
 
 ### Entity state
