@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Musicbrainz SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class MusicbrainzFeatures
@@ -14,8 +17,14 @@ class MusicbrainzFeatures
         switch ($name) {
             case "base":
                 return new MusicbrainzBaseFeature();
+            case "ratelimit":
+                return new MusicbrainzRatelimitFeature();
+            case "retry":
+                return new MusicbrainzRetryFeature();
             case "test":
                 return new MusicbrainzTestFeature();
+            case "timeout":
+                return new MusicbrainzTimeoutFeature();
             default:
                 return new MusicbrainzBaseFeature();
         }
@@ -31,7 +40,10 @@ class MusicbrainzFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

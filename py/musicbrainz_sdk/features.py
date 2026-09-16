@@ -1,12 +1,18 @@
 # Musicbrainz SDK feature factory
 
 from musicbrainz_sdk.feature.base_feature import MusicbrainzBaseFeature
+from musicbrainz_sdk.feature.ratelimit_feature import MusicbrainzRatelimitFeature
+from musicbrainz_sdk.feature.retry_feature import MusicbrainzRetryFeature
 from musicbrainz_sdk.feature.test_feature import MusicbrainzTestFeature
+from musicbrainz_sdk.feature.timeout_feature import MusicbrainzTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: MusicbrainzBaseFeature(),
+    "ratelimit": lambda: MusicbrainzRatelimitFeature(),
+    "retry": lambda: MusicbrainzRetryFeature(),
     "test": lambda: MusicbrainzTestFeature(),
+    "timeout": lambda: MusicbrainzTimeoutFeature(),
 }
 
 

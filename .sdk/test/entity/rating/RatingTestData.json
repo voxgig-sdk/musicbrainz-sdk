@@ -16,5 +16,315 @@
     "rating": {
       "rating_ref01": {}
     }
+  },
+  "requests": {
+    "POST /rating": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "submitRating",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/xml": {
+              "schema": {
+                "description": "XML formatted rating data",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Rating submitted successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters or query"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Authentication required or failed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - maximum 1 request per second"
+          }
+        },
+        "security": [
+          {
+            "digestAuth": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "securitySchemes": {
+          "digestAuth": {
+            "description": "Digest authentication using MusicBrainz username and password over HTTPS",
+            "scheme": "digest",
+            "type": "http"
+          },
+          "oauth2": {
+            "description": "OAuth 2.0 authentication",
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://musicbrainz.org/oauth2/authorize",
+                "scopes": {
+                  "collection": "Manage collections",
+                  "email": "Access user email",
+                  "profile": "Access user profile information",
+                  "rating": "Submit ratings",
+                  "submit_barcode": "Submit barcodes",
+                  "submit_isrc": "Submit ISRCs",
+                  "tag": "Submit tags"
+                },
+                "tokenUrl": "https://musicbrainz.org/oauth2/token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /rating": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRatings",
+        "parameters": [
+          {
+            "description": "Response format",
+            "in": "query",
+            "name": "fmt",
+            "schema": {
+              "default": "xml",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with ratings"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Authentication required or failed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - maximum 1 request per second"
+          }
+        },
+        "security": [
+          {
+            "digestAuth": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "securitySchemes": {
+          "digestAuth": {
+            "description": "Digest authentication using MusicBrainz username and password over HTTPS",
+            "scheme": "digest",
+            "type": "http"
+          },
+          "oauth2": {
+            "description": "OAuth 2.0 authentication",
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://musicbrainz.org/oauth2/authorize",
+                "scopes": {
+                  "collection": "Manage collections",
+                  "email": "Access user email",
+                  "profile": "Access user profile information",
+                  "rating": "Submit ratings",
+                  "submit_barcode": "Submit barcodes",
+                  "submit_isrc": "Submit ISRCs",
+                  "tag": "Submit tags"
+                },
+                "tokenUrl": "https://musicbrainz.org/oauth2/token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

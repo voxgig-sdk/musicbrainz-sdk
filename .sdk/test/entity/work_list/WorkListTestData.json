@@ -2,22 +2,22 @@
   "existing": {
     "work_list": {
       "WORK_LIST00": {
-        "count": "s1e",
-        "offset": "s1f",
+        "count": 30,
+        "offset": 31,
         "works": [],
         "iswc": "ISWC01",
         "id": "WORK_LIST00"
       },
       "WORK_LIST01": {
-        "count": "s3c",
-        "offset": "s3d",
+        "count": 60,
+        "offset": 61,
         "works": [],
         "iswc": "ISWC01",
         "id": "WORK_LIST01"
       },
       "WORK_LIST02": {
-        "count": "s5a",
-        "offset": "s5b",
+        "count": 90,
+        "offset": 91,
         "works": [],
         "iswc": "ISWC01",
         "id": "WORK_LIST02"
@@ -27,9 +27,276 @@
   "new": {
     "work_list": {
       "work_list_ref01": {
-        "count": "s78",
-        "offset": "s79",
+        "count": 120,
+        "offset": 121,
         "works": []
+      }
+    }
+  },
+  "requests": {
+    "GET /iswc/{iswc}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "lookupIswc",
+        "parameters": [
+          {
+            "description": "ISWC to look up",
+            "in": "path",
+            "name": "iswc",
+            "required": true,
+            "schema": {
+              "pattern": "^T-?\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include additional information. Separate multiple values with '+'. Options include: aliases, annotation, tags, ratings, user-tags, user-ratings, genres, user-genres, releases, recordings, release-groups, works, labels, collections, discids, media, isrcs, artist-credits, various-artists, area-rels, artist-rels, event-rels, genre-rels, instrument-rels, label-rels, place-rels, recording-rels, release-rels, release-group-rels, series-rels, url-rels, work-rels, recording-level-rels, release-group-level-rels, work-level-rels",
+            "example": "artist-credits+genres",
+            "in": "query",
+            "name": "inc",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Response format",
+            "in": "query",
+            "name": "fmt",
+            "schema": {
+              "default": "xml",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "works": {
+                      "items": {
+                        "properties": {
+                          "disambiguation": {
+                            "description": "Disambiguation comment",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "MusicBrainz ID",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "language": {
+                            "description": "Language code",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "Work title",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "Work type",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "works": {
+                      "items": {
+                        "properties": {
+                          "disambiguation": {
+                            "description": "Disambiguation comment",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "MusicBrainz ID",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "language": {
+                            "description": "Language code",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "Work title",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "Work type",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful work list response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters or query"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - maximum 1 request per second"
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "digestAuth": {
+            "description": "Digest authentication using MusicBrainz username and password over HTTPS",
+            "scheme": "digest",
+            "type": "http"
+          },
+          "oauth2": {
+            "description": "OAuth 2.0 authentication",
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://musicbrainz.org/oauth2/authorize",
+                "scopes": {
+                  "collection": "Manage collections",
+                  "email": "Access user email",
+                  "profile": "Access user profile information",
+                  "rating": "Submit ratings",
+                  "submit_barcode": "Submit barcodes",
+                  "submit_isrc": "Submit ISRCs",
+                  "tag": "Submit tags"
+                },
+                "tokenUrl": "https://musicbrainz.org/oauth2/token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "definition"
       }
     }
   }

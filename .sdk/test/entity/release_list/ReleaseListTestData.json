@@ -2,22 +2,22 @@
   "existing": {
     "release_list": {
       "RELEASE_LIST00": {
-        "count": "s1e",
-        "offset": "s1f",
+        "count": 30,
+        "offset": 31,
         "releases": [],
         "discid": "DISCID01",
         "id": "RELEASE_LIST00"
       },
       "RELEASE_LIST01": {
-        "count": "s3c",
-        "offset": "s3d",
+        "count": 60,
+        "offset": 61,
         "releases": [],
         "discid": "DISCID01",
         "id": "RELEASE_LIST01"
       },
       "RELEASE_LIST02": {
-        "count": "s5a",
-        "offset": "s5b",
+        "count": 90,
+        "offset": 91,
         "releases": [],
         "discid": "DISCID01",
         "id": "RELEASE_LIST02"
@@ -27,9 +27,299 @@
   "new": {
     "release_list": {
       "release_list_ref01": {
-        "count": "s78",
-        "offset": "s79",
+        "count": 120,
+        "offset": 121,
         "releases": []
+      }
+    }
+  },
+  "requests": {
+    "GET /discid/{discid}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "lookupDiscId",
+        "parameters": [
+          {
+            "description": "Disc ID to look up",
+            "in": "path",
+            "name": "discid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include additional information. Separate multiple values with '+'. Options include: aliases, annotation, tags, ratings, user-tags, user-ratings, genres, user-genres, releases, recordings, release-groups, works, labels, collections, discids, media, isrcs, artist-credits, various-artists, area-rels, artist-rels, event-rels, genre-rels, instrument-rels, label-rels, place-rels, recording-rels, release-rels, release-group-rels, series-rels, url-rels, work-rels, recording-level-rels, release-group-level-rels, work-level-rels",
+            "example": "artist-credits+genres",
+            "in": "query",
+            "name": "inc",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Response format",
+            "in": "query",
+            "name": "fmt",
+            "schema": {
+              "default": "xml",
+              "enum": [
+                "json",
+                "xml"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "releases": {
+                      "items": {
+                        "properties": {
+                          "barcode": {
+                            "description": "Barcode",
+                            "type": "string"
+                          },
+                          "country": {
+                            "description": "Release country",
+                            "type": "string"
+                          },
+                          "date": {
+                            "description": "Release date",
+                            "type": "string"
+                          },
+                          "disambiguation": {
+                            "description": "Disambiguation comment",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "MusicBrainz ID",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "packaging": {
+                            "description": "Packaging type",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "Release status (official, promotion, bootleg, pseudo-release)",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "Release title",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "releases": {
+                      "items": {
+                        "properties": {
+                          "barcode": {
+                            "description": "Barcode",
+                            "type": "string"
+                          },
+                          "country": {
+                            "description": "Release country",
+                            "type": "string"
+                          },
+                          "date": {
+                            "description": "Release date",
+                            "type": "string"
+                          },
+                          "disambiguation": {
+                            "description": "Disambiguation comment",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "MusicBrainz ID",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "packaging": {
+                            "description": "Packaging type",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "Release status (official, promotion, bootleg, pseudo-release)",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "Release title",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful release list response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters or query"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "help": {
+                      "description": "Help text",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - maximum 1 request per second"
+          }
+        },
+        "security": [],
+        "securitySchemes": {
+          "digestAuth": {
+            "description": "Digest authentication using MusicBrainz username and password over HTTPS",
+            "scheme": "digest",
+            "type": "http"
+          },
+          "oauth2": {
+            "description": "OAuth 2.0 authentication",
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://musicbrainz.org/oauth2/authorize",
+                "scopes": {
+                  "collection": "Manage collections",
+                  "email": "Access user email",
+                  "profile": "Access user profile information",
+                  "rating": "Submit ratings",
+                  "submit_barcode": "Submit barcodes",
+                  "submit_isrc": "Submit ISRCs",
+                  "tag": "Submit tags"
+                },
+                "tokenUrl": "https://musicbrainz.org/oauth2/token"
+              }
+            },
+            "type": "oauth2"
+          }
+        },
+        "securitySource": "definition"
       }
     }
   }
