@@ -105,12 +105,12 @@ local results, err = client:Series():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/musicbrainz-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/releases) |
-| Python | `voxgig-sdk-musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/releases) |
-| PHP | `voxgig-sdk/musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/releases) |
+| TypeScript | `@voxgig-sdk/musicbrainz-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/tags) |
+| Python | `voxgig-sdk-musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/tags) |
+| PHP | `voxgig-sdk/musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/musicbrainz-sdk/go` | `go get github.com/voxgig-sdk/musicbrainz-sdk/go@latest` |
-| Ruby | `voxgig-sdk-musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/releases) |
-| Lua | `voxgig-sdk-musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/releases) |
+| Ruby | `voxgig-sdk-musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/tags) |
+| Lua | `voxgig-sdk-musicbrainz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/musicbrainz-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/musicbrainz-sdk/go-cli` | `go install github.com/voxgig-sdk/musicbrainz-sdk/go-cli/cmd/musicbrainz@latest` |
 | Go MCP server | `github.com/voxgig-sdk/musicbrainz-sdk/go-mcp` | `go get github.com/voxgig-sdk/musicbrainz-sdk/go-mcp@latest` |
 

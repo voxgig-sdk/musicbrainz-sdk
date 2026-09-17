@@ -131,63 +131,63 @@ class Config {
 
     entity: {
       
-      area: {
-      },
-
-      artist: {
-      },
-
-      collection: {
-      },
-
-      event: {
-      },
-
-      genre: {
-      },
-
-      instrument: {
-      },
-
-      label: {
-      },
-
-      place: {
-      },
-
-      rating: {
-      },
-
-      recording: {
-      },
-
-      recording_list: {
-      },
-
-      release: {
-      },
-
-      release_group: {
-      },
-
-      release_list: {
-      },
-
-      series: {
-      },
-
-      tag: {
-      },
-
-      url: {
-      },
-
-      work: {
-      },
-
-      work_list: {
-      },
-
+        area: {
+        },
+  
+        artist: {
+        },
+  
+        collection: {
+        },
+  
+        event: {
+        },
+  
+        genre: {
+        },
+  
+        instrument: {
+        },
+  
+        label: {
+        },
+  
+        place: {
+        },
+  
+        rating: {
+        },
+  
+        recording: {
+        },
+  
+        recording_list: {
+        },
+  
+        release: {
+        },
+  
+        release_group: {
+        },
+  
+        release_list: {
+        },
+  
+        series: {
+        },
+  
+        tag: {
+        },
+  
+        url: {
+        },
+  
+        work: {
+        },
+  
+        work_list: {
+        },
+  
     }
   }
 
